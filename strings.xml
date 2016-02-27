@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MeetGroningen!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_next">Quests</string>
+
+    <string name="string_main">Join us and start exploring the city!</string>
+    <string name="string1_main">MeetGroningen!</string>
+    <string name="button_main">Pick a quest!</string>
+
+</resources>
