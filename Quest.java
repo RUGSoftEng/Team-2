@@ -6,14 +6,24 @@ import java.util.ArrayList;
  * Created by Ruben on 23/02/2016.
  */
 public abstract class Quest {
-    private String name;
-    private ArrayList<Landmark> landmarks, visitedLandmarks;
-    private boolean isUserGenerated;
-    private int progress;
+    protected String name;
+    protected ArrayList<Landmark> landmarks, visitedLandmarks;
+    protected boolean isUserGenerated;
+    protected int progress;
 
     public Quest(String name, boolean isUserGenerated){
         this.name = name;
         this.isUserGenerated = isUserGenerated;
+    }
+
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    //for getting progress we don't need the variable (yet)
+    public int getProgress(){
+        return (100/(landmarks.size() / visitedLandmarks.size()));
     }
 
 
@@ -25,6 +35,7 @@ public abstract class Quest {
     public void isCompleted(Landmark landmark){
         this.landmarks.add(landmark);
     }
+
 
     //TODO should check for string name and other possibly unwanted user input
     //True is OK, False is a incorrect Quest
