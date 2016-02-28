@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">MeetGroningen!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_next">Quests</string>
+
+
+    <!-- Strings for Main -->
+
+    <string name="string_main">Join us and start exploring the city!</string>
+    <string name="string1_main">MeetGroningen!</string>
+    <string name="button_main">Pick a quest!</string>
+
+    <!-- Strings for Quest -->
+
+    <string name="quest_text">Visit the following locations:</string>
+    <string name="quest_item1">Martinitower</string>
+    <string name="checked_item1">Did you know the Martinitower is ... meters?</string>
+    <string name="title_activity_quest">Cultural quest</string>
+    <!--<string name="quest_item2">Groninger Museum</string>
+    <string name="checked_item">Did you know the museum was founded in the year ....?</string>
+     -->
+
+
+    <!-- Strings for ListItem -->
+
+    <string name="list_item_button">Go!</string>
+
+
+
+
+
+</resources>
