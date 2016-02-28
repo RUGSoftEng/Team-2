@@ -1,8 +1,11 @@
 package com.example.ruben.softwareengeneering20;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.sql.Blob;
 
 /**
  * Created by Ruben on 27/02/2016.
@@ -24,6 +27,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             onUpgrade(db, oldVersion, newVersion);
+        }
+
+        public void putInformation(DatabaseHelper helper, int landmarkID, byte[] object){
+            SQLiteDatabase sq = helper.getReadableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(DBConstants.LANDMARK_ID, landmarkID);
+            cv.put(DBConstants.LANDMARK, object);
+            sq.insert(DBConstants.TABLE_NAME, null, cv);
         }
 }
 // To acces database we need to have an instance, so DatabaseHelper mDbHelper = new DatabaseHelper(getContext());
