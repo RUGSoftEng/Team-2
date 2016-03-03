@@ -9,7 +9,7 @@ public abstract class Quest {
     protected String name;
     protected ArrayList<Landmark> landmarks, visitedLandmarks;
     protected boolean isUserGenerated;
-    protected int progress;
+    protected int progression;
 
     public Quest(String name, boolean isUserGenerated){
         this.name = name;
