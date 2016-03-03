@@ -14,7 +14,7 @@
 
     <string name="quest_text">Visit the following locations:</string>
     <string name="quest_item1">Martinitower</string>
-    <string name="checked_item1">Did you know the Martinitower is ... meters?</string>
+    <string name="checked_item1">Did you know the Martinitower is 97 meters?</string>
     <string name="title_activity_quest">Cultural quest</string>
     <!--<string name="quest_item2">Groninger Museum</string>
     <string name="checked_item">Did you know the museum was founded in the year ....?</string>
