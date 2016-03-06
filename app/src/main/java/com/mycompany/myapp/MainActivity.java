@@ -21,11 +21,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button button = (Button) findViewById(R.id.button_main);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button pickQuest = (Button) findViewById(R.id.button_main);
+        pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), NextActivity.class);
+                startActivity(i);
+            }
+        });
+
+        Button makeQuest = (Button) findViewById(R.id.createQuest);
+        makeQuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), AddLandmarkActivity.class);
                 startActivity(i);
             }
         });

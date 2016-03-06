@@ -1,9 +1,13 @@
 package com.mycompany.myapp;
 
 import android.app.Activity;
+import android.app.LauncherActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 /**
  * Created by Ruben on 28/02/2016.
@@ -18,8 +22,25 @@ public class AddLandmarkActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout."copy appropiate layout here(xml)"); TODO: So add layout here
-        //ADD = (Button) findViewById(R.id."copy appropriate id of button here(xml)"); TODO: add button from layout here
+        setContentView(R.layout.add_landmark);
+        ADD = (Button) findViewById(R.id.addButton);
+
+        ListView listView = (ListView) findViewById(R.id.listView);
+
+        //TODO: now hardcoded, has to be done for every Landmark in the database, binded to arrayAdapter to print each value of the landmark
+        Landmark[] landmarks = {
+                new Landmark("Martini Toren", 1),
+                new Landmark("A Kerk", 2),
+        };
+
+
+        ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this,
+                android.R.layout.simple_list_item_1, landmarks);
+
+        listView.setAdapter(adapter);
+
+
+
         //SELECT = (Button) findViewById(R.id."copy appropriate id of button here(xml)"); TODO: add button from layout here
         /*SELECT.setOnClickListener(new OnClickListener(){ TODO: add here button listiner and what to do (select in this case)
 
@@ -29,15 +50,16 @@ public class AddLandmarkActivity extends Activity {
             }
 
         });
+        */
 
-        ADD.setOnClickListener(new OnClickListener(){ TODO: add here button listiner and what to do (add selected Landmark in this case)
+        ADD.setOnClickListener(new View.OnClickListener(){ //TODO: add here button listiner and what to do (add selected Landmark in this case)
 
             @Override
             public void onClick(View v){
 
+
             }
 
         });
-        */
     }
 }

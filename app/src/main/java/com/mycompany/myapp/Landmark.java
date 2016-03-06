@@ -22,6 +22,11 @@ public class Landmark {
 
 
 
+    //For printing as listItem, now only printing name of landmark
+    @Override
+    public String toString() {
+        return this.name;
+    }
 
     //lots of getters and setters(+ add, delete) below
 
