@@ -17,4 +17,28 @@ public class User implements Serializable {
 
     public void addQuest(Quest q) { this.quests.add(q);    }
 
+    public int getPoints(){
+        return this.points;
+    }
+
+    public void addPoints(int i){
+        this.points = this.points + i;
+    }
+
+    public void finishQuest(Quest q){ //add a quest to the solved and remove it from current quest list
+        this.quests.remove(q);
+        this.solvedquests.add(q);
+    }
+
+    public int getID(){
+        return this.userID;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public Quest getCurrentQuest(){
+        return this.activeQuest;
+    }
 }
