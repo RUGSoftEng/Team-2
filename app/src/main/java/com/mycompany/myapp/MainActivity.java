@@ -1,6 +1,7 @@
 package com.mycompany.myapp;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,10 +10,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
+import android.widget.ViewSwitcher;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ImageSwitcher imageSwitcher;
+    ArrayList<Integer> imgs = new ArrayList<Integer>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //Buttons
         Button pickQuest = (Button) findViewById(R.id.button_main);
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         Button makeQuest = (Button) findViewById(R.id.createQuest);
         makeQuest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +56,40 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+
+        //make image switcher to switch background
+        //NOTE: For some reason martini.jpg doesn't work so their might be pictures not working
+        imgs.add(R.drawable.martini2);
+        imgs.add(R.drawable.martini3);
+        imgs.add(R.drawable.martini4);
+        imgs.add(R.drawable.koala);
+
+
+        imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher1);
+
+        imageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+            public View makeView() {
+                ImageView myView = new ImageView(getApplicationContext());
+                return myView;
+            }
+        });
+                //should always have a element otherwise null pointer exception TODO: catch any execptions/errors
+                imageSwitcher.postDelayed(new Runnable() {
+                    int i = 0;
+
+                    public void run() {
+                        imageSwitcher.setImageResource(imgs.get(i));
+                        i++;
+                        if(i == imgs.size()) i = 0;
+                        imageSwitcher.postDelayed(this, 10000);
+                    }
+                }, 10000);
+
+        Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        imageSwitcher.setInAnimation(in);
+        //imageSwitcher.setOutAnimation(out);
     }
 
 
