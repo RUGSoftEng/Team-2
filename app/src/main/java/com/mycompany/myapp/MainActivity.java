@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageSwitcher imageSwitcher;
     ArrayList<Integer> imgs = new ArrayList<Integer>();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
