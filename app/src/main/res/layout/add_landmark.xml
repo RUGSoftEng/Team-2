@@ -10,10 +10,23 @@
         android:id="@+id/addButton"
         android:layout_gravity="right|top" />
 
+    <Button
+        android:layout_width="161dp"
+        android:layout_height="92dp"
+        android:text="Get my Location"
+        android:id="@+id/locButton"
+        android:layout_gravity="right|center_vertical" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:id="@+id/textView"
+        android:layout_gravity="right|bottom" />
+
     <ListView
         android:layout_width="217dp"
         android:layout_height="fill_parent"
         android:id="@+id/listView"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_gravity="left|top" />
 
 </FrameLayout>
