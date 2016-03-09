@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 return myView;
             }
         });
-                //should always have a element otherwise null pointer exception TODO: catch any execptions/errors
+                //should always have a element otherwise null pointer exception TODO: catch any exceptions/errors
                 imageSwitcher.postDelayed(new Runnable() {
                     int i = 0;
 

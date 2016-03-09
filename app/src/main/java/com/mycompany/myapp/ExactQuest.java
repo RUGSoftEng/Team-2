@@ -24,6 +24,6 @@ public class ExactQuest extends Quest {
     }
 
     public Landmark getCurrentLandmark(){
-        return this.landmarks.get(currentLandmark);
+        return this.landmarks.get(this.currentLandmark);
     }
 }
