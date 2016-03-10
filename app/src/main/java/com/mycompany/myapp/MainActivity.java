@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         //Buttons
@@ -78,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
                     int i = 0;
 
                     public void run() {
-                        imageSwitcher.setImageResource(imgs.get(i));
+                        RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.layout);
+                        rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
+                        //imageSwitcher.setImageResource(imgs.get(i));
                         i++;
                         if(i == imgs.size()) i = 0;
                         imageSwitcher.postDelayed(this, 10000);
