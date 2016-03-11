@@ -24,9 +24,7 @@
     <!-- Strings for ListItem -->
 
     <string name="list_item_button">Go!</string>
-
-
-
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

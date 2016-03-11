@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
         //Buttons
         Button pickQuest = (Button) findViewById(R.id.button_main);
         pickQuest.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button mapButton = (Button) findViewById(R.id.mapButton);
+        pickQuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), MapsActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         //make image switcher to switch background

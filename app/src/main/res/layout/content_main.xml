@@ -66,5 +66,15 @@
         android:layout_alignStart="@+id/button_main"
         android:layout_marginTop="54dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MAPS"
+        android:id="@+id/mapButton"
+        android:layout_below="@+id/createQuest"
+        android:layout_alignEnd="@+id/createQuest"
+        android:layout_marginTop="59dp"
+        android:layout_alignStart="@+id/createQuest" />
+
 
 </RelativeLayout>
