@@ -1,10 +1,7 @@
 package com.mycompany.myapp;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,8 +10,6 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -82,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.layout);
                         rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
-                        //imageSwitcher.setImageResource(imgs.get(i));
                         i++;
                         if(i == imgs.size()) i = 0;
                         imageSwitcher.postDelayed(this, 10000);
@@ -91,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
         Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
         imageSwitcher.setInAnimation(in);
-        //imageSwitcher.setOutAnimation(out);
     }
 
 
