@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button mapButton = (Button) findViewById(R.id.mapButton);
-        pickQuest.setOnClickListener(new View.OnClickListener() {
+        mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), MapsActivity.class);
