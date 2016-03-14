@@ -6,6 +6,7 @@ import android.app.LauncherActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -19,6 +20,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * Created by Ruben on 28/02/2016.
@@ -44,10 +47,26 @@ public class AddLandmarkActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.textView);
         ListView listView = (ListView) findViewById(R.id.listView);
 
+
         //TODO: now hardcoded, has to be done for every Landmark in the database, binded to arrayAdapter to print each value of the landmark
+
+        /* TODO: If not using server, below code should be done once on the first time using the app only, putting landmarks in database
+        DatabaseHelper db = new DatabaseHelper(ctx);
+        SQLiteDatabase database = db.getWritableDatabase();
+        db.insert(); TODO: insert landmarks here
+        db.close(); // Closing database connection
+        */
+
+        Landmark martiniToren = new Landmark("Martini Toren", 1);
+        martiniToren.setLocation(new LatLng(53.219383, 6.568125));
+
+        Landmark aKerk = new Landmark("A Kerk", 2);
+        aKerk.setLocation(new LatLng(53.216498, 6.562386));
+
+
         Landmark[] landmarks = {
-                new Landmark("Martini Toren", 1),
-                new Landmark("A Kerk", 2),
+                martiniToren,
+                aKerk,
         };
 
 

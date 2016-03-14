@@ -1,5 +1,7 @@
 package com.mycompany.myapp;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 
 /**
@@ -10,14 +12,23 @@ public class Landmark {
     //locationName == streetName/neighbourhood
     private String name, locationName, information;
     private int points, landmarkID;
-    private ArrayList<Question> questions;
+    private ArrayList<Question> questions = new ArrayList<Question>();
+    private LatLng location;
 
-    //this is probably wrong needs to be changed to the google maps marker/location object
-   // private location location;
 
     public Landmark(String name, int id){
         this.landmarkID = id;
         this.name = name;
+    };
+
+
+    public Landmark(String name, int id, String locationName, int points, String information, LatLng location){
+        this.landmarkID = id;
+        this.name = name;
+        this.locationName = locationName;
+        this.points = points;
+        this.information = information;
+        this.location = location;
     };
 
 
@@ -29,6 +40,14 @@ public class Landmark {
     }
 
     //lots of getters and setters(+ add, delete) below
+
+    public LatLng getLocation(){
+        return this.location;
+    }
+
+    public void setLocation(LatLng location){
+        this.location = location;
+    }
 
     public int getID(){
         return this.landmarkID;
