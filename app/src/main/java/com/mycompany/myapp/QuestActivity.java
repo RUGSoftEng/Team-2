@@ -24,7 +24,7 @@ public class QuestActivity extends AppCompatActivity {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         TextView tv = new TextView(this);
         boolean checked = ((CheckBox) view).isChecked();
-        tv.setText("Did you know the Martinitower is ... meters?");
+        tv.setText("Did you know the Martinitower is 97 meters?");
             if (checked) {
                 linearLayout.addView(tv);
             }
