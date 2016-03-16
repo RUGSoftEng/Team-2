@@ -12,7 +12,7 @@ public class LandmarkDatabase {
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + DBConstants.TABLE_NAME + " (" +
                     DBConstants.LANDMARK_ID + " INTEGER PRIMARY KEY," +
-                    DBConstants.LANDMARK + BLOB_TYPE + COMMA_SEP +
+                    DBConstants.LANDMARK + BLOB_TYPE +
             " )";
 
     //delete all entries, now landmark table

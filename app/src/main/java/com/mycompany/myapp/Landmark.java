@@ -2,18 +2,20 @@ package com.mycompany.myapp;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Ruben on 23/02/2016.
  */
-public class Landmark {
+public class Landmark implements Serializable{
 
-    //locationName == streetName/neighbourhood
-    private String name, locationName, information;
+
+    private String name, locationName, information; //locationName == streetName/neighbourhood
     private int points, landmarkID;
-    private ArrayList<Question> questions = new ArrayList<Question>();
-    private LatLng location;
+    //private ArrayList<Question> questions = new ArrayList<Question>(); TODO not yet used so not need yet(could bring errors serialization errors)
+    //private LatLng location; TODO remove this not stored here just on creation
+    private double lat, lng;
 
 
     public Landmark(String name, int id){
@@ -22,13 +24,14 @@ public class Landmark {
     };
 
 
-    public Landmark(String name, int id, String locationName, int points, String information, LatLng location){
+    public Landmark(String name, int id, String locationName, int points, String information, double lat, double lng){
         this.landmarkID = id;
         this.name = name;
         this.locationName = locationName;
         this.points = points;
         this.information = information;
-        this.location = location;
+        this.lat = lat;
+        this.lng = lng;
     };
 
 
@@ -42,11 +45,17 @@ public class Landmark {
     //lots of getters and setters(+ add, delete) below
 
     public LatLng getLocation(){
-        return this.location;
+        return new LatLng(lat, lng);
     }
 
     public void setLocation(LatLng location){
-        this.location = location;
+        this.lat = location.latitude;
+        this.lng = location.longitude;
+    }
+
+    public void setLocation(double lat, double lng){
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public int getID(){
@@ -86,7 +95,7 @@ public class Landmark {
         return this.points;
     }
 
-
+    /*
     public void addQuestion(Question q){
         this.questions.add(q);
     }
@@ -98,5 +107,5 @@ public class Landmark {
     public void removeQuestion(Question q){
         this.questions.remove(q);
     }
-
+    */
 }

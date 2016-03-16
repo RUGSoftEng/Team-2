@@ -1,9 +1,12 @@
 package com.mycompany.myapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +18,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,12 +31,69 @@ public class MainActivity extends AppCompatActivity {
     private ImageSwitcher imageSwitcher;
     ArrayList<Integer> imgs = new ArrayList<Integer>();
 
+    Context ctx = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        //For the first time of startup(initialize stuff) by looking for pref file(so could be affected by previous tries, wipe data to be sure)
+        final String PREFS_NAME = "MyPrefsFile";
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        if (settings.getBoolean("first_time", true)) {
+            Log.d("Comments", "First time starting up");
+
+        DatabaseHelper db = new DatabaseHelper(ctx);
+
+        //all landmarks are put in the database
+        Landmark martiniToren = new Landmark("Martini Toren", 1);
+        martiniToren.setLocation(new LatLng(53.219383, 6.568125));
+
+        Landmark aKerk = new Landmark("A Kerk", 2);
+        aKerk.setLocation(new LatLng(53.216498, 6.562386));
+
+
+            //convert to byteArray and write into database
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutput out = null;
+            try {
+                out = new ObjectOutputStream(bos);
+
+                out.writeObject(martiniToren);
+                byte[] data = bos.toByteArray();
+                db.putInformation(db, martiniToren.getID(), data);
+
+                /*
+                out.writeObject(aKerk);
+                data = bos.toByteArray();
+                db.putInformation(db, aKerk.getID(), data);
+                */
+
+                out.close();
+                bos.close();
+                } catch (IOException ex) {
+                // TODO: catch error
+                Log.e("IOException", "Something went wrong with creating database", ex);
+            }
+
+
+
+
+        db.close(); // Closing database connection
+
+            // record the fact that the app has been started at least once
+            settings.edit().putBoolean("first_time", false).commit();
+        }else{
+            Log.d("Comments", "not first time starting up");
+        }
+
+
 
 
         //Buttons
