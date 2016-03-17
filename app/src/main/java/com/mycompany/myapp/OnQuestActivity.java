@@ -48,7 +48,7 @@ public class OnQuestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quest);
+        setContentView(R.layout.activity_questexplanation);
         LOC = (Button) findViewById(R.id.locButton);
         textView = (TextView) findViewById(R.id.textView);
 

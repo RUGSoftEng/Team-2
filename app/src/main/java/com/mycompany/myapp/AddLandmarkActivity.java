@@ -1,11 +1,6 @@
 package com.mycompany.myapp;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.LauncherActivity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,7 +16,6 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Ruben on 28/02/2016.
@@ -81,7 +75,7 @@ public class AddLandmarkActivity extends AppCompatActivity {
     public ArrayList<Landmark> getAllLandmarks(SQLiteDatabase db) {
         ArrayList<Landmark> list = new ArrayList<Landmark>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME;
+        String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_LANDMARK;
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -89,11 +83,11 @@ public class AddLandmarkActivity extends AppCompatActivity {
             do {
                 ByteArrayInputStream bis = new ByteArrayInputStream(cursor.getBlob(1));
                 ObjectInput in = null;
+
                 try {
                     in = new ObjectInputStream(bis);
                     Landmark landmark = (Landmark) in.readObject();
                     list.add(landmark);
-
 
                     in.close();
                     bis.close();

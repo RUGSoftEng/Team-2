@@ -49,51 +49,29 @@ public class MainActivity extends AppCompatActivity {
         if (settings.getBoolean("first_time", true)) {
             Log.d("Comments", "First time starting up");
 
-        DatabaseHelper db = new DatabaseHelper(ctx);
+            DatabaseHelper db = new DatabaseHelper(ctx);
 
-        //all landmarks are put in the database
-        Landmark martiniToren = new Landmark("Martini Toren", 1);
-        martiniToren.setLocation(new LatLng(53.219383, 6.568125));
+            //all landmarks are put in the database
+            Landmark martiniToren = new Landmark("Martini Toren", 1);
+            martiniToren.setLocation(53.219383, 6.568125);
+            this.putInDatabase(db, martiniToren);
 
-        Landmark aKerk = new Landmark("A Kerk", 2);
-        aKerk.setLocation(new LatLng(53.216498, 6.562386));
+            Landmark aKerk = new Landmark("A Kerk", 2);
+            aKerk.setLocation(53.216498, 6.562386);
+            this.putInDatabase(db, aKerk);
 
-
-            //convert to byteArray and write into database
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutput out = null;
-            try {
-                out = new ObjectOutputStream(bos);
-
-                out.writeObject(martiniToren);
-                byte[] data = bos.toByteArray();
-                db.putInformation(db, martiniToren.getID(), data);
-
-                /*
-                out.writeObject(aKerk);
-                data = bos.toByteArray();
-                db.putInformation(db, aKerk.getID(), data);
-                */
-
-                out.close();
-                bos.close();
-                } catch (IOException ex) {
-                // TODO: catch error
-                Log.e("IOException", "Something went wrong with creating database", ex);
-            }
+            Landmark gronigenMuseum = new Landmark("Groningen Museum", 3);
+            gronigenMuseum.setLocation(53.212292, 6.565761);
+            this.putInDatabase(db, gronigenMuseum);
 
 
-
-
-        db.close(); // Closing database connection
+            db.close(); // Closing database connection
 
             // record the fact that the app has been started at least once
             settings.edit().putBoolean("first_time", false).commit();
-        }else{
+        } else {
             Log.d("Comments", "not first time starting up");
         }
-
-
 
 
         //Buttons
@@ -101,11 +79,10 @@ public class MainActivity extends AppCompatActivity {
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), NextActivity.class);
+                Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
                 startActivity(i);
             }
         });
-
 
 
         Button makeQuest = (Button) findViewById(R.id.createQuest);
@@ -143,23 +120,22 @@ public class MainActivity extends AppCompatActivity {
                 return myView;
             }
         });
-                //should always have a element otherwise null pointer exception TODO: catch any exceptions/errors
-                imageSwitcher.postDelayed(new Runnable() {
-                    int i = 0;
+        //should always have a element otherwise null pointer exception TODO: catch any exceptions/errors
+        imageSwitcher.postDelayed(new Runnable() {
+            int i = 0;
 
-                    public void run() {
-                        RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.layout);
-                        rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
-                        i++;
-                        if(i == imgs.size()) i = 0;
-                        imageSwitcher.postDelayed(this, 10000);
-                    }
-                }, 10000);
+            public void run() {
+                RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.layout);
+                rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
+                i++;
+                if (i == imgs.size()) i = 0;
+                imageSwitcher.postDelayed(this, 10000);
+            }
+        }, 10000);
 
         Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
         imageSwitcher.setInAnimation(in);
     }
-
 
 
     @Override
@@ -183,4 +159,23 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //convert to byteArray and write into database
+    public void putInDatabase(DatabaseHelper db , Landmark l) {
+    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    ObjectOutput out = null;
+    try{
+        out = new ObjectOutputStream(bos);
+
+        out.writeObject(l);
+        byte[] data = bos.toByteArray();
+        db.putLandmarkInformation(db, l.getID(), data);
+
+        out.close();
+        bos.close();
+    }catch(IOException ex) {
+        // TODO: catch error
+        Log.e("IOException", "Something went wrong with creating database", ex);
+    }
+}
 }

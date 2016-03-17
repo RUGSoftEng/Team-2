@@ -10,13 +10,6 @@
         android:id="@+id/addButton"
         android:layout_gravity="right|top" />
 
-    <Button
-        android:layout_width="161dp"
-        android:layout_height="92dp"
-        android:text="Get my Location"
-        android:id="@+id/locButton"
-        android:layout_gravity="right|center_vertical" />
-
     <TextView
         android:layout_width="300dp"
         android:layout_height="200dp"

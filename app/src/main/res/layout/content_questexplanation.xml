@@ -7,27 +7,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_quest" tools:context="com.mycompany.myapp.QuestActivity">
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        android:text="@string/quest_item1"
-        android:id="@+id/checkBox"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="CheckLocation"
-        android:clickable="true" />
+    tools:showIn="@layout/activity_questexplanation" tools:context="com.mycompany.myapp.QuestActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/quest_text"
+        android:text="Visits the following locations:"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView2"
+        android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>

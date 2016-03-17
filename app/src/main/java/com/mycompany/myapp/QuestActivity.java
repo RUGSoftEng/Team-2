@@ -13,7 +13,7 @@ public class QuestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quest);
+       // setContentView(R.layout.activity_questexplanation); TODO: make a xml for this
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }

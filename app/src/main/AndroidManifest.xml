@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NextActivity"
+            android:name=".ChooseQuestActivity"
             android:label="@string/title_activity_next"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity

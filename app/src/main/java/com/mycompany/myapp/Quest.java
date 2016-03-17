@@ -1,15 +1,16 @@
 package com.mycompany.myapp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Ruben on 23/02/2016.
  */
-public abstract class Quest {
+public abstract class Quest implements Serializable{
     protected String name;
     protected ArrayList<Landmark> landmarks, visitedLandmarks;
     protected boolean isUserGenerated;
-    protected int progression;
+    protected int progression, questID;
 
     public Quest(String name, boolean isUserGenerated){
         this.name = name;
@@ -19,6 +20,10 @@ public abstract class Quest {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public int getID(){
+       return this.questID;
     }
 
     //for getting progress we don't need the variable (yet)
