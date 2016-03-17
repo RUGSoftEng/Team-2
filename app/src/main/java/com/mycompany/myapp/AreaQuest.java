@@ -29,14 +29,5 @@ public class AreaQuest extends Quest {
 
 
 
-    /* TODO: Useful, if decided we make Area's as squares
-    public void setArea(startingPoint, float height, float width){
-        this.startingPoint = startingPoint;
-        this.height = height;
-        this.width = width;
-    }
-
-    */
-
 
 }
