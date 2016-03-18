@@ -2,21 +2,28 @@ package com.mycompany.myapp;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ruben on 23/02/2016.
  */
 public abstract class Quest implements Serializable{
     protected String name;
-    protected ArrayList<Landmark> landmarks, visitedLandmarks;
+    protected ArrayList<Landmark> landmarks = new ArrayList<>(), visitedLandmarks = new ArrayList<>();
     protected boolean isUserGenerated;
     protected int progression, questID;
 
-    public Quest(String name, boolean isUserGenerated){
+    public Quest(int id, String name, boolean isUserGenerated){
+        this.questID = id;
         this.name = name;
         this.isUserGenerated = isUserGenerated;
     }
 
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 
     public void setName(String name){
         this.name = name;
@@ -33,9 +40,19 @@ public abstract class Quest implements Serializable{
 
 
 
-    //Adding landmarks by object now, could be changed to adding(creating) by name?
+    public ArrayList<Landmark> getLandmarks(){
+        return this.landmarks;
+    }
+
+    public ArrayList<Landmark> getVisitedLandmarks(){
+        return this.visitedLandmarks;
+    }
 
     public void addLandmark(Landmark landmark){ this.landmarks.add(landmark);  }
+
+    public void addLandmarkList(Landmark[] array) {
+        for (Landmark landmark : array) this.landmarks.add(landmark);
+    }
 
     public void isCompleted(Landmark landmark){
         this.landmarks.add(landmark);

@@ -50,6 +50,8 @@ public class AddLandmarkActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+        db.close();
+        helper.close();
 
         //SELECT = (Button) findViewById(R.id."copy appropriate id of button here(xml)"); TODO: add button from layout here
         /*SELECT.setOnClickListener(new OnClickListener(){ TODO: add here button listiner and what to do (select in this case)

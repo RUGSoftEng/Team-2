@@ -10,8 +10,8 @@ public class AreaQuest extends Quest {
     private float height, width;
     private int currentLandmark = 0;
 
-    public AreaQuest(String name, boolean isUserGenerated) {
-        super(name, isUserGenerated);
+    public AreaQuest(int id, String name, boolean isUserGenerated) {
+        super(id, name, isUserGenerated);
     }
 
 

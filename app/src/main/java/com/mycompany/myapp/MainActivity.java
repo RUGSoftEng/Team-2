@@ -17,20 +17,18 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
-
-import com.google.android.gms.maps.model.LatLng;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+
+//Except for being the main screen, mainActivity.java also initializes all standard quests and landmarks
 public class MainActivity extends AppCompatActivity {
 
     private ImageSwitcher imageSwitcher;
     ArrayList<Integer> imgs = new ArrayList<Integer>();
-
     Context ctx = this;
 
     @Override
@@ -51,18 +49,18 @@ public class MainActivity extends AppCompatActivity {
 
             DatabaseHelper db = new DatabaseHelper(ctx);
 
-            //all landmarks are put in the database
-            Landmark martiniToren = new Landmark("Martini Toren", 1);
-            martiniToren.setLocation(53.219383, 6.568125);
-            this.putInDatabase(db, martiniToren);
+            //all landmarks and quests are put in the database
+            Initializer i = new Initializer();
 
-            Landmark aKerk = new Landmark("A Kerk", 2);
-            aKerk.setLocation(53.216498, 6.562386);
-            this.putInDatabase(db, aKerk);
+            ArrayList<Landmark> standardLandMarks = i.createStandardLandmarks();
+            for(Landmark l : standardLandMarks){
+                this.putInDatabase(db, l);
+            }
 
-            Landmark gronigenMuseum = new Landmark("Groningen Museum", 3);
-            gronigenMuseum.setLocation(53.212292, 6.565761);
-            this.putInDatabase(db, gronigenMuseum);
+            ArrayList<Quest> standardQuests = i.createStandardQuests();
+            for(Quest q : standardQuests){
+                this.putInDatabase(db, q);
+            }
 
 
             db.close(); // Closing database connection
@@ -161,21 +159,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //convert to byteArray and write into database
-    public void putInDatabase(DatabaseHelper db , Landmark l) {
-    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-    ObjectOutput out = null;
-    try{
-        out = new ObjectOutputStream(bos);
+    public void putInDatabase(DatabaseHelper db, Landmark l) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+        try {
+            out = new ObjectOutputStream(bos);
 
-        out.writeObject(l);
-        byte[] data = bos.toByteArray();
-        db.putLandmarkInformation(db, l.getID(), data);
+            out.writeObject(l);
+            byte[] data = bos.toByteArray();
+            db.putLandmarkInformation(db, l.getID(), data);
 
-        out.close();
-        bos.close();
-    }catch(IOException ex) {
-        // TODO: catch error
-        Log.e("IOException", "Something went wrong with creating database", ex);
+            out.close();
+            bos.close();
+        } catch (IOException ex) {
+            // TODO: catch error
+            Log.e("IOException", "Something went wrong with creating database", ex);
+        }
     }
-}
+
+    public void putInDatabase(DatabaseHelper db, Quest q) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+        try {
+            out = new ObjectOutputStream(bos);
+
+            out.writeObject(q);
+            byte[] data = bos.toByteArray();
+            db.putQuestInformation(db, q.getID(), data);
+
+            out.close();
+            bos.close();
+        } catch (IOException ex) {
+            // TODO: catch error
+            Log.e("IOException", "Something went wrong with creating database", ex);
+        }
+    }
 }
