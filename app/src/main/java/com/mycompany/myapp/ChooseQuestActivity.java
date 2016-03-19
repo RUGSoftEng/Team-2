@@ -19,8 +19,8 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class ChooseQuestActivity extends AppCompatActivity {
-    ListView listView;
-    Quest choosenQuest;
+    private ListView listView;
+    private Quest chosenQuest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class ChooseQuestActivity extends AppCompatActivity {
         DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        ArrayList<Quest> a = getAllQuests(db);
+        ArrayList<Quest> a = helper.getAllQuests(db);
         Quest[] quests = a.toArray(new Quest[a.size()]);
 
         db.close();
@@ -46,45 +46,16 @@ public class ChooseQuestActivity extends AppCompatActivity {
         //redirect to quest explanation page, passing the chosen quest
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //TODO is this intent put extra going ok??
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                chosenQuest = (Quest) parent.getAdapter().getItem(position) ;
+
                 Intent i = new Intent(getBaseContext(), QuestExplanationActivity.class);
-                i.putExtra("PassedQuest", choosenQuest);
+                i.putExtra("PassedQuest", chosenQuest);
                 startActivity(i);
-                //Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-                //        Toast.LENGTH_SHORT).show();
             }
         });
 
-    }
-
-    public ArrayList<Quest> getAllQuests(SQLiteDatabase db) {
-        ArrayList<Quest> list = new ArrayList<Quest>();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_QUEST;
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                ByteArrayInputStream bis = new ByteArrayInputStream(cursor.getBlob(1));
-                ObjectInput in = null;
-
-                try {
-                    in = new ObjectInputStream(bis);
-                    Quest quest = (Quest) in.readObject();
-                    list.add(quest);
-
-                    in.close();
-                    bis.close();
-                } catch (IOException e) {
-                    Log.e("IOException", "failed to create input stream for landmark");
-                } catch (ClassNotFoundException ex){
-                    Log.e("ClassNotFound", "failed to find class while creating landmark");
-                }
-
-            } while (cursor.moveToNext());
-        }
-        return list;
     }
 
 }

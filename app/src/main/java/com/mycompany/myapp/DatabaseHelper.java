@@ -2,9 +2,16 @@ package com.mycompany.myapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 /**
  * Created by Ruben on 27/02/2016.
@@ -53,5 +60,67 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             sq.insert(DBConstants.TABLE_NAME_QUEST, null, cv);
             Log.d("COMMENT", "Tried putting quest in database");
         }
+
+    //gets all quest from db
+    public ArrayList<Quest> getAllQuests(SQLiteDatabase db) {
+        ArrayList<Quest> list = new ArrayList<Quest>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_QUEST;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                ByteArrayInputStream bis = new ByteArrayInputStream(cursor.getBlob(1));
+                ObjectInput in = null;
+
+                try {
+                    in = new ObjectInputStream(bis);
+                    Quest quest = (Quest) in.readObject();
+                    list.add(quest);
+
+                    in.close();
+                    bis.close();
+                } catch (IOException e) {
+                    Log.e("IOException", "failed to create input stream for landmark");
+                } catch (ClassNotFoundException ex){
+                    Log.e("ClassNotFound", "failed to find class while creating landmark");
+                }
+
+            } while (cursor.moveToNext());
+        }
+        return list;
+    }
+
+    //Gets all Landmarks from db
+    public ArrayList<Landmark> getAllLandmarks(SQLiteDatabase db) {
+        ArrayList<Landmark> list = new ArrayList<Landmark>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_LANDMARK;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                ByteArrayInputStream bis = new ByteArrayInputStream(cursor.getBlob(1));
+                ObjectInput in = null;
+
+                try {
+                    in = new ObjectInputStream(bis);
+                    Landmark landmark = (Landmark) in.readObject();
+                    list.add(landmark);
+
+                    in.close();
+                    bis.close();
+                } catch (IOException e) {
+                    Log.e("IOException", "failed to create input stream for landmark");
+                } catch (ClassNotFoundException ex){
+                    Log.e("ClassNotFound", "failed to find class while creating landmark");
+                }
+
+            } while (cursor.moveToNext());
+        }
+        return list;
+    }
 }
 // To acces database we need to have an instance, so DatabaseHelper mDbHelper = new DatabaseHelper(getContext());

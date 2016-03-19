@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +15,7 @@ import android.widget.ListView;
  */
 public class QuestExplanationActivity extends AppCompatActivity{
 
-    Quest passedQuest;
+    private Quest passedQuest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +34,7 @@ public class QuestExplanationActivity extends AppCompatActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getBaseContext(), QuestActivity.class);
-                i.putExtra("PassedQuest", passedQuest);
-                startActivity(i);
-                //Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-                //        Toast.LENGTH_SHORT).show();
+                //TODO on click this should show the marker of selected landmark?
             }
         });
 
