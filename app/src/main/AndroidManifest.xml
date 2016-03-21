@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name=".LandMarkPopUp"
-            android:parentActivityName=".ContinueQuestActivity">
+            android:theme="@style/AppTheme.PopUpTheme">
             // TODO: this parent is only temporary, should be changed
             //android:theme="@style/AppTheme.NoActionBar"
 
