@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 /**
@@ -37,6 +38,8 @@ public class QuestExplanationActivity extends AppCompatActivity{
                 //TODO on click this should show the marker of selected landmark?
             }
         });
+
+        Button addButton;
 
 
     }

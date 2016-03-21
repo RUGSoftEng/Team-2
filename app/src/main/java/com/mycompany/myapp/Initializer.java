@@ -40,6 +40,12 @@ public class Initializer {
         quests.add(essentailQuest);
 
 
+        //number 2
+        ExactQuest reversedEssential = new ExactQuest(asignID(), "RevEssentail", false);
+        reversedEssential.addLandmark(gronigenMuseum);
+        reversedEssential.addLandmark(aKerk);
+        reversedEssential.addLandmark(martiniToren);
+        quests.add(reversedEssential);
 
         return landmarks;
     }
