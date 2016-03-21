@@ -50,11 +50,11 @@ public class Initializer {
         return landmarks;
     }
 
-
-
     public ArrayList<Quest> createStandardQuests(){
         return quests;
     }
+
+    public User createStandardUser() { return new User(asignID()); }
 
     private int asignID(){
         return this.assignedID++;

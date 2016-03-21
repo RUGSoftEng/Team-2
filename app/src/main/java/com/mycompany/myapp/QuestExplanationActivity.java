@@ -39,8 +39,22 @@ public class QuestExplanationActivity extends AppCompatActivity{
             }
         });
 
-        Button addButton;
+        Button addButton = (Button) findViewById(R.id.addButton);
 
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /* TODO user not yet implemented in database
+                DatabaseHelper helper = new DatabaseHelper(this);
+                SQLiteDatabase db = helper.getReadableDatabase();
+                User user = helper.getUser(db);
+                user.add(this.passedQuest);
+                helper.updateUser(db, user);
+                */
+
+            }
+        });
 
     }
 }

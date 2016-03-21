@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 this.putInDatabase(db, q);
             }
 
+            //initial user is put into the database
+            User u = i.createStandardUser();
+            this.putInDatabase(db, u);
+
 
             db.close(); // Closing database connection
 
@@ -188,6 +192,25 @@ public class MainActivity extends AppCompatActivity {
             out.writeObject(q);
             byte[] data = bos.toByteArray();
             db.putQuestInformation(db, q.getID(), data);
+
+            out.close();
+            bos.close();
+        } catch (IOException ex) {
+            // TODO: catch error
+            Log.e("IOException", "Something went wrong with creating database", ex);
+        }
+    }
+
+
+    public void putInDatabase(DatabaseHelper db, User u) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+        try {
+            out = new ObjectOutputStream(bos);
+
+            out.writeObject(u);
+            byte[] data = bos.toByteArray();
+            db.putLandmarkInformation(db, u.getID(), data);
 
             out.close();
             bos.close();
