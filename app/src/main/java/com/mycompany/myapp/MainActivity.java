@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         //make image switcher to switch background
         //NOTE: For some reason martini.jpg doesn't work so their might be pictures not working
         imgs.add(R.drawable.martini2);

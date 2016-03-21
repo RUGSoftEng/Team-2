@@ -24,17 +24,33 @@
         </activity>
         <activity
             android:name=".ChooseQuestActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".QuestExplanationActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".QuestActivity"
             android:label="@string/title_activity_quest"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".LandMarkPopUp"
+            android:parentActivityName=".ContinueQuestActivity">
+            // TODO: this parent is only temporary, should be changed
+            //android:theme="@style/AppTheme.NoActionBar"
+
+
+        </activity>
         <activity
             android:name=".AddLandmarkActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -49,7 +65,10 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps">
+
+        </activity>
+
     </application>
 
 </manifest>
