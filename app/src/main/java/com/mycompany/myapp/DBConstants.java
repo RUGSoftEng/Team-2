@@ -11,15 +11,18 @@ public class DBConstants {
     public static final String DATABASE_NAME = "Database";
     public static final String TABLE_NAME_LANDMARK = "landmarks_table";
     public static final String TABLE_NAME_QUEST = "quests_table";
+    public static final String TABLE_NAME_USER = "user_table";
     public static final int DATABASE_VERSION = 1;
 
 
     public static final String LANDMARK_ID = "landmark_ID";
     public static final String QUEST_ID = "quest_ID";
+    public static final String USER_ID = "user_ID";
 
 
     public static final String QUEST = "quest_Object";
     public static final String LANDMARK = "landmark_Object";
+    public static final String USER = "user_Object";
 
 
 
@@ -38,11 +41,20 @@ public class DBConstants {
                     DBConstants.QUEST + BLOB_TYPE +
                     " )";
 
-    //delete all entries, now landmark table
+    public static final String SQL_CREATE_USER_ENTRIES =
+            "CREATE TABLE " + DBConstants.TABLE_NAME_USER + " (" +
+                    DBConstants.USER_ID + " INTEGER PRIMARY KEY," +
+                    DBConstants.USER + BLOB_TYPE +
+                    " )";
+
+    //delete all entries
     public static final String SQL_DELETE_lANDMARK_ENTRIES =
             "DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_LANDMARK;
 
     public static final String SQL_DELETE_QUEST_ENTRIES =
             "DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_LANDMARK;
+
+    public static final String SQL_DELETE_USER_ENTRIES =
+            "DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_USER;
 
 }
