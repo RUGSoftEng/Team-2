@@ -5,9 +5,16 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -45,21 +52,12 @@ public class MapsActivity extends FragmentActivity implements
     private LocationRequest mLocationRequest;
     private List<Marker> markers;
 
+    private Quest passedQuest;
     private LatLng test;
     private Marker testmark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        markers.add(new MarkerOptions()
-//                .position(test)
-//                .title("test marker"));
-//        markers.add(testmark);
-//
-//        MarkerOptions testOptions = new MarkerOptions()
-//                  .position(test)
-//                  .title("test marker");
-//        testmark = new Marker(testOptions);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
@@ -76,6 +74,23 @@ public class MapsActivity extends FragmentActivity implements
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .setInterval(10 * 1000)        // 10 seconds, in milliseconds
                 .setFastestInterval(1 * 1000); // 1 second, in milliseconds
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+        passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
+
+        ListView listView = (ListView) findViewById(R.id.listView2);
+        ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, passedQuest.getLandmarks());
+        listView.setAdapter(adapter);
+
+        //redirect to quest content page, passing the chosen quest
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO on click this should show the marker of selected landmark?
+            }
+        });
     }
 
     @Override
