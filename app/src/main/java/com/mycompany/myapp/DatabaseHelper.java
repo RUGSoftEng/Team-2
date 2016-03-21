@@ -72,6 +72,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting User in database");
         }
 
+        public void updateUser(DatabaseHelper helper, int userID, byte[] object){
+            SQLiteDatabase sq = helper.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(DBConstants.USER_ID, userID);
+            cv.put(DBConstants.USER, object);
+            sq.update(DBConstants.TABLE_NAME_USER, cv, null, null); //TODO: where clause ok here?? null is ok?
+            Log.d("COMMENT", "Tried putting User in database");
+        }
+
     //gets all quest from db
     public ArrayList<Quest> getAllQuests(SQLiteDatabase db) {
         ArrayList<Quest> list = new ArrayList<Quest>();
