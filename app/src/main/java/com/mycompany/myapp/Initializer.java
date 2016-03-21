@@ -40,15 +40,21 @@ public class Initializer {
         quests.add(essentailQuest);
 
 
+        //number 2
+        ExactQuest reversedEssential = new ExactQuest(asignID(), "RevEssentail", false);
+        reversedEssential.addLandmark(gronigenMuseum);
+        reversedEssential.addLandmark(aKerk);
+        reversedEssential.addLandmark(martiniToren);
+        quests.add(reversedEssential);
 
         return landmarks;
     }
 
-
-
     public ArrayList<Quest> createStandardQuests(){
         return quests;
     }
+
+    public User createStandardUser() { return new User(asignID()); }
 
     private int asignID(){
         return this.assignedID++;

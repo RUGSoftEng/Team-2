@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 /**
@@ -38,6 +39,22 @@ public class QuestExplanationActivity extends AppCompatActivity{
             }
         });
 
+        Button addButton = (Button) findViewById(R.id.addButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /* TODO user not yet implemented in database
+                DatabaseHelper helper = new DatabaseHelper(this);
+                SQLiteDatabase db = helper.getReadableDatabase();
+                User user = helper.getUser(db);
+                user.add(this.passedQuest);
+                helper.updateUser(db, user);
+                */
+
+            }
+        });
 
     }
 }

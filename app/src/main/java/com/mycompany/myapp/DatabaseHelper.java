@@ -27,6 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(DBConstants.SQL_CREATE_LANDMARK_ENTRIES);
             db.execSQL(DBConstants.SQL_CREATE_QUEST_ENTRIES);
+            db.execSQL(DBConstants.SQL_CREATE_USER_ENTRIES);
         }
 
         @Override
@@ -35,6 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // to simply to discard the data and start over
             db.execSQL(DBConstants.SQL_DELETE_lANDMARK_ENTRIES);
             db.execSQL(DBConstants.SQL_DELETE_QUEST_ENTRIES);
+            db.execSQL(DBConstants.SQL_DELETE_USER_ENTRIES);
             onCreate(db);
         }
 
@@ -59,6 +61,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(DBConstants.QUEST, object);
             sq.insert(DBConstants.TABLE_NAME_QUEST, null, cv);
             Log.d("COMMENT", "Tried putting quest in database");
+        }
+
+        public void putUserInformation(DatabaseHelper helper, int userID, byte[] object){ //TODO: ID assigning should be done safely, now its not
+            SQLiteDatabase sq = helper.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(DBConstants.USER_ID, userID);
+            cv.put(DBConstants.USER, object);
+            sq.insert(DBConstants.TABLE_NAME_USER, null, cv);
+            Log.d("COMMENT", "Tried putting User in database");
         }
 
     //gets all quest from db
@@ -121,6 +132,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return list;
+    }
+
+
+    //Gets all Landmarks from db
+    public User getUser(SQLiteDatabase db) {
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_USER;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        cursor.moveToFirst();
+                ByteArrayInputStream bis = new ByteArrayInputStream(cursor.getBlob(1));
+                ObjectInput in = null;
+        User user = null;
+                try {
+                    in = new ObjectInputStream(bis);
+                    user = (User) in.readObject();
+
+                    in.close();
+                    bis.close();
+                } catch (IOException e) {
+                    Log.e("IOException", "failed to create input stream for landmark");
+                } catch (ClassNotFoundException ex){
+                    Log.e("ClassNotFound", "failed to find class while creating landmark");
+                }
+        return user;
     }
 }
 // To acces database we need to have an instance, so DatabaseHelper mDbHelper = new DatabaseHelper(getContext());

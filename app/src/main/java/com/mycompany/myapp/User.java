@@ -11,9 +11,13 @@ public class User implements Serializable {
     private int userID, points;
     private String name;
 
-    private ArrayList<Achievement> achievements;
+    //private ArrayList<Achievement> achievements; TODO: not yet implemented
     private ArrayList<Quest> quests, solvedquests;
     private Quest activeQuest;
+
+    public User(int userID){
+        this.userID = userID;
+    }
 
     public void addQuest(Quest q) { this.quests.add(q);    }
 
