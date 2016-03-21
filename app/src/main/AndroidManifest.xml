@@ -47,6 +47,11 @@
 
         </activity>
         <activity
+            android:name=".ContinueQuestActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+        </activity>
+        <activity
             android:name=".AddLandmarkActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
