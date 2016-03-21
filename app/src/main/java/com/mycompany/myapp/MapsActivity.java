@@ -65,11 +65,6 @@ public class MapsActivity extends FragmentActivity implements
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
 
-        markers = new ArrayList<Marker>();
-        test = new LatLng(53.2194, 6.5665);
-        testmark = mMap.addMarker(new MarkerOptions().position(test));
-        markers.add(testmark);
-
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -135,11 +130,13 @@ public class MapsActivity extends FragmentActivity implements
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        // Here we should set up the map and add all markers for the landmarks in this quest
+        markers = new ArrayList<>();
+        testmark = mMap.addMarker(new MarkerOptions().position(new LatLng(53.2194, 6.5665)).title("GroningenMarker"));
+        markers.add(testmark);
     }
 
     private void handleNewLocation(Location location) {
-        //mMap.clear();
         Log.d(TAG, location.toString());
 
         double currentLatitude = location.getLatitude();
@@ -147,7 +144,7 @@ public class MapsActivity extends FragmentActivity implements
 
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
-        //mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title("Current Location"));
+      //  mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title("Current Location"));
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
                 .title("I am here!");
