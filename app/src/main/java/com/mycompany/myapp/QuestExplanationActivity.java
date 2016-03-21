@@ -49,7 +49,7 @@ public class QuestExplanationActivity extends AppCompatActivity{
                 DatabaseHelper helper = new DatabaseHelper(this);
                 SQLiteDatabase db = helper.getReadableDatabase();
                 User user = helper.getUser(db);
-                user.add(this.passedQuest);
+                user.addQuest(this.passedQuest);
                 helper.updateUser(db, user);
                 */
 
