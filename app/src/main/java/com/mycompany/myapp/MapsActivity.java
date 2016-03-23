@@ -91,6 +91,7 @@ public class MapsActivity extends FragmentActivity implements
                 //TODO on click this should show the marker of selected landmark?
             }
         });
+
     }
 
     @Override
