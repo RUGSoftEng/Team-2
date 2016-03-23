@@ -5,9 +5,6 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -33,12 +30,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements
+public class QuestPreview extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
-    public static final String TAG = MapsActivity.class.getSimpleName();
+    public static final String TAG = QuestPreview.class.getSimpleName();
 
     /*
      * Define a request code to send to Google Play services
@@ -54,13 +51,15 @@ public class MapsActivity extends FragmentActivity implements
 
     private Quest passedQuest;
     private LatLng test;
-    private Marker testmark;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
+
+        setContentView(R.layout.activity_questpreview);
         setUpMapIfNeeded();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -78,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-        passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
+
 
         ListView listView = (ListView) findViewById(R.id.listView2);
         ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, passedQuest.getLandmarks());
@@ -88,7 +87,15 @@ public class MapsActivity extends FragmentActivity implements
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO on click this should show the marker of selected landmark?
+                Landmark selectedlm = (Landmark)parent.getAdapter().getItem(position);
+
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                builder.include(selectedlm.getLocation());
+                LatLngBounds bounds = builder.build();
+                int padding = 1; // offset from edges of the map in pixels
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+                mMap.animateCamera(cu);
+
             }
         });
 
@@ -146,10 +153,16 @@ public class MapsActivity extends FragmentActivity implements
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        // Here we should set up the map and add all markers for the landmarks in this quest
+        // Get the locations of the landmarks in this quest
+        Marker testmark;
         markers = new ArrayList<>();
-        testmark = mMap.addMarker(new MarkerOptions().position(new LatLng(53.2194, 6.5665)).title("GroningenMarker"));
-        markers.add(testmark);
+        //ArrayList<Landmark> lmlist = new ArrayList<>();
+        //lmlist = passedQuest.landmarks;
+
+        for (Landmark landmark : passedQuest.getLandmarks()) {
+            testmark = mMap.addMarker(new MarkerOptions().position(landmark.getLocation()).title(landmark.getName()));
+            markers.add(testmark);
+        }
     }
 
     private void handleNewLocation(Location location) {
@@ -171,7 +184,7 @@ public class MapsActivity extends FragmentActivity implements
         }
         builder.include(options.getPosition());
         LatLngBounds bounds = builder.build();
-        int padding = 0; // offset from edges of the map in pixels
+        int padding = 100; // offset from edges of the map in pixels
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
         mMap.animateCamera(cu);
     }
