@@ -36,7 +36,10 @@ public abstract class Quest implements Serializable{
 
     //for getting progress we don't need the variable (yet)
     public int getProgress(){
-        return (100/(landmarks.size() / visitedLandmarks.size()));
+        if(landmarks.isEmpty()){
+            return 100;
+        }
+        return (100 * (visitedLandmarks.size() / landmarks.size()));
     }
 
 
@@ -56,7 +59,8 @@ public abstract class Quest implements Serializable{
     }
 
     public void isCompleted(Landmark landmark){
-        this.landmarks.add(landmark);
+        this.visitedLandmarks.add(landmark);
+        this.landmarks.remove(landmark); //TODO: now slow might be faster
     }
 
 

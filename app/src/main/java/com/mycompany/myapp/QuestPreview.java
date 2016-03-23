@@ -36,7 +36,7 @@ public class QuestPreview extends FragmentActivity implements
         LocationListener {
 
     public static final String TAG = QuestPreview.class.getSimpleName();
-
+    private static final int PADDING = 100; // offset from edges of the map in pixels
     /*
      * Define a request code to send to Google Play services
      * This code is returned in Activity.onActivityResult
@@ -50,7 +50,6 @@ public class QuestPreview extends FragmentActivity implements
     private List<Marker> markers;
 
     private Quest passedQuest;
-    private LatLng test;
 
 
     @Override
@@ -92,8 +91,7 @@ public class QuestPreview extends FragmentActivity implements
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
                 builder.include(selectedlm.getLocation());
                 LatLngBounds bounds = builder.build();
-                int padding = 1; // offset from edges of the map in pixels
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, PADDING);
                 mMap.animateCamera(cu);
 
             }
@@ -184,8 +182,8 @@ public class QuestPreview extends FragmentActivity implements
         }
         builder.include(options.getPosition());
         LatLngBounds bounds = builder.build();
-        int padding = 100; // offset from edges of the map in pixels
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, PADDING);
         mMap.animateCamera(cu);
     }
 

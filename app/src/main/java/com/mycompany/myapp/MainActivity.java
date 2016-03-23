@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), QuestPreview.class);
+                Intent i = new Intent(getBaseContext(), MapActivity.class);
                 startActivity(i);
             }
         });
