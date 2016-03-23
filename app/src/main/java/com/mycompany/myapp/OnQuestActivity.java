@@ -16,7 +16,7 @@ public class OnQuestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onquest);
 
-
+        Quest passedQuest = (Quest) getIntent().getSerializableExtra("passedQuest");
 
         Button b = (Button) findViewById(R.id.button); //TODO instead of button this should be activated by geofences,(landmarkPopup should be merged with questActivity)
         b.setOnClickListener(new View.OnClickListener() {
