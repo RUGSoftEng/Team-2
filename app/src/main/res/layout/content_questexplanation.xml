@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Visits the following locations:"
+        android:text="@string/questpreview_1"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -30,7 +30,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add"
+        android:text="@string/questpreview_pickbutton"
         android:id="@+id/addButton"
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignParentEnd="true" />
