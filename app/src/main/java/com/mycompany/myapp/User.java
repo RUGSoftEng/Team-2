@@ -15,7 +15,7 @@ public class User implements Serializable {
     private String name;
 
     //private ArrayList<Achievement> achievements; TODO: not yet implemented
-    private ArrayList<Quest> quests = new ArrayList<>();
+    private ArrayList<Quest> currentQuests = new ArrayList<>();
     private ArrayList<Quest> solvedquests = new ArrayList<>();
     private Quest activeQuest;
 
@@ -24,11 +24,11 @@ public class User implements Serializable {
     }
 
     public void addQuest(Quest q) {
-        this.quests.add(q);
+        this.currentQuests.add(q);
     }
 
     public ArrayList<Quest> getQuests() {
-        return quests;
+        return currentQuests;
     }
 
     public int getPoints(){
@@ -40,7 +40,7 @@ public class User implements Serializable {
     }
 
     public void finishQuest(Quest q){ //add a quest to the solved and remove it from current quest list
-        this.quests.remove(q);
+        this.currentQuests.remove(q);
         this.solvedquests.add(q);
     }
 
@@ -52,8 +52,16 @@ public class User implements Serializable {
         return this.name;
     }
 
-    public Quest getCurrentQuest(){
-        return this.activeQuest;
+    public Quest getActiveQuest(){
+        return activeQuest;
+    }
+
+    public ArrayList<Quest> getCurrentQuests() {
+        return currentQuests;
+    }
+
+    public void setActiveQuest(Quest q) {
+        this.activeQuest = q;
     }
 
     public byte[] serialize() throws IOException {
