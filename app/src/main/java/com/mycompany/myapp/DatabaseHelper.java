@@ -8,9 +8,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -73,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         public void updateUser(DatabaseHelper helper, int userID, byte[] object){
-            SQLiteDatabase sq = helper.getWritableDatabase();
+            SQLiteDatabase sq = helper.getReadableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.USER_ID, userID);
             cv.put(DBConstants.USER, object);
@@ -167,6 +170,81 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     Log.e("ClassNotFound", "failed to find class while creating landmark");
                 }
         return user;
+    }
+
+
+    //convert to byteArray and write into database
+    public void putInDatabase(DatabaseHelper db, Landmark l) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+        try {
+            out = new ObjectOutputStream(bos);
+
+            out.writeObject(l);
+            byte[] data = bos.toByteArray();
+            db.putLandmarkInformation(db, l.getID(), data);
+
+            out.close();
+            bos.close();
+        } catch (IOException ex) {
+            // TODO: catch error
+            Log.e("IOException", "Something went wrong with creating database", ex);
+        }
+    }
+
+    public void putInDatabase(DatabaseHelper db, Quest q) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+        try {
+            out = new ObjectOutputStream(bos);
+
+            out.writeObject(q);
+            byte[] data = bos.toByteArray();
+            db.putQuestInformation(db, q.getID(), data);
+
+            out.close();
+            bos.close();
+        } catch (IOException ex) {
+            // TODO: catch error
+            Log.e("IOException", "Something went wrong with creating database", ex);
+        }
+    }
+
+
+    public void updateInDatabase(DatabaseHelper db, User u){
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+        try {
+            out = new ObjectOutputStream(bos);
+
+            out.writeObject(u);
+            byte[] data = bos.toByteArray();
+            db.updateUser(db, u.getID(), data);
+
+            out.close();
+            bos.close();
+        } catch (IOException ex) {
+            // TODO: catch error
+            Log.e("IOException", "Something went wrong with creating database", ex);
+        }
+    }
+
+    public void putInDatabase(DatabaseHelper db, User u) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+        try {
+            out = new ObjectOutputStream(bos);
+
+            out.writeObject(u);
+            byte[] data = bos.toByteArray();
+            db.putUserInformation(db, u.getID(), data);
+
+            out.close();
+            bos.close();
+        } catch (IOException ex) {
+            // TODO: catch error
+            Log.e("IOException", "Something went wrong with creating database", ex);
+        }
     }
 }
 // To acces database we need to have an instance, so DatabaseHelper mDbHelper = new DatabaseHelper(getContext());

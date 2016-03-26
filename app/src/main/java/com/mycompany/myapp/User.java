@@ -1,6 +1,7 @@
 package com.mycompany.myapp;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ public class User implements Serializable {
     private String name;
 
     //private ArrayList<Achievement> achievements; TODO: not yet implemented
-    private ArrayList<Quest> quests, solvedquests;
+    private ArrayList<Quest> quests = new ArrayList<Quest>(), solvedquests = new ArrayList<Quest>();
     private Quest activeQuest;
 
     public User(int userID){
@@ -42,7 +43,23 @@ public class User implements Serializable {
         return this.name;
     }
 
-    public Quest getCurrentQuest(){
+    public Quest getActiveQuest(){
         return this.activeQuest;
+    }
+
+    public void setActiveQuest(Quest quest){
+        this.activeQuest = quest;
+    }
+
+    public void addCurrentQuest(Quest quest){
+        this.quests.add(quest);
+    }
+
+    public ArrayList<Quest> getCurrentQuests(){
+        return this.quests;
+    }
+
+    public ArrayList<Quest> getSolvedQuests(){
+        return this.solvedquests;
     }
 }
