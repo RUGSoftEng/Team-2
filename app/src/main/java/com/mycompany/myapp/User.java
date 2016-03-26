@@ -1,5 +1,8 @@
 package com.mycompany.myapp;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,14 +15,21 @@ public class User implements Serializable {
     private String name;
 
     //private ArrayList<Achievement> achievements; TODO: not yet implemented
-    private ArrayList<Quest> quests, solvedquests;
+    private ArrayList<Quest> quests = new ArrayList<>();
+    private ArrayList<Quest> solvedquests = new ArrayList<>();
     private Quest activeQuest;
 
     public User(int userID){
         this.userID = userID;
     }
 
-    public void addQuest(Quest q) { this.quests.add(q);    }
+    public void addQuest(Quest q) {
+        this.quests.add(q);
+    }
+
+    public ArrayList<Quest> getQuests() {
+        return quests;
+    }
 
     public int getPoints(){
         return this.points;
@@ -45,4 +55,13 @@ public class User implements Serializable {
     public Quest getCurrentQuest(){
         return this.activeQuest;
     }
+
+    public byte[] serialize() throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        ObjectOutputStream os = new ObjectOutputStream(out);
+        os.writeObject(this);
+        return out.toByteArray();
+    }
+
+
 }
