@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 
 //Except for being the main screen, mainActivity.java also initializes all standard quests and landmarks
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity { //TODO: apps should still ask for permission so the user doesn't have to manually give permission
 
     private ImageSwitcher imageSwitcher;
     ArrayList<Integer> imgs = new ArrayList<Integer>();
@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
 
         //For the first time of startup(initialize stuff) by looking for pref file(so could be affected by previous tries, wipe data to be sure)
@@ -54,17 +56,17 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<Landmark> standardLandMarks = i.createStandardLandmarks();
             for(Landmark l : standardLandMarks){
-                this.putInDatabase(db, l);
+                db.putInDatabase(db, l);
             }
 
             ArrayList<Quest> standardQuests = i.createStandardQuests();
             for(Quest q : standardQuests){
-                this.putInDatabase(db, q);
+                db.putInDatabase(db, q);
             }
 
             //initial user is put into the database
             User u = i.createStandardUser();
-            this.putInDatabase(db, u);
+            db.putInDatabase(db, u);
 
 
             db.close(); // Closing database connection
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), QuestPreview.class);
+                Intent i = new Intent(getBaseContext(), MapActivity.class);
                 startActivity(i);
             }
         });
@@ -172,59 +174,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //convert to byteArray and write into database
-    public void putInDatabase(DatabaseHelper db, Landmark l) {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutput out = null;
-        try {
-            out = new ObjectOutputStream(bos);
 
-            out.writeObject(l);
-            byte[] data = bos.toByteArray();
-            db.putLandmarkInformation(db, l.getID(), data);
-
-            out.close();
-            bos.close();
-        } catch (IOException ex) {
-            // TODO: catch error
-            Log.e("IOException", "Something went wrong with creating database", ex);
-        }
-    }
-
-    public void putInDatabase(DatabaseHelper db, Quest q) {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutput out = null;
-        try {
-            out = new ObjectOutputStream(bos);
-
-            out.writeObject(q);
-            byte[] data = bos.toByteArray();
-            db.putQuestInformation(db, q.getID(), data);
-
-            out.close();
-            bos.close();
-        } catch (IOException ex) {
-            // TODO: catch error
-            Log.e("IOException", "Something went wrong with creating database", ex);
-        }
-    }
-
-
-    public void putInDatabase(DatabaseHelper db, User u) {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutput out = null;
-        try {
-            out = new ObjectOutputStream(bos);
-
-            out.writeObject(u);
-            byte[] data = bos.toByteArray();
-            db.putUserInformation(db, u.getID(), data);
-
-            out.close();
-            bos.close();
-        } catch (IOException ex) {
-            // TODO: catch error
-            Log.e("IOException", "Something went wrong with creating database", ex);
-        }
-    }
 }
