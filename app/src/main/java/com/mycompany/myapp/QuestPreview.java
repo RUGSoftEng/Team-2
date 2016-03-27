@@ -42,7 +42,10 @@ public class QuestPreview extends FragmentActivity implements
         LocationListener {
 
     public static final String TAG = QuestPreview.class.getSimpleName();
-    public static int PADDING = 100;
+
+    private static int PADDING = 100;
+    private static int MILLISEC = 1000;
+
     /*
      * Define a request code to send to Google Play services
      * This code is returned in Activity.onActivityResult
@@ -57,16 +60,18 @@ public class QuestPreview extends FragmentActivity implements
 
     private Quest passedQuest;
     private User currentUser;
-    private LatLng test;
 
+    private DatabaseHelper dbhelper;
+    private Button pickQuest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
         // Get the database and get the user from it.
-        final DatabaseHelper dbhelper = new DatabaseHelper(this);
+        dbhelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbhelper.getReadableDatabase();
         currentUser = dbhelper.getUser(db);
 
@@ -82,8 +87,8 @@ public class QuestPreview extends FragmentActivity implements
         // Create the LocationRequest object
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(10 * 1000)        // 10 seconds, in milliseconds
-                .setFastestInterval(1 * 1000); // 1 second, in milliseconds
+                .setInterval(10 * MILLISEC)        // 10 seconds, in milliseconds
+                .setFastestInterval(1 * MILLISEC); // 1 second, in milliseconds
 
         ListView listView = (ListView) findViewById(R.id.listView2);
         ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, passedQuest.getLandmarks());
@@ -105,36 +110,20 @@ public class QuestPreview extends FragmentActivity implements
         });
 
 
-        Button pickQuest = (Button) findViewById(R.id.addButton);
+        pickQuest = (Button) findViewById(R.id.addButton);
         // Check if this quest is already in the user's list
         // This check does not work correctly yet, we have tested and confirmed the quests are being
         // added to the userlist, but we cannot check it with 'contains' since the hashcodes are not
         // the same.
-        if (currentUser.getQuests().contains (passedQuest)) {
-            pickQuest.setVisibility(View.GONE); // remove the 'pick this quest' button
-        } else {
-            pickQuest.setOnClickListener(new View.OnClickListener() {
+        pickQuest.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     currentUser.addQuest(passedQuest);
-                    try {
-                        dbhelper.updateUser(dbhelper, currentUser.getID(), currentUser.serialize());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    dbhelper.updateInDatabase(dbhelper, currentUser);
                     v.setVisibility(View.GONE);
-//                    String test = currentUser.getQuests().get(0).name;
-//                     TextView tv = (TextView) findViewById(R.id.textView3);
-//                     tv.setText(test);
-//                    tv.setVisibility(View.VISIBLE);
                 }
             });
-
-        }
-
-
-
     }
 
     @Override
@@ -142,6 +131,15 @@ public class QuestPreview extends FragmentActivity implements
         super.onResume();
         setUpMapIfNeeded();
         mGoogleApiClient.connect();
+
+        //check if quest is already in Users quest and change according to (don't) show pickquest button
+        currentUser = dbhelper.getUser(dbhelper.getReadableDatabase());
+        for(Quest q : currentUser.getCurrentQuests()) {
+            if (q.getID() == passedQuest.getID()) {
+                Log.d("TEST", "passedQuest is in currentUser, onResume()");
+                pickQuest.setVisibility(View.GONE); // remove the 'pick this quest' button
+            }
+        }
     }
 
     @Override

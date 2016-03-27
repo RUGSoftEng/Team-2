@@ -1,5 +1,7 @@
 package com.mycompany.myapp;
 
+import android.util.Log;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -25,10 +27,7 @@ public class User implements Serializable {
 
     public void addQuest(Quest q) {
         this.currentQuests.add(q);
-    }
-
-    public ArrayList<Quest> getQuests() {
-        return currentQuests;
+        Log.d("TEST", "Added a quest to currentQuest: " + q.toString());
     }
 
     public int getPoints(){
@@ -42,6 +41,9 @@ public class User implements Serializable {
     public void finishQuest(Quest q){ //add a quest to the solved and remove it from current quest list
         this.currentQuests.remove(q);
         this.solvedquests.add(q);
+        if(q == activeQuest){
+            this.activeQuest = null;
+        }
     }
 
     public int getID(){
@@ -63,13 +65,5 @@ public class User implements Serializable {
     public void setActiveQuest(Quest q) {
         this.activeQuest = q;
     }
-
-    public byte[] serialize() throws IOException {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ObjectOutputStream os = new ObjectOutputStream(out);
-        os.writeObject(this);
-        return out.toByteArray();
-    }
-
 
 }

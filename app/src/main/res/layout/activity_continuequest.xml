@@ -15,7 +15,8 @@
             android:text="Active Quest"
             android:id="@+id/activeQuestText"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,21 +25,23 @@
             android:text="Selected Quests"
             android:id="@+id/selectedQuestText"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/activeQuest"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/selectedQuestText"
-            android:layout_below="@+id/activeQuestText" />
+            android:layout_below="@+id/activeQuestText"
+            android:layout_above="@+id/selectedQuestText" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/userQuests"
-            android:layout_below="@+id/selectedQuestText"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/selectedQuestText" />
+
     </RelativeLayout>
 </LinearLayout>

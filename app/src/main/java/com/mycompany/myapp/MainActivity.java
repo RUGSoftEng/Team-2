@@ -27,9 +27,13 @@ import java.util.ArrayList;
 //Except for being the main screen, mainActivity.java also initializes all standard quests and landmarks
 public class MainActivity extends AppCompatActivity { //TODO: apps should still ask for permission so the user doesn't have to manually give permission
 
+
+    private static int IMAGE_DELAY = 10000;
     private ImageSwitcher imageSwitcher;
-    ArrayList<Integer> imgs = new ArrayList<Integer>();
-    Context ctx = this;
+    private ArrayList<Integer> imgs = new ArrayList<Integer>();
+    private Context ctx = this;
+    private Button continueButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +111,7 @@ public class MainActivity extends AppCompatActivity { //TODO: apps should still 
             }
         });
 
-        Button continueButton = (Button) findViewById(R.id.continueButton);
+        continueButton = (Button) findViewById(R.id.continueButton);
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,14 +147,13 @@ public class MainActivity extends AppCompatActivity { //TODO: apps should still 
                 rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
                 i++;
                 if (i == imgs.size()) i = 0;
-                imageSwitcher.postDelayed(this, 10000);
+                imageSwitcher.postDelayed(this, IMAGE_DELAY);
             }
-        }, 10000);
+        }, IMAGE_DELAY);
 
         Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
         imageSwitcher.setInAnimation(in);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
