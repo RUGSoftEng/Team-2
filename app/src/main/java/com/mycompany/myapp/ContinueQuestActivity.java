@@ -39,7 +39,7 @@ public class ContinueQuestActivity extends AppCompatActivity {
             activeQuests[0] = user.getActiveQuest();
         }
 
-        ListView listView = (ListView) findViewById(R.id.activeQuest);
+        ListView listView = (ListView) findViewById(R.id.listView1);
         ArrayAdapter<Quest> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, activeQuests);
         listView.setAdapter(adapter);
 
@@ -50,7 +50,7 @@ public class ContinueQuestActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 chosenQuest = (Quest) parent.getAdapter().getItem(position);
-                Log.d("TEST", "clicked active quest list");
+                Log.d("TEST", "clicked active quest list, passed quest: " + chosenQuest.toString());
                 Intent i = new Intent(getBaseContext(), OnQuestActivity.class);
                 i.putExtra("PassedQuest", chosenQuest);
                 startActivity(i);
@@ -64,14 +64,11 @@ public class ContinueQuestActivity extends AppCompatActivity {
             currentQuests.remove(user.getActiveQuest());
         }
 
-        Quest[] userQuests = currentQuests.toArray(new Quest[currentQuests.size()]);
-
         //TODO: A element is null in the list of currentquests and so there will be a null pointer here, and why an error when listview2 has adapter2?(listview1 does work)
 
-        ListView listView2 = (ListView) findViewById(R.id.userQuests);
-        ArrayAdapter<Quest> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userQuests);
-        Log.d("TEST", "listview2: " + listView2 + " ,adapter2: " + adapter2);
-        listView.setAdapter(adapter2);
+        ListView listView2 = (ListView) findViewById(R.id.listView2);
+        ArrayAdapter<Quest> adapter2 = new ArrayAdapter<Quest>(this, android.R.layout.simple_expandable_list_item_1, currentQuests);
+        listView.setAdapter(adapter2); //this should be set to listview2
 
 
         //redirect to quest explanation page, passing the chosen quest
@@ -88,7 +85,7 @@ public class ContinueQuestActivity extends AppCompatActivity {
 
                 helper.close();
 
-                Log.d("TEST", "clicked current quest list");
+                Log.d("TEST", "clicked current quest list, passed quest: " + chosenQuest.toString());
                 Intent i = new Intent(getBaseContext(), OnQuestActivity.class);
                 i.putExtra("PassedQuest", chosenQuest);
                 startActivity(i);

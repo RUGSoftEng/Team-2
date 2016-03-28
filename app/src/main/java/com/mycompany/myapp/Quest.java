@@ -11,7 +11,7 @@ public abstract class Quest implements Serializable{
     protected String name;
     protected ArrayList<Landmark> landmarks = new ArrayList<>(), visitedLandmarks = new ArrayList<>();
     protected boolean isUserGenerated;
-    protected int progression, questID;
+    protected int questID;
     protected String category;
 
     public Quest(int id, String name, boolean isUserGenerated){
