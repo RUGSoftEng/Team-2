@@ -58,9 +58,20 @@ public abstract class Quest implements Serializable{
         for (Landmark landmark : array) this.landmarks.add(landmark);
     }
 
-    public void isCompleted(Landmark landmark){
+    public void isCompleted(Landmark landmark){ //finish landmark based on object
         this.visitedLandmarks.add(landmark);
         this.landmarks.remove(landmark); //TODO: now slow might be faster
+    }
+
+    public void isCompleted(int landmarkID){ //finish landmark based on id
+        for(Landmark l : visitedLandmarks){
+            if(landmarkID == l.getID()){
+                this.visitedLandmarks.add(l);
+                this.landmarks.remove(l); //TODO: now slow might be faster
+                break;
+            }
+        }
+
     }
 
 

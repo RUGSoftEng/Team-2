@@ -12,37 +12,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Active Quest"
-            android:id="@+id/activeQuestText"
+            android:text="Started Quests"
+            android:id="@+id/StartedQuestText"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/selectedQuestText" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Selected Quests"
-            android:id="@+id/selectedQuestText"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="72dp" />
+            android:layout_alignParentTop="true" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listView1"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/activeQuestText"
-            android:layout_toStartOf="@+id/listView2" />
-
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/listView2"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/activeQuestText"
-            android:layout_alignTop="@+id/listView1" />
+            android:layout_below="@+id/StartedQuestText" />
 
     </RelativeLayout>
 </LinearLayout>

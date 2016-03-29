@@ -147,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //Gets user from db, NOTE: will close database after use
+    //Gets user from db, NOTE: will close database after use, so cant be used twice
     public User getUser(SQLiteDatabase db) {
         // Select All Query
         String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_USER;
