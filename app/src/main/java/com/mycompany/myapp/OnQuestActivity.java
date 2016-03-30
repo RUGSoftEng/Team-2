@@ -26,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
@@ -74,14 +75,6 @@ public class OnQuestActivity extends AppCompatActivity implements ConnectionCall
         passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
 
         Log.d("TEST", passedQuest.toString());
-
-        Button b = (Button) findViewById(R.id.button); //TODO instead of button this should be activated by geofences,(landmarkPopup should be merged with questActivity)
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), LandMarkPopUp.class));
-            }
-        });
 
         mGeofenceList = new ArrayList<Geofence>();
         mGeofencePendingIntent = null;
@@ -341,18 +334,21 @@ public class OnQuestActivity extends AppCompatActivity implements ConnectionCall
         double currentLatitude = location.getLatitude();
         double currentLongitude = location.getLongitude();
 
+        TextView tv =(TextView)findViewById(R.id.textView3);
+        tv.setText("Location is "+currentLatitude+", "+currentLongitude);
+        tv.setVisibility(View.VISIBLE);
+
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
                 .title("I am here!");
-        mMap.addMarker(options);
+        landmarker = mMap.addMarker(options);
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(landmarker.getPosition());
         builder.include(options.getPosition());
         LatLngBounds bounds = builder.build();
-
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
         mMap.animateCamera(cu);
     }
 }

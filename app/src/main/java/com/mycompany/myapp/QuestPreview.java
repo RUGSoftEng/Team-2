@@ -43,9 +43,6 @@ public class QuestPreview extends FragmentActivity implements
 
     public static final String TAG = QuestPreview.class.getSimpleName();
 
-    private static int PADDING = 100;
-    private static int MILLISEC = 1000;
-
     /*
      * Define a request code to send to Google Play services
      * This code is returned in Activity.onActivityResult
@@ -87,8 +84,8 @@ public class QuestPreview extends FragmentActivity implements
         // Create the LocationRequest object
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(10 * MILLISEC)        // 10 seconds, in milliseconds
-                .setFastestInterval(1 * MILLISEC); // 1 second, in milliseconds
+                .setInterval(10 * Constants.MILLISEC)        // 10 seconds, in milliseconds
+                .setFastestInterval(1 * Constants.MILLISEC); // 1 second, in milliseconds
 
         ListView listView = (ListView) findViewById(R.id.listView2);
         ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, passedQuest.getLandmarks());
@@ -103,7 +100,7 @@ public class QuestPreview extends FragmentActivity implements
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
                 builder.include(selectedlm.getLocation());
                 LatLngBounds bounds = builder.build();
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, PADDING);
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds,Constants.PADDING);
                 mMap.animateCamera(cu);
 
             }
@@ -214,7 +211,7 @@ public class QuestPreview extends FragmentActivity implements
         }
         builder.include(options.getPosition());
         LatLngBounds bounds = builder.build();
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, PADDING);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
         mMap.animateCamera(cu);
     }
 
