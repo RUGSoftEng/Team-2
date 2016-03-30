@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical" android:layout_width="match_parent"
-android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <fragment
+        android:id="@+id/onquestmap"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_weight="4"
+        tools:context="com.mycompany.myapp.OnQuestActivity"/>
 
 <Button
     android:layout_width="wrap_content"
@@ -9,4 +21,63 @@ android:layout_height="match_parent">
     android:text="Popup Landmark"
     android:id="@+id/button"
     android:layout_gravity="center_horizontal" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Quest Progress:"
+            android:id="@+id/progressText"
+            android:layout_above="@+id/progressBar"
+            android:layout_centerHorizontal="true" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView3"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/nextLandmarkText"
+            android:layout_alignBottom="@+id/next2LandmarksText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Next Landmark:"
+            android:id="@+id/nextLandmarkText"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Next 2 Landmarks:"
+            android:id="@+id/next2LandmarksText"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/nextLandmarkText"
+            android:layout_alignParentStart="true" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView4"
+            android:layout_below="@+id/listView3"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/progressText" />
+    </RelativeLayout>
 </LinearLayout>

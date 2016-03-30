@@ -11,7 +11,7 @@ public abstract class Quest implements Serializable{
     protected String name;
     protected ArrayList<Landmark> landmarks = new ArrayList<>(), visitedLandmarks = new ArrayList<>();
     protected boolean isUserGenerated;
-    protected int progression, questID;
+    protected int questID;
     protected String category;
 
     public Quest(int id, String name, boolean isUserGenerated){
@@ -36,7 +36,10 @@ public abstract class Quest implements Serializable{
 
     //for getting progress we don't need the variable (yet)
     public int getProgress(){
-        return (100/(landmarks.size() / visitedLandmarks.size()));
+        if(landmarks.isEmpty()){
+            return 100;
+        }
+        return (100 * (visitedLandmarks.size() / landmarks.size()));
     }
 
 
@@ -55,8 +58,20 @@ public abstract class Quest implements Serializable{
         for (Landmark landmark : array) this.landmarks.add(landmark);
     }
 
-    public void isCompleted(Landmark landmark){
-        this.landmarks.add(landmark);
+    public void isCompleted(Landmark landmark){ //finish landmark based on object
+        this.visitedLandmarks.add(landmark);
+        this.landmarks.remove(landmark); //TODO: now slow might be faster
+    }
+
+    public void isCompleted(int landmarkID){ //finish landmark based on id
+        for(Landmark l : visitedLandmarks){
+            if(landmarkID == l.getID()){
+                this.visitedLandmarks.add(l);
+                this.landmarks.remove(l); //TODO: now slow might be faster
+                break;
+            }
+        }
+
     }
 
 

@@ -1,7 +1,11 @@
 package com.mycompany.myapp;
 
+import android.util.Log;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -13,14 +17,18 @@ public class User implements Serializable {
     private String name;
 
     //private ArrayList<Achievement> achievements; TODO: not yet implemented
-    private ArrayList<Quest> quests = new ArrayList<Quest>(), solvedquests = new ArrayList<Quest>();
+    private ArrayList<Quest> currentQuests = new ArrayList<>();
+    private ArrayList<Quest> solvedquests = new ArrayList<>();
     private Quest activeQuest;
 
     public User(int userID){
         this.userID = userID;
     }
 
-    public void addQuest(Quest q) { this.quests.add(q);    }
+    public void addQuest(Quest q) {
+        this.currentQuests.add(q);
+        Log.d("TEST", "Added a quest to currentQuest: " + q.toString());
+    }
 
     public int getPoints(){
         return this.points;
@@ -31,8 +39,11 @@ public class User implements Serializable {
     }
 
     public void finishQuest(Quest q){ //add a quest to the solved and remove it from current quest list
-        this.quests.remove(q);
+        this.currentQuests.remove(q);
         this.solvedquests.add(q);
+        if(q == activeQuest){
+            this.activeQuest = null;
+        }
     }
 
     public int getID(){
@@ -44,22 +55,15 @@ public class User implements Serializable {
     }
 
     public Quest getActiveQuest(){
-        return this.activeQuest;
+        return activeQuest;
     }
 
-    public void setActiveQuest(Quest quest){
-        this.activeQuest = quest;
+    public ArrayList<Quest> getCurrentQuests() {
+        return currentQuests;
     }
 
-    public void addCurrentQuest(Quest quest){
-        this.quests.add(quest);
+    public void setActiveQuest(Quest q) {
+        this.activeQuest = q;
     }
 
-    public ArrayList<Quest> getCurrentQuests(){
-        return this.quests;
-    }
-
-    public ArrayList<Quest> getSolvedQuests(){
-        return this.solvedquests;
-    }
 }

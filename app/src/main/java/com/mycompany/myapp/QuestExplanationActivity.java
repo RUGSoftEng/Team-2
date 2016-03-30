@@ -14,7 +14,7 @@ import android.widget.ListView;
 /**
  * Created by Ruben on 17/03/2016.
  */
-public class QuestExplanationActivity extends AppCompatActivity{
+public class QuestExplanationActivity extends AppCompatActivity{ //TODO probably remove this whole class now
 
     private Quest passedQuest;
 

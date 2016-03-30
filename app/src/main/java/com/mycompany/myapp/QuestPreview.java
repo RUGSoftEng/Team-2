@@ -1,8 +1,11 @@
 package com.mycompany.myapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -11,7 +14,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -27,6 +32,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +42,9 @@ public class QuestPreview extends FragmentActivity implements
         LocationListener {
 
     public static final String TAG = QuestPreview.class.getSimpleName();
+
+    private static int PADDING = 100;
+    private static int MILLISEC = 1000;
 
     /*
      * Define a request code to send to Google Play services
@@ -50,14 +59,21 @@ public class QuestPreview extends FragmentActivity implements
     private List<Marker> markers;
 
     private Quest passedQuest;
-    private LatLng test;
+    private User currentUser;
 
+    private DatabaseHelper dbhelper;
+    private Button pickQuest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
+        // Get the database and get the user from it.
+        dbhelper = new DatabaseHelper(this);
+        SQLiteDatabase db = dbhelper.getReadableDatabase();
+        currentUser = dbhelper.getUser(db);
 
         setContentView(R.layout.activity_questpreview);
         setUpMapIfNeeded();
@@ -71,13 +87,8 @@ public class QuestPreview extends FragmentActivity implements
         // Create the LocationRequest object
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(10 * 1000)        // 10 seconds, in milliseconds
-                .setFastestInterval(1 * 1000); // 1 second, in milliseconds
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-
+                .setInterval(10 * MILLISEC)        // 10 seconds, in milliseconds
+                .setFastestInterval(1 * MILLISEC); // 1 second, in milliseconds
 
         ListView listView = (ListView) findViewById(R.id.listView2);
         ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, passedQuest.getLandmarks());
@@ -87,17 +98,32 @@ public class QuestPreview extends FragmentActivity implements
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Landmark selectedlm = (Landmark)parent.getAdapter().getItem(position);
+                Landmark selectedlm = (Landmark) parent.getAdapter().getItem(position);
 
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
                 builder.include(selectedlm.getLocation());
                 LatLngBounds bounds = builder.build();
-                int padding = 1; // offset from edges of the map in pixels
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, PADDING);
                 mMap.animateCamera(cu);
 
             }
         });
+
+
+        pickQuest = (Button) findViewById(R.id.addButton);
+        // Check if this quest is already in the user's list
+        // This check does not work correctly yet, we have tested and confirmed the quests are being
+        // added to the userlist, but we cannot check it with 'contains' since the hashcodes are not
+        // the same.
+        pickQuest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    currentUser.addQuest(passedQuest);
+                    dbhelper.updateInDatabase(dbhelper, currentUser);
+                    v.setVisibility(View.GONE);
+                }
+            });
     }
 
     @Override
@@ -105,6 +131,15 @@ public class QuestPreview extends FragmentActivity implements
         super.onResume();
         setUpMapIfNeeded();
         mGoogleApiClient.connect();
+
+        //check if quest is already in Users quest and change according to (don't) show pickquest button
+        currentUser = dbhelper.getUser(dbhelper.getReadableDatabase());
+        for(Quest q : currentUser.getCurrentQuests()) {
+            if (q.getID() == passedQuest.getID()) {
+                Log.d("TEST", "passedQuest is in currentUser, onResume()");
+                pickQuest.setVisibility(View.GONE); // remove the 'pick this quest' button
+            }
+        }
     }
 
     @Override
@@ -155,9 +190,6 @@ public class QuestPreview extends FragmentActivity implements
         // Get the locations of the landmarks in this quest
         Marker testmark;
         markers = new ArrayList<>();
-        //ArrayList<Landmark> lmlist = new ArrayList<>();
-        //lmlist = passedQuest.landmarks;
-
         for (Landmark landmark : passedQuest.getLandmarks()) {
             testmark = mMap.addMarker(new MarkerOptions().position(landmark.getLocation()).title(landmark.getName()));
             markers.add(testmark);
@@ -171,20 +203,18 @@ public class QuestPreview extends FragmentActivity implements
         double currentLongitude = location.getLongitude();
 
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-
-      //  mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title("Current Location"));
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
                 .title("I am here!");
         mMap.addMarker(options);
+        // Loop through the landmarklocations to make sure they are all displayed in the map
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         for (Marker marker : markers) {
             builder.include(marker.getPosition());
         }
         builder.include(options.getPosition());
         LatLngBounds bounds = builder.build();
-        int padding = 100; // offset from edges of the map in pixels
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, PADDING);
         mMap.animateCamera(cu);
     }
 

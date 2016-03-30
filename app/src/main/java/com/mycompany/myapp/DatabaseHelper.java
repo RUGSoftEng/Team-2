@@ -75,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting User in database");
         }
 
-        public void updateUser(DatabaseHelper helper, int userID, byte[] object){
+        private void updateUser(DatabaseHelper helper, int userID, byte[] object){
             SQLiteDatabase sq = helper.getReadableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.USER_ID, userID);
@@ -147,13 +147,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //Gets all Landmarks from db
+    //Gets user from db, NOTE: will close database after use, so cant be used twice
     public User getUser(SQLiteDatabase db) {
         // Select All Query
         String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_USER;
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
+        // In this case there is only one user, so no looping
         cursor.moveToFirst();
                 ByteArrayInputStream bis = new ByteArrayInputStream(cursor.getBlob(1));
                 ObjectInput in = null;
@@ -169,6 +169,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 } catch (ClassNotFoundException ex){
                     Log.e("ClassNotFound", "failed to find class while creating landmark");
                 }
+        db.close();
         return user;
     }
 
