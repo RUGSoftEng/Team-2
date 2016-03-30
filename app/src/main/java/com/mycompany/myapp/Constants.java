@@ -24,4 +24,10 @@ public class Constants {
     public static final String COMPLETED_LANDMARK_TEXT = "Landmark visited";
     public static final int FINISHED_LANDMARK_DURATION = Toast.LENGTH_SHORT;
 
+
+    public static final int PADDING = 100;
+    public static final int MILLISEC = 1000;
+
+
+
 }
