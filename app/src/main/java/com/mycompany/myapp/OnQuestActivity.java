@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -47,7 +48,7 @@ import java.util.ArrayList;
  * Created by Ruben on 17/03/2016.
  */
 //some callbacks and other notifications for losing connection to internet
-public class OnQuestActivity extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener, ResultCallback<Status>, OnMapReadyCallback {
+public class OnQuestActivity extends FragmentActivity implements ConnectionCallbacks, OnConnectionFailedListener, ResultCallback<Status>, OnMapReadyCallback {
 
     private ProgressBar mProgress;
 
