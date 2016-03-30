@@ -19,15 +19,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
@@ -48,7 +44,7 @@ import java.util.ArrayList;
  * Created by Ruben on 17/03/2016.
  */
 //some callbacks and other notifications for losing connection to internet
-public class OnQuestActivity extends FragmentActivity implements ConnectionCallbacks, OnConnectionFailedListener, ResultCallback<Status>, OnMapReadyCallback {
+public class OnQuestActivity extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener, ResultCallback<Status>, OnMapReadyCallback {
 
     private ProgressBar mProgress;
 
@@ -61,6 +57,7 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
     private ListView listView, listView2;
     private GoogleMap mMap;
     private Marker landmarker;
+    private Marker mylocmarker;
 
     private final static int TOTAL_PROGRESS_TIME = 100;
     private final static int MY_PERMISSIONS_REQUEST_LOCATION = 10;
@@ -171,14 +168,11 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
             mGeofenceList.clear(); //TODO might be doing too many work?? also clearing everythings so only 1 geofence could be used at the time
             addGeofence(this.nextLandmark);
         }
-
-        Log.d("TestGeo", "In geofeceList is landmark id: " + mGeofenceList.get(0).getRequestId() + " and nr of geofences: " + mGeofenceList.size() );
     }
 
 
     private PendingIntent getGeofencePendingIntent() {
         // Reuse the PendingIntent if we already have it.
-        Log.d("TestGeo", "We had an pending Intent");
         if (mGeofencePendingIntent != null) {
             return mGeofencePendingIntent;
         }
@@ -243,7 +237,6 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
         return next2Landmarks;
     }
 
-
     @Override
     public void onConnected(Bundle bundle) {
 
@@ -273,9 +266,6 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
 
     }
 
-
-
-
     /*
     * Below is map stuff + asking permission, map ready etc.
     * */
@@ -285,14 +275,12 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
         mMap = googleMap;
     }
 
-
-
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.onquestmap);
-            mapFragment.getMapAsync(this);
+            // Try to obtain the map from the SupportMapFragment.
+            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.onquestmap))
+                    .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
@@ -305,9 +293,10 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
         if (passedQuest.getLandmarks() != null) {
             Landmark lm = passedQuest.getLandmarks().get(0);
             landmarker = mMap.addMarker(new MarkerOptions().position(lm.getLocation()).title(lm.getName()));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lm.getLocation(), 12.0f));
+
         }
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -325,6 +314,7 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
 
 
     private void requestLocation() {
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -338,19 +328,20 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
         double currentLatitude = location.getLatitude();
         double currentLongitude = location.getLongitude();
 
-        TextView tv =(TextView)findViewById(R.id.textView3);
-        tv.setText("Location is "+currentLatitude+", "+currentLongitude);
-        tv.setVisibility(View.VISIBLE);
-
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-        MarkerOptions options = new MarkerOptions()
-                .position(latLng)
-                .title("I am here!");
-        landmarker = mMap.addMarker(options);
+
+        if (mylocmarker ==  null) {
+            MarkerOptions options = new MarkerOptions()
+                    .position(latLng)
+                    .title("I am here!");
+            mylocmarker = mMap.addMarker(options);
+        } else {
+            mylocmarker.setPosition(latLng);
+        }
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(landmarker.getPosition());
-        builder.include(options.getPosition());
+        builder.include(mylocmarker.getPosition());
         LatLngBounds bounds = builder.build();
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
         mMap.animateCamera(cu);
