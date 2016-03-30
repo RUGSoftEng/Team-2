@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity { //TODO: apps should still ask for permission so the user doesn't have to manually give permission
 
 
-    private static int IMAGE_DELAY = 10000;
+    private static int IMAGE_DELAY = 6000;
     private ImageSwitcher imageSwitcher;
     private ArrayList<Integer> imgs = new ArrayList<Integer>();
     private Context ctx = this;
@@ -124,10 +124,11 @@ public class MainActivity extends AppCompatActivity { //TODO: apps should still 
 
         //make image switcher to switch background
         //NOTE: For some reason martini.jpg doesn't work so their might be pictures not working
-        imgs.add(R.drawable.martini2);
-        imgs.add(R.drawable.martini3);
         imgs.add(R.drawable.martini4);
-        imgs.add(R.drawable.koala);
+        imgs.add(R.drawable.splashscreen5);
+        imgs.add(R.drawable.splashscreen7);
+        imgs.add(R.drawable.splashscreen6);
+        imgs.add(R.drawable.splashscreen3);
 
 
         imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher1);
