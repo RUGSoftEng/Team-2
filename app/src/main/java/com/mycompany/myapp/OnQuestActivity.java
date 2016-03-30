@@ -171,11 +171,14 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
             mGeofenceList.clear(); //TODO might be doing too many work?? also clearing everythings so only 1 geofence could be used at the time
             addGeofence(this.nextLandmark);
         }
+
+        Log.d("TestGeo", "In geofeceList is landmark id: " + mGeofenceList.get(0).getRequestId() + " and nr of geofences: " + mGeofenceList.size() );
     }
 
 
     private PendingIntent getGeofencePendingIntent() {
         // Reuse the PendingIntent if we already have it.
+        Log.d("TestGeo", "We had an pending Intent");
         if (mGeofencePendingIntent != null) {
             return mGeofencePendingIntent;
         }

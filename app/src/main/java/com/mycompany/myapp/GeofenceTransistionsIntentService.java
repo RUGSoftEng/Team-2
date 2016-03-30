@@ -36,7 +36,8 @@ import android.app.IntentService;
          */
         public GeofenceTransistionsIntentService() {
             // Use the TAG to name the worker thread.
-            super(Constants.TAG);
+            super("GeofenceTransistionsIntentService");
+            Log.d("TestGeo", "Made geoefenceTransisitionsIntentService");
         }
 
         @Override
@@ -59,7 +60,7 @@ import android.app.IntentService;
 
             // Get the transition type.
             int geofenceTransition = geofencingEvent.getGeofenceTransition();
-
+            Log.d("TestGeo", "handling intent");
             // Test that the reported transition was entering an geofence.
             if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER) {
 
