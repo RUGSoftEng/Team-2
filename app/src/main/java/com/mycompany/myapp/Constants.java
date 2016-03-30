@@ -21,4 +21,7 @@ public class Constants {
     public static final int GEOFENCE_EXPIRATION_IN_HOURS = 12; //stops tracking geofence after 12 hours
     public static final int GEOFENCE_EXPIRATION_IN_MILLISECONDS = GEOFENCE_EXPIRATION_IN_HOURS * 60 * 60 * 1000; //the expiration converted to milliseconds
 
+    public static final String COMPLETED_LANDMARK_TEXT = "Landmark visited";
+    public static final int FINISHED_LANDMARK_DURATION = Toast.LENGTH_SHORT;
+
 }

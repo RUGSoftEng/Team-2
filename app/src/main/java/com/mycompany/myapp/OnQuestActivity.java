@@ -1,5 +1,6 @@
 package com.mycompany.myapp;
 
+import android.Manifest;
 import android.app.PendingIntent;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -10,7 +11,14 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +30,15 @@ import android.widget.ProgressBar;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
@@ -29,7 +46,7 @@ import java.util.ArrayList;
  * Created by Ruben on 17/03/2016.
  */
 //some callbacks and other notifications for losing connection to internet
-public class OnQuestActivity extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener, ResultCallback<Status> {
+public class OnQuestActivity extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener, ResultCallback<Status>, OnMapReadyCallback {
 
     private ProgressBar mProgress;
 
@@ -40,6 +57,14 @@ public class OnQuestActivity extends AppCompatActivity implements ConnectionCall
     private User user;
     private PendingIntent mGeofencePendingIntent;
     private ListView listView, listView2;
+    private GoogleMap mMap;
+    private Marker landmarker;
+
+    private final static int TOTAL_PROGRESS_TIME = 100;
+    private final static int MY_PERMISSIONS_REQUEST_LOCATION = 10;
+    private LocationListener locationListener;
+    private LocationManager locationManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,27 +96,54 @@ public class OnQuestActivity extends AppCompatActivity implements ConnectionCall
         listView = (ListView) findViewById(R.id.listView3);
         listView2 = (ListView) findViewById(R.id.listView4);
 
-        /* TODO do we need below?? Already in onResume()
-        //Next landmark in the list is the first from the passedQuest from the user
-        ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getFirstLandmark(passedQuest));
-        listView.setAdapter(adapter);
-
-        ArrayAdapter<Landmark> adapter2 = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getNext2Landmarks(passedQuest));
-        listView2.setAdapter(adapter2);
-        */
-
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
 
+        setUpMapIfNeeded();
+
+
+        // Initialize the locationManager and locationListener
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                handleNewLocation(location);
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                // Called when GPS is turned off
+                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(i);
+            }
+        };
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.INTERNET}, 10);
+                return;
+            }
+        } else {
+            requestLocation();
+        }
+
     }
 
     //TODO geofence should be implemented and change the passedQuest(in this class) and update it in the database(+ should change progress)
-
-
-
 
 
     @Override
@@ -107,7 +159,6 @@ public class OnQuestActivity extends AppCompatActivity implements ConnectionCall
     }
 
 
-    //TODO: below gives error for missing persmission
     @Override
     protected void onResume() {
         super.onResume();
@@ -120,24 +171,12 @@ public class OnQuestActivity extends AppCompatActivity implements ConnectionCall
         ArrayAdapter<Landmark> adapter2 = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getNext2Landmarks(user.getActiveQuest()));
         listView2.setAdapter(adapter2);
 
-        if(mGeofenceList.isEmpty()){
+        if (mGeofenceList.isEmpty()) {
             addGeofence(this.nextLandmark);
-        }else{
+        } else {
             mGeofenceList.clear(); //TODO might be doing too many work?? also clearing everythings so only 1 geofence could be used at the time
             addGeofence(this.nextLandmark);
         }
-    }
-
-    @Override
-    protected void onPause(){
-        super.onPause();
-
-
-        LocationServices.GeofencingApi.removeGeofences(
-                mGoogleApiClient,
-                // This is the same pending intent that was used in addGeofences().
-                getGeofencePendingIntent()
-        ).setResultCallback(this); // Result processed in onResult().
     }
 
 
@@ -177,26 +216,25 @@ public class OnQuestActivity extends AppCompatActivity implements ConnectionCall
                 .build());
 
 
-
     }
 
-    public void deleteGeofence(Landmark l){
-        for(Geofence fence :mGeofenceList) {
-            if(fence.getRequestId() == String.valueOf(l.getID())) {
+    public void deleteGeofence(Landmark l) {
+        for (Geofence fence : mGeofenceList) {
+            if (fence.getRequestId() == String.valueOf(l.getID())) {
                 mGeofenceList.remove(fence);
             }
         }
     }
 
 
-    private Landmark[] getFirstLandmark(Quest q){ //set current Landmark and return an array with that 1 element
+    private Landmark[] getFirstLandmark(Quest q) { //set current Landmark and return an array with that 1 element
         Landmark[] nextLandmarks = new Landmark[1];
         this.nextLandmark = q.getLandmarks().get(0);
         nextLandmarks[0] = this.nextLandmark;
         return nextLandmarks;
     }
 
-    private ArrayList<Landmark> getNext2Landmarks(Quest q){ //return an array with 2 Landmark after the first Landmark
+    private ArrayList<Landmark> getNext2Landmarks(Quest q) { //return an array with 2 Landmark after the first Landmark
         ArrayList<Landmark> next2Landmarks = new ArrayList<>();
         switch (q.getLandmarks().size()) {
             case 3:
@@ -208,8 +246,13 @@ public class OnQuestActivity extends AppCompatActivity implements ConnectionCall
         return next2Landmarks;
     }
 
+
     @Override
     public void onConnected(Bundle bundle) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         LocationServices.GeofencingApi.addGeofences(
                 mGoogleApiClient,
                 getGeofencingRequest(),
@@ -233,4 +276,83 @@ public class OnQuestActivity extends AppCompatActivity implements ConnectionCall
 
     }
 
+
+
+
+    /*
+    * Below is map stuff + asking permission, map ready etc.
+    * */
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+    }
+
+
+
+    private void setUpMapIfNeeded() {
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.onquestmap);
+            mapFragment.getMapAsync(this);
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+                setUpMap();
+            }
+        }
+    }
+
+    private void setUpMap() {
+        // Show the next landmark on the map
+        if (passedQuest.getLandmarks() != null) {
+            Landmark lm = passedQuest.getLandmarks().get(0);
+            landmarker = mMap.addMarker(new MarkerOptions().position(lm.getLocation()).title(lm.getName()));
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    requestLocation();
+                    return;
+                }
+            }
+        }
+    }
+
+
+    private void requestLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+    }
+
+
+    private void handleNewLocation(Location location) {
+        Log.d(Constants.TAG, location.toString());
+
+        double currentLatitude = location.getLatitude();
+        double currentLongitude = location.getLongitude();
+
+        LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+        MarkerOptions options = new MarkerOptions()
+                .position(latLng)
+                .title("I am here!");
+        mMap.addMarker(options);
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(landmarker.getPosition());
+        builder.include(options.getPosition());
+        LatLngBounds bounds = builder.build();
+
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100);
+        mMap.animateCamera(cu);
+    }
 }
