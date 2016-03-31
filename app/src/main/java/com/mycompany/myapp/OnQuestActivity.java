@@ -62,6 +62,7 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
     private ListView listView, listView2;
     private GoogleMap mMap;
     private Marker landmarker;
+    private Marker mylocmarker;
 
     private final static int TOTAL_PROGRESS_TIME = 100;
     private final static int MY_PERMISSIONS_REQUEST_LOCATION = 10;
@@ -338,21 +339,21 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
 
         double currentLatitude = location.getLatitude();
         double currentLongitude = location.getLongitude();
-
-        TextView tv =(TextView)findViewById(R.id.textView3);
-        tv.setText("Location is "+currentLatitude+", "+currentLongitude);
-        tv.setVisibility(View.VISIBLE);
-
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-        MarkerOptions options = new MarkerOptions()
-                .position(latLng)
-                .title("I am here!")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.self_location));
-        landmarker = mMap.addMarker(options);
+
+        if (mylocmarker ==  null) {
+            MarkerOptions options = new MarkerOptions()
+                    .position(latLng)
+                    .title("I am here!")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.self_location));
+            mylocmarker = mMap.addMarker(options);
+        } else {
+            mylocmarker.setPosition(latLng);
+        }
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(landmarker.getPosition());
-        builder.include(options.getPosition());
+        builder.include(mylocmarker.getPosition());
         LatLngBounds bounds = builder.build();
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
         mMap.animateCamera(cu);

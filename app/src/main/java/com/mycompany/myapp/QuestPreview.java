@@ -190,7 +190,10 @@ public class QuestPreview extends FragmentActivity implements
         Marker testmark;
         markers = new ArrayList<>();
         for (Landmark landmark : passedQuest.getLandmarks()) {
-            testmark = mMap.addMarker(new MarkerOptions().position(landmark.getLocation()).title(landmark.getName()));
+            testmark = mMap.addMarker(new MarkerOptions()
+                    .position(landmark.getLocation())
+                    .title(landmark.getName())
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_icon)));
             markers.add(testmark);
         }
     }
@@ -202,6 +205,7 @@ public class QuestPreview extends FragmentActivity implements
         double currentLongitude = location.getLongitude();
 
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
                 .title("I am here!")
