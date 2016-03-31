@@ -192,8 +192,7 @@ public class QuestPreview extends FragmentActivity implements
         for (Landmark landmark : passedQuest.getLandmarks()) {
             testmark = mMap.addMarker(new MarkerOptions()
                     .position(landmark.getLocation())
-                    .title(landmark.getName())
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_icon)));
+                    .title(landmark.getName()));
             markers.add(testmark);
         }
     }
@@ -209,7 +208,7 @@ public class QuestPreview extends FragmentActivity implements
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
                 .title("I am here!")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.self_location)) ;
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon2)) ;
         mMap.addMarker(options);
         // Loop through the landmarklocations to make sure they are all displayed in the map
         LatLngBounds.Builder builder = new LatLngBounds.Builder();

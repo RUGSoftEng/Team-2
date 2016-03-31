@@ -345,7 +345,7 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
             MarkerOptions options = new MarkerOptions()
                     .position(latLng)
                     .title("I am here!")
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.self_location));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon2));
             mylocmarker = mMap.addMarker(options);
         } else {
             mylocmarker.setPosition(latLng);
