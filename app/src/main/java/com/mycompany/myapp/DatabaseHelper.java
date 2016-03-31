@@ -84,6 +84,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting User in database");
         }
 
+
+        public void deleteUser(DatabaseHelper helper, int userID){
+             SQLiteDatabase sq = helper.getWritableDatabase();
+             sq.delete(DBConstants.TABLE_NAME_USER, DBConstants.USER_ID + "=" + userID, null);
+             sq.close();
+        }
+
+        public void deleteLandmark(DatabaseHelper helper, int landmarkID){
+            SQLiteDatabase sq = helper.getWritableDatabase();
+            sq.delete(DBConstants.TABLE_NAME_LANDMARK, DBConstants.LANDMARK_ID + "=" + landmarkID, null);
+            sq.close();
+         }
+
+        public void deleteQuest(DatabaseHelper helper, int questID){
+            SQLiteDatabase sq = helper.getWritableDatabase();
+            sq.delete(DBConstants.TABLE_NAME_QUEST, DBConstants.QUEST_ID + "=" + questID, null);
+            sq.close();
+        }
+
     //gets all quest from db
     public ArrayList<Quest> getAllQuests(SQLiteDatabase db) {
         ArrayList<Quest> list = new ArrayList<Quest>();
@@ -165,9 +184,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     in.close();
                     bis.close();
                 } catch (IOException e) {
-                    Log.e("IOException", "failed to create input stream for landmark");
+                    Log.e("IOException", "failed to create input stream for User");
                 } catch (ClassNotFoundException ex){
-                    Log.e("ClassNotFound", "failed to find class while creating landmark");
+                    Log.e("ClassNotFound", "failed to find class while creating User");
                 }
         db.close();
         return user;
