@@ -6,6 +6,7 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabaseLockedException;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -27,6 +29,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -96,12 +99,12 @@ public class QuestPreview extends FragmentActivity implements
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Landmark selectedlm = (Landmark) parent.getAdapter().getItem(position);
-
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
                 builder.include(selectedlm.getLocation());
                 LatLngBounds bounds = builder.build();
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds,Constants.PADDING);
-                mMap.animateCamera(cu);
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds,300);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(selectedlm.getLocation()));
+                //mMap.moveCamera(CameraUpdateFactory.newLatLng(selectedlm.getLocation()));
 
             }
         });
@@ -188,7 +191,9 @@ public class QuestPreview extends FragmentActivity implements
         Marker testmark;
         markers = new ArrayList<>();
         for (Landmark landmark : passedQuest.getLandmarks()) {
-            testmark = mMap.addMarker(new MarkerOptions().position(landmark.getLocation()).title(landmark.getName()));
+            testmark = mMap.addMarker(new MarkerOptions()
+                    .position(landmark.getLocation())
+                    .title(landmark.getName()));
             markers.add(testmark);
         }
     }
@@ -200,9 +205,11 @@ public class QuestPreview extends FragmentActivity implements
         double currentLongitude = location.getLongitude();
 
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
-                .title("I am here!");
+                .title("I am here!")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon2)) ;
         mMap.addMarker(options);
         // Loop through the landmarklocations to make sure they are all displayed in the map
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
