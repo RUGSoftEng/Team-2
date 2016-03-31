@@ -27,7 +27,7 @@ public class LandMarkPopUp extends Activity {
 
         getWindow().setLayout((int)(width*.8), (int)(height*.8));
 
-        passedLandmark = (Landmark) getIntent().getSerializableExtra("PassedLandmark");
+        passedLandmark = (Landmark) getIntent().getSerializableExtra("passedLandmark");
 //        for test
 //        Landmark academieGebouw = new Landmark("Academiegebouw", 99);
 //        academieGebouw.setLocation(53.219203, 6.563126);

@@ -351,8 +351,13 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
         if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
+
             Toast.makeText(getApplicationContext(),
                     "Reached landmark", Toast.LENGTH_LONG).show();
+
+            Intent i = new Intent(getBaseContext(), LandMarkPopUp.class);
+            i.putExtra("passedLandmark", currentTarget);
+            startActivity(i);
 
             DatabaseHelper helper = new DatabaseHelper(getBaseContext());
             User user = helper.getUser(helper.getReadableDatabase());
