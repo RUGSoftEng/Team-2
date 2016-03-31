@@ -69,6 +69,67 @@ public class Initializer {
         goudKantoor.setInformation("The architecture of this restored historic cafe is amazing. Dating from 1635, the 'Gold Office' features a gold-tinted exterior and graceful interior, complete with striking paintings.");
         landmarks.add(goudKantoor);
 
+//        Added after we got email from the client
+        //TODO Add information 
+
+        Landmark zernike = new Landmark("Zernike Campus", asignID());
+        goudKantoor.setLocation(53.238919, 6.534970);
+        goudKantoor.setInformation("blank");
+        landmarks.add(zernike);
+
+        Landmark vvv = new Landmark("VVV Stad Groningen", asignID());
+        goudKantoor.setLocation(53.218954, 6.568045);
+        goudKantoor.setInformation("blank");
+        landmarks.add(vvv);
+
+
+        Landmark euroborg = new Landmark("Euroborg Horeca", asignID());
+        goudKantoor.setLocation(53.206883, 6.591976);
+        goudKantoor.setInformation("blank");
+        landmarks.add(euroborg);
+
+
+        Landmark martiniKerk = new Landmark("Martini Kerk", asignID());
+        goudKantoor.setLocation(53.219691, 6.568775);
+        goudKantoor.setInformation("blank");
+        landmarks.add(martiniKerk);
+
+        Landmark noorderplantsoen = new Landmark("Noorderplantsoen", asignID());
+        goudKantoor.setLocation(53.223103, 6.555212);
+        goudKantoor.setInformation("blank");
+        landmarks.add(noorderplantsoen);
+
+        Landmark groteMarkt = new Landmark("Grote Markt", asignID());
+        goudKantoor.setLocation(53.218999, 6.567643);
+        goudKantoor.setInformation("blank");
+        landmarks.add(groteMarkt);
+
+        Landmark vismarkt = new Landmark("Vismarkt", asignID());
+        goudKantoor.setLocation(553.217337, 6.565054);
+        goudKantoor.setInformation("blank");
+        landmarks.add(vismarkt);
+
+        Landmark scheepvaartmuseum = new Landmark("Noordelijk Scheepvaartmuseum", asignID());
+        goudKantoor.setLocation(53.216598, 6.560135);
+        goudKantoor.setInformation("blank");
+        landmarks.add(scheepvaartmuseum);
+
+        Landmark prinsenhofGardens = new Landmark("Prinsenhof Gardens", asignID());
+        goudKantoor.setLocation(53.221295, 6.569049);
+        goudKantoor.setInformation("blank");
+        landmarks.add(prinsenhofGardens);
+
+        Landmark universityMuseum = new Landmark("Groningen University Museum", asignID());
+        goudKantoor.setLocation(53.218526, 6.562936);
+        goudKantoor.setInformation("blank");
+        landmarks.add(universityMuseum);
+
+        Landmark bovenkamer = new Landmark("De Bovenkamer van Groningen", asignID());
+        goudKantoor.setLocation(53.225684, 6.560090);
+        goudKantoor.setInformation("blank");
+        landmarks.add(bovenkamer);
+
+
         //create all standard quests, TODO: we could also move this to createAllStandardQuests() and get from landmark list(however hardcoded number)
 
         //number 1
