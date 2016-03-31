@@ -83,7 +83,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
         // TODO list should not be empty
         currentTarget = passedQuest.getLandmarks().get(0);
-        Location targetLocation = new Location(currentTarget.getLocationObject());
 
         Log.d("TEST", passedQuest.toString());
 
@@ -99,6 +98,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
         listView = (ListView) findViewById(R.id.listView3);
         listView2 = (ListView) findViewById(R.id.listView4);
+
+        updateListViews(listView, listView2);
 
 //        mGoogleApiClient = new GoogleApiClient.Builder(this)
 //                .addConnectionCallbacks(this)
@@ -150,6 +151,19 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
     }
 
+    void updateListViews(ListView listView, ListView listView2) {
+        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+        User user = helper.getUser(helper.getReadableDatabase());
+        ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getFirstLandmark(user.getActiveQuest()));
+        listView.setAdapter(adapter);
+
+        user.getActiveQuest().getLandmarks().remove(0);
+        ArrayAdapter<Landmark> adapter2 =
+                new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, user.getActiveQuest().getLandmarks());
+        listView2.setAdapter(adapter2);
+        user.getActiveQuest().getLandmarks().add(0, currentTarget);
+    }
+
     //TODO geofence should be implemented and change the passedQuest(in this class) and update it in the database(+ should change progress)
 
 
@@ -170,14 +184,16 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     protected void onResume() {
         super.onResume();
 
-        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-        User user = helper.getUser(helper.getReadableDatabase());
-        ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getFirstLandmark(user.getActiveQuest()));
-        listView.setAdapter(adapter);
-
-        ArrayAdapter<Landmark> adapter2 =
-                new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, user.getActiveQuest().getLandmarks());
-        listView2.setAdapter(adapter2);
+//        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+//        User user = helper.getUser(helper.getReadableDatabase());
+//        ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getFirstLandmark(user.getActiveQuest()));
+//        listView.setAdapter(adapter);
+//
+//        user.getActiveQuest().getLandmarks().remove(0);
+//        ArrayAdapter<Landmark> adapter2 =
+//                new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, user.getActiveQuest().getLandmarks());
+//        listView2.setAdapter(adapter2);
+//        user.getActiveQuest().getLandmarks().add(0, currentTarget);
 
 //        if (mGeofenceList.isEmpty()) {
 //            addGeofence(this.nextLandmark);
@@ -335,9 +351,25 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
         if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
+
             Toast.makeText(getApplicationContext(),
                     "Reached landmark", Toast.LENGTH_LONG).show();
 
+            Intent i = new Intent(getBaseContext(), LandMarkPopUp.class);
+            i.putExtra("passedLandmark", currentTarget);
+            startActivity(i);
+
+            DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+            User user = helper.getUser(helper.getReadableDatabase());
+            user.getActiveQuest().getLandmarks().remove(0);
+            user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
+            helper.updateInDatabase(helper, user);
+
+            currentTarget = user.getActiveQuest().getLandmarks().get(0);
+            landmarker.setPosition(currentTarget.getLocation());
+            landmarker.setTitle(currentTarget.getName());
+
+            updateListViews(listView, listView2);
         }
 
         if (mylocmarker ==  null) {
