@@ -1,5 +1,7 @@
 package com.mycompany.myapp;
 
+import android.location.Location;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
@@ -46,6 +48,13 @@ public class Landmark implements Serializable{
 
     public LatLng getLocation(){
         return new LatLng(lat, lng);
+    }
+
+    public Location getLocationObject() {
+        Location loc = new Location("location");
+        loc.setLatitude(lat);
+        loc.setLongitude(lng);
+        return loc;
     }
 
     public void setLocation(LatLng location){
