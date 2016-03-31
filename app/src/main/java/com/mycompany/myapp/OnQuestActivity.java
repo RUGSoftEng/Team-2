@@ -44,6 +44,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+
+
 /**
  * Created by Ruben on 17/03/2016.
  */
@@ -255,6 +257,7 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
                 getGeofencingRequest(),
                 getGeofencePendingIntent()
         ).setResultCallback(this);
+        getGeofencePendingIntent();
         Log.i("CONNECTION", "Connection to GoogleApiClient");
     }
 
@@ -337,10 +340,6 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
 
         double currentLatitude = location.getLatitude();
         double currentLongitude = location.getLongitude();
-
-        TextView tv =(TextView)findViewById(R.id.textView3);
-        tv.setText("Location is "+currentLatitude+", "+currentLongitude);
-        tv.setVisibility(View.VISIBLE);
 
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
         MarkerOptions options = new MarkerOptions()

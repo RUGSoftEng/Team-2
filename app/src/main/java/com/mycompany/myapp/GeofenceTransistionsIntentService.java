@@ -28,7 +28,7 @@ import android.app.IntentService;
      */
     public class GeofenceTransistionsIntentService extends IntentService {
 
-
+        //TODO doesnt really handle or receive any intent.. so doesnt work
 
         /**
          * This constructor is required, and calls the super IntentService(String)
