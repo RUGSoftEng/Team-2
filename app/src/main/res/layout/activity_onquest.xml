@@ -51,7 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Next Landmark:"
+        android:text="Go find:"
+        android:textColor="#FF4BB405"
         android:id="@+id/nextLandmarkText"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -69,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Next 2 Landmarks:"
+        android:text="Remaining landmarks:"
         android:id="@+id/next2LandmarksText"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/nextLandmarkText"
