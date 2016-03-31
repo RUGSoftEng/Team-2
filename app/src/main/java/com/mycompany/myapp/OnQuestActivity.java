@@ -76,6 +76,7 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
         setContentView(R.layout.activity_onquest);
 
         passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
+        setUpMapIfNeeded();
 
         Log.d("TEST", passedQuest.toString());
 
@@ -98,7 +99,6 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
                 .addApi(LocationServices.API)
                 .build();
 
-        setUpMapIfNeeded();
 
 
         // Initialize the locationManager and locationListener
@@ -126,6 +126,7 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
                 startActivity(i);
             }
         };
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{
@@ -292,9 +293,8 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.onquestmap);
-            mapFragment.getMapAsync(this);
+            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.onquestmap))
+                    .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
@@ -307,6 +307,7 @@ public class OnQuestActivity extends FragmentActivity implements ConnectionCallb
         if (passedQuest.getLandmarks() != null) {
             Landmark lm = passedQuest.getLandmarks().get(0);
             landmarker = mMap.addMarker(new MarkerOptions().position(lm.getLocation()).title(lm.getName()));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lm.getLocation(), 12.0f));
         }
     }
 
