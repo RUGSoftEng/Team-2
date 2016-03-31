@@ -262,82 +262,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         return nextLandmarks;
     }
 
-<<<<<<< HEAD
-    private ArrayList<Landmark> getNext2Landmarks(Quest q) { //return an array with 2 Landmark after the first Landmark
-        ArrayList<Landmark> next2Landmarks = new ArrayList<>();
-        switch (q.getLandmarks().size()) {
-            case 3:
-                next2Landmarks.add(q.getLandmarks().get(2));
-            case 2:
-                next2Landmarks.add(q.getLandmarks().get(1));
-                break;
-        }
-        return next2Landmarks;
-    }
-
-
-    @Override
-    public void onConnected(Bundle bundle) {
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        LocationServices.GeofencingApi.addGeofences(
-                mGoogleApiClient,
-                getGeofencingRequest(),
-                getGeofencePendingIntent()
-        ).setResultCallback(this);
-        getGeofencePendingIntent();
-        Log.i("CONNECTION", "Connection to GoogleApiClient");
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Log.i("CONNECTION", "Connection suspended");
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.e("CONNECTION", "Connection failed");
-    }
-
-    @Override
-    public void onResult(Status status) { //TODO needs to do something still
-
-    }
-=======
-//    @Override
-//    public void onConnected(Bundle bundle) {
-//
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//        LocationServices.GeofencingApi.addGeofences(
-//                mGoogleApiClient,
-//                getGeofencingRequest(),
-//                getGeofencePendingIntent()
-//        ).setResultCallback(this);
-//        Log.i("CONNECTION", "Connection to GoogleApiClient");
-//    }
-//
-//    @Override
-//    public void onConnectionSuspended(int i) {
-//        Log.i("CONNECTION", "Connection suspended");
-//    }
-//
-//    @Override
-//    public void onConnectionFailed(ConnectionResult connectionResult) {
-//        Log.e("CONNECTION", "Connection failed");
-//    }
-//
-//    @Override
-//    public void onResult(Status status) { //TODO needs to do something still
-//
-//    }
->>>>>>> 774a96eeabf4ce81dbc039e92950890fe6699dbb
-
-
-
 
     /*
     * Below is map stuff + asking permission, map ready etc.
@@ -397,13 +321,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         double currentLongitude = location.getLongitude();
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
-<<<<<<< HEAD
-        LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-        MarkerOptions options = new MarkerOptions()
-                .position(latLng)
-                .title("I am here!");
-        landmarker = mMap.addMarker(options);
-=======
         if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
 
             Toast.makeText(getApplicationContext(),
@@ -444,7 +361,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         } else {
             mylocmarker.setPosition(latLng);
         }
->>>>>>> 774a96eeabf4ce81dbc039e92950890fe6699dbb
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(landmarker.getPosition());
