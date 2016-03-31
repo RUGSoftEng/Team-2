@@ -1,8 +1,12 @@
 package com.mycompany.myapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -12,8 +16,7 @@ public class LandMarkPopUp extends Activity {
 
     private Landmark passedLandmark;
     private TextView textInfo;
-
-
+    private Button nextLandmarkButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +31,18 @@ public class LandMarkPopUp extends Activity {
         getWindow().setLayout((int)(width*.8), (int)(height*.8));
 
         passedLandmark = (Landmark) getIntent().getSerializableExtra("passedLandmark");
-//        for test
-//        Landmark academieGebouw = new Landmark("Academiegebouw", 99);
-//        academieGebouw.setLocation(53.219203, 6.563126);
-//        academieGebouw.setInformation("The Academiegebouw is the main building of the university; its richly decorated exterior was completed in 1909.");
-
 
         textInfo = (TextView) findViewById(R.id.textView4);
+        textInfo.setMovementMethod(new ScrollingMovementMethod());
         textInfo.setText(passedLandmark.getInformation());
 
-
-
-
+        nextLandmarkButton = (Button) findViewById(R.id.nextLandmarkButton);
+        nextLandmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 }
