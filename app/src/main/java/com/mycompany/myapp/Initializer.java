@@ -138,29 +138,34 @@ public class Initializer {
         //create all standard quests, TODO: we could also move this to createAllStandardQuests() and get from landmark list(however hardcoded number)
 
         //number 1
-        ExactQuest essentialQuest = new ExactQuest(asignID(), "Essential", false);
+        ExactQuest essentialQuest = new ExactQuest(asignID(), "Groningen Highlights", false);
         essentialQuest.addLandmark(martiniToren);
         essentialQuest.addLandmark(cityHall);
         essentialQuest.addLandmark(korenbeurs);
-
         essentialQuest.addLandmark(synagogue);
         essentialQuest.addLandmark(gronigerMuseum);
         essentialQuest.addLandmark(station);
         essentialQuest.addLandmark(peerd);
         essentialQuest.addLandmark(aKerk);
-
         essentialQuest.addLandmark(academieGebouw);
         essentialQuest.addLandmark(goudKantoor);
 
         quests.add(essentialQuest);
 
-
         //number 2
-        ExactQuest reversedEssential = new ExactQuest(asignID(), "RevEssentail", false);
+        ExactQuest reversedEssential = new ExactQuest(asignID(), "Small Adventure", false);
         reversedEssential.addLandmark(korenbeurs);
         reversedEssential.addLandmark(cityHall);
         reversedEssential.addLandmark(martiniToren);
         quests.add(reversedEssential);
+
+        //some more quests to look cool in list
+        ExactQuest pubs = new ExactQuest(asignID(), "Pub Quest", false);
+        quests.add(pubs);
+        ExactQuest restaurants = new ExactQuest(asignID(), "Restaurant Quest", false);
+        quests.add(restaurants);
+        ExactQuest nature = new ExactQuest(asignID(), "Nature Quest", false);
+        quests.add(nature);
 
         return landmarks;
     }
