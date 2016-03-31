@@ -70,7 +70,7 @@ public class Initializer {
         landmarks.add(goudKantoor);
 
 //        Added after we got email from the client
-        //TODO Add information 
+        //TODO Add information
 
         Landmark zernike = new Landmark("Zernike Campus", asignID());
         goudKantoor.setLocation(53.238919, 6.534970);
