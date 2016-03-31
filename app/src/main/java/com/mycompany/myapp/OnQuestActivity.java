@@ -362,14 +362,23 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             DatabaseHelper helper = new DatabaseHelper(getBaseContext());
             User user = helper.getUser(helper.getReadableDatabase());
             user.getActiveQuest().getLandmarks().remove(0);
-            user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
-            helper.updateInDatabase(helper, user);
+            if (user.getActiveQuest().getLandmarks().isEmpty()) {
+                // end of quest
+                Landmark finished = new Landmark("Finished", 9999999);
+                finished.setInformation("Congratulations! You finished this quest! Good job!");
+                Intent in = new Intent(getBaseContext(), LandMarkPopUp.class);
+                in.putExtra("passedLandmark", finished);
+                startActivity(in);
+            } else {
+                user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
+                helper.updateInDatabase(helper, user);
 
-            currentTarget = user.getActiveQuest().getLandmarks().get(0);
-            landmarker.setPosition(currentTarget.getLocation());
-            landmarker.setTitle(currentTarget.getName());
+                currentTarget = user.getActiveQuest().getLandmarks().get(0);
+                landmarker.setPosition(currentTarget.getLocation());
+                landmarker.setTitle(currentTarget.getName());
 
-            updateListViews(listView, listView2);
+                updateListViews(listView, listView2);
+            }
         }
 
         if (mylocmarker ==  null) {

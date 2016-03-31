@@ -73,60 +73,60 @@ public class Initializer {
         //TODO Add information
 
         Landmark zernike = new Landmark("Zernike Campus", asignID());
-        goudKantoor.setLocation(53.238919, 6.534970);
-        goudKantoor.setInformation("blank");
+        zernike.setLocation(53.238919, 6.534970);
+        zernike.setInformation("blank");
         landmarks.add(zernike);
 
         Landmark vvv = new Landmark("VVV Stad Groningen", asignID());
-        goudKantoor.setLocation(53.218954, 6.568045);
-        goudKantoor.setInformation("blank");
+        vvv.setLocation(53.218954, 6.568045);
+        vvv.setInformation("blank");
         landmarks.add(vvv);
 
 
         Landmark euroborg = new Landmark("Euroborg Horeca", asignID());
-        goudKantoor.setLocation(53.206883, 6.591976);
-        goudKantoor.setInformation("blank");
+        euroborg.setLocation(53.206883, 6.591976);
+        euroborg.setInformation("blank");
         landmarks.add(euroborg);
 
 
         Landmark martiniKerk = new Landmark("Martini Kerk", asignID());
-        goudKantoor.setLocation(53.219691, 6.568775);
-        goudKantoor.setInformation("blank");
+        martiniKerk.setLocation(53.219691, 6.568775);
+        martiniKerk.setInformation("blank");
         landmarks.add(martiniKerk);
 
         Landmark noorderplantsoen = new Landmark("Noorderplantsoen", asignID());
-        goudKantoor.setLocation(53.223103, 6.555212);
-        goudKantoor.setInformation("blank");
+        noorderplantsoen.setLocation(53.223103, 6.555212);
+        noorderplantsoen.setInformation("blank");
         landmarks.add(noorderplantsoen);
 
         Landmark groteMarkt = new Landmark("Grote Markt", asignID());
-        goudKantoor.setLocation(53.218999, 6.567643);
-        goudKantoor.setInformation("blank");
+        groteMarkt.setLocation(53.218999, 6.567643);
+        groteMarkt.setInformation("blank");
         landmarks.add(groteMarkt);
 
         Landmark vismarkt = new Landmark("Vismarkt", asignID());
-        goudKantoor.setLocation(553.217337, 6.565054);
-        goudKantoor.setInformation("blank");
+        vismarkt.setLocation(553.217337, 6.565054);
+        vismarkt.setInformation("blank");
         landmarks.add(vismarkt);
 
         Landmark scheepvaartmuseum = new Landmark("Noordelijk Scheepvaartmuseum", asignID());
-        goudKantoor.setLocation(53.216598, 6.560135);
-        goudKantoor.setInformation("blank");
+        scheepvaartmuseum.setLocation(53.216598, 6.560135);
+        scheepvaartmuseum.setInformation("blank");
         landmarks.add(scheepvaartmuseum);
 
         Landmark prinsenhofGardens = new Landmark("Prinsenhof Gardens", asignID());
-        goudKantoor.setLocation(53.221295, 6.569049);
-        goudKantoor.setInformation("blank");
+        prinsenhofGardens.setLocation(53.221295, 6.569049);
+        prinsenhofGardens.setInformation("blank");
         landmarks.add(prinsenhofGardens);
 
         Landmark universityMuseum = new Landmark("Groningen University Museum", asignID());
-        goudKantoor.setLocation(53.218526, 6.562936);
-        goudKantoor.setInformation("blank");
+        universityMuseum.setLocation(53.218526, 6.562936);
+        universityMuseum.setInformation("blank");
         landmarks.add(universityMuseum);
 
         Landmark bovenkamer = new Landmark("De Bovenkamer van Groningen", asignID());
-        goudKantoor.setLocation(53.225684, 6.560090);
-        goudKantoor.setInformation("blank");
+        bovenkamer.setLocation(53.225684, 6.560090);
+        bovenkamer.setInformation("blank");
         landmarks.add(bovenkamer);
 
 
