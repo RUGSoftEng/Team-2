@@ -7,6 +7,8 @@ import android.test.RenamingDelegatingContext;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by Ruben on 31/03/2016.
  */
@@ -36,6 +38,21 @@ public class DatabaseTest extends AndroidTestCase {
             int answerID = u.getID();
             helper.deleteUser(helper, UNUSED_ID);
             assertEquals(UNUSED_ID, answerID);
+        }
+
+        @SmallTest
+        public void testAddLandmark(){
+            Landmark l1 = new Landmark("Testname", UNUSED_ID);
+            helper.putInDatabase(helper, l1);
+            ArrayList<Landmark> l = helper.getAllLandmarks(helper.getReadableDatabase());
+            String answerName = null;
+            for(int i = 0; i<l.size(); i++) {
+                if(l.get(i).getID() == UNUSED_ID) {
+                    answerName = l.get(i).getName();
+                }
+            }
+            helper.deleteLandmark(helper, UNUSED_ID);
+            assertEquals("TestName", answerName);
         }
 
     }
