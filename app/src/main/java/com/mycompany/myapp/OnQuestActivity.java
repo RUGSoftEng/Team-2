@@ -221,7 +221,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                     // end of quest
                     user.finishQuest(user.getActiveQuest());
 
-                    Intent in = new Intent(getBaseContext(), questFinishedActivity.class);
+                    Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
                     in.putExtra("passedQuest", passedQuest);
                     startActivity(in);
 
