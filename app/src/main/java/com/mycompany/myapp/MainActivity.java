@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 
 //Except for being the main screen, mainActivity.java also initializes all standard quests and landmarks
-public class MainActivity extends AppCompatActivity { //TODO: apps should still ask for permission so the user doesn't have to manually give permission
+public class MainActivity extends AppCompatActivity {
 
 
     private static int IMAGE_DELAY = 6000;

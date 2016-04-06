@@ -1,14 +1,6 @@
 package com.mycompany.myapp;
 
 import android.Manifest;
-import android.app.PendingIntent;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,19 +12,12 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.Geofence;
-import com.google.android.gms.location.GeofencingRequest;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -44,7 +29,6 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 
 
 
@@ -58,11 +42,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     private ProgressBar mProgress;
 
     private Quest passedQuest;
-    private ArrayList<Geofence> mGeofenceList;
     private Landmark nextLandmark;
-    private GoogleApiClient mGoogleApiClient;
     private User user;
-    private PendingIntent mGeofencePendingIntent;
     private ListView listView, listView2;
     private GoogleMap mMap;
     private Marker landmarker;
@@ -88,9 +69,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
         Log.d("TEST", passedQuest.toString());
 
-//        mGeofenceList = new ArrayList<Geofence>();
-//        mGeofencePendingIntent = null;
-
         //Progress of quest
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
         if (passedQuest.getProgress() < Constants.TOTAL_QUEST_PROGRESS) {
@@ -102,14 +80,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         listView2 = (ListView) findViewById(R.id.listView4);
 
         updateListViews(listView, listView2);
-
-//        mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                .addConnectionCallbacks(this)
-//                .addOnConnectionFailedListener(this)
-//                .addApi(LocationServices.API)
-//                .build();
-
-
 
         // Initialize the locationManager and locationListener
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -166,94 +136,12 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         user.getActiveQuest().getLandmarks().add(0, currentTarget);
     }
 
-    //TODO geofence should be implemented and change the passedQuest(in this class) and update it in the database(+ should change progress)
-
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        mGoogleApiClient.connect();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        mGoogleApiClient.disconnect();
-//    }
-
 
     @Override
     protected void onResume() {
         super.onResume();
-
-//        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-//        User user = helper.getUser(helper.getReadableDatabase());
-//        ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getFirstLandmark(user.getActiveQuest()));
-//        listView.setAdapter(adapter);
-//
-//        user.getActiveQuest().getLandmarks().remove(0);
-//        ArrayAdapter<Landmark> adapter2 =
-//                new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, user.getActiveQuest().getLandmarks());
-//        listView2.setAdapter(adapter2);
-//        user.getActiveQuest().getLandmarks().add(0, currentTarget);
-
-//        if (mGeofenceList.isEmpty()) {
-//            addGeofence(this.nextLandmark);
-//        } else {
-//            mGeofenceList.clear(); //TODO might be doing too many work?? also clearing everythings so only 1 geofence could be used at the time
-//            addGeofence(this.nextLandmark);
-//        }
-
- //       Log.d("TestGeo", "In geofeceList is landmark id: " + mGeofenceList.get(0).getRequestId() + " and nr of geofences: " + mGeofenceList.size() );
     }
 
-
-//    private PendingIntent getGeofencePendingIntent() {
-//        // Reuse the PendingIntent if we already have it.
-//        Log.d("TestGeo", "We had an pending Intent");
-//        if (mGeofencePendingIntent != null) {
-//            return mGeofencePendingIntent;
-//        }
-//        Intent intent = new Intent(this, GeofenceTransistionsIntentService.class);
-//        // We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
-//        // calling addGeofences() and removeGeofences().
-//        return PendingIntent.getService(this, 0, intent, PendingIntent.
-//                FLAG_UPDATE_CURRENT);
-//    }
-//
-//    private GeofencingRequest getGeofencingRequest() {
-//        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
-//        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);
-//        builder.addGeofences(mGeofenceList);
-//        return builder.build();
-//    }
-//
-//    private void addGeofence(Landmark l) {
-//        mGeofenceList.add(new Geofence.Builder()
-//                // Set the request ID of the geofence. This is a string to identify this
-//                // geofence. Each landmark has its own id so the geofence id's will be similair to the landmark id's
-//                .setRequestId(String.valueOf(l.getID()))
-//
-//                .setCircularRegion(
-//                        l.getLocation().latitude,
-//                        l.getLocation().longitude,
-//                        Constants.GEOFENCE_RADIUS_IN_METERS
-//                )
-//                .setExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
-//                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
-//                        Geofence.GEOFENCE_TRANSITION_EXIT)
-//                .build());
-//
-//
-//    }
-//
-//    public void deleteGeofence(Landmark l) {
-//        for (Geofence fence : mGeofenceList) {
-//            if (fence.getRequestId() == String.valueOf(l.getID())) {
-//                mGeofenceList.remove(fence);
-//            }
-//        }
-//    }
 
     private Landmark[] getFirstLandmark(Quest q) { //set current Landmark and return an array with that 1 element
         Landmark[] nextLandmarks = new Landmark[1];
@@ -313,7 +201,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
-
+//handles landmarks added to the map
     private void handleNewLocation(Location location) {
         Log.d(Constants.TAG, location.toString());
 
@@ -321,10 +209,10 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         double currentLongitude = location.getLongitude();
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
-        if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
+        if (location.distanceTo(currentTarget.getLocationObject()) < Constants.MAXIMAL_ACTIVATION_DISTANCE) {
 
             Toast.makeText(getApplicationContext(),
-                    "Reached landmark", Toast.LENGTH_LONG).show();
+                    Constants.COMPLETED_LANDMARK_TEXT, Constants.FINISHED_LANDMARK_DURATION).show();
 
             Intent i = new Intent(getBaseContext(), LandMarkPopUp.class);
             i.putExtra("passedLandmark", currentTarget);
@@ -332,14 +220,16 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
             DatabaseHelper helper = new DatabaseHelper(getBaseContext());
             User user = helper.getUser(helper.getReadableDatabase());
-            user.getActiveQuest().getLandmarks().remove(0);
+            user.getActiveQuest().getLandmarks().remove(0); //TODO: should be changed to "isCompleted(Landmark)" to work for non ordered quests
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
                 // end of quest
-                Landmark finished = new Landmark("Finished", 9999999);
-                finished.setInformation("Congratulations! You finished this quest! Good job!");
+                user.finishQuest(user.getActiveQuest());
+                Landmark finished = new Landmark("Finished", 9999999); //TODO: this is really ugly, why not just make a toast????
+                finished.setInformation(Constants.FINISHED_QUEST_TEXT);
                 Intent in = new Intent(getBaseContext(), LandMarkPopUp.class);
                 in.putExtra("passedLandmark", finished);
                 startActivity(in);
+
             } else {
                 user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
                 helper.updateInDatabase(helper, user);

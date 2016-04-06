@@ -5,7 +5,7 @@ package com.mycompany.myapp;
  */
 public class ExactQuest extends Quest {
 
-    private int currentLandmark = 0;
+    //private int currentLandmark = 0; Probably not needed
 
     public ExactQuest(int id, String name, boolean isUserGenerated) {
         super(id, name, isUserGenerated);
@@ -13,7 +13,7 @@ public class ExactQuest extends Quest {
 
 
 
-
+/* BELOW probably not needed
     public void solvedLandmark(){
         this.currentLandmark++;
     }
@@ -26,4 +26,5 @@ public class ExactQuest extends Quest {
     public Landmark getCurrentLandmark(){
         return this.landmarks.get(this.currentLandmark);
     }
+    */
 }
