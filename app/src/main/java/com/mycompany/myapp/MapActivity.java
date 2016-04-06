@@ -7,11 +7,14 @@ package com.mycompany.myapp;
     import android.database.sqlite.SQLiteDatabase;
     import android.os.Bundle;
     import android.support.v4.app.FragmentActivity;
+
+    import com.google.android.gms.maps.CameraUpdate;
     import com.google.android.gms.maps.CameraUpdateFactory;
     import com.google.android.gms.maps.GoogleMap;
     import com.google.android.gms.maps.OnMapReadyCallback;
     import com.google.android.gms.maps.SupportMapFragment;
     import com.google.android.gms.maps.model.LatLng;
+    import com.google.android.gms.maps.model.LatLngBounds;
     import com.google.android.gms.maps.model.Marker;
     import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -37,10 +40,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         public void onMapReady(GoogleMap googleMap) {
             mMap = googleMap;
             mMap.moveCamera(CameraUpdateFactory.newLatLng(COORDINATE_GRONINGEN));
-            Marker testmark = mMap.addMarker(new MarkerOptions()
-                    .position(COORDINATE_GRONINGEN)
-                    .title("Groningen"));
-
 
             //take all landmark objects from the database and put them into a listView
             DatabaseHelper helper = new DatabaseHelper(this);
@@ -48,11 +47,15 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
             ArrayList<Landmark> a = helper.getAllLandmarks(db);
             markers = new ArrayList<>();
+            Marker testmark;
             for (Landmark landmark : a) {
-                testmark = mMap.addMarker(new MarkerOptions()
+               testmark = mMap.addMarker(new MarkerOptions()
                         .position(landmark.getLocation())
                         .title(landmark.getName()));
                 markers.add(testmark);
             }
+
+            Landmark something = a.get(0);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(something.getLocation(), 12.0f));
         }
 }
