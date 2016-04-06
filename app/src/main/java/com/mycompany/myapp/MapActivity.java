@@ -55,7 +55,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 markers.add(testmark);
             }
 
-            Landmark something = a.get(0);
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(something.getLocation(), 12.0f));
+            LatLng groningen = new LatLng(53.2194, 6.5665);
+
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(groningen, 12.0f));
         }
 }
