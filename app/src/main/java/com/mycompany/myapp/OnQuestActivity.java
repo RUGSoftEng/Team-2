@@ -224,12 +224,9 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
                 // end of quest
                 user.finishQuest(user.getActiveQuest());
-                Landmark finished = new Landmark("Finished", 9999999); //TODO: this is really ugly, why not just make a toast????
-                finished.setInformation(Constants.FINISHED_QUEST_TEXT);
-                Intent in = new Intent(getBaseContext(), LandMarkPopUp.class);
-                in.putExtra("passedLandmark", finished);
+                Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
+                i.putExtra("finishedQuest", user.getActiveQuest());
                 startActivity(in);
-
             } else {
                 user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
                 helper.updateInDatabase(helper, user);
