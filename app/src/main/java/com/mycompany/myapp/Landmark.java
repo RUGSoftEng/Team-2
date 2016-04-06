@@ -16,7 +16,6 @@ public class Landmark implements Serializable{
     private String name, locationName, information; //locationName == streetName/neighbourhood
     private int points, landmarkID;
     //private ArrayList<Question> questions = new ArrayList<Question>(); TODO not yet used so not need yet(could bring errors serialization errors)
-    //private LatLng location; TODO remove this not stored here just on creation
     private double lat, lng;
 
 
