@@ -43,7 +43,7 @@ public class DatabaseTest extends AndroidTestCase{
 
         @SmallTest
         public void testAddLandmark(){
-            Landmark l1 = new Landmark("Testname", UNUSED_ID);
+            Landmark l1 = new Landmark("TestName", UNUSED_ID);
             helper.putInDatabase(helper, l1);
             ArrayList<Landmark> l = helper.getAllLandmarks(helper.getReadableDatabase());
             String answerName = null;
