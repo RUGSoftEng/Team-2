@@ -20,6 +20,7 @@ public abstract class Quest implements Serializable{
         this.isUserGenerated = isUserGenerated;
     }
 
+    public abstract boolean isInOrder();
 
     @Override
     public String toString() {

@@ -14,6 +14,12 @@ public class AreaQuest extends Quest {
         super(id, name, isUserGenerated);
     }
 
+    public boolean isInOrder(){
+        return false;
+    }
+
+
+/*
 
     public void solvedLandmark(){
         this.currentLandmark++;
@@ -26,7 +32,7 @@ public class AreaQuest extends Quest {
     public Landmark getCurrentLandmark(){
         return this.landmarks.get(this.currentLandmark);
     }
-
+*/
 
 
 

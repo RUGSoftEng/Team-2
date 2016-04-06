@@ -29,7 +29,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-
+import java.util.ArrayList;
 
 
 /**
@@ -43,14 +43,11 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
     private Quest passedQuest;
     private Landmark nextLandmark;
-    private User user;
     private ListView listView, listView2;
     private GoogleMap mMap;
     private Marker landmarker;
     private Marker mylocmarker;
 
-    private final static int TOTAL_PROGRESS_TIME = 100;
-    private final static int MY_PERMISSIONS_REQUEST_LOCATION = 10;
     private LocationListener locationListener;
     private LocationManager locationManager;
     private Landmark currentTarget;
@@ -63,9 +60,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
         passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
         setUpMapIfNeeded();
-
-        // TODO list should not be empty
-        currentTarget = passedQuest.getLandmarks().get(0);
 
         Log.d("TEST", passedQuest.toString());
 
@@ -129,11 +123,10 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getFirstLandmark(user.getActiveQuest()));
         listView.setAdapter(adapter);
 
-        user.getActiveQuest().getLandmarks().remove(0);
         ArrayAdapter<Landmark> adapter2 =
                 new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, user.getActiveQuest().getLandmarks());
         listView2.setAdapter(adapter2);
-        user.getActiveQuest().getLandmarks().add(0, currentTarget);
+        helper.close();
     }
 
 
@@ -188,7 +181,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
+            case Constants.MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -209,34 +202,39 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         double currentLongitude = location.getLongitude();
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
-        if (location.distanceTo(currentTarget.getLocationObject()) < Constants.MAXIMAL_ACTIVATION_DISTANCE) {
 
-            Toast.makeText(getApplicationContext(),
-                    Constants.COMPLETED_LANDMARK_TEXT, Constants.FINISHED_LANDMARK_DURATION).show();
+            currentTarget = passedQuest.getLandmarks().get(0); //get next Landmark
 
-            Intent i = new Intent(getBaseContext(), LandMarkPopUp.class);
-            i.putExtra("passedLandmark", currentTarget);
-            startActivity(i);
+            if (location.distanceTo(currentTarget.getLocationObject()) < Constants.MAXIMAL_ACTIVATION_DISTANCE) {
 
-            DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-            User user = helper.getUser(helper.getReadableDatabase());
-            user.getActiveQuest().getLandmarks().remove(0); //TODO: should be changed to "isCompleted(Landmark)" to work for non ordered quests
-            if (user.getActiveQuest().getLandmarks().isEmpty()) {
-                // end of quest
-                user.finishQuest(user.getActiveQuest());
-                Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
-                i.putExtra("finishedQuest", user.getActiveQuest());
-                startActivity(in);
-            } else {
-                user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
+                Toast.makeText(getApplicationContext(),
+                        Constants.COMPLETED_LANDMARK_TEXT, Constants.FINISHED_LANDMARK_DURATION).show();
+
+                Intent i = new Intent(getBaseContext(), LandMarkPopUp.class);
+                i.putExtra("passedLandmark", currentTarget);
+                startActivity(i);
+
+                DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+                User user = helper.getUser(helper.getReadableDatabase());
+                user.getActiveQuest().isCompleted(user.getActiveQuest().getLandmarks().get(0)); //TODO: get(0) should be changed to work for non ordered quests
+                if (user.getActiveQuest().getLandmarks().isEmpty()) {
+                    // end of quest
+                    user.finishQuest(user.getActiveQuest());
+
+                    Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
+                    in.putExtra("passedQuest", passedQuest);
+                    startActivity(in);
+
+                } else {
+
+                    currentTarget = user.getActiveQuest().getLandmarks().get(0);
+                    landmarker.setPosition(currentTarget.getLocation());
+                    landmarker.setTitle(currentTarget.getName());
+
+                    updateListViews(listView, listView2);
+                }
                 helper.updateInDatabase(helper, user);
-
-                currentTarget = user.getActiveQuest().getLandmarks().get(0);
-                landmarker.setPosition(currentTarget.getLocation());
-                landmarker.setTitle(currentTarget.getName());
-
-                updateListViews(listView, listView2);
-            }
+                helper.close();
         }
 
         if (mylocmarker ==  null) {

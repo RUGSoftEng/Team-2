@@ -11,7 +11,9 @@ public class ExactQuest extends Quest {
         super(id, name, isUserGenerated);
     }
 
-
+    public boolean isInOrder(){
+        return true;
+    }
 
 /* BELOW probably not needed
     public void solvedLandmark(){
