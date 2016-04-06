@@ -35,7 +35,7 @@
 
 
     <!--Strings for QuestFinished-->
-    <string name="quest_finished">Congrats! You succesfully finished this quest! Hope you liked it!</string>
+    <string name="quest_finished">Congrats!\n You succesfully finished the following quest: </string>
     <string name="quest_finished_text">Go back to the main screen</string>
     <string name="quest_finished_button">main</string>
 
