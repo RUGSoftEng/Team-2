@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             onUpgrade(db, oldVersion, newVersion);
         }
 
-        public void putLandmarkInformation(DatabaseHelper helper, int landmarkID, byte[] object){
+        private void putLandmarkInformation(DatabaseHelper helper, int landmarkID, byte[] object){
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.LANDMARK_ID, landmarkID);
@@ -57,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting landmark in database");
         }
 
-        public void putQuestInformation(DatabaseHelper helper, int questID, byte[] object){
+        private void putQuestInformation(DatabaseHelper helper, int questID, byte[] object){
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.QUEST_ID, questID);
@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting quest in database");
         }
 
-        public void putUserInformation(DatabaseHelper helper, int userID, byte[] object){ //TODO: ID assigning should be done safely, now its not
+        private void putUserInformation(DatabaseHelper helper, int userID, byte[] object){ //TODO: ID assigning should be done safely, now its not
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.USER_ID, userID);
