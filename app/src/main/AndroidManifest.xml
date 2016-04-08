@@ -32,7 +32,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".LandMarkPopUp"
+            android:name=".LandMarkPopUpActivity"
             android:parentActivityName=".ContinueQuestActivity" >
             android:theme="@style/AppTheme.NoActionBar" 
         </activity>

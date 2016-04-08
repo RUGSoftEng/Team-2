@@ -57,7 +57,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create A Quest!"
+        android:text="@string/button1_main"
         android:id="@+id/createQuest"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
@@ -66,7 +66,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Where am I?"
+        android:text="@string/button2_main"
         android:id="@+id/mapButton"
         android:layout_below="@+id/continueButton"
         android:layout_alignParentEnd="true" />
