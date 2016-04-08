@@ -16,7 +16,7 @@ public class QuestFinishedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_finished);
-        finishedQuest = (Quest) getIntent().getSerializableExtra("finishedQuest");
+        finishedQuest = (Quest) getIntent().getSerializableExtra("passedQuest");
         TextView questname = (TextView)findViewById(R.id.textView2);
         if (finishedQuest.name != null) {
             questname.setText(finishedQuest.name);
