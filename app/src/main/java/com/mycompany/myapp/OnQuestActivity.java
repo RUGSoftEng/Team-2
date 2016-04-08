@@ -49,25 +49,17 @@ import java.util.ArrayList;
 /**
  * Created by Ruben on 17/03/2016.
  */
-//some callbacks and other notifications for losing connection to internet
 public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallback {
-        //ConnectionCallbacks, OnConnectionFailedListener, ResultCallback<Status>, OnMapReadyCallback {
 
     private ProgressBar mProgress;
 
     private Quest passedQuest;
-    private ArrayList<Geofence> mGeofenceList;
     private Landmark nextLandmark;
-    private GoogleApiClient mGoogleApiClient;
-    private User user;
-    private PendingIntent mGeofencePendingIntent;
     private ListView listView, listView2;
     private GoogleMap mMap;
     private Marker landmarker;
     private Marker mylocmarker;
 
-    private final static int TOTAL_PROGRESS_TIME = 100;
-    private final static int MY_PERMISSIONS_REQUEST_LOCATION = 10;
     private LocationListener locationListener;
     private LocationManager locationManager;
     private Landmark currentTarget;
@@ -86,8 +78,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
         Log.d("TEST", passedQuest.toString());
 
-//        mGeofenceList = new ArrayList<Geofence>();
-//        mGeofencePendingIntent = null;
 
         //Progress of quest
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
@@ -100,12 +90,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         listView2 = (ListView) findViewById(R.id.listView4);
 
         updateListViews(listView, listView2);
-
-//        mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                .addConnectionCallbacks(this)
-//                .addOnConnectionFailedListener(this)
-//                .addApi(LocationServices.API)
-//                .build();
 
 
 
@@ -164,94 +148,13 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         user.getActiveQuest().getLandmarks().add(0, currentTarget);
     }
 
-    //TODO geofence should be implemented and change the passedQuest(in this class) and update it in the database(+ should change progress)
-
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        mGoogleApiClient.connect();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        mGoogleApiClient.disconnect();
-//    }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-
-//        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-//        User user = helper.getUser(helper.getReadableDatabase());
-//        ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getFirstLandmark(user.getActiveQuest()));
-//        listView.setAdapter(adapter);
-//
-//        user.getActiveQuest().getLandmarks().remove(0);
-//        ArrayAdapter<Landmark> adapter2 =
-//                new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, user.getActiveQuest().getLandmarks());
-//        listView2.setAdapter(adapter2);
-//        user.getActiveQuest().getLandmarks().add(0, currentTarget);
-
-//        if (mGeofenceList.isEmpty()) {
-//            addGeofence(this.nextLandmark);
-//        } else {
-//            mGeofenceList.clear(); //TODO might be doing too many work?? also clearing everythings so only 1 geofence could be used at the time
-//            addGeofence(this.nextLandmark);
-//        }
-
- //       Log.d("TestGeo", "In geofeceList is landmark id: " + mGeofenceList.get(0).getRequestId() + " and nr of geofences: " + mGeofenceList.size() );
     }
 
-
-//    private PendingIntent getGeofencePendingIntent() {
-//        // Reuse the PendingIntent if we already have it.
-//        Log.d("TestGeo", "We had an pending Intent");
-//        if (mGeofencePendingIntent != null) {
-//            return mGeofencePendingIntent;
-//        }
-//        Intent intent = new Intent(this, GeofenceTransistionsIntentService.class);
-//        // We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
-//        // calling addGeofences() and removeGeofences().
-//        return PendingIntent.getService(this, 0, intent, PendingIntent.
-//                FLAG_UPDATE_CURRENT);
-//    }
-//
-//    private GeofencingRequest getGeofencingRequest() {
-//        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
-//        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);
-//        builder.addGeofences(mGeofenceList);
-//        return builder.build();
-//    }
-//
-//    private void addGeofence(Landmark l) {
-//        mGeofenceList.add(new Geofence.Builder()
-//                // Set the request ID of the geofence. This is a string to identify this
-//                // geofence. Each landmark has its own id so the geofence id's will be similair to the landmark id's
-//                .setRequestId(String.valueOf(l.getID()))
-//
-//                .setCircularRegion(
-//                        l.getLocation().latitude,
-//                        l.getLocation().longitude,
-//                        Constants.GEOFENCE_RADIUS_IN_METERS
-//                )
-//                .setExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
-//                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
-//                        Geofence.GEOFENCE_TRANSITION_EXIT)
-//                .build());
-//
-//
-//    }
-//
-//    public void deleteGeofence(Landmark l) {
-//        for (Geofence fence : mGeofenceList) {
-//            if (fence.getRequestId() == String.valueOf(l.getID())) {
-//                mGeofenceList.remove(fence);
-//            }
-//        }
-//    }
 
     private Landmark[] getFirstLandmark(Quest q) { //set current Landmark and return an array with that 1 element
         Landmark[] nextLandmarks = new Landmark[1];
@@ -259,37 +162,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         nextLandmarks[0] = this.nextLandmark;
         return nextLandmarks;
     }
-
-//    @Override
-//    public void onConnected(Bundle bundle) {
-//
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//        LocationServices.GeofencingApi.addGeofences(
-//                mGoogleApiClient,
-//                getGeofencingRequest(),
-//                getGeofencePendingIntent()
-//        ).setResultCallback(this);
-//        Log.i("CONNECTION", "Connection to GoogleApiClient");
-//    }
-//
-//    @Override
-//    public void onConnectionSuspended(int i) {
-//        Log.i("CONNECTION", "Connection suspended");
-//    }
-//
-//    @Override
-//    public void onConnectionFailed(ConnectionResult connectionResult) {
-//        Log.e("CONNECTION", "Connection failed");
-//    }
-//
-//    @Override
-//    public void onResult(Status status) { //TODO needs to do something still
-//
-//    }
-
-
 
 
     /*
@@ -329,7 +201,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
+            case Constants.MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -359,9 +231,9 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             i.putExtra("passedLandmark", currentTarget);
             startActivity(i);
 
-            DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+            DatabaseHelper helper = new DatabaseHelper(getBaseContext()); //TODO: close database???
             User user = helper.getUser(helper.getReadableDatabase());
-            user.getActiveQuest().getLandmarks().remove(0);
+            user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
                 // end of quest
                 user.finishQuest(user.getActiveQuest());
