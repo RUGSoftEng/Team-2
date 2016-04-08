@@ -23,7 +23,7 @@
     <string name="list_item_button">Go!</string>
     <string name="title_activity_maps">Map</string>
 
-    <!-- QuestPreview-->
+    <!-- QuestPreviewActivity-->
     <string name="questpreview_1">Contains the following locations</string>
     <string name="questpreview_pickbutton">Pick this quest!</string>
     <string name="title_activity_current_quest">Map</string>

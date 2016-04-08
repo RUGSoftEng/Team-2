@@ -44,7 +44,7 @@ public class ChooseQuestActivity extends AppCompatActivity {
 
                 chosenQuest = (Quest) parent.getAdapter().getItem(position) ;
 
-                Intent i = new Intent(getBaseContext(), QuestPreview.class);
+                Intent i = new Intent(getBaseContext(), QuestPreviewActivity.class);
                 i.putExtra("PassedQuest", chosenQuest);
                 startActivity(i);
             }
