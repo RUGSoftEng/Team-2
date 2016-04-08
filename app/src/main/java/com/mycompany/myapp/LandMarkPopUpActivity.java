@@ -12,7 +12,7 @@ import android.widget.TextView;
 /**
  * Created by Lutz on 21-3-2016.
  */
-public class LandMarkPopUp extends Activity {
+public class LandMarkPopUpActivity extends Activity {
 
     private Landmark passedLandmark;
     private TextView textInfo;

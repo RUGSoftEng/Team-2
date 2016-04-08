@@ -4,37 +4,33 @@
     <string name="title_activity_next">Quests</string>
 
 
-    <!-- Strings for Main -->
-
+    <!-- MainActivity -->
     <string name="string_main">Join us and start exploring the city!</string>
     <string name="string1_main">MeetGroningen!</string>
     <string name="button_main">Pick a new quest!</string>
+    <string name="button1_main">Create A Quest!</string>
+    <string name="button2_main">Overview of the city</string>
 
-    <!-- Strings for Quest -->
 
+
+    <!-- QuestActivity -->
     <string name="quest_text">Visit the following locations:</string>
     <string name="quest_item1">Martinitower</string>
     <string name="checked_item1">Did you know the Martinitower is 97 meters?</string>
     <string name="title_activity_quest">Cultural quest</string>
-    <!--<string name="quest_item2">Groninger Museum</string>
-    <string name="checked_item">Did you know the museum was founded in the year ....?</string>
-     -->
 
-
-    <!-- Strings for ListItem -->
-
+    <!-- ListItem -->
     <string name="list_item_button">Go!</string>
     <string name="title_activity_maps">Map</string>
 
-    <!--Strings for QuestPreview-->
+    <!-- QuestPreview-->
     <string name="questpreview_1">Contains the following locations</string>
     <string name="questpreview_pickbutton">Pick this quest!</string>
     <string name="title_activity_current_quest">Map</string>
     <string name="landmark_found">Congratulations! Landmark found!</string>
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
 
-
-    <!--Strings for QuestFinished-->
+    <!--QuestFinished-->
     <string name="quest_finished">Congrats!\n You succesfully finished the following quest: </string>
     <string name="quest_finished_text">Go back to the main screen</string>
     <string name="quest_finished_button">main</string>

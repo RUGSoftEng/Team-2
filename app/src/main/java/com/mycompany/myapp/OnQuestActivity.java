@@ -29,8 +29,6 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
-
 
 /**
  * Created by Ruben on 17/03/2016.
@@ -210,7 +208,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                 Toast.makeText(getApplicationContext(),
                         Constants.COMPLETED_LANDMARK_TEXT, Constants.FINISHED_LANDMARK_DURATION).show();
 
-                Intent i = new Intent(getBaseContext(), LandMarkPopUp.class);
+                Intent i = new Intent(getBaseContext(), LandMarkPopUpActivity.class);
                 i.putExtra("passedLandmark", currentTarget);
                 startActivity(i);
 
