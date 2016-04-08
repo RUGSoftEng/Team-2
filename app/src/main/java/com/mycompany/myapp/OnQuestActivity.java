@@ -131,6 +131,14 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     @Override
     protected void onResume() {
         super.onResume();
+
+        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+        User user = helper.getUser(helper.getReadableDatabase());
+        ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getFirstLandmark(user.getActiveQuest())); //TODO: added this (maybe remove this)
+        listView.setAdapter(adapter);
+
+        ArrayAdapter<Landmark> adapter2 = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, user.getActiveQuest().getLandmarks());
+        listView2.setAdapter(adapter2);
     }
 
 
