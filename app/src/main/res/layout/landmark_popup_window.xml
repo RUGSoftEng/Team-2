@@ -30,5 +30,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:text="Go find the next Landmark" />
+        android:text="Continue!" />
 </RelativeLayout>

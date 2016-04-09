@@ -334,9 +334,10 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         return;
+                    } else {
+                        locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+                        return;
                     }
-                    locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-                    return;
                 }
             }
         }
