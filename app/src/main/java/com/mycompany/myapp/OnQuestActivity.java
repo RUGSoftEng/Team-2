@@ -63,6 +63,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     private LocationListener locationListener;
     private LocationManager locationManager;
     private Landmark currentTarget;
+    private int end;
 
 
     @Override
@@ -236,11 +237,15 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             User user = helper.getUser(helper.getReadableDatabase());
             user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
-                // end of quest
-                user.finishQuest(user.getActiveQuest());
-                Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
-                in.putExtra("finishedQuest", passedQuest);
-                startActivity(in);
+                if (end == 1) {// end of quest
+                    user.finishQuest(user.getActiveQuest());
+                    Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
+                    in.putExtra("finishedQuest", passedQuest);
+                    startActivity(in);
+                    finish();
+                } else {
+                    end = 1;
+                }
             } else {
                 user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
                 helper.updateInDatabase(helper, user);
