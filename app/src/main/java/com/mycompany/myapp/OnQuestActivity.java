@@ -120,19 +120,12 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             }
         };
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{
-                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.INTERNET}, 10);
-                return;
-            }
-        } else {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
         }
+        locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+
 
     }
 
@@ -197,26 +190,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case Constants.MY_PERMISSIONS_REQUEST_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        return;
-                    } else {
-                        locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
-
     private void handleNewLocation(Location location) {
         Log.d(Constants.TAG, location.toString());
 
@@ -244,6 +217,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                     Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
                     in.putExtra("finishedQuest", passedQuest);
                     startActivity(in);
+                    finish();
                 } else {
                     end = 1;
                 }
