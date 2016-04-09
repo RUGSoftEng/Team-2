@@ -238,11 +238,12 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
                 if (end == 1) {// end of quest
+                    // stop locationupdates
+                    locationManager.removeUpdates(locationListener);
                     user.finishQuest(user.getActiveQuest());
                     Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
                     in.putExtra("finishedQuest", passedQuest);
                     startActivity(in);
-                    finish();
                 } else {
                     end = 1;
                 }

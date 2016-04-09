@@ -29,9 +29,9 @@ public class QuestFinishedActivity extends AppCompatActivity {
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent i = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(i);
-                finish();
             }
         });
 
