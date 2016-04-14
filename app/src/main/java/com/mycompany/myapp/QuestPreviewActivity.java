@@ -1,6 +1,7 @@
 package com.mycompany.myapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -57,6 +59,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
 
     private DatabaseHelper dbhelper;
     private Button pickQuest;
+    private Button startQuest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,21 +106,32 @@ public class QuestPreviewActivity extends FragmentActivity implements
             }
         });
 
-
         pickQuest = (Button) findViewById(R.id.addButton);
-        // Check if this quest is already in the user's list
-        // This check does not work correctly yet, we have tested and confirmed the quests are being
-        // added to the userlist, but we cannot check it with 'contains' since the hashcodes are not
-        // the same.
-        pickQuest.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        startQuest = (Button) findViewById(R.id.startButton);
 
-                    currentUser.addQuest(passedQuest);
-                    dbhelper.updateInDatabase(dbhelper, currentUser);
-                    v.setVisibility(View.GONE);
-                }
-            });
+        pickQuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentUser.addQuest(passedQuest);
+                dbhelper.updateInDatabase(dbhelper, currentUser);
+                pickQuest.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(),
+                        "Quest added to your list!", Toast.LENGTH_LONG).show();
+                startQuest.setVisibility(View.VISIBLE);
+            }
+        });
+
+        startQuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentUser.setActiveQuest(passedQuest);
+                dbhelper.updateInDatabase(dbhelper, currentUser);
+                Intent i = new Intent(getBaseContext(), OnQuestActivity.class);
+                i.putExtra("PassedQuest", passedQuest);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override
