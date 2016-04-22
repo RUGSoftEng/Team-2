@@ -49,4 +49,14 @@
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/questpreview_startbutton"
+        android:id="@+id/startButton"
+        android:layout_alignBottom="@+id/textView2"
+        android:visibility="invisible"
+        android:layout_alignParentEnd="true" />
+
 </LinearLayout>

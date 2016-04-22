@@ -26,6 +26,7 @@
     <!-- QuestPreviewActivity-->
     <string name="questpreview_1">Contains the following locations</string>
     <string name="questpreview_pickbutton">Pick this quest!</string>
+    <string name="questpreview_startbutton">Start this quest!</string>
     <string name="title_activity_current_quest">Map</string>
     <string name="landmark_found">Congratulations! Landmark found!</string>
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
