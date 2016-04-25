@@ -1,4 +1,4 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Activities;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
+import com.mycompany.myapp.Objects.Quest;
+import com.mycompany.myapp.R;
 
 import java.util.ArrayList;
 

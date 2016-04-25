@@ -1,10 +1,7 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Objects;
 
 import android.util.Log;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 

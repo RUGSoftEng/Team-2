@@ -1,4 +1,9 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.DatabaseStuff;
+
+import com.mycompany.myapp.Objects.ExactQuest;
+import com.mycompany.myapp.Objects.Landmark;
+import com.mycompany.myapp.Objects.Quest;
+import com.mycompany.myapp.Objects.User;
 
 import java.util.ArrayList;
 

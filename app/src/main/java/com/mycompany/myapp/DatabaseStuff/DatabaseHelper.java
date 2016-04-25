@@ -1,4 +1,4 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.DatabaseStuff;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.mycompany.myapp.Objects.Landmark;
+import com.mycompany.myapp.Objects.Quest;
+import com.mycompany.myapp.Objects.User;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

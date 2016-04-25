@@ -1,10 +1,10 @@
 package com.mycompany.myapp;
 
-import android.graphics.drawable.Drawable;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.Button;
-import android.widget.TextView;
+
+import com.mycompany.myapp.Activities.MainActivity;
 
 /**
  * Created by Lutz on 29-3-2016.

@@ -1,8 +1,7 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Ruben on 23/02/2016.

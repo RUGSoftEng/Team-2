@@ -1,4 +1,4 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Activities;
 
 import android.Manifest;
 import android.content.Context;
@@ -21,10 +21,14 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
+
+import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
+import com.mycompany.myapp.DatabaseStuff.Initializer;
+import com.mycompany.myapp.Objects.Landmark;
+import com.mycompany.myapp.Objects.Quest;
+import com.mycompany.myapp.R;
+import com.mycompany.myapp.Objects.User;
+
 import java.util.ArrayList;
 
 

@@ -1,6 +1,4 @@
-package com.mycompany.myapp;
-
-import java.security.PublicKey;
+package com.mycompany.myapp.DatabaseStuff;
 
 /**
  * Created by Ruben on 24/02/2016.

@@ -1,4 +1,4 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Objects;
 
 import java.util.ArrayList;
 

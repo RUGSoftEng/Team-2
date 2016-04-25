@@ -1,4 +1,4 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Objects;
 
 /**
  * Created by Ruben on 28/02/2016.

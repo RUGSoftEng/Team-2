@@ -84,7 +84,7 @@
         android:layout_above="@+id/progressText"/>
         <!--android:layout_weight="0.50" />-->
 
-    <!--tools:context="com.mycompany.myapp.OnQuestActivity"-->
+    <!--tools:context="com.mycompany.myapp.Activities.OnQuestActivity"-->
     <!--xmlns:tools="http://schemas.android.com/tools"-->
 
     <!--For testing purposes-->

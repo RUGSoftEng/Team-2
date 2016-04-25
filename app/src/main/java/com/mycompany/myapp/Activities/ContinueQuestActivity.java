@@ -1,4 +1,4 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Activities;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
+import com.mycompany.myapp.Objects.Quest;
+import com.mycompany.myapp.R;
+import com.mycompany.myapp.Objects.User;
 
 import java.util.ArrayList;
 
@@ -36,22 +41,26 @@ public class ContinueQuestActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView1);
 
         //redirect to quest explanation page, passing the chosen quest, also update the active quest to be the selected quest
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        try {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                helper = new DatabaseHelper(getBaseContext());
-                user.setActiveQuest((Quest) parent.getAdapter().getItem(position));
-                helper.updateInDatabase(helper, user);
-                helper.close();
+                    helper = new DatabaseHelper(getBaseContext());
+                    user.setActiveQuest((Quest) parent.getAdapter().getItem(position));
+                    helper.updateInDatabase(helper, user);
+                    helper.close();
 
-                chosenQuest = (Quest) parent.getAdapter().getItem(position);
-                Log.d("TEST", "clicked active quest list, passed quest: " + chosenQuest.toString());
-                Intent i = new Intent(getBaseContext(), OnQuestActivity.class);
-                i.putExtra("PassedQuest", chosenQuest);
-                startActivity(i);
-            }
-        });
+                    chosenQuest = (Quest) parent.getAdapter().getItem(position);
+                    Log.d("TEST", "clicked active quest list, passed quest: " + chosenQuest.toString());
+                    Intent i = new Intent(getBaseContext(), OnQuestActivity.class);
+                    i.putExtra("PassedQuest", chosenQuest);
+                    startActivity(i);
+                }
+            });
+        }catch(NullPointerException e){
+            Log.e("ListItem Error", "A list item is null: " + e);
+        }
 
 
         //get all current quests and put them in listview

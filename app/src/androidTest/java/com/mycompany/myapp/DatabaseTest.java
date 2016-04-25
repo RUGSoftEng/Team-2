@@ -1,12 +1,13 @@
 package com.mycompany.myapp;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import android.test.suitebuilder.annotation.SmallTest;
-import android.util.Log;
+
+import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
+import com.mycompany.myapp.Objects.Landmark;
+import com.mycompany.myapp.Objects.User;
 
 import java.util.ArrayList;
 

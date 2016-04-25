@@ -1,4 +1,4 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Activities;
 
 /**
  * Created by Ruben on 23/03/2016.
@@ -8,15 +8,16 @@ package com.mycompany.myapp;
     import android.os.Bundle;
     import android.support.v4.app.FragmentActivity;
 
-    import com.google.android.gms.maps.CameraUpdate;
     import com.google.android.gms.maps.CameraUpdateFactory;
     import com.google.android.gms.maps.GoogleMap;
     import com.google.android.gms.maps.OnMapReadyCallback;
     import com.google.android.gms.maps.SupportMapFragment;
     import com.google.android.gms.maps.model.LatLng;
-    import com.google.android.gms.maps.model.LatLngBounds;
     import com.google.android.gms.maps.model.Marker;
     import com.google.android.gms.maps.model.MarkerOptions;
+    import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
+    import com.mycompany.myapp.Objects.Landmark;
+    import com.mycompany.myapp.R;
 
     import java.util.ArrayList;
     import java.util.List;

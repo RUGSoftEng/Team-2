@@ -1,4 +1,4 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -31,6 +31,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mycompany.myapp.Constants;
+import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
+import com.mycompany.myapp.Objects.Landmark;
+import com.mycompany.myapp.Objects.Quest;
+import com.mycompany.myapp.R;
+import com.mycompany.myapp.Objects.User;
 
 import java.util.ArrayList;
 import java.util.List;

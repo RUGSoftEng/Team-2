@@ -1,13 +1,15 @@
-package com.mycompany.myapp;
+package com.mycompany.myapp.Activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.mycompany.myapp.Objects.Landmark;
+import com.mycompany.myapp.R;
 
 /**
  * Created by Lutz on 21-3-2016.

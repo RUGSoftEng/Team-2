@@ -10,7 +10,7 @@
     android:layout_height="0dp"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_weight="4.54"
-    tools:context="com.mycompany.myapp.QuestPreviewActivity"/>
+    tools:context=".Activities.QuestPreviewActivity"/>
 
     <TextView
         android:layout_width="wrap_content"
