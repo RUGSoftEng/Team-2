@@ -11,12 +11,14 @@ public abstract class Quest implements Serializable{
     protected ArrayList<Landmark> landmarks = new ArrayList<>(), visitedLandmarks = new ArrayList<>();
     protected boolean isUserGenerated;
     protected int questID;
+    protected int totallandmarks;
     protected String category;
 
     public Quest(int id, String name, boolean isUserGenerated){
         this.questID = id;
         this.name = name;
         this.isUserGenerated = isUserGenerated;
+        this.totallandmarks = 0;
     }
 
     public abstract boolean isInOrder();
@@ -39,7 +41,7 @@ public abstract class Quest implements Serializable{
         if(landmarks.isEmpty()){
             return 100;
         }
-        return (100 * (visitedLandmarks.size() / landmarks.size()));
+        return ((100 * visitedLandmarks.size()) / totallandmarks);
     }
 
 
@@ -52,10 +54,14 @@ public abstract class Quest implements Serializable{
         return this.visitedLandmarks;
     }
 
-    public void addLandmark(Landmark landmark){ this.landmarks.add(landmark);  }
+    public void addLandmark(Landmark landmark){
+        this.landmarks.add(landmark);
+        this.totallandmarks = totallandmarks + 1;
+    }
 
     public void addLandmarkList(Landmark[] array) {
         for (Landmark landmark : array) this.landmarks.add(landmark);
+        this.totallandmarks = totallandmarks + array.length;
     }
 
     public void isCompleted(Landmark landmark){ //finish landmark based on object

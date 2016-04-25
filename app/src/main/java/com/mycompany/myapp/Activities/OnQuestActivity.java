@@ -186,10 +186,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
         if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
-
             Toast.makeText(getApplicationContext(),
                     "Reached landmark", Toast.LENGTH_LONG).show();
-
             Intent i = new Intent(getBaseContext(), LandMarkPopUpActivity.class);
             i.putExtra("passedLandmark", currentTarget);
             startActivity(i);
@@ -212,13 +210,12 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             } else {
                 user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
                 helper.updateInDatabase(helper, user);
-
                 currentTarget = user.getActiveQuest().getLandmarks().get(0);
                 landmarker.setPosition(currentTarget.getLocation());
                 landmarker.setTitle(currentTarget.getName());
-
                 updateListViews(listView, listView2);
-            }
+                mProgress.setProgress(user.getActiveQuest().getProgress());
+               }
         }
 
         if (mylocmarker ==  null) {
