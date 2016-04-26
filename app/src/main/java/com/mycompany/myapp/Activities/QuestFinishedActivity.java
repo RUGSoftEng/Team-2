@@ -20,8 +20,8 @@ public class QuestFinishedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quest_finished);
         finishedQuest = (Quest) getIntent().getSerializableExtra("finishedQuest");
         TextView questname = (TextView)findViewById(R.id.textView2);
-        if (finishedQuest.name != null) {
-            questname.setText(finishedQuest.name);
+        if (finishedQuest.getName() != null) {
+            questname.setText(finishedQuest.getName());
             questname.setVisibility(View.VISIBLE);
         }
         // TODO: button that redirects user to main page

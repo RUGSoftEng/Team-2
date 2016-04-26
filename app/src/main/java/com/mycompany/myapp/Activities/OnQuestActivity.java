@@ -155,8 +155,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         mMap = googleMap;
     }
 
-
-
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {

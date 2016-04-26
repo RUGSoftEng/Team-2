@@ -36,6 +36,8 @@ public abstract class Quest implements Serializable{
        return this.questID;
     }
 
+    public String getName() { return name; }
+
     //for getting progress we don't need the variable (yet)
     public int getProgress(){
         if(landmarks.isEmpty()){
