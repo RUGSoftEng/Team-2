@@ -115,7 +115,7 @@ public class Initializer {
         landmarks.add(groteMarkt);
 
         Landmark vismarkt = new Landmark("Vismarkt", asignID());
-        vismarkt.setLocation(553.217337, 6.565054);
+        vismarkt.setLocation(53.217337, 6.565054);
         vismarkt.setInformation("blank");
         landmarks.add(vismarkt);
 

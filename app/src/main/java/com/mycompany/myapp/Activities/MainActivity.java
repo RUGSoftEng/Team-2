@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         makeQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), AddLandmarkActivity.class);
+                Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
                 startActivity(i);
             }
         });

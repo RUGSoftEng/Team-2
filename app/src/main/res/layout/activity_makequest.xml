@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chooseLandmarkList"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/FinishButton"
+            android:layout_toStartOf="@+id/FinishButton" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finish"
+            android:id="@+id/FinishButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/map"
+            android:layout_centerHorizontal="true" />
+
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            tools:context=".Activities.MakeQuestActivity"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Choose:"
+            android:id="@+id/chooseText"
+            android:layout_above="@+id/chooseLandmarkList"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/InQuestText"
+            android:layout_toStartOf="@+id/FinishButton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="In Quest:"
+            android:id="@+id/InQuestText"
+            android:layout_alignBottom="@+id/FinishButton"
+            android:layout_alignEnd="@+id/InQuestList" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/InQuestList"
+            android:layout_alignTop="@+id/chooseLandmarkList"
+            android:layout_toEndOf="@+id/FinishButton" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
