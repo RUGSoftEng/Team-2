@@ -29,19 +29,19 @@ public class DBConstants {
     private static final String COMMA_SEP = ",";
     public static final String SQL_CREATE_LANDMARK_ENTRIES =
             "CREATE TABLE " + DBConstants.TABLE_NAME_LANDMARK + " (" +
-                    DBConstants.LANDMARK_ID + " INTEGER PRIMARY KEY," +
+                    DBConstants.LANDMARK_ID + " STRING PRIMARY KEY," +
                     DBConstants.LANDMARK + BLOB_TYPE +
                     " )";
 
     public static final String SQL_CREATE_QUEST_ENTRIES =
             "CREATE TABLE " + DBConstants.TABLE_NAME_QUEST + " (" +
-                    DBConstants.QUEST_ID + " INTEGER PRIMARY KEY," +
+                    DBConstants.QUEST_ID + " STRING PRIMARY KEY," +
                     DBConstants.QUEST + BLOB_TYPE +
                     " )";
 
     public static final String SQL_CREATE_USER_ENTRIES =
             "CREATE TABLE " + DBConstants.TABLE_NAME_USER + " (" +
-                    DBConstants.USER_ID + " INTEGER PRIMARY KEY," +
+                    DBConstants.USER_ID + " STRING PRIMARY KEY," +
                     DBConstants.USER + BLOB_TYPE +
                     " )";
 

@@ -31,10 +31,12 @@ import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
 import com.mycompany.myapp.Objects.ExactQuest;
 import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.Objects.Quest;
+import com.mycompany.myapp.Objects.User;
 import com.mycompany.myapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Ruben on 28/02/2016.
@@ -58,7 +60,7 @@ public class MakeQuestActivity extends FragmentActivity {
         setContentView(R.layout.activity_makequest);
         FINISH = (Button) findViewById(R.id.FinishButton);
         final ListView chooseLandmarkListView = (ListView) findViewById(R.id.chooseLandmarkList);
-        final ListView inQuestList = (ListView) findViewById(R.id.InQuestList);
+        final ListView inQuestListView = (ListView) findViewById(R.id.InQuestList);
 
 
         //take all landmark objects from the database and put them into a listView
@@ -76,7 +78,7 @@ public class MakeQuestActivity extends FragmentActivity {
         final ArrayAdapter<Landmark> adapter2 = new ArrayAdapter<Landmark>(this,
                 android.R.layout.simple_list_item_1, selectedLandmarks);
 
-        inQuestList.setAdapter(adapter2);
+        inQuestListView.setAdapter(adapter2);
 
         try {
             chooseLandmarkListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,7 +101,7 @@ public class MakeQuestActivity extends FragmentActivity {
         }
 
         try {
-            inQuestList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            inQuestListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Landmark selectedLandmark = (Landmark) parent.getAdapter().getItem(position);
@@ -119,22 +121,24 @@ public class MakeQuestActivity extends FragmentActivity {
         }
 
 
+        FINISH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                ExactQuest quest = new ExactQuest(UUID.randomUUID().toString(), "Custom Quest", true); //TODO: Still hardcoded name
+                quest.addLandmarkList(selectedLandmarks);
 
+                DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+                User user = helper.getUser(helper.getReadableDatabase());
+                user.addQuest(quest);
+                helper.updateInDatabase(helper, user);
 
+                helper.close();
 
-
-        //TODO: Set button listener
-//        FINISH.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                ExactQuest quest = new ExactQuest();
-//                DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-//
-//                helper.putInDatabase();
-//            }
-//        });
+                Intent i = new Intent(getBaseContext(), ContinueQuestActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         setUpMapIfNeeded();

@@ -7,7 +7,7 @@ public class ExactQuest extends Quest {
 
     //private int currentLandmark = 0; Probably not needed
 
-    public ExactQuest(int id, String name, boolean isUserGenerated) {
+    public ExactQuest(String id, String name, boolean isUserGenerated) {
         super(id, name, isUserGenerated);
     }
 

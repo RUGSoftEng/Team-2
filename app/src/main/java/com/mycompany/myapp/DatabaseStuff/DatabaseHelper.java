@@ -52,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             onUpgrade(db, oldVersion, newVersion);
         }
 
-        private void putLandmarkInformation(DatabaseHelper helper, int landmarkID, byte[] object){
+        private void putLandmarkInformation(DatabaseHelper helper, String landmarkID, byte[] object){
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.LANDMARK_ID, landmarkID);
@@ -61,7 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting landmark in database");
         }
 
-        private void putQuestInformation(DatabaseHelper helper, int questID, byte[] object){
+        private void putQuestInformation(DatabaseHelper helper, String questID, byte[] object){
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.QUEST_ID, questID);
@@ -70,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting quest in database");
         }
 
-        private void putUserInformation(DatabaseHelper helper, int userID, byte[] object){ //TODO: ID assigning should be done safely, now its not
+        private void putUserInformation(DatabaseHelper helper, String userID, byte[] object){ //TODO: ID assigning should be done safely, now its not
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.USER_ID, userID);
@@ -79,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting User in database");
         }
 
-        private void updateUser(DatabaseHelper helper, int userID, byte[] object){
+        private void updateUser(DatabaseHelper helper, String userID, byte[] object){
             SQLiteDatabase sq = helper.getReadableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.USER_ID, userID);
@@ -89,19 +89,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
 
-        public void deleteUser(DatabaseHelper helper, int userID){
+        public void deleteUser(DatabaseHelper helper, String userID){
              SQLiteDatabase sq = helper.getWritableDatabase();
              sq.delete(DBConstants.TABLE_NAME_USER, DBConstants.USER_ID + "=" + userID, null);
              sq.close();
         }
 
-        public void deleteLandmark(DatabaseHelper helper, int landmarkID){
+        public void deleteLandmark(DatabaseHelper helper, String landmarkID){
             SQLiteDatabase sq = helper.getWritableDatabase();
             sq.delete(DBConstants.TABLE_NAME_LANDMARK, DBConstants.LANDMARK_ID + "=" + landmarkID, null);
             sq.close();
          }
 
-        public void deleteQuest(DatabaseHelper helper, int questID){
+        public void deleteQuest(DatabaseHelper helper, String questID){
             SQLiteDatabase sq = helper.getWritableDatabase();
             sq.delete(DBConstants.TABLE_NAME_QUEST, DBConstants.QUEST_ID + "=" + questID, null);
             sq.close();
