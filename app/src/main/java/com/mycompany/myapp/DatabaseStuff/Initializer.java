@@ -1,11 +1,14 @@
 package com.mycompany.myapp.DatabaseStuff;
 
+import android.util.Log;
+
 import com.mycompany.myapp.Objects.ExactQuest;
 import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.Objects.Quest;
 import com.mycompany.myapp.Objects.User;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Created by Ruben on 18/03/2016.
@@ -16,9 +19,13 @@ public class Initializer {
     private ArrayList<Landmark> landmarks = new ArrayList<Landmark>();
     private ArrayList<Quest> quests = new ArrayList<Quest>();
 
+    private UUID uuid;
+
     //creates all standard landmarks
     public ArrayList<Landmark> createStandardLandmarks(){
 
+
+        Log.d("UUID", UUID.randomUUID().toString());
         //number ID 1
         Landmark martiniToren = new Landmark("Martini Toren", asignID());
         martiniToren.setLocation(53.219383, 6.568125);
@@ -115,7 +122,7 @@ public class Initializer {
         landmarks.add(groteMarkt);
 
         Landmark vismarkt = new Landmark("Vismarkt", asignID());
-        vismarkt.setLocation(53.217337, 6.565054);
+        vismarkt.setLocation(553.217337, 6.565054);
         vismarkt.setInformation("blank");
         landmarks.add(vismarkt);
 

@@ -25,7 +25,7 @@ public abstract class Quest implements Serializable{
 
     @Override
     public String toString() {
-        return this.name;
+        return this.getName();
     }
 
     public void setName(String name){

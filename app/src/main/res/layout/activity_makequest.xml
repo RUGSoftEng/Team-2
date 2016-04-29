@@ -55,7 +55,7 @@
             android:text="In Quest:"
             android:id="@+id/InQuestText"
             android:layout_below="@+id/map"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignStart="@+id/InQuestList" />
 
         <ListView
             android:layout_width="wrap_content"
