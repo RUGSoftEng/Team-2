@@ -1,12 +1,9 @@
 package com.mycompany.myapp.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,23 +11,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mycompany.myapp.Constants;
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
+import com.mycompany.myapp.Dialog.AskQuestNameDialog;
 import com.mycompany.myapp.Objects.ExactQuest;
 import com.mycompany.myapp.Objects.Landmark;
-import com.mycompany.myapp.Objects.Quest;
 import com.mycompany.myapp.Objects.User;
 import com.mycompany.myapp.R;
 
@@ -42,8 +36,7 @@ import java.util.UUID;
  * Created by Ruben on 28/02/2016.
 */
 
-//TODO: this class should be linked to the button for adding a landmark to your quest
-public class MakeQuestActivity extends FragmentActivity {
+public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener {
 
     private Button FINISH;
 
@@ -121,22 +114,17 @@ public class MakeQuestActivity extends FragmentActivity {
         }
 
 
+        /*
+        Finish button listener starts a Dialog, that asks for a questName, the returning result is catched by the
+        onDialogPositiveClick(Dialog dialog) and onDialogNegativeClick(Dialog dialog) methods.
+         */
         FINISH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ExactQuest quest = new ExactQuest(UUID.randomUUID().toString(), "Custom Quest", true); //TODO: Still hardcoded name
-                quest.addLandmarkList(selectedLandmarks);
+                AskQuestNameDialog dialog = new AskQuestNameDialog();
+                dialog.show(getSupportFragmentManager(), "dialog");
 
-                DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-                User user = helper.getUser(helper.getReadableDatabase());
-                user.addQuest(quest);
-                helper.updateInDatabase(helper, user);
-
-                helper.close();
-
-                Intent i = new Intent(getBaseContext(), ContinueQuestActivity.class);
-                startActivity(i);
             }
         });
 
@@ -171,13 +159,40 @@ public class MakeQuestActivity extends FragmentActivity {
                 LatLngBounds bounds = builder.build();
                 CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
                 mMap.animateCamera(cu);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 30));
             }
         });
 
 
         db.close();
         helper.close();
+    }
+
+
+
+    // The dialog fragment receives a reference to this Activity through the
+    // Fragment.onAttach() callback, which it uses to call the following methods
+    // defined by the AskQuestNameDialog.QuestNameDialogListener interface
+    @Override
+    public void onDialogPositiveClick(AskQuestNameDialog dialog) {
+        // User touched the dialog's positive button, a new quest is created and added to the User
+        ExactQuest quest = new ExactQuest(UUID.randomUUID().toString(), dialog.getQuestName(), true); //TODO: Still hardcoded name
+        quest.addLandmarkList(selectedLandmarks);
+
+        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+        User user = helper.getUser(helper.getReadableDatabase());
+        user.addQuest(quest);
+        helper.updateInDatabase(helper, user);
+
+        helper.close();
+
+        Intent i = new Intent(getBaseContext(), ContinueQuestActivity.class);
+        startActivity(i);
+    }
+
+    @Override
+    public void onDialogNegativeClick(AskQuestNameDialog dialog) {
+        // User touched the dialog's negative button, nothing happens
+
     }
 
 

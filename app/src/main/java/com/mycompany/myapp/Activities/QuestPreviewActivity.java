@@ -102,13 +102,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Landmark selectedlm = (Landmark) parent.getAdapter().getItem(position);
-                LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                builder.include(selectedlm.getLocation());
-                LatLngBounds bounds = builder.build();
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds,300);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(selectedlm.getLocation()));
-                //mMap.moveCamera(CameraUpdateFactory.newLatLng(selectedlm.getLocation()));
-
             }
         });
 
