@@ -3,6 +3,7 @@ package com.mycompany.myapp.DatabaseStuff;
 import com.mycompany.myapp.Objects.ExactQuest;
 import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.Objects.Quest;
+import com.mycompany.myapp.Objects.Quiz;
 import com.mycompany.myapp.Objects.User;
 
 import java.util.ArrayList;
@@ -33,6 +34,11 @@ public class Initializer {
 
         //number 3
         Landmark korenbeurs = new Landmark("Korenbeurs", asignID());
+        // SOMETHING GOES WRONG HERE: WHEN WE ADD THE QUIZ TO LANDMARK, THE QUESTS THAT CONTAIN IT ARE NOT DISPLAYED
+       // Quiz quiz = new Quiz("Question");
+       // quiz.setAnswers(new String[]{"A", "B", "C"});
+       // quiz.setRightAnswer("B");
+       // korenbeurs.setQuiz(quiz);
         korenbeurs.setLocation(53.216863, 6.563781);
         korenbeurs.setInformation("The Korenbeurs( Grain Exchange) is a neoclassical building in Groningen in the Netherlands. It was originally used as an exchange for food grain trade.");
         landmarks.add(korenbeurs);
@@ -166,7 +172,10 @@ public class Initializer {
 
         //some more quests to look cool in list
         ExactQuest pubs = new ExactQuest(asignID(), "Pub Quest", false);
+        pubs.addLandmark(korenbeurs);
+        pubs.addLandmark(martiniToren);
         quests.add(pubs);
+
         ExactQuest restaurants = new ExactQuest(asignID(), "Restaurant Quest", false);
         quests.add(restaurants);
         ExactQuest nature = new ExactQuest(asignID(), "Nature Quest", false);

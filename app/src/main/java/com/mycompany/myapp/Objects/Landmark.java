@@ -5,7 +5,6 @@ import android.location.Location;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by Ruben on 23/02/2016.
@@ -15,7 +14,8 @@ public class Landmark implements Serializable{
 
     private String name, locationName, information; //locationName == streetName/neighbourhood
     private int points, landmarkID;
-    //private ArrayList<Question> questions = new ArrayList<Question>(); TODO not yet used so not need yet(could bring errors serialization errors)
+    private Quiz quiz;
+    //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not need yet(could bring errors serialization errors)
     private double lat, lng;
 
 
@@ -56,6 +56,8 @@ public class Landmark implements Serializable{
         return loc;
     }
 
+    public Quiz getQuiz() { return this.quiz; }
+
     public void setLocation(LatLng location){
         this.lat = location.latitude;
         this.lng = location.longitude;
@@ -64,6 +66,10 @@ public class Landmark implements Serializable{
     public void setLocation(double lat, double lng){
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public void setQuiz(Quiz q) {
+        this.quiz = q;
     }
 
     public int getID(){
@@ -104,15 +110,15 @@ public class Landmark implements Serializable{
     }
 
     /*
-    public void addQuestion(Question q){
+    public void addQuestion(Quiz q){
         this.questions.add(q);
     }
 
-    public Question getQuestion(int i){
+    public Quiz getQuestion(int i){
         return this.questions.get(i);
     }
 
-    public void removeQuestion(Question q){
+    public void removeQuestion(Quiz q){
         this.questions.remove(q);
     }
     */
