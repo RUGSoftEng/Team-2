@@ -145,6 +145,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button testButton = (Button) findViewById(R.id.testbutton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), UserPageActivity.class);
+                startActivity(i);
+            }
+        });
+
         continueButton = (Button) findViewById(R.id.continueButton);
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override

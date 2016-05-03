@@ -202,6 +202,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                         Log.e("Security Exception", "No permission to get location: " + e);
                     }
                     user.finishQuest(user.getActiveQuest());
+                    helper.updateInDatabase(helper, user);
+
                     Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
                     in.putExtra("finishedQuest", passedQuest);
                     startActivity(in);

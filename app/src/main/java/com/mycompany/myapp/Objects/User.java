@@ -15,7 +15,7 @@ public class User implements Serializable {
 
     //private ArrayList<Achievement> achievements; TODO: not yet implemented
     private ArrayList<Quest> currentQuests = new ArrayList<>();
-    private ArrayList<Quest> solvedquests = new ArrayList<>();
+    private ArrayList<Quest> solvedQuests = new ArrayList<>();
     private Quest activeQuest;
 
     public User(String userID){
@@ -37,7 +37,7 @@ public class User implements Serializable {
 
     public void finishQuest(Quest q){ //add a quest to the solved and remove it from current quest list
         this.currentQuests.remove(q);
-        this.solvedquests.add(q);
+        this.solvedQuests.add(q);
         if(q == activeQuest){
             this.activeQuest = null;
         }
@@ -54,6 +54,8 @@ public class User implements Serializable {
     public Quest getActiveQuest(){
         return activeQuest;
     }
+
+    public ArrayList<Quest> getSolvedQuests() { return solvedQuests; }
 
     public ArrayList<Quest> getCurrentQuests() {
         return currentQuests;
