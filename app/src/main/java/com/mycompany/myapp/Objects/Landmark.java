@@ -12,20 +12,24 @@ import java.io.Serializable;
 public class Landmark implements Serializable{
 
 
+
     private String name, locationName, information; //locationName == streetName/neighbourhood
     private int points, landmarkID;
     private Quiz quiz;
     //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not need yet(could bring errors serialization errors)
+    private String name, locationName, information, landmarkID; //locationName == streetName/neighbourhood
+    private int points;
+    //private ArrayList<Question> questions = new ArrayList<Question>(); TODO not yet used so not need yet(could bring errors serialization errors)
     private double lat, lng;
 
 
-    public Landmark(String name, int id){
+    public Landmark(String name, String id){
         this.landmarkID = id;
         this.name = name;
     };
 
 
-    public Landmark(String name, int id, String locationName, int points, String information, double lat, double lng){
+    public Landmark(String name, String id, String locationName, int points, String information, double lat, double lng){
         this.landmarkID = id;
         this.name = name;
         this.locationName = locationName;
@@ -73,6 +77,8 @@ public class Landmark implements Serializable{
     }
 
     public int getID(){
+
+    public String getID(){
         return this.landmarkID;
     }
 

@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Button makeQuest = (Button) findViewById(R.id.createQuest);
-        makeQuest.setVisibility(View.GONE);
+        //makeQuest.setVisibility(View.GONE);
         makeQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

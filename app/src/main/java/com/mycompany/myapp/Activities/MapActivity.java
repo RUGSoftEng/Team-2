@@ -15,6 +15,7 @@ package com.mycompany.myapp.Activities;
     import com.google.android.gms.maps.model.LatLng;
     import com.google.android.gms.maps.model.Marker;
     import com.google.android.gms.maps.model.MarkerOptions;
+    import com.mycompany.myapp.Constants;
     import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
     import com.mycompany.myapp.Objects.Landmark;
     import com.mycompany.myapp.R;
@@ -25,7 +26,6 @@ package com.mycompany.myapp.Activities;
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
         private GoogleMap mMap;
-        private static final LatLng COORDINATE_GRONINGEN = new LatLng(53.217717, 6.566458);
         private List<Marker> markers;
 
         @Override
@@ -40,7 +40,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         @Override
         public void onMapReady(GoogleMap googleMap) {
             mMap = googleMap;
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(COORDINATE_GRONINGEN));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(Constants.COORDINATE_GRONINGEN));
 
             //take all landmark objects from the database and put them into a listView
             DatabaseHelper helper = new DatabaseHelper(this);
@@ -56,8 +56,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 markers.add(testmark);
             }
 
-            LatLng groningen = new LatLng(53.2194, 6.5665);
-
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(groningen, 12.0f));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Constants.COORDINATE_GRONINGEN, 12.0f));
         }
 }

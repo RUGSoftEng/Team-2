@@ -2,6 +2,7 @@ package com.mycompany.myapp.Objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ruben on 23/02/2016.
@@ -10,11 +11,11 @@ public abstract class Quest implements Serializable{
     protected String name;
     protected ArrayList<Landmark> landmarks = new ArrayList<>(), visitedLandmarks = new ArrayList<>();
     protected boolean isUserGenerated;
-    protected int questID;
+    protected String questID;
     protected int totallandmarks;
     protected String category;
 
-    public Quest(int id, String name, boolean isUserGenerated){
+    public Quest(String id, String name, boolean isUserGenerated){
         this.questID = id;
         this.name = name;
         this.isUserGenerated = isUserGenerated;
@@ -25,14 +26,14 @@ public abstract class Quest implements Serializable{
 
     @Override
     public String toString() {
-        return this.name;
+        return this.getName();
     }
 
     public void setName(String name){
         this.name = name;
     }
 
-    public int getID(){
+    public String getID(){
        return this.questID;
     }
 
@@ -61,9 +62,9 @@ public abstract class Quest implements Serializable{
         this.totallandmarks = totallandmarks + 1;
     }
 
-    public void addLandmarkList(Landmark[] array) {
-        for (Landmark landmark : array) this.landmarks.add(landmark);
-        this.totallandmarks = totallandmarks + array.length;
+    public void addLandmarkList(List<Landmark> list) {
+        for (Landmark landmark : list) this.landmarks.add(landmark);
+        this.totallandmarks = totallandmarks + list.size();
     }
 
     public void isCompleted(Landmark landmark){ //finish landmark based on object
@@ -71,7 +72,7 @@ public abstract class Quest implements Serializable{
         this.landmarks.remove(landmark); //TODO: now slow might be faster
     }
 
-    public void isCompleted(int landmarkID){ //finish landmark based on id
+    public void isCompleted(String landmarkID){ //finish landmark based on id
         for(Landmark l : visitedLandmarks){
             if(landmarkID == l.getID()){
                 this.visitedLandmarks.add(l);

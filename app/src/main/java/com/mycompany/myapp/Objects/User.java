@@ -10,15 +10,15 @@ import java.util.ArrayList;
  */
 public class User implements Serializable {
 
-    private int userID, points;
-    private String name;
+    private int points;
+    private String userID, name;
 
     //private ArrayList<Achievement> achievements; TODO: not yet implemented
     private ArrayList<Quest> currentQuests = new ArrayList<>();
     private ArrayList<Quest> solvedquests = new ArrayList<>();
     private Quest activeQuest;
 
-    public User(int userID){
+    public User(String userID){
         this.userID = userID;
     }
 
@@ -43,7 +43,7 @@ public class User implements Serializable {
         }
     }
 
-    public int getID(){
+    public String getID(){
         return this.userID;
     }
 

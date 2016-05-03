@@ -196,7 +196,11 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
                 if (end == 1) {// end of quest
                     // stop locationupdates
-                    locationManager.removeUpdates(locationListener);
+                    try {
+                        locationManager.removeUpdates(locationListener);
+                    }catch(SecurityException e){
+                        Log.e("Security Exception", "No permission to get location: " + e);
+                    }
                     user.finishQuest(user.getActiveQuest());
                     Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
                     in.putExtra("finishedQuest", passedQuest);

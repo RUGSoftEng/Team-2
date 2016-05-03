@@ -2,6 +2,8 @@ package com.mycompany.myapp;
 
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by Ruben on 29/03/2016.
  */
@@ -11,6 +13,7 @@ public class Constants {
 
 
     public static final int TOTAL_QUEST_PROGRESS = 100; //Max possible quest progress
+    public static final LatLng COORDINATE_GRONINGEN = new LatLng(53.2194, 6.5665);;
 
 
     //geofence related stuff
@@ -25,7 +28,7 @@ public class Constants {
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 10; //Random number to give a permission code
 
-    public static final int PADDING = 100; //Padding of ...........
+    public static final int PADDING = 100; //Padding of Map and markers
     public static final int MILLISEC = 1000; //second converted to millisecs
 
 
