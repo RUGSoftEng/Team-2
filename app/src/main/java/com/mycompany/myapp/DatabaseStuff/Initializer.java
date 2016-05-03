@@ -16,7 +16,6 @@ import java.util.UUID;
  */
 public class Initializer {
 
-    private int assignedID = 1; //counter to assign initializing id's (starts at 1)
     private ArrayList<Landmark> landmarks = new ArrayList<Landmark>();
     private ArrayList<Quest> quests = new ArrayList<Quest>();
 
@@ -40,14 +39,12 @@ public class Initializer {
         landmarks.add(cityHall);
 
         //number 3
-        Landmark korenbeurs = new Landmark("Korenbeurs", asignID());
-        // SOMETHING GOES WRONG HERE: WHEN WE ADD THE QUIZ TO LANDMARK, THE QUESTS THAT CONTAIN IT ARE NOT DISPLAYED
-       // Quiz quiz = new Quiz("Question");
-       // quiz.setAnswers(new String[]{"A", "B", "C"});
-       // quiz.setRightAnswer("B");
-       // korenbeurs.setQuiz(quiz);
-
         Landmark korenbeurs = new Landmark("Korenbeurs", UUID.randomUUID().toString());
+        // SOMETHING GOES WRONG HERE: WHEN WE ADD THE QUIZ TO LANDMARK, THE QUESTS THAT CONTAIN IT ARE NOT DISPLAYED
+        // Quiz quiz = new Quiz("Question");
+        // quiz.setAnswers(new String[]{"A", "B", "C"});
+        // quiz.setRightAnswer("B");
+        // korenbeurs.setQuiz(quiz);
         korenbeurs.setLocation(53.216863, 6.563781);
         korenbeurs.setInformation("The Korenbeurs( Grain Exchange) is a neoclassical building in Groningen in the Netherlands. It was originally used as an exchange for food grain trade.");
         landmarks.add(korenbeurs);
@@ -180,12 +177,6 @@ public class Initializer {
         quests.add(reversedEssential);
 
         //some more quests to look cool in list
-        ExactQuest pubs = new ExactQuest(asignID(), "Pub Quest", false);
-        pubs.addLandmark(korenbeurs);
-        pubs.addLandmark(martiniToren);
-        quests.add(pubs);
-
-        ExactQuest restaurants = new ExactQuest(asignID(), "Restaurant Quest", false);
         ExactQuest pubs = new ExactQuest(UUID.randomUUID().toString(), "Pub Quest", false);
         quests.add(pubs);
         ExactQuest restaurants = new ExactQuest(UUID.randomUUID().toString(), "Restaurant Quest", false);

@@ -13,8 +13,6 @@ public class Landmark implements Serializable{
 
 
 
-    private String name, locationName, information; //locationName == streetName/neighbourhood
-    private int points, landmarkID;
     private Quiz quiz;
     //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not need yet(could bring errors serialization errors)
     private String name, locationName, information, landmarkID; //locationName == streetName/neighbourhood
@@ -26,7 +24,7 @@ public class Landmark implements Serializable{
     public Landmark(String name, String id){
         this.landmarkID = id;
         this.name = name;
-    };
+    }
 
 
     public Landmark(String name, String id, String locationName, int points, String information, double lat, double lng){
@@ -37,9 +35,7 @@ public class Landmark implements Serializable{
         this.information = information;
         this.lat = lat;
         this.lng = lng;
-    };
-
-
+    }
 
     //For printing as listItem, now only printing name of landmark
     @Override
@@ -75,8 +71,6 @@ public class Landmark implements Serializable{
     public void setQuiz(Quiz q) {
         this.quiz = q;
     }
-
-    public int getID(){
 
     public String getID(){
         return this.landmarkID;
