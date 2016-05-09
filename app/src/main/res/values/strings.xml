@@ -25,9 +25,9 @@
     <string name="title_activity_maps">Map</string>
 
     <!-- QuestPreviewActivity-->
-    <string name="questpreview_1">Contains the following locations</string>
-    <string name="questpreview_pickbutton">Pick this quest!</string>
-    <string name="questpreview_startbutton">Start this quest!</string>
+    <string name="containsText_questPreview">Contains the following locations</string>
+    <string name="pickButton_questPreview">Pick this quest!</string>
+    <string name="startButton_questPreview">Start this quest!</string>
     <string name="title_activity_current_quest">Map</string>
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
 
@@ -50,5 +50,11 @@
     <string name="myProgressText_Userpage">My progress</string>
     <string name="pEarnedText_Userpage">Points earned</string>
     <string name="questFinishedText_Userpage">Quests finished</string>
+
+    <!-- OnQuestActivity-->
+    <string name="progressText_OnQuest">Quest Progress:</string>
+    <string name="nextLandmarkText_OnQuest">Go find:</string>
+    <string name="nextLandmarksText_OnQuest">Remaining landmarks:</string>
+
 
 </resources>

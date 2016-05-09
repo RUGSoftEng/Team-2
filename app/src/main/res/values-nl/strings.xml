@@ -23,11 +23,10 @@
     <string name="title_activity_maps">Kaart</string>
 
     <!-- QuestPreviewActivity-->
-    <string name="questpreview_1">Bevat de volgende locaties</string>
-    <string name="questpreview_pickbutton">Kies deze zoektocht!</string>
-    <string name="questpreview_startbutton">Start deze tocht!</string>
+    <string name="containsText_questPreview">Bevat de volgende locaties</string>
+    <string name="pickButton_questPreview">Kies deze zoektocht!</string>
+    <string name="startButton_questPreview">Start deze tocht!</string>
     <string name="title_activity_current_quest">Kaart</string>
-    <string name="landmarkFound_PopupWindow">Gefeliciteerd! Bezienswaardigheid gevonden!</string>
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
 
     <!--QuestFinished-->
@@ -39,5 +38,21 @@
     <string name="finishText_makeQuest">Voltooi</string>
     <string name="ChooseText_makeQuest">Kies:</string>
     <string name="InQuestText_makeQuest">Al in zoektocht:</string>
+
+
+    <!-- Landmark_Popup_Window-->
+    <string name="landmarkFound_PopupWindow">Gefeliciteerd! Bezienswaardigheid gevonden!</string>
+    <string name="nextLandmarkButton_PopupWindow">"Ga verder!"</string>
+    <string name="quizButton_PopupWindow">"Quiz!"</string>
+
+    <!-- UserpageActivity-->
+    <string name="myProgressText_Userpage">Mijn vooruitgang</string>
+    <string name="pEarnedText_Userpage">Punten verdiend</string>
+    <string name="questFinishedText_Userpage">Zoektochten afgerond</string>
+
+    <!-- OnQuestActivity-->
+    <string name="progressText_OnQuest">Zoektocht vooruitgang:</string>
+    <string name="nextLandmarkText_OnQuest">Vind:</string>
+    <string name="nextLandmarksText_OnQuest">Resterende bezienswaardigheden:</string>
 
 </resources>

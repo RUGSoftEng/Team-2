@@ -108,8 +108,8 @@ public class QuestPreviewActivity extends FragmentActivity implements
             }
         });
 
-        pickQuest = (Button) findViewById(R.id.addButton);
-        startQuest = (Button) findViewById(R.id.startButton);
+        pickQuest = (Button) findViewById(R.id.addButton_questPreview);
+        startQuest = (Button) findViewById(R.id.startButton_questPreview);
 
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,22 +6,6 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-
-
-    <!--<Button-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="Popup Landmark"-->
-    <!--android:id="@+id/button"-->
-    <!--android:layout_gravity="center_horizontal" />-->
-
-
-
-    <!--<RelativeLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_gravity="center_horizontal">-->
-
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="247dp"
@@ -32,71 +16,40 @@
         android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Quest Progress:"
-        android:id="@+id/progressText"
-        android:layout_above="@+id/progressBar"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/progressText_OnQuest"
+        android:id="@+id/progressText__OnQuest" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:id="@+id/progressBar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/progressBar" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Go find:"
+        android:text="@string/nextLandmarkText_OnQuest"
         android:textColor="#FF4BB405"
-        android:id="@+id/nextLandmarkText"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/nextLandmarkText_OnQuest" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:id="@+id/listView3"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/nextLandmarkText"
-        android:layout_alignBottom="@+id/next2LandmarksText" />
-    <!--android:layout_weight="0.27" />-->
+        android:id="@+id/listView3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Remaining landmarks:"
-        android:id="@+id/next2LandmarksText"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/nextLandmarkText"
-        android:layout_alignParentStart="true" />
+        android:text="@string/nextLandmarksText_OnQuest"
+        android:id="@+id/nextLandmarksText_OnQuest"
+        android:layout_marginTop="10dp" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/listView4"
-        android:layout_below="@+id/listView3"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/progressText"/>
-        <!--android:layout_weight="0.50" />-->
+        android:id="@+id/listView4"/>
 
-    <!--tools:context="com.mycompany.myapp.Activities.OnQuestActivity"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
 
-    <!--For testing purposes-->
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="45dp"-->
-    <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-    <!--android:id="@+id/textView3"-->
-    <!--android:layout_alignParentTop="true"-->
-    <!--android:layout_alignParentLeft="true"-->
-    <!--android:layout_alignParentStart="true"-->
-    <!--android:visibility="gone"/>-->
-
-    <!--</RelativeLayout>-->
 </LinearLayout>

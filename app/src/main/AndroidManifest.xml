@@ -27,11 +27,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".Activities.QuestActivity"
-            android:label="@string/title_activity_quest"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
             android:name=".Activities.LandMarkPopUpActivity"
             android:parentActivityName=".Activities.ContinueQuestActivity" >
             android:theme="@style/AppTheme.NoActionBar" 
@@ -55,6 +50,10 @@
         <activity
             android:name=".Activities.QuestPreviewActivity"
             android:label="@string/title_activity_maps" >
+        </activity>
+        <activity
+            android:name=".Activities.UserPageActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
