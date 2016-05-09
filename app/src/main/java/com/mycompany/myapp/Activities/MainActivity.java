@@ -19,6 +19,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
 
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             int i = 0;
 
             public void run() {
-                RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.layout);
+                LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout);
                 rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
                 i++;
                 if (i == imgs.size()) i = 0;
