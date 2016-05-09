@@ -22,20 +22,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/string_main"
+        android:text="@string/JoinUsText_main"
         android:id="@+id/textView"
         android:layout_marginTop="32dp"
         android:textColor="#ffffff"
-        android:layout_below="@+id/textView1"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignStart="@+id/textView1" />
+        android:layout_below="@+id/congratsText"
+        android:layout_alignLeft="@+id/congratsText"
+        android:layout_alignStart="@+id/congratsText" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/string1_main"
-        android:id="@+id/textView1"
+        android:text="@string/meetGroningenText_main"
+        android:id="@+id/congratsText"
         android:textColor="#ffffff"
         android:textSize="@dimen/abc_text_size_display_1_material"
         android:layout_marginTop="48dp"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button_main"
         android:layout_marginLeft="38dp"
-        android:id="@+id/button_main"
+        android:id="@+id/goMainButton_questFinished"
         android:enabled="true"
         android:nestedScrollingEnabled="false"
         android:layout_below="@+id/textView"
@@ -57,7 +57,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button1_main"
+        android:text="@string/createQuestButton_main"
         android:id="@+id/createQuest"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
@@ -66,7 +66,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button2_main"
+        android:text="@string/mapButton_main"
         android:id="@+id/mapButton"
         android:layout_below="@+id/continueButton"
         android:layout_alignParentEnd="true" />
@@ -75,16 +75,16 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Continue A quest"
+        android:text="@string/continueQuestButton_main"
         android:id="@+id/continueButton"
-        android:layout_below="@+id/button_main"
+        android:layout_below="@+id/goMainButton_questFinished"
         android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Userpage"
-        android:id="@+id/testbutton"
+        android:text="@string/userpageButton_main"
+        android:id="@+id/userpageButton_main"
         android:layout_alignTop="@+id/createQuest"
         android:layout_alignParentStart="true" />
 

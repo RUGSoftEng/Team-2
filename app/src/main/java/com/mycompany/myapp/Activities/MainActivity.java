@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Buttons
-        Button pickQuest = (Button) findViewById(R.id.button_main);
+        Button pickQuest = (Button) findViewById(R.id.goMainButton_questFinished);
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

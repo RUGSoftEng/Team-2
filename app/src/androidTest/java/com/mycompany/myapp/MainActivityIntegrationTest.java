@@ -21,7 +21,7 @@ public class MainActivityIntegrationTest extends ActivityInstrumentationTestCase
 
     @SmallTest
     public void testpickbutton() {
-        Button bt1=(Button)getActivity().findViewById(R.id.button_main);
+        Button bt1=(Button)getActivity().findViewById(R.id.goMainButton_questFinished);
         assertNotNull(bt1);
     }
 

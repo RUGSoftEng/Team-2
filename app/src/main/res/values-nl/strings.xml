@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">MeetGroningen!</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="title_activity_next">Zoektocht</string>
+
+
+    <!-- MainActivity -->
+    <string name="JoinUsText_main">Ontdek de stad samen met ons!</string>
+    <string name="meetGroningenText_main">MeetGroningen!</string>
+    <string name="button_main">Kies een nieuwe zoektocht!</string>
+    <string name="createQuestButton_main">Maak je eigen zoektocht!</string>
+    <string name="mapButton_main">Overzicht van de stad</string>
+
+
+    <!-- QuestActivity -->
+    <string name="quest_text">Bezoek de volgende locaties:</string>
+    <string name="quest_item1">Martinitower</string>
+    <string name="checked_item1">Did you know the Martinitower is 97 meters?</string>
+    <string name="title_activity_quest">Cultural quest</string>
+
+    <!-- ListItem -->
+    <string name="list_item_button">Go!</string>
+    <string name="title_activity_maps">Kaart</string>
+
+    <!-- QuestPreviewActivity-->
+    <string name="questpreview_1">Bevat de volgende locaties</string>
+    <string name="questpreview_pickbutton">Kies deze zoektocht!</string>
+    <string name="questpreview_startbutton">Start deze tocht!</string>
+    <string name="title_activity_current_quest">Kaart</string>
+    <string name="landmarkFound_PopupWindow">Gefeliciteerd! Bezienswaardigheid gevonden!</string>
+    <string name="title_activity_quest_finished">QuestFinishedActivity</string>
+
+    <!--QuestFinished-->
+    <string name="congratsText_questFinished">Gefeliciteerd!\n Je hebt succesvol deze zoektocht afgerond: </string>
+    <string name="goMainText_questFinished">Ga terug naar de hoofd pagina</string>
+    <string name="goMainButton_questFinished">Hoofd pagina</string>
+
+    <!-- MakeQuestActivity-->
+    <string name="finishText_makeQuest">Voltooi</string>
+    <string name="ChooseText_makeQuest">Kies:</string>
+    <string name="InQuestText_makeQuest">Al in zoektocht:</string>
+
+</resources>
