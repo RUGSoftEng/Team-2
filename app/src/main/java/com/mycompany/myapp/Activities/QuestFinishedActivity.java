@@ -10,10 +10,14 @@ import android.widget.TextView;
 import com.mycompany.myapp.Objects.Quest;
 import com.mycompany.myapp.R;
 
+/**
+ * Class description goes here.
+ */
 public class QuestFinishedActivity extends AppCompatActivity {
 
-    private Quest finishedQuest;
+    private Quest finishedQuest; //field description goes here
 
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

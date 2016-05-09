@@ -35,25 +35,28 @@ import com.mycompany.myapp.R;
 import com.mycompany.myapp.Objects.User;
 
 /**
+ * Class description goes here.
+ *
  * Created by Ruben on 17/03/2016.
  */
 public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private ProgressBar mProgress;
+    private ProgressBar mProgress; //field description goes here
 
-    private Quest passedQuest;
-    private Landmark nextLandmark;
-    private ListView listView, listView2;
-    private GoogleMap mMap;
-    private Marker landmarker;
-    private Marker mylocmarker;
+    private Quest passedQuest; //field description goes here
+    private Landmark nextLandmark; //field description goes here
+    private ListView listView; //field description goes here
+    private ListView listView2; //field description goes here
+    private GoogleMap mMap; //field description goes here
+    private Marker landmarker; //field description goes here
+    private Marker mylocmarker; //field description goes here
 
-    private LocationListener locationListener;
-    private LocationManager locationManager;
-    private Landmark currentTarget;
-    private int end;
+    private LocationListener locationListener; //field description goes here
+    private LocationManager locationManager; //field description goes here
+    private Landmark currentTarget; //field description goes here
+    private int end; //field description goes here
 
-
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +120,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
     }
 
+    /* Method description goes here. */
     void updateListViews(ListView listView, ListView listView2) {
         DatabaseHelper helper = new DatabaseHelper(getBaseContext());
         User user = helper.getUser(helper.getReadableDatabase());
@@ -131,13 +135,13 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
 
-
+    /* Method description goes here. */
     @Override
     protected void onResume() {
         super.onResume();
     }
 
-
+    /* Method description goes here. */
     private Landmark[] getFirstLandmark(Quest q) { //set current Landmark and return an array with that 1 element
         Landmark[] nextLandmarks = new Landmark[1];
         this.nextLandmark = q.getLandmarks().get(0);
@@ -147,14 +151,16 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
 
     /*
-    * Below is map stuff + asking permission, map ready etc.
-    * */
+     * Below is map stuff + asking permission, map ready etc.
+     */
 
+    /* Method description goes here. */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
     }
 
+    /* Method description goes here. */
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
@@ -167,6 +173,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
+    /* Method description goes here. */
     private void setUpMap() {
         // Show the next landmark on the map
         if (passedQuest.getLandmarks() != null) {
@@ -176,6 +183,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
+    /* Method description goes here. */
     private void handleNewLocation(Location location) {
         Log.d(Constants.TAG, location.toString());
 

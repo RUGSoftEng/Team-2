@@ -12,16 +12,18 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
+ * Class description goes here.
+ *
  * Created by Ruben on 18/03/2016.
  */
 public class Initializer {
 
-    private ArrayList<Landmark> landmarks = new ArrayList<Landmark>();
-    private ArrayList<Quest> quests = new ArrayList<Quest>();
+    private ArrayList<Landmark> landmarks = new ArrayList<Landmark>(); //field description goes here
+    private ArrayList<Quest> quests = new ArrayList<Quest>(); //field description goes here
 
-    private UUID uuid;
+    private UUID uuid; //field description goes here
 
-    //creates all standard landmarks
+    /* Creates all standard landmarks. */
     public ArrayList<Landmark> createStandardLandmarks(){
 
 
@@ -32,7 +34,7 @@ public class Initializer {
         martiniToren.setInformation("The Martinitoren is the highest church steeple in the city of Groningen and the bell tower of the Martinikerk. It contains a brick spiral staircase consisting of 260 steps, and the carillon within the tower contains 62 bells. The tower is considered one of the main tourist attractions of Groningen and offers a view over the city and surrounding area. The front of the tower shows three pictures above the entrance: the blind poet Bernlef, Saint Martinus and Rudolf Agricola. All three men are linked to the history of Groningen. ");
         landmarks.add(martiniToren);
 
-        //nubmer 2
+        //number 2
         Landmark cityHall = new Landmark("City Hall", UUID.randomUUID().toString());
         cityHall.setLocation(53.218586, 6.567310);
         cityHall.setInformation("The Groningen City Hall is the seat of government in Groningen. The city council meets in a modern room downstairs, but upstairs in the former raadszaal the 'Gulden Boek'(book) is kept that lists the honored citizens of the town.");
@@ -187,10 +189,12 @@ public class Initializer {
         return landmarks;
     }
 
+    /* Method description goes here. */
     public ArrayList<Quest> createStandardQuests(){
         return quests;
     }
 
+    /* Method description goes here. */
     public User createStandardUser() { return new User(UUID.randomUUID().toString()); }
 }
 

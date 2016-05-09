@@ -10,8 +10,11 @@ import android.widget.TextView;
 
 import com.mycompany.myapp.R;
 
+/**
+ * Class description goes here.
+ */
 public class QuestActivity extends AppCompatActivity {
-
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
@@ -20,6 +23,7 @@ public class QuestActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    /* Method description goes here. */
     public void CheckLocation(View view) {
         LinearLayout linearLayout = new LinearLayout(this);
         setContentView(linearLayout);

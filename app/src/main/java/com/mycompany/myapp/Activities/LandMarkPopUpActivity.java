@@ -21,17 +21,20 @@ import com.mycompany.myapp.R;
 import java.util.ArrayList;
 
 /**
+ * Class description goes here.
+ *
  * Created by Lutz on 21-3-2016.
  */
 public class LandMarkPopUpActivity extends Activity {
 
-    private Landmark passedLandmark;
-    private TextView textInfo;
-    private Button nextLandmarkButton;
-    private Button quizButton;
-    private Quiz quiz;
-    private String[] items;
+    private Landmark passedLandmark; //field description goes here
+    private TextView textInfo; //field description goes here
+    private Button nextLandmarkButton; //field description goes here
+    private Button quizButton; //field description goes here
+    private Quiz quiz; //field description goes here
+    private String[] items; //field description goes here
 
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

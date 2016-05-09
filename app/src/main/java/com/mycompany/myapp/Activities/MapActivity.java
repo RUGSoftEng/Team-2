@@ -1,9 +1,5 @@
 package com.mycompany.myapp.Activities;
 
-/**
- * Created by Ruben on 23/03/2016.
- */
-
     import android.database.sqlite.SQLiteDatabase;
     import android.os.Bundle;
     import android.support.v4.app.FragmentActivity;
@@ -23,11 +19,17 @@ package com.mycompany.myapp.Activities;
     import java.util.ArrayList;
     import java.util.List;
 
+/**
+ * Class description goes here.
+ *
+ * Created by Ruben on 23/03/2016.
+ */
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
-        private GoogleMap mMap;
-        private List<Marker> markers;
+        private GoogleMap mMap; //field description goes here
+        private List<Marker> markers; //field description goes here
 
+        /* Method description goes here. */
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             mapFragment.getMapAsync(this);
         }
 
+        /* Method description goes here. */
         @Override
         public void onMapReady(GoogleMap googleMap) {
             mMap = googleMap;

@@ -34,20 +34,22 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Class description goes here.
+ *
  * Created by Ruben on 28/02/2016.
-*/
-
+ */
 public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener {
 
     private Button FINISH;
 
-    private GoogleMap mMap;
+    private GoogleMap mMap; //field description goes here
 
-    private ArrayList<Landmark> landmarks;
-    private ArrayList<Landmark> selectedLandmarks;
+    private ArrayList<Landmark> landmarks; //field description goes here
+    private ArrayList<Landmark> selectedLandmarks; //field description goes here
 
-    private List<Marker> markers;
+    private List<Marker> markers; //field description goes here
 
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,9 +171,9 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
 
 
 
-    // The dialog fragment receives a reference to this Activity through the
-    // Fragment.onAttach() callback, which it uses to call the following methods
-    // defined by the AskQuestNameDialog.QuestNameDialogListener interface
+    /* The dialog fragment receives a reference to this Activity through the
+     * Fragment.onAttach() callback, which it uses to call the following methods
+     * defined by the AskQuestNameDialog.QuestNameDialogListener interface. */
     @Override
     public void onDialogPositiveClick(AskQuestNameDialog dialog) {
         // User touched the dialog's positive button, a new quest is created and added to the User
@@ -189,6 +191,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         startActivity(i);
     }
 
+    /* Method description goes here. */
     @Override
     public void onDialogNegativeClick(AskQuestNameDialog dialog) {
         // User touched the dialog's negative button, nothing happens
@@ -196,8 +199,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     }
 
 
-    /**
-     * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
+    /** Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
      * installed) and the map has not already been instantiated.. This will ensure that we only ever
      * call {@link #setUpMap()} once when {@link #mMap} is not null.
      * <p/>
@@ -209,8 +211,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
      * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
      * have been completely destroyed during this process (it is likely that it would only be
      * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called.
-     */
+     * method in {@link #onResume()} to guarantee that it will be called. */
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
@@ -224,12 +225,10 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         }
     }
 
-    /**
-     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
+    /** This is where we can add markers or lines, add listeners or move the camera. In this case, we
      * just add a marker near Africa.
      * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
-     */
+     * This should only be called once and when we are sure that {@link #mMap} is not null. */
     private void setUpMap() {
         // Get the locations of the landmarks in this quest
         Marker testmark;

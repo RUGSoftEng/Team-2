@@ -22,14 +22,16 @@ import com.mycompany.myapp.R;
 import java.util.ArrayList;
 
 /**
+ * Class description goes here.
+ *
  * Created by Lutz on 21-3-2016.
  */
 public class NewQuestPopupActivity extends Activity {
 
-    private Button ownQuest;
-    private Button existingQuest;
+    private Button ownQuest; //field description goes here
+    private Button existingQuest; //field description goes here
 
-
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
