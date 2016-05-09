@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Buttons
-        Button pickQuest = (Button) findViewById(R.id.goMainButton_questFinished);
+        Button pickQuest = (Button) findViewById(R.id.pickQuestButton_questFinished);
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button testButton = (Button) findViewById(R.id.testbutton);
-        testButton.setOnClickListener(new View.OnClickListener() {
+        Button userpageButton = (Button) findViewById(R.id.userpageButton_main);
+        userpageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), UserPageActivity.class);

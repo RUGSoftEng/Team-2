@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button_main"
         android:layout_marginLeft="38dp"
-        android:id="@+id/goMainButton_questFinished"
+        android:id="@+id/pickQuestButton_questFinished"
         android:enabled="true"
         android:nestedScrollingEnabled="false"
         android:layout_below="@+id/textView"
