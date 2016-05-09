@@ -36,10 +36,8 @@
             android:layout_height="wrap_content"
             android:text="@string/JoinUsText_main"
             android:id="@+id/textView"
-            android:layout_marginTop="32dp"
             android:textColor="#ffffff"
             android:layout_below="@+id/congratsText"
-            android:layout_alignLeft="@+id/congratsText"
             android:layout_alignStart="@+id/congratsText" />
 
         <TextView
@@ -50,38 +48,27 @@
             android:id="@+id/congratsText"
             android:textColor="#ffffff"
             android:textSize="@dimen/abc_text_size_display_1_material"
-            android:layout_marginTop="48dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignTop="@+id/imageView"
+            android:layout_toEndOf="@+id/userpageButton_main" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_main"
-            android:layout_marginLeft="38dp"
-            android:id="@+id/goMainButton_questFinished"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:text="@string/newQuestButton_main"
+            android:id="@+id/newQuestButton"
             android:enabled="true"
             android:nestedScrollingEnabled="false"
             android:layout_below="@+id/textView"
-            android:layout_alignParentEnd="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/createQuestButton_main"
-            android:id="@+id/createQuest"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="57dp" />
+            android:layout_alignEnd="@+id/mapButton"
+            android:layout_alignStart="@+id/continueButton" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mapButton_main"
             android:id="@+id/mapButton"
-            android:layout_below="@+id/continueButton"
-            android:layout_alignParentEnd="true" />
+            android:layout_below="@+id/newQuestButton"
+            android:layout_alignStart="@+id/textView" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -89,15 +76,15 @@
             android:layout_height="wrap_content"
             android:text="@string/continueQuestButton_main"
             android:id="@+id/continueButton"
-            android:layout_below="@+id/goMainButton_questFinished"
-            android:layout_alignParentEnd="true" />
+            android:layout_below="@+id/mapButton"
+            android:layout_alignStart="@+id/mapButton" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/userpageButton_main"
             android:id="@+id/userpageButton_main"
-            android:layout_alignTop="@+id/createQuest"
+            android:layout_below="@+id/continueButton"
             android:layout_alignParentStart="true" />
 
     </RelativeLayout>

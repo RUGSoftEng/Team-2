@@ -116,22 +116,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Buttons
-        Button pickQuest = (Button) findViewById(R.id.pickQuestButton_questFinished);
+        Button pickQuest = (Button) findViewById(R.id.newQuestButton);
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
-                startActivity(i);
-            }
-        });
-
-
-        Button makeQuest = (Button) findViewById(R.id.createQuest);
-        //makeQuest.setVisibility(View.GONE);
-        makeQuest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
+                Intent i = new Intent(getBaseContext(), NewQuestPopupActivity.class);
                 startActivity(i);
             }
         });
