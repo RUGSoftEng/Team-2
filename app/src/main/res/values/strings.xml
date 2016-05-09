@@ -7,7 +7,7 @@
     <!-- MainActivity -->
     <string name="JoinUsText_main">Join us and start exploring the city!</string>
     <string name="meetGroningenText_main">MeetGroningen!</string>
-    <string name="button_main">Pick a new quest!</string>
+    <string name="newQuestButton_main">New quest!</string>
     <string name="createQuestButton_main">Create A Quest!</string>
     <string name="mapButton_main">Overview of the city</string>
     <string name="continueQuestButton_main">Continue A quest</string>
@@ -50,6 +50,11 @@
     <string name="myProgressText_Userpage">My progress</string>
     <string name="pEarnedText_Userpage">Points earned</string>
     <string name="questFinishedText_Userpage">Quests finished</string>
+    <string name="title_activity_new_quest_popup">NewQuestPopupActivity</string>
+
+    <!-- NewQuestPopupActivity-->
+    <string name="ownQuestButton">Create your own</string>
+    <string name="existingQuestButton">Pick existing</string>
 
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Quest Progress:</string>

@@ -41,6 +41,9 @@ import com.mycompany.myapp.Objects.User;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class description goes here.
+ */
 public class QuestPreviewActivity extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -54,19 +57,20 @@ public class QuestPreviewActivity extends FragmentActivity implements
      */
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private GoogleMap mMap; //might be null if Google Play services APK is not available
 
-    private GoogleApiClient mGoogleApiClient;
-    private LocationRequest mLocationRequest;
-    private List<Marker> markers;
+    private GoogleApiClient mGoogleApiClient; //field description goes here
+    private LocationRequest mLocationRequest; //field description goes here
+    private List<Marker> markers; //field description goes here
 
-    private Quest passedQuest;
-    private User currentUser;
+    private Quest passedQuest; //field description goes here
+    private User currentUser; //field description goes here
 
-    private DatabaseHelper dbhelper;
-    private Button pickQuest;
-    private Button startQuest;
+    private DatabaseHelper dbhelper; //field description goes here
+    private Button pickQuest; //field description goes here
+    private Button startQuest; //field description goes here
 
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -136,6 +140,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
 
     }
 
+    /* Method description goes here. */
     @Override
     protected void onResume() {
         super.onResume();
@@ -152,6 +157,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
+    /* Method description goes here. */
     @Override
     protected void onPause() {
         super.onPause();
@@ -162,8 +168,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
-    /**
-     * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
+    /** Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
      * installed) and the map has not already been instantiated.. This will ensure that we only ever
      * call {@link #setUpMap()} once when {@link #mMap} is not null.
      * <p/>
@@ -175,8 +180,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
      * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
      * have been completely destroyed during this process (it is likely that it would only be
      * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called.
-     */
+     * method in {@link #onResume()} to guarantee that it will be called. */
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
@@ -190,12 +194,10 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
-    /**
-     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
+    /** This is where we can add markers or lines, add listeners or move the camera. In this case, we
      * just add a marker near Africa.
      * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
-     */
+     * This should only be called once and when we are sure that {@link #mMap} is not null. */
     private void setUpMap() {
         // Get the locations of the landmarks in this quest
         Marker testmark;
@@ -208,6 +210,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
+    /* Method description goes here. */
     private void handleNewLocation(Location location) {
         Log.d(TAG, location.toString());
 
@@ -232,6 +235,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         mMap.animateCamera(cu);
     }
 
+    /* Method description goes here. */
     @Override
     public void onConnected(Bundle bundle) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -253,11 +257,13 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
+    /* Method description goes here. */
     @Override
     public void onConnectionSuspended(int i) {
 
     }
 
+    /* Method description goes here. */
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         /*
@@ -287,6 +293,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
+    /* Method description goes here. */
     @Override
     public void onLocationChanged(Location location) {
         handleNewLocation(location);

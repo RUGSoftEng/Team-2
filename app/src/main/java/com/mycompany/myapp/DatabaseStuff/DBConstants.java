@@ -1,10 +1,10 @@
 package com.mycompany.myapp.DatabaseStuff;
 
 /**
+ * All names of tables and columns used in the landmark DATABASE.
+ *
  * Created by Ruben on 24/02/2016.
  */
-
-// All names of tables and columns used in the landmark DATABASE
 public class DBConstants {
     public static final String DATABASE_NAME = "Database";
     public static final String TABLE_NAME_LANDMARK = "landmarks_table";

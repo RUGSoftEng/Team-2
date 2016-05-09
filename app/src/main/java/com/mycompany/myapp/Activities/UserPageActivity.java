@@ -15,11 +15,15 @@ import com.mycompany.myapp.R;
 
 import java.util.ArrayList;
 
+/**
+ * Class description goes here.
+ */
 public class UserPageActivity extends AppCompatActivity {
-    private TextView tv;
-    private int points;
-    private ListView listview;
+    private TextView tv; //field description goes here
+    private int points; //field description goes here
+    private ListView listview; //field description goes here
 
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

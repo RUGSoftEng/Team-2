@@ -9,18 +9,20 @@ import android.support.v4.app.DialogFragment;
 import android.text.InputType;
 import android.widget.EditText;
 
-
 /**
+ * Class description goes here.
+ *
  * Created by Ruben on 01/05/2016.
  */
 //TODO: still has hardcoded strings and stuff + maybe bit messy
 public class AskQuestNameDialog extends DialogFragment {
 
     // Use this instance of the interface to deliver action events
-    private QuestNameDialogListener mListener;
+    private QuestNameDialogListener mListener; //field description goes here
 
-    private String questName = "Custom Quest";
+    private String questName = "Custom Quest"; //field description goes here
 
+    /* Method description goes here. */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -53,14 +55,14 @@ public class AskQuestNameDialog extends DialogFragment {
 
 
     /* The activity that creates an instance of this dialog fragment must
-  * implement this interface in order to receive event callbacks.
-  * Each method passes the DialogFragment in case the host needs to query it. */
+     * implement this interface in order to receive event callbacks.
+     * Each method passes the DialogFragment in case the host needs to query it. */
     public interface QuestNameDialogListener {
         public void onDialogPositiveClick(AskQuestNameDialog dialog);
         public void onDialogNegativeClick(AskQuestNameDialog dialog);
     }
 
-    // Override the Fragment.onAttach() method to instantiate the QuestNameDialogListener
+    /* Override the Fragment.onAttach() method to instantiate the QuestNameDialogListener. */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -75,7 +77,7 @@ public class AskQuestNameDialog extends DialogFragment {
         }
     }
 
-
+    /* Method description goes here. */
     public String getQuestName(){
         return this.questName;
     }

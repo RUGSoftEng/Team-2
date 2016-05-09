@@ -18,13 +18,16 @@ import com.mycompany.myapp.Objects.User;
 import java.util.ArrayList;
 
 /**
+ * Class description goes here.
+ *
  * Created by Ruben on 19/03/2016.
  */
 public class ContinueQuestActivity extends AppCompatActivity {
-    private Quest chosenQuest;
-    private User user;
-    private DatabaseHelper helper;
+    private Quest chosenQuest; //field description goes here
+    private User user; //field description goes here
+    private DatabaseHelper helper; //field description goes here
 
+    /* Method description goes here. */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_continuequest);

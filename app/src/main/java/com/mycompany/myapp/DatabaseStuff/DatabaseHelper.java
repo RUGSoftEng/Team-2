@@ -21,15 +21,19 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
+ * Class description goes here.
+ *
  * Created by Ruben on 27/02/2016.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
         // If you change the database schema, you must increment the database version.
 
+        /* Method description goes here. */
         public DatabaseHelper(Context context) {
             super(context, DBConstants.DATABASE_NAME, null, DBConstants.DATABASE_VERSION);
         }
 
+        /* Method description goes here. */
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(DBConstants.SQL_CREATE_LANDMARK_ENTRIES);
@@ -37,6 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(DBConstants.SQL_CREATE_USER_ENTRIES);
         }
 
+        /* Method description goes here. */
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             // This database is only a cache for online data, so its upgrade policy is
@@ -47,11 +52,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             onCreate(db);
         }
 
+        /* Method description goes here. */
         @Override
         public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             onUpgrade(db, oldVersion, newVersion);
         }
 
+        /* Method description goes here. */
         private void putLandmarkInformation(DatabaseHelper helper, String landmarkID, byte[] object){
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
@@ -61,6 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting landmark in database");
         }
 
+        /* Method description goes here. */
         private void putQuestInformation(DatabaseHelper helper, String questID, byte[] object){
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
@@ -70,6 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting quest in database");
         }
 
+        /* Method description goes here. */
         private void putUserInformation(DatabaseHelper helper, String userID, byte[] object){ //TODO: ID assigning should be done safely, now its not
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
@@ -79,6 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting User in database");
         }
 
+        /* Method description goes here. */
         private void updateUser(DatabaseHelper helper, String userID, byte[] object){
             SQLiteDatabase sq = helper.getReadableDatabase();
             ContentValues cv = new ContentValues();
@@ -88,26 +98,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting User in database");
         }
 
-
+        /* Method description goes here. */
         public void deleteUser(DatabaseHelper helper, String userID){
              SQLiteDatabase sq = helper.getWritableDatabase();
              sq.delete(DBConstants.TABLE_NAME_USER, DBConstants.USER_ID + "=" + userID, null);
              sq.close();
         }
 
+        /* Method description goes here. */
         public void deleteLandmark(DatabaseHelper helper, String landmarkID){
             SQLiteDatabase sq = helper.getWritableDatabase();
             sq.delete(DBConstants.TABLE_NAME_LANDMARK, DBConstants.LANDMARK_ID + "=" + landmarkID, null);
             sq.close();
          }
 
+        /* Method description goes here. */
         public void deleteQuest(DatabaseHelper helper, String questID){
             SQLiteDatabase sq = helper.getWritableDatabase();
             sq.delete(DBConstants.TABLE_NAME_QUEST, DBConstants.QUEST_ID + "=" + questID, null);
             sq.close();
         }
 
-    //gets all quest from db
+    /* Gets all quest from db. */
     public ArrayList<Quest> getAllQuests(SQLiteDatabase db) {
         ArrayList<Quest> list = new ArrayList<Quest>();
         // Select All Query
@@ -138,7 +150,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    //Gets all Landmarks from db
+    /* Gets all Landmarks from db. */
     public ArrayList<Landmark> getAllLandmarks(SQLiteDatabase db) {
         ArrayList<Landmark> list = new ArrayList<Landmark>();
         // Select All Query
@@ -170,7 +182,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //Gets user from db, NOTE: will close database after use, so cant be used twice
+    /* Gets user from db, NOTE: will close database after use, so can't be used twice. */
     public User getUser(SQLiteDatabase db) {
         // Select All Query
         String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_USER;
@@ -197,7 +209,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //convert to byteArray and write into database
+    /* Convert to byteArray and write into database. */
     public void putInDatabase(DatabaseHelper db, Landmark l) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutput out = null;
@@ -216,6 +228,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /* Method description goes here. */
     public void putInDatabase(DatabaseHelper db, Quest q) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutput out = null;
@@ -234,7 +247,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
+    /* Method description goes here. */
     public void updateInDatabase(DatabaseHelper db, User u){
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutput out = null;
@@ -253,6 +266,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /* Method description goes here. */
     public void putInDatabase(DatabaseHelper db, User u) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutput out = null;
@@ -271,4 +285,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 }
-// To acces database we need to have an instance, so DatabaseHelper mDbHelper = new DatabaseHelper(getContext());
+
+// To access database we need to have an instance, so DatabaseHelper mDbHelper = new DatabaseHelper(getContext());

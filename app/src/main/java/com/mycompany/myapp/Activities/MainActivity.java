@@ -31,18 +31,19 @@ import com.mycompany.myapp.Objects.User;
 
 import java.util.ArrayList;
 
-
-//Except for being the main screen, mainActivity.java also initializes all standard quests and landmarks
+/**
+ * Except for being the main screen, mainActivity.java also initializes all standard quests and landmarks.
+ */
 public class MainActivity extends AppCompatActivity {
 
 
     private static int IMAGE_DELAY = 6000;
-    private ImageSwitcher imageSwitcher;
-    private ArrayList<Integer> imgs = new ArrayList<Integer>();
-    private Context ctx = this;
-    private Button continueButton;
+    private ImageSwitcher imageSwitcher; //field description goes here
+    private ArrayList<Integer> imgs = new ArrayList<>(); //field description goes here
+    private Context ctx = this; //field description goes here
+    private Button continueButton; //field description goes here
 
-
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,22 +117,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Buttons
-        Button pickQuest = (Button) findViewById(R.id.pickQuestButton_questFinished);
+        Button pickQuest = (Button) findViewById(R.id.newQuestButton);
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
-                startActivity(i);
-            }
-        });
-
-
-        Button makeQuest = (Button) findViewById(R.id.createQuest);
-        //makeQuest.setVisibility(View.GONE);
-        makeQuest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
+                Intent i = new Intent(getBaseContext(), NewQuestPopupActivity.class);
                 startActivity(i);
             }
         });
@@ -199,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
         imageSwitcher.setInAnimation(in);
     }
 
+    /* Method description goes here. */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -206,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /* Method description goes here. */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

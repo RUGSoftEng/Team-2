@@ -16,10 +16,14 @@ import com.mycompany.myapp.R;
 
 import java.util.ArrayList;
 
+/**
+ * Class description goes here.
+ */
 public class ChooseQuestActivity extends AppCompatActivity {
-    private ListView listView;
-    private Quest chosenQuest;
+    private ListView listView; //field description goes here
+    private Quest chosenQuest; //field description goes here
 
+    /* Method description goes here. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
