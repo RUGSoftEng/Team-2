@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class User implements Serializable {
 
-    private int points;
+    private int points = 0;
     private String userID, name;
 
     //private ArrayList<Achievement> achievements; TODO: not yet implemented
