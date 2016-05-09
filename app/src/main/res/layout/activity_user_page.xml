@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/pEarnedText_UserPage"
+        android:text="@string/pEarnedText_Userpage"
         android:id="@+id/pEarnedText_UserPage"
         android:layout_below="@+id/myProgressText_UserPage"
         android:layout_alignParentStart="true"
@@ -32,8 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Quests finished"
-        android:id="@+id/textView7"
+        android:text="@string/questFinishedText_Userpage"
+        android:id="@+id/questFinishedText_UserPage"
         android:layout_below="@+id/pEarnedText_UserPage"
         android:layout_marginTop="38dp" />
 
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView5"
-        android:layout_below="@+id/textView7"
+        android:layout_below="@+id/questFinishedText_UserPage"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -49,5 +49,6 @@
     <!-- UserpageActivity-->
     <string name="myProgressText_Userpage">My progress</string>
     <string name="pEarnedText_Userpage">Points earned</string>
+    <string name="questFinishedText_Userpage">Quests finished</string>
 
 </resources>
