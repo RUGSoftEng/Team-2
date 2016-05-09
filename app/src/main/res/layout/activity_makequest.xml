@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/chooseLandmarkList"
             android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/chooseText"
+            android:layout_below="@+id/ChosenQuestText"
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@+id/FinishButton"
             android:layout_above="@+id/FinishButton" />
@@ -24,7 +24,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Finish"
+            android:text="@string/finishText_makeQuest"
             android:id="@+id/FinishButton"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentBottom="true"
@@ -43,8 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Choose:"
-            android:id="@+id/chooseText"
+            android:text="@string/ChooseText_makeQuest"
+            android:id="@+id/ChosenQuestText"
             android:layout_below="@+id/map"
             android:layout_alignParentStart="true" />
 
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="In Quest:"
+            android:text="@string/InQuestText_makeQuest"
             android:id="@+id/InQuestText"
             android:layout_below="@+id/map"
             android:layout_alignStart="@+id/InQuestList" />

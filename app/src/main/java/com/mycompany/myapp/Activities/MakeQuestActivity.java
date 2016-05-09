@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -54,7 +55,6 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         FINISH = (Button) findViewById(R.id.FinishButton);
         final ListView chooseLandmarkListView = (ListView) findViewById(R.id.chooseLandmarkList);
         final ListView inQuestListView = (ListView) findViewById(R.id.InQuestList);
-
 
         //take all landmark objects from the database and put them into a listView
         DatabaseHelper helper = new DatabaseHelper(this);

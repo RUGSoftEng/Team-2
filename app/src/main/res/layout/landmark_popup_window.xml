@@ -18,11 +18,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/textView5"
+        android:id="@+id/landmarkFoundText"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:text="@string/landmark_found" />
+        android:text="@string/landmarkFound_PopupWindow" />
 
     <Button
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:text="Continue!" />
+        android:text="@string/nextLandmarkButton_PopupWindow" />
 
     <Button
         android:layout_width="wrap_content"
@@ -40,6 +40,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:text="Quiz!" />
+        android:text="@string/quizButton_PopupWindow" />
 
 </RelativeLayout>

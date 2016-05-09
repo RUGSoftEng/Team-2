@@ -103,6 +103,8 @@ public class QuestPreviewActivity extends FragmentActivity implements
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Landmark selectedlm = (Landmark) parent.getAdapter().getItem(position);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(selectedlm.getLocation()));
+
+
             }
         });
 

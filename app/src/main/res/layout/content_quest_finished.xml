@@ -14,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/quest_finished"
-        android:id="@+id/textView1"
+        android:text="@string/congratsText_questFinished"
+        android:id="@+id/congratsText"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:lines="2"
@@ -24,25 +24,25 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/congratsText_questFinished"
         android:visibility="invisible"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/congratsText"
         android:layout_centerHorizontal="true"
         android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/quest_finished_text"
+        android:text="@string/goMainText_questFinished"
         android:id="@+id/textViewBack"
-        android:layout_above="@+id/button_main"
+        android:layout_above="@+id/goMainButton_questFinished"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/quest_finished_button"
-        android:id="@+id/button_main"
+        android:text="@string/goMainButton_questFinished"
+        android:id="@+id/goMainButton_questFinished"
         android:enabled="true"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />

@@ -11,8 +11,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".Activities.MainActivity">
 
-    <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
-
     <ImageSwitcher
     android:id="@+id/imageSwitcher1"
     android:layout_width="wrap_content"
@@ -36,74 +34,71 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/string1_main"
-            android:id="@+id/textView1"
+            android:text="@string/JoinUsText_main"
+            android:id="@+id/textView"
+            android:layout_marginTop="32dp"
             android:textColor="#ffffff"
-            android:textSize="@dimen/abc_text_size_display_1_material"
-            android:layout_alignTop="@+id/imageView"
-            android:layout_centerHorizontal="true" />
+            android:layout_below="@+id/congratsText"
+            android:layout_alignLeft="@+id/congratsText"
+            android:layout_alignStart="@+id/congratsText" />
 
         <TextView
-            android:layout_width="150dp"
-            android:layout_height="20dp"
-            android:text="@string/string_main"
-            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/meetGroningenText_main"
+            android:id="@+id/congratsText"
             android:textColor="#ffffff"
-            android:layout_below="@+id/textView1"
-            android:layout_alignStart="@+id/textView1"
-            android:layout_alignEnd="@+id/textView1" />
-
-
-
-            <Button
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:text="@string/button_main"
-                android:id="@+id/button_main"
-                android:enabled="true"
-                android:nestedScrollingEnabled="false"
-                android:layout_below="@+id/textView"
-                android:layout_centerHorizontal="true" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:text="Continue A quest"
-                android:id="@+id/continueButton"
-                android:layout_below="@+id/button_main"
-                android:layout_alignStart="@+id/button_main"
-                android:layout_alignEnd="@+id/button_main" />
+            android:textSize="@dimen/abc_text_size_display_1_material"
+            android:layout_marginTop="48dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/button2_main"
-                android:id="@+id/mapButton"
-            android:layout_below="@+id/createQuest"
-            android:layout_alignStart="@+id/createQuest"
-            android:layout_alignEnd="@+id/createQuest"
-            android:layout_alignParentBottom="true" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_main"
+            android:layout_marginLeft="38dp"
+            android:id="@+id/goMainButton_questFinished"
+            android:enabled="true"
+            android:nestedScrollingEnabled="false"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentEnd="true" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="@string/button1_main"
-                android:id="@+id/createQuest"
-                android:layout_gravity="right|center_vertical"
-                android:layout_below="@+id/continueButton"
-                android:layout_alignStart="@+id/continueButton"
-                android:layout_alignEnd="@+id/continueButton" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/createQuestButton_main"
+            android:id="@+id/createQuest"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="57dp" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Userpage"
-                android:id="@+id/testbutton"
-                android:layout_alignTop="@+id/createQuest"
-                android:layout_alignParentStart="true"
-                android:layout_gravity="left|center_vertical" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mapButton_main"
+            android:id="@+id/mapButton"
+            android:layout_below="@+id/continueButton"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/continueQuestButton_main"
+            android:id="@+id/continueButton"
+            android:layout_below="@+id/goMainButton_questFinished"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/userpageButton_main"
+            android:id="@+id/userpageButton_main"
+            android:layout_alignTop="@+id/createQuest"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 

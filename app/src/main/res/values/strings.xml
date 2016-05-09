@@ -5,11 +5,13 @@
 
 
     <!-- MainActivity -->
-    <string name="string_main">Join us and start exploring the city!</string>
-    <string name="string1_main">MeetGroningen!</string>
+    <string name="JoinUsText_main">Join us and start exploring the city!</string>
+    <string name="meetGroningenText_main">MeetGroningen!</string>
     <string name="button_main">Pick a new quest!</string>
-    <string name="button1_main">Create A Quest!</string>
-    <string name="button2_main">Overview of the city</string>
+    <string name="createQuestButton_main">Create A Quest!</string>
+    <string name="mapButton_main">Overview of the city</string>
+    <string name="continueQuestButton_main">Continue A quest</string>
+    <string name="userpageButton_main">"Userpage"</string>
 
 
     <!-- QuestActivity -->
@@ -27,13 +29,25 @@
     <string name="questpreview_pickbutton">Pick this quest!</string>
     <string name="questpreview_startbutton">Start this quest!</string>
     <string name="title_activity_current_quest">Map</string>
-    <string name="landmark_found">Congratulations! Landmark found!</string>
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
 
     <!--QuestFinished-->
-    <string name="quest_finished">Congrats!\n You succesfully finished the following quest: </string>
-    <string name="quest_finished_text">Go back to the main screen</string>
-    <string name="quest_finished_button">main</string>
+    <string name="congratsText_questFinished">Congrats!\n You succesfully finished the following quest: </string>
+    <string name="goMainText_questFinished">Go back to the main screen</string>
+    <string name="goMainButton_questFinished">main</string>
 
+    <!-- MakeQuestActivity-->
+    <string name="finishText_makeQuest">Finish</string>
+    <string name="ChooseText_makeQuest">Choose:</string>
+    <string name="InQuestText_makeQuest">In Quest:</string>
+
+    <!-- Landmark_Popup_Window-->
+    <string name="landmarkFound_PopupWindow">Congratulations! Landmark found!</string>
+    <string name="nextLandmarkButton_PopupWindow">"Continue!"</string>
+    <string name="quizButton_PopupWindow">"Quiz!"</string>
+
+    <!-- UserpageActivity-->
+    <string name="myProgressText_Userpage">My progress</string>
+    <string name="pEarnedText_Userpage">Points earned</string>
 
 </resources>
