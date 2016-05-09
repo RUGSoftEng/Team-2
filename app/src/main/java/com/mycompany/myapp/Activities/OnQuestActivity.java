@@ -183,15 +183,19 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         double currentLongitude = location.getLongitude();
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
+        DatabaseHelper helper = new DatabaseHelper(getBaseContext()); //TODO: close database???
+        User user = helper.getUser(helper.getReadableDatabase());
+
         if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
+            int points = currentTarget.getPoints();
+            user.addPoints(points);
+            helper.updateInDatabase(helper, user);
             Toast.makeText(getApplicationContext(),
-                    "Reached landmark", Toast.LENGTH_LONG).show();
+                    "Reached landmark! +10 points", Toast.LENGTH_LONG).show();
             Intent i = new Intent(getBaseContext(), LandMarkPopUpActivity.class);
             i.putExtra("passedLandmark", currentTarget);
             startActivity(i);
 
-            DatabaseHelper helper = new DatabaseHelper(getBaseContext()); //TODO: close database???
-            User user = helper.getUser(helper.getReadableDatabase());
             user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
                 if (end == 1) {// end of quest

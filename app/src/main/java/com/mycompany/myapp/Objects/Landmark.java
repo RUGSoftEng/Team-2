@@ -16,7 +16,7 @@ public class Landmark implements Serializable{
     private Quiz quiz;
     //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not need yet(could bring errors serialization errors)
     private String name, locationName, information, landmarkID; //locationName == streetName/neighbourhood
-    private int points;
+    private int points = 10;
     //private ArrayList<Question> questions = new ArrayList<Question>(); TODO not yet used so not need yet(could bring errors serialization errors)
     private double lat, lng;
 
