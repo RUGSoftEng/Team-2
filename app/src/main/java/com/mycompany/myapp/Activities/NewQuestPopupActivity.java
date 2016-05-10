@@ -44,7 +44,7 @@ public class NewQuestPopupActivity extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.4), (int)(height*.4));
+        getWindow().setLayout((int)(width*.8), (int)(height*.3));
 
         ownQuest = (Button) findViewById(R.id.ownQuestButton);
         existingQuest = (Button) findViewById(R.id.existingQuestButton);
