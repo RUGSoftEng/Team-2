@@ -17,13 +17,14 @@ import com.mycompany.myapp.R;
 import java.util.ArrayList;
 
 /**
- * Class description goes here.
+ * This class represents the activity (Android window) for choosing a quest.
+ * It gets all available quests from the database and displays them in a list.
  */
 public class ChooseQuestActivity extends AppCompatActivity {
-    private ListView listView; //field description goes here
-    private Quest chosenQuest; //field description goes here
+    private ListView listView; //the list lay-out to be filled with the names of all available quests
+    private Quest chosenQuest; //the clicked quest, to be passed on to the next activity
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above, and binds clicking a quest to starting a new QuestPreviewActivity. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

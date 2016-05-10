@@ -20,16 +20,17 @@ package com.mycompany.myapp.Activities;
     import java.util.List;
 
 /**
- * Class description goes here.
+ * This class represents the activity (Android window) for showing all landmarks.
+ * It gets the landmarks from the database and displays them as markers in a map.
  *
- * Created by Ruben on 23/03/2016.
+ * Created by Ruben on 23-03-2016.
  */
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
-        private GoogleMap mMap; //field description goes here
-        private List<Marker> markers; //field description goes here
+        private GoogleMap mMap; //the (Google) map
+        private List<Marker> markers; //the list of markers of landmark locations
 
-        /* Method description goes here. */
+        /* Initialises the activity as described above by preparing the map and calling onMapReady when it is finished. */
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -39,7 +40,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             mapFragment.getMapAsync(this);
         }
 
-        /* Method description goes here. */
+        /* Queries the database for all available landmarks, converts their locations
+         * into map markers, and moves the map camera to view them all simultaneously. */
         @Override
         public void onMapReady(GoogleMap googleMap) {
             mMap = googleMap;

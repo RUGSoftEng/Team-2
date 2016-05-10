@@ -33,18 +33,22 @@ import com.mycompany.myapp.Objects.User;
 import java.util.ArrayList;
 
 /**
- * Except for being the main screen, mainActivity.java also initializes all standard quests and landmarks.
+ * This class represents the main activity (initial Android window). Next to showing different
+ * pictures of Groningen, it offers buttons for starting a quest, continuing a quest, and showing
+ * the location of all available landmarks. It also initialises all standard quests and landmarks.
  */
 public class MainActivity extends AppCompatActivity {
 
 
     private static int IMAGE_DELAY = 6000;
-    private ImageSwitcher imageSwitcher; //field description goes here
-    private ArrayList<Integer> imgs = new ArrayList<>(); //field description goes here
-    private Context ctx = this; //field description goes here
-    private Button continueButton; //field description goes here
+    private ImageSwitcher imageSwitcher; //the instance that switches the background image from time to time
+    private ArrayList<Integer> imgs = new ArrayList<>(); //the list of images to be displayed consecutively
+    private Context ctx = this; //the context of the application
+    private Button continueButton; //the button for resuming an already started quest
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above, and binds clicking the 'new quest', 'map', 'user page', and 'continue'
+     * buttons to starting a new NewQuestPopupActivity, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
+     * Furthermore it handles image switching by having a runnable change the background every IMAGE_DELAY milliseconds. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //For the first time of startup(initialize stuff) by looking for pref file(so could be affected by previous tries, wipe data to be sure)
+        //for the first time of startup (initialise stuff) by looking for pref file (so could be affected by previous tries, wipe data to be sure)
         final String PREFS_NAME = "MyPrefsFile";
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -83,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
             db.putInDatabase(db, u);
 
 
-            db.close(); // Closing database connection
+            db.close(); //closing database connection
 
-            // record the fact that the app has been started at least once
+            //record the fact that the app has been started at least once
             settings.edit().putBoolean("first_time", false).commit();
 
-            // request locationpermission if necessary
+            //request location permission if necessary
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{
@@ -117,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        //Buttons
+        //buttons
         Button pickQuest = (Button) findViewById(R.id.newQuestButton);
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //make image switcher to switch background
-        //NOTE: For some reason martini.jpg doesn't work so their might be pictures not working
+        //NOTE: For some reason martini.jpg doesn't work so there might be pictures not working
         imgs.add(R.drawable.martini4);
         imgs.add(R.drawable.splashscreen5);
         imgs.add(R.drawable.splashscreen7);
@@ -190,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         imageSwitcher.setInAnimation(in);
     }
 
-    /* Method description goes here. */
+    /* Initialises the action bar. */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -198,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    /* Method description goes here. */
+    /* Handles action bar clicks. */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

@@ -22,16 +22,18 @@ import com.mycompany.myapp.R;
 import java.util.ArrayList;
 
 /**
- * Class description goes here.
+ * This class represents the pop-up activity for choosing a kind of new quest.
+ * It includes two buttons, one for picking an existing quest, and one for creating one's own.
  *
  * Created by Lutz on 21-3-2016.
  */
 public class NewQuestPopupActivity extends Activity {
 
-    private Button ownQuest; //field description goes here
-    private Button existingQuest; //field description goes here
+    private Button ownQuest; //the button for creating one's own quest
+    private Button existingQuest; //the button for picking an existing quest
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above, and binds 'existing' to starting
+     * a new ChooseQuestActivity and 'own' to starting a new MakeQuestActivity. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

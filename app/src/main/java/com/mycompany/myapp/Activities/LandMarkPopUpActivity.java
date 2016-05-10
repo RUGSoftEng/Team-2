@@ -21,20 +21,23 @@ import com.mycompany.myapp.R;
 import java.util.ArrayList;
 
 /**
- * Class description goes here.
+ * This class represents the pop-up activity for displaying information about an encountered landmark.
+ * It includes a 'next' button for continuing the quest by starting the search for the next landmark,
+ * as well as a 'quiz' button for answering multiple choice questions about the landmark just found.
  *
  * Created by Lutz on 21-3-2016.
  */
 public class LandMarkPopUpActivity extends Activity {
 
-    private Landmark passedLandmark; //field description goes here
-    private TextView textInfo; //field description goes here
-    private Button nextLandmarkButton; //field description goes here
-    private Button quizButton; //field description goes here
-    private Quiz quiz; //field description goes here
-    private String[] items; //field description goes here
+    private Landmark passedLandmark; //the encountered landmark, passed by the previous activity
+    private TextView textInfo; //the text lay-out to be filled with the landmark's information
+    private Button nextLandmarkButton; //the button for continuing with the next landmark
+    private Button quizButton; //the button for starting a quiz about the current landmark
+    private Quiz quiz; //the quiz corresponding to the current landmark
+    private String[] items; //the available answers for the multiple choice questions
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above, and binds 'next' to closing the pop-up
+     * and 'quiz' to changing it into a multiple choice question with buttons for answers. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

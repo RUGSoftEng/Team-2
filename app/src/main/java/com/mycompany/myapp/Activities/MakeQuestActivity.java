@@ -36,7 +36,7 @@ import java.util.UUID;
 /**
  * Class description goes here.
  *
- * Created by Ruben on 28/02/2016.
+ * Created by Ruben on 28-02-2016.
  */
 public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener {
 
@@ -58,19 +58,19 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         final ListView chooseLandmarkListView = (ListView) findViewById(R.id.chooseLandmarkList);
         final ListView inQuestListView = (ListView) findViewById(R.id.InQuestList);
 
-        //take all landmark objects from the database and put them into a listView
+        //take all landmark objects from the database and put them into a ListView
         DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 
         landmarks = helper.getAllLandmarks(db);
-        selectedLandmarks = new ArrayList<Landmark>();
+        selectedLandmarks = new ArrayList<>();
 
-        final ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this,
+        final ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, landmarks);
 
         chooseLandmarkListView.setAdapter(adapter);
 
-        final ArrayAdapter<Landmark> adapter2 = new ArrayAdapter<Landmark>(this,
+        final ArrayAdapter<Landmark> adapter2 = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, selectedLandmarks);
 
         inQuestListView.setAdapter(adapter2);
@@ -117,8 +117,8 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
 
 
         /*
-        Finish button listener starts a Dialog, that asks for a questName, the returning result is catched by the
-        onDialogPositiveClick(Dialog dialog) and onDialogNegativeClick(Dialog dialog) methods.
+         * Finish button listener starts a Dialog, that asks for a questName, the returning result is caught by the
+         * onDialogPositiveClick(Dialog dialog) and onDialogNegativeClick(Dialog dialog) methods.
          */
         FINISH.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,7 +176,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
      * defined by the AskQuestNameDialog.QuestNameDialogListener interface. */
     @Override
     public void onDialogPositiveClick(AskQuestNameDialog dialog) {
-        // User touched the dialog's positive button, a new quest is created and added to the User
+        //user touched the dialog's positive button, a new quest is created and added to the User
         ExactQuest quest = new ExactQuest(UUID.randomUUID().toString(), dialog.getQuestName(), true); //TODO: Still hardcoded name
         quest.addLandmarkList(selectedLandmarks);
 
@@ -194,7 +194,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     /* Method description goes here. */
     @Override
     public void onDialogNegativeClick(AskQuestNameDialog dialog) {
-        // User touched the dialog's negative button, nothing happens
+        //user touched the dialog's negative button, nothing happens
 
     }
 
@@ -213,12 +213,12 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
      * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
      * method in {@link #onResume()} to guarantee that it will be called. */
     private void setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
+        //do a null check to confirm that we have not already instantiated the map
         if (mMap == null) {
-            // Try to obtain the map from the SupportMapFragment.
+            //try to obtain the map from the SupportMapFragment
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-            // Check if we were successful in obtaining the map.
+            //check if we were successful in obtaining the map
             if (mMap != null) {
                 setUpMap();
             }
@@ -230,7 +230,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
      * <p/>
      * This should only be called once and when we are sure that {@link #mMap} is not null. */
     private void setUpMap() {
-        // Get the locations of the landmarks in this quest
+        //get the locations of the landmarks in this quest
         Marker testmark;
         markers = new ArrayList<>();
         DatabaseHelper helper = new DatabaseHelper(this);
