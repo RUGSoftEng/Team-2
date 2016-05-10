@@ -55,4 +55,8 @@
     <string name="nextLandmarkText_OnQuest">Vind:</string>
     <string name="nextLandmarksText_OnQuest">Resterende bezienswaardigheden:</string>
 
+    <!-- NewQuestPopupActivity-->
+    <string name="ownQuestButton">Create your own</string>
+    <string name="existingQuestButton">Pick existing</string>
+
 </resources>
