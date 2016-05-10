@@ -79,6 +79,13 @@
             android:label="@string/title_activity_quest_finished"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+
+        <activity
+            android:name=".Activities.NewQuestPopupActivity"
+            android:parentActivityName=".Activities.MainActivity" >
+            android:theme="@style/AppTheme.NoActionBar"
+        </activity>
+
     </application>
 
 </manifest>
