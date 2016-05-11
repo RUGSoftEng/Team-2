@@ -18,16 +18,17 @@ import com.mycompany.myapp.Objects.User;
 import java.util.ArrayList;
 
 /**
- * Class description goes here.
+ * This class represents the activity (Android window) for resuming a quest.
+ * It gets all started quests from the database and displays them in a list.
  *
- * Created by Ruben on 19/03/2016.
+ * Created by Ruben on 19-03-2016.
  */
 public class ContinueQuestActivity extends AppCompatActivity {
-    private Quest chosenQuest; //field description goes here
-    private User user; //field description goes here
-    private DatabaseHelper helper; //field description goes here
+    private Quest chosenQuest; //the clicked quest, to be passed on to the next activity
+    private User user; //the particular user the displayed set of started quests belongs to
+    private DatabaseHelper helper; //the helper instance for exchanging information with the database
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above, and binds clicking a quest to starting a new OnQuestActivity. */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_continuequest);
@@ -43,7 +44,7 @@ public class ContinueQuestActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listView1);
 
-        //redirect to quest explanation page, passing the chosen quest, also update the active quest to be the selected quest
+        //redirect to quest explanation page, passing the chosen quest, also updating the active quest to be the selected quest
         try {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -66,10 +67,10 @@ public class ContinueQuestActivity extends AppCompatActivity {
         }
 
 
-        //get all current quests and put them in listview
+        //get all current quests and put them in a list view
         ArrayList<Quest> currentQuests = user.getCurrentQuests();
 
-        ArrayAdapter<Quest> adapter2 = new ArrayAdapter<Quest>(this, android.R.layout.simple_expandable_list_item_1, currentQuests);
+        ArrayAdapter<Quest> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, currentQuests);
         listView.setAdapter(adapter2);
 
 

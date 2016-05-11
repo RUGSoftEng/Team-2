@@ -77,7 +77,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
 
         passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
-        // Get the database and get the user from it.
+        //get the database and get the user from it
         dbhelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbhelper.getReadableDatabase();
         currentUser = dbhelper.getUser(db);
@@ -91,11 +91,11 @@ public class QuestPreviewActivity extends FragmentActivity implements
                 .addApi(LocationServices.API)
                 .build();
 
-        // Create the LocationRequest object
+        //create the LocationRequest object
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(10 * Constants.MILLISEC)        // 10 seconds, in milliseconds
-                .setFastestInterval(1 * Constants.MILLISEC); // 1 second, in milliseconds
+                .setInterval(10 * Constants.MILLISEC)        //10 seconds, in milliseconds
+                .setFastestInterval(1 * Constants.MILLISEC); //1 second, in milliseconds
 
         ListView listView = (ListView) findViewById(R.id.listView2);
         ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, passedQuest.getLandmarks());
@@ -147,12 +147,12 @@ public class QuestPreviewActivity extends FragmentActivity implements
         setUpMapIfNeeded();
         mGoogleApiClient.connect();
 
-        //check if quest is already in Users quest and change according to (don't) show pickquest button
+        //check if quest is already in User's quests and change according to (don't) show pick quest button
         currentUser = dbhelper.getUser(dbhelper.getReadableDatabase());
         for(Quest q : currentUser.getCurrentQuests()) {
             if (q.getID() == passedQuest.getID()) {
                 Log.d("TEST", "passedQuest is in currentUser, onResume()");
-                pickQuest.setVisibility(View.GONE); // remove the 'pick this quest' button
+                pickQuest.setVisibility(View.GONE); //remove the 'pick this quest' button
             }
         }
     }
@@ -182,12 +182,12 @@ public class QuestPreviewActivity extends FragmentActivity implements
      * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
      * method in {@link #onResume()} to guarantee that it will be called. */
     private void setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
+        //do a null check to confirm that we have not already instantiated the map
         if (mMap == null) {
-            // Try to obtain the map from the SupportMapFragment.
+            //try to obtain the map from the SupportMapFragment
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-            // Check if we were successful in obtaining the map.
+            //check if we were successful in obtaining the map
             if (mMap != null) {
                 setUpMap();
             }
@@ -199,7 +199,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
      * <p/>
      * This should only be called once and when we are sure that {@link #mMap} is not null. */
     private void setUpMap() {
-        // Get the locations of the landmarks in this quest
+        //get the locations of the landmarks in this quest
         Marker testmark;
         markers = new ArrayList<>();
         for (Landmark landmark : passedQuest.getLandmarks()) {
@@ -224,7 +224,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
                 .title("I am here!")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon2)) ;
         mMap.addMarker(options);
-        // Loop through the landmarklocations to make sure they are all displayed in the map
+        //loop through the landmark locations to make sure they are all displayed in the map
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         for (Marker marker : markers) {
             builder.include(marker.getPosition());

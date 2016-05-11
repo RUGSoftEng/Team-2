@@ -16,14 +16,15 @@ import com.mycompany.myapp.R;
 import java.util.ArrayList;
 
 /**
- * Class description goes here.
+ * This class represents the activity (Android window) for a user page, which
+ * includes the current user's earned points and a list of their completed quests.
  */
 public class UserPageActivity extends AppCompatActivity {
-    private TextView tv; //field description goes here
-    private int points; //field description goes here
-    private ListView listview; //field description goes here
+    private TextView tv; //the text lay-out to be filled with the amount of points
+    private int points; //the amount of points earned so far by the current user
+    private ListView listview; //the list lay-out to be filled with the names of all quests completed so far by the current user
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

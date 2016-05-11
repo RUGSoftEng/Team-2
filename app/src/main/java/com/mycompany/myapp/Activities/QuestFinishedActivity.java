@@ -11,13 +11,14 @@ import com.mycompany.myapp.Objects.Quest;
 import com.mycompany.myapp.R;
 
 /**
- * Class description goes here.
+ * This class represents the activity (Android window) for displaying
+ * a congratulatory message regarding having finished a certain quest.
  */
 public class QuestFinishedActivity extends AppCompatActivity {
 
-    private Quest finishedQuest; //field description goes here
+    private Quest finishedQuest; //the finished quest, passed by the previous activity
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above, and binds clicking a 'go back to main' button to starting a new MainActivity. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

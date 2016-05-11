@@ -35,28 +35,32 @@ import com.mycompany.myapp.R;
 import com.mycompany.myapp.Objects.User;
 
 /**
- * Class description goes here.
+ * This class represents the activity (Android window) for actively being on a quest.
+ * It displays a map marking one's current location and the location of the next landmark
+ * within the current quest, as well as a list with that landmark, a list of all landmarks
+ * remaining after that one, and a progress bar showing quest completion with a percentage.
  *
- * Created by Ruben on 17/03/2016.
+ * Created by Ruben on 17-03-2016.
  */
 public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private ProgressBar mProgress; //field description goes here
+    private ProgressBar mProgress; //the progress bar showing what percentage of the current quest has been completed thus far
 
-    private Quest passedQuest; //field description goes here
-    private Landmark nextLandmark; //field description goes here
-    private ListView listView; //field description goes here
-    private ListView listView2; //field description goes here
-    private GoogleMap mMap; //field description goes here
-    private Marker landmarker; //field description goes here
-    private Marker mylocmarker; //field description goes here
+    private Quest passedQuest; //the currently active quest, passed by the previous activity
+    private Landmark nextLandmark; //the next landmark within the currently active quest
+    private ListView listView; //the list lay-out to be filled with the name of the next landmark
+    private ListView listView2; //the list lay-out to be filled with the names of the landmarks remaining after the next one
+    private GoogleMap mMap; //the (Google) map
+    private Marker landmarker; //the marker of the next landmark's location
+    private Marker mylocmarker; //the marker of one's current location
 
-    private LocationListener locationListener; //field description goes here
-    private LocationManager locationManager; //field description goes here
-    private Landmark currentTarget; //field description goes here
-    private int end; //field description goes here
+    private LocationListener locationListener; //the instance for following one's moving location
+    private LocationManager locationManager; //the instance for managing the location listener
+    private Landmark currentTarget; //the next landmark within the currently active quest
+    private int end; //an auxiliary variable to check whether the current quest will be completed after reaching the next landmark
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above after loading the passed quest from the database.
+     * Next, checks if GPS is enabled, and starts a location listener instance if possible. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +75,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         Log.d("TEST", passedQuest.toString());
 
 
-        //Progress of quest
+        //progress of quest
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
         if (passedQuest.getProgress() < Constants.TOTAL_QUEST_PROGRESS) {
             mProgress.setProgress(passedQuest.getProgress());
@@ -85,7 +89,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
 
 
-        // Initialize the locationManager and locationListener
+        //initialise the LocationManager and LocationListener
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
@@ -105,7 +109,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
             @Override
             public void onProviderDisabled(String provider) {
-                // Called when GPS is turned off
+                //called when GPS is turned off
                 Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(i);
             }
@@ -120,28 +124,29 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
     }
 
-    /* Method description goes here. */
+    /* Gets the landmarks remaining within the current quest from the database and updates
+     * the two list views with the first of those landmarks and with all others, respectively. */
     void updateListViews(ListView listView, ListView listView2) {
         DatabaseHelper helper = new DatabaseHelper(getBaseContext());
         User user = helper.getUser(helper.getReadableDatabase());
-        ArrayAdapter<Landmark> adapter = new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, getFirstLandmark(user.getActiveQuest()));
+        ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getFirstLandmark(user.getActiveQuest()));
         listView.setAdapter(adapter);
 
         user.getActiveQuest().getLandmarks().remove(0);
         ArrayAdapter<Landmark> adapter2 =
-                new ArrayAdapter<Landmark>(this, android.R.layout.simple_list_item_1, user.getActiveQuest().getLandmarks());
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, user.getActiveQuest().getLandmarks());
         listView2.setAdapter(adapter2);
         user.getActiveQuest().getLandmarks().add(0, currentTarget);
     }
 
 
-    /* Method description goes here. */
+    /* Resumes the activity after having been paused. */
     @Override
     protected void onResume() {
         super.onResume();
     }
 
-    /* Method description goes here. */
+    /* Returns the first landmark of the landmarks still remaining within the given quest. */
     private Landmark[] getFirstLandmark(Quest q) { //set current Landmark and return an array with that 1 element
         Landmark[] nextLandmarks = new Landmark[1];
         this.nextLandmark = q.getLandmarks().get(0);
@@ -154,28 +159,28 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
      * Below is map stuff + asking permission, map ready etc.
      */
 
-    /* Method description goes here. */
+    /* Saves the map for further use. This is called automatically after the map has been prepared and is ready for use. */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
     }
 
-    /* Method description goes here. */
+    /* Checks whether a map has been prepared already, and sets up one if not. */
     private void setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
+        //do a null check to confirm that we have not already instantiated the map
         if (mMap == null) {
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.onquestmap))
                     .getMap();
-            // Check if we were successful in obtaining the map.
+            //check if we were successful in obtaining the map
             if (mMap != null) {
                 setUpMap();
             }
         }
     }
 
-    /* Method description goes here. */
+    /* Prepares a new map by creating a marker for the next landmark's location and moving the map camera to view it. */
     private void setUpMap() {
-        // Show the next landmark on the map
+        //show the next landmark on the map
         if (passedQuest.getLandmarks() != null) {
             Landmark lm = passedQuest.getLandmarks().get(0);
             landmarker = mMap.addMarker(new MarkerOptions().position(lm.getLocation()).title(lm.getName()));
@@ -183,7 +188,13 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
-    /* Method description goes here. */
+    /* Handles one's updated location by moving their location marker on the map,
+     * but not before checking whether the next landmark has been reached already.
+     * Binds reaching the landmark to starting a new LandMarkPopUpActivity, while
+     * awarding 10 points to the current user. If this turns out to be the last
+     * landmark within the current quest, a new QuestFinishedActivity is started
+     * afterwards as well. Finally, if necessary, the lists and the progress bar are
+     * updated, and the map camera is moved to keep the user and its target in view. */
     private void handleNewLocation(Location location) {
         Log.d(Constants.TAG, location.toString());
 
