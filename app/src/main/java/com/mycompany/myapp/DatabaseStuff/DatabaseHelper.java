@@ -21,19 +21,19 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
- * Class description goes here.
+ * This classed is used for all information exchange with the application's SQLite database.
  *
- * Created by Ruben on 27/02/2016.
+ * Created by Ruben on 27-02-2016.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-        // If you change the database schema, you must increment the database version.
+        //if you change the database schema, you must increment the database version
 
-        /* Method description goes here. */
+        /* Required constructor which calls the superclass to initialise the database helper. */
         public DatabaseHelper(Context context) {
             super(context, DBConstants.DATABASE_NAME, null, DBConstants.DATABASE_VERSION);
         }
 
-        /* Method description goes here. */
+        /* Initialises the database by creating the landmark, quest, and user tables. */
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(DBConstants.SQL_CREATE_LANDMARK_ENTRIES);
@@ -41,24 +41,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(DBConstants.SQL_CREATE_USER_ENTRIES);
         }
 
-        /* Method description goes here. */
+        /* Upgrades the database to a newer version by deleting all tables and creating them anew. */
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            // This database is only a cache for online data, so its upgrade policy is
-            // to simply to discard the data and start over
+            //this database is only a cache for online data, so its upgrade policy is to simply discard the data and start over
             db.execSQL(DBConstants.SQL_DELETE_lANDMARK_ENTRIES);
             db.execSQL(DBConstants.SQL_DELETE_QUEST_ENTRIES);
             db.execSQL(DBConstants.SQL_DELETE_USER_ENTRIES);
             onCreate(db);
         }
 
-        /* Method description goes here. */
+        /* Downgrades the database to an older version in the same way as it would upgrade it. */
         @Override
         public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             onUpgrade(db, oldVersion, newVersion);
         }
 
-        /* Method description goes here. */
+        /* Inserts a Landmark object into the database together with an ID. */
         private void putLandmarkInformation(DatabaseHelper helper, String landmarkID, byte[] object){
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
@@ -68,7 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting landmark in database");
         }
 
-        /* Method description goes here. */
+        /* Inserts a Quest object into the database together with an ID. */
         private void putQuestInformation(DatabaseHelper helper, String questID, byte[] object){
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
@@ -78,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting quest in database");
         }
 
-        /* Method description goes here. */
+        /* Inserts a User object into the database together with an ID. */
         private void putUserInformation(DatabaseHelper helper, String userID, byte[] object){ //TODO: ID assigning should be done safely, now its not
             SQLiteDatabase sq = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
@@ -88,7 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting User in database");
         }
 
-        /* Method description goes here. */
+        /* Updates the User object with the specified ID within the database. */
         private void updateUser(DatabaseHelper helper, String userID, byte[] object){
             SQLiteDatabase sq = helper.getReadableDatabase();
             ContentValues cv = new ContentValues();
@@ -98,35 +97,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("COMMENT", "Tried putting User in database");
         }
 
-        /* Method description goes here. */
+        /* Deletes the User object with the specified ID from the database. */
         public void deleteUser(DatabaseHelper helper, String userID){
              SQLiteDatabase sq = helper.getWritableDatabase();
              sq.delete(DBConstants.TABLE_NAME_USER, DBConstants.USER_ID + "=" + userID, null);
              sq.close();
         }
 
-        /* Method description goes here. */
+        /* Deletes the Landmark object with the specified ID from the database. */
         public void deleteLandmark(DatabaseHelper helper, String landmarkID){
             SQLiteDatabase sq = helper.getWritableDatabase();
             sq.delete(DBConstants.TABLE_NAME_LANDMARK, DBConstants.LANDMARK_ID + "=" + landmarkID, null);
             sq.close();
          }
 
-        /* Method description goes here. */
+        /* Deletes the Quest object with the specified ID from the database. */
         public void deleteQuest(DatabaseHelper helper, String questID){
             SQLiteDatabase sq = helper.getWritableDatabase();
             sq.delete(DBConstants.TABLE_NAME_QUEST, DBConstants.QUEST_ID + "=" + questID, null);
             sq.close();
         }
 
-    /* Gets all quest from db. */
+    /* Gets all Quest objects from the database. */
     public ArrayList<Quest> getAllQuests(SQLiteDatabase db) {
         ArrayList<Quest> list = new ArrayList<Quest>();
-        // Select All Query
+        //Select All query
         String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_QUEST;
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
+        //looping through all rows and adding to a list
         if (cursor.moveToFirst()) {
             do {
                 ByteArrayInputStream bis = new ByteArrayInputStream(cursor.getBlob(1));
@@ -150,14 +149,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    /* Gets all Landmarks from db. */
+    /* Gets all Landmark objects from the database. */
     public ArrayList<Landmark> getAllLandmarks(SQLiteDatabase db) {
-        ArrayList<Landmark> list = new ArrayList<Landmark>();
-        // Select All Query
+        ArrayList<Landmark> list = new ArrayList<>();
+        //Select All query
         String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_LANDMARK;
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
+        //looping through all rows and adding to a list
         if (cursor.moveToFirst()) {
             do {
                 ByteArrayInputStream bis = new ByteArrayInputStream(cursor.getBlob(1));
@@ -182,13 +181,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    /* Gets user from db, NOTE: will close database after use, so can't be used twice. */
+    /* Gets a User object from the database, NOTE: this will close the database after use, so it can't be used twice. */
     public User getUser(SQLiteDatabase db) {
-        // Select All Query
+        //Select All query
         String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_USER;
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // In this case there is only one user, so no looping
+        //in this case there is only one user, so no looping is needed
         cursor.moveToFirst();
                 ByteArrayInputStream bis = new ByteArrayInputStream(cursor.getBlob(1));
                 ObjectInput in = null;
@@ -209,7 +208,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    /* Convert to byteArray and write into database. */
+    /* Converts a Landmark object into a byte array and writes it to the database. */
     public void putInDatabase(DatabaseHelper db, Landmark l) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutput out = null;
@@ -228,7 +227,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    /* Method description goes here. */
+    /* Converts a Quest object into a byte array and writes it to the database. */
     public void putInDatabase(DatabaseHelper db, Quest q) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutput out = null;
@@ -247,7 +246,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    /* Method description goes here. */
+    /* Converts a User object into a byte array and writes it to the database. */
     public void updateInDatabase(DatabaseHelper db, User u){
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutput out = null;
@@ -266,7 +265,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    /* Method description goes here. */
+    /* Converts a User object into a byte array and writes it to the database. */
     public void putInDatabase(DatabaseHelper db, User u) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutput out = null;
@@ -286,4 +285,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 }
 
-// To access database we need to have an instance, so DatabaseHelper mDbHelper = new DatabaseHelper(getContext());
+//to access the database we need to have an instance, so use DatabaseHelper mDbHelper = new DatabaseHelper(getContext());

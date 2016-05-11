@@ -284,7 +284,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
                 //start an Activity that tries to resolve the error
                 connectionResult.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
                 /*
-                 * Thrown if Google Play services canceled the original PendingIntent.
+                 * Thrown if Google Play services cancelled the original PendingIntent.
                  */
             } catch (IntentSender.SendIntentException e) {
                 //log the error

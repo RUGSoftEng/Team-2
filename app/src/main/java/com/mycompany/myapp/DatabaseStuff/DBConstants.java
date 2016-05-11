@@ -1,9 +1,10 @@
 package com.mycompany.myapp.DatabaseStuff;
 
 /**
- * All names of tables and columns used in the landmark DATABASE.
+ * All names of tables and columns used in the application's SQLite database,
+ * plus other database related constants and table creation/deletion queries.
  *
- * Created by Ruben on 24/02/2016.
+ * Created by Ruben on 24-02-2016.
  */
 public class DBConstants {
     public static final String DATABASE_NAME = "Database";

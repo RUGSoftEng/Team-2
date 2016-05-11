@@ -53,10 +53,10 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
 
     private List<Marker> markers; //the list of markers of landmark locations
 
-    /* Initialises the activity as described above, binds 'finish' to opening a pop-up for entering
-     * the created quest's name (which is responsible for adding the new quest to the database),
-     * binds clicking the first list or the map to removing the selected landmark from the first
-     * list and turning its marker green while adding that landmark to the second list, and binds
+    /* Initialises the activity as described above, binds 'finish' to opening an AskQuestNameDialog pop-
+     * up for entering the created quest's name and adding the new quest to the database when the pop-up
+     * is accepted, binds clicking the first list or the map to removing the selected landmark from the
+     * first list and turning its marker green while adding that landmark to the second list, and binds
      * clicking the second list to removing the selected landmark from the quest in the making again. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
