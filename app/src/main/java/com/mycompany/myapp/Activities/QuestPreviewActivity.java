@@ -42,7 +42,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class description goes here.
+ * This class represents the activity (Android window) for previewing a quest.
+ * It gets the landmarks corresponding to a certain quest from the database and
+ * displays them as markers in a map, together with one's own current location,
+ * and shows their names in an ordered list too to provide a complete overview.
  */
 public class QuestPreviewActivity extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -53,24 +56,26 @@ public class QuestPreviewActivity extends FragmentActivity implements
 
     /*
      * Define a request code to send to Google Play services
-     * This code is returned in Activity.onActivityResult
+     * This code is returned in Activity.onActivityResult .
      */
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    private GoogleMap mMap; //might be null if Google Play services APK is not available
+    private GoogleMap mMap; //the (Google) map, might be null if the Google Play services APK is not available
 
-    private GoogleApiClient mGoogleApiClient; //field description goes here
-    private LocationRequest mLocationRequest; //field description goes here
-    private List<Marker> markers; //field description goes here
+    private GoogleApiClient mGoogleApiClient; //the main entry point for Google Play services integration
+    private LocationRequest mLocationRequest; //the instance used for requesting one's location via Google Play services
+    private List<Marker> markers; //the list of markers of landmark locations
 
-    private Quest passedQuest; //field description goes here
-    private User currentUser; //field description goes here
+    private Quest passedQuest; //the quest to be previewed, passed by the previous activity
+    private User currentUser; //the current application user
 
-    private DatabaseHelper dbhelper; //field description goes here
-    private Button pickQuest; //field description goes here
-    private Button startQuest; //field description goes here
+    private DatabaseHelper dbhelper; //the helper instance for exchanging information with the database
+    private Button pickQuest; //the button for adding the previewed quest to the current user's list of started quests
+    private Button startQuest; //the button for directly going on the quest that has just been picked
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above, and binds clicking 'pick' to adding the previewed
+     * quest to the current user in the database and 'start' to starting a new OnQuestActivity.
+     * Also makes clicking a landmark from the list move the map camera to focus on it. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -140,7 +145,8 @@ public class QuestPreviewActivity extends FragmentActivity implements
 
     }
 
-    /* Method description goes here. */
+    /* Resumes the activity after having been paused, reconnecting to Google Play services, and then hiding the
+     * 'pick' button if it had been clicked already and hence was removed in favour of the 'start' button. */
     @Override
     protected void onResume() {
         super.onResume();
@@ -157,7 +163,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
-    /* Method description goes here. */
+    /* Pauses the activity, disconnecting from Google Play services, until the activity is reopened (resumed). */
     @Override
     protected void onPause() {
         super.onPause();
@@ -210,7 +216,8 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
-    /* Method description goes here. */
+    /* Handles one's updated location by moving their location marker on the map, and by moving
+     * the map camera to keep the user and all landmarks within the previewed quest in view. */
     private void handleNewLocation(Location location) {
         Log.d(TAG, location.toString());
 
@@ -235,7 +242,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         mMap.animateCamera(cu);
     }
 
-    /* Method description goes here. */
+    /* Checks if GPS is enabled, finds one's current location if possible, and calls handleNewLocation to handle it. */
     @Override
     public void onConnected(Bundle bundle) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -257,43 +264,42 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
-    /* Method description goes here. */
+    /* Empty method that makes sure that nothing is done when the connection to Google Play services is suspended. */
     @Override
     public void onConnectionSuspended(int i) {
 
     }
 
-    /* Method description goes here. */
+    /* Tries resolving an encountered error in connecting to Google Play
+     * services automatically, and logs an error message if this fails. */
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         /*
-         * Google Play services can resolve some errors it detects.
-         * If the error has a resolution, try sending an Intent to
-         * start a Google Play services activity that can resolve
-         * error.
+         * Google Play services can resolve some errors it detects. If
+         * the error has a resolution, try sending an Intent to start
+         * a Google Play services activity that can resolve the error.
          */
         if (connectionResult.hasResolution()) {
             try {
-                // Start an Activity that tries to resolve the error
+                //start an Activity that tries to resolve the error
                 connectionResult.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
                 /*
-                 * Thrown if Google Play services canceled the original
-                 * PendingIntent
+                 * Thrown if Google Play services canceled the original PendingIntent.
                  */
             } catch (IntentSender.SendIntentException e) {
-                // Log the error
+                //log the error
                 e.printStackTrace();
             }
         } else {
             /*
-             * If no resolution is available, display a dialog to the
-             * user with the error.
+             * If no resolution is available, display
+             * a dialog to the user with the error.
              */
             Log.i(TAG, "Location services connection failed with code " + connectionResult.getErrorCode());
         }
     }
 
-    /* Method description goes here. */
+    /* Is called whenever the current user's location changes, calling handleNewLocation to handle the updated location. */
     @Override
     public void onLocationChanged(Location location) {
         handleNewLocation(location);

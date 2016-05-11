@@ -34,7 +34,11 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Class description goes here.
+ * This class represents the activity (Android window) for creating one's own quest.
+ * It gets all available landmarks from the database and displays their names in a list,
+ * while showing their locations as markers in a map. It allows for picking landmarks
+ * from that list and map, which are then put in a list of their own. The order of this
+ * second list represents the new quest in the making, and clicking 'finish' finalises it.
  *
  * Created by Ruben on 28-02-2016.
  */
@@ -42,14 +46,18 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
 
     private Button FINISH;
 
-    private GoogleMap mMap; //field description goes here
+    private GoogleMap mMap; //the (Google) map
 
-    private ArrayList<Landmark> landmarks; //field description goes here
-    private ArrayList<Landmark> selectedLandmarks; //field description goes here
+    private ArrayList<Landmark> landmarks; //the data corresponding to the first list, i.e. all not yet selected landmarks
+    private ArrayList<Landmark> selectedLandmarks; //the data corresponding to the second list, i.e. all landmarks selected thus far
 
-    private List<Marker> markers; //field description goes here
+    private List<Marker> markers; //the list of markers of landmark locations
 
-    /* Method description goes here. */
+    /* Initialises the activity as described above, binds 'finish' to opening a pop-up for entering
+     * the created quest's name (which is responsible for adding the new quest to the database),
+     * binds clicking the first list or the map to removing the selected landmark from the first
+     * list and turning its marker green while adding that landmark to the second list, and binds
+     * clicking the second list to removing the selected landmark from the quest in the making again. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,8 +125,8 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
 
 
         /*
-         * Finish button listener starts a Dialog, that asks for a questName, the returning result is caught by the
-         * onDialogPositiveClick(Dialog dialog) and onDialogNegativeClick(Dialog dialog) methods.
+         * Finish button listener starts a Dialog, that asks for a quest name. The returning result is caught
+         * by the onDialogPositiveClick(Dialog dialog) and onDialogNegativeClick(Dialog dialog) methods.
          */
         FINISH.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +199,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         startActivity(i);
     }
 
-    /* Method description goes here. */
+    /* Empty method that makes sure that nothing is done when one clicks the dialog's negative button. */
     @Override
     public void onDialogNegativeClick(AskQuestNameDialog dialog) {
         //user touched the dialog's negative button, nothing happens
