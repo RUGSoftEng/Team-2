@@ -55,10 +55,7 @@
             android:name=".Activities.UserPageActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity
-            android:name=".Activities.NewQuestPopupActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -82,8 +79,8 @@
 
         <activity
             android:name=".Activities.NewQuestPopupActivity"
-            android:parentActivityName=".Activities.MainActivity" >
-            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".Activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
     </application>

@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">MeetGroningen!</string>
+    <string name="app_name">Meet Groningen</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_next">Quests</string>
 
-
     <!-- MainActivity -->
     <string name="JoinUsText_main">Join us and start exploring the city!</string>
-    <string name="meetGroningenText_main">MeetGroningen!</string>
+    <string name="meetGroningenText_main">Meet Groningen</string>
     <string name="newQuestButton_main">New quest!</string>
     <string name="createQuestButton_main">Create A Quest!</string>
     <string name="mapButton_main">Overview of the city</string>
@@ -32,7 +31,7 @@
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
 
     <!--QuestFinished-->
-    <string name="congratsText_questFinished">Congrats!\n You succesfully finished the following quest: </string>
+    <string name="congratsText_questFinished">Congrats!\n You successfully finished the following quest: </string>
     <string name="goMainText_questFinished">Go back to the main screen</string>
     <string name="goMainButton_questFinished">main</string>
 
@@ -52,14 +51,13 @@
     <string name="questFinishedText_Userpage">Quests finished</string>
     <string name="title_activity_new_quest_popup">NewQuestPopupActivity</string>
 
-    <!-- NewQuestPopupActivity-->
-    <string name="ownQuestButton">Create your own</string>
-    <string name="existingQuestButton">Pick existing</string>
-
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Quest Progress:</string>
     <string name="nextLandmarkText_OnQuest">Go find:</string>
     <string name="nextLandmarksText_OnQuest">Remaining landmarks:</string>
 
+    <!-- NewQuestPopupActivity-->
+    <string name="ownQuestButton">Create your own</string>
+    <string name="existingQuestButton">Pick existing</string>
 
 </resources>

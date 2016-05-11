@@ -3,14 +3,14 @@
     <string name="action_settings">Instellingen</string>
     <string name="title_activity_next">Zoektocht</string>
 
-
     <!-- MainActivity -->
     <string name="JoinUsText_main">Ontdek de stad samen met ons!</string>
     <string name="meetGroningenText_main">MeetGroningen!</string>
-    <string name="button_main">Kies een nieuwe zoektocht!</string>
+    <string name="newQuestButton_main">Niewe zoektocht!</string>
     <string name="createQuestButton_main">Maak je eigen zoektocht!</string>
+    <string name="continueQuestButton_main">Ga verder met een zoektocht</string>
     <string name="mapButton_main">Overzicht van de stad</string>
-
+    <string name="userpageButton_main">"Gebruiker"</string>
 
     <!-- QuestActivity -->
     <string name="quest_text">Bezoek de volgende locaties:</string>
@@ -19,7 +19,7 @@
     <string name="title_activity_quest">Cultural quest</string>
 
     <!-- ListItem -->
-    <string name="list_item_button">Go!</string>
+    <string name="list_item_button">Ga!</string>
     <string name="title_activity_maps">Kaart</string>
 
     <!-- QuestPreviewActivity-->
