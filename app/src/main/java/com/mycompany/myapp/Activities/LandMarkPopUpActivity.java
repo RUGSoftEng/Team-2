@@ -21,7 +21,7 @@ import com.mycompany.myapp.R;
 import java.util.ArrayList;
 
 /**
- * This class represents the pop-up activity for displaying information about an encountered landmark.
+ * This class represents the pop-up activity for displaying information about a reached landmark.
  * It includes a 'next' button for continuing the quest by starting the search for the next landmark,
  * as well as a 'quiz' button for answering multiple choice questions about the landmark just found.
  *
@@ -29,7 +29,7 @@ import java.util.ArrayList;
  */
 public class LandMarkPopUpActivity extends Activity {
 
-    private Landmark passedLandmark; //the encountered landmark, passed by the previous activity
+    private Landmark passedLandmark; //the reached landmark, passed by the previous activity
     private TextView textInfo; //the text lay-out to be filled with the landmark's information
     private Button nextLandmarkButton; //the button for continuing with the next landmark
     private Button quizButton; //the button for starting a quiz about the current landmark

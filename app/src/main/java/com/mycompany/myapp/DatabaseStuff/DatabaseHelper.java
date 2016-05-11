@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
         //if you change the database schema, you must increment the database version
 
-        /* Required constructor which calls the superclass to initialise the database helper. */
+        /* Required constructor which calls the superclass's constructor to initialise the database helper. */
         public DatabaseHelper(Context context) {
             super(context, DBConstants.DATABASE_NAME, null, DBConstants.DATABASE_VERSION);
         }

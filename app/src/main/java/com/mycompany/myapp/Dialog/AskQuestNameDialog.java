@@ -79,7 +79,7 @@ public class AskQuestNameDialog extends DialogFragment {
         }
     }
 
-    /* A getter method for the entered quest name. */
+    /* Getter method for the entered quest name. */
     public String getQuestName(){
         return this.questName;
     }
