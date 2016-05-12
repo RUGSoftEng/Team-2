@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="279dp"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/fragment" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/questNameText"
+        android:id="@+id/QuestNameText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/NameEditText"
+        android:ems="10"
+        android:id="@+id/NameEditText" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/StoryText"
+        android:id="@+id/StoryText" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:id="@+id/StoryEditText" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/finishButton_makeLandmark"
+            android:id="@+id/FinishButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/CreateQuestButton" />
+
+        <Button
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:text="@string/createQuestButton"
+            android:id="@+id/CreateQuestButton"
+            android:layout_gravity="right"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+</LinearLayout>

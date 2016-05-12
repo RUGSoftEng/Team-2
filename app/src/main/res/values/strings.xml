@@ -60,4 +60,11 @@
     <string name="ownQuestButton">Create your own</string>
     <string name="existingQuestButton">Pick existing</string>
 
+
+    <string name="questNameText">Name</string>
+    <string name="StoryText">Story</string>
+    <string name="NameEditText">Name</string>
+    <string name="finishButton_makeLandmark">Finish</string>
+    <string name="createQuestButton">Create Quest</string>
+
 </resources>
