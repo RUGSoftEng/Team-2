@@ -1,24 +1,25 @@
 package com.mycompany.myapp.Objects;
 
 /**
- * Class description goes here.
+ * This class represents an area quest, which is a kind of quest in which its
+ * landmarks do not have to visited in order, resulting in a somewhat free route.
  *
- * Created by Ruben on 09/03/2016.
+ * Created by Ruben on 09-03-2016.
  */
 public class AreaQuest extends Quest {
 
     //TODO: add parameters: startingPoint(MapsLocation), height(in MapUnit's (so blocks)), width(same unit as height);
 
-    private float height; //field description goes here
-    private float width; //field description goes here
-    private int currentLandmark = 0; //field description goes here
+    private float height; //the height of the area in which the quest takes place
+    private float width; //the width of the area in which the quest takes place
+    private int currentLandmark = 0; //the amount of landmarks reached thus far within the quest
 
-    /* Method description goes here. */
+    /* Constructor which calls the superclass's constructor to initialise the quest. */
     public AreaQuest(String id, String name, boolean isUserGenerated) {
         super(id, name, isUserGenerated);
     }
 
-    /* Method description goes here. */
+    /* Returns that for this subclass of Quest, landmarks do not have to be visited in order. */
     public boolean isInOrder(){
         return false;
     }

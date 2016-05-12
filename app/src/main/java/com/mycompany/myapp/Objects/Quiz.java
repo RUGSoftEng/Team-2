@@ -3,55 +3,57 @@ package com.mycompany.myapp.Objects;
 import java.util.ArrayList;
 
 /**
- * Class description goes here.
+ * This class represents a quiz, which is a set of multiple choice questions.
+ * A quiz belongs to a landmark and can be done when reaching it... for fun, to
+ * learn even more about the landmark, and to possibly receive more points for it.
  *
- * Created by Ruben on 23/02/2016.
+ * Created by Ruben on 23-02-2016.
  */
 public class Quiz {
-    private int points; //field description goes here
-    private String question; //field description goes here
-    private String answer; //field description goes here
-    private String[] possibleAnswers; //index of possibleAnswer is answer
+    private int points; //the amount of points the quiz is worth
+    private String question; //the question for the quiz
+    private String answer; //the correct answer for the quiz
+    private String[] possibleAnswers; //the list of all possible answers, including the correct answer
 
-    /* Method description goes here. */
+    /* Constructor which stores a given question. */
     public Quiz(String question){
         this.question = question;
     }
 
-    /* Method description goes here. */
+    /* Returns whether a given answer is correct (true) or not (false). */
     public boolean Quiz(String givenAnswer){ return givenAnswer == answer;    }
 
-    /* Method description goes here. */
+    /* Setter method for the list of possible answers. */
     public void setAnswers(String[] answers){
         this.possibleAnswers = answers;
     }
 
-    /* Method description goes here. */
+    /* Setter method for the correct answer. */
     public void setRightAnswer(String answer) {
         this.answer = answer;
     }
 
-    /* Method description goes here. */
+    /* Getter method for the correct answer. */
     public String getAnswer(){
         return  this.answer;
     }
 
-    /* Method description goes here. */
+    /* Getter method for the question. */
     public String getQuestion(){
         return  this.question;
     }
 
-    /* Method description goes here. */
+    /* Getter method for the list of possible answers. */
     public String[] getPossibleAnswers(){
         return this.possibleAnswers;
     }
 
-    /* Method description goes here. */
+    /* Setter method for the amount of points. */
     public void setPoints(int points){
         this.points = points;
     }
 
-    /* Method description goes here. */
+    /* Getter method for the amount of points. */
     public int getPoints(){
         return this.points;
     }

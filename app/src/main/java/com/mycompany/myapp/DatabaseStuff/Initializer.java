@@ -12,18 +12,20 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * Class description goes here.
+ * This class is used to initialise the application's database on first startup.
+ * All standard landmarks and quests that are hardcoded here get created to be
+ * added in there, together with a standard (initial) user that they belong to.
  *
- * Created by Ruben on 18/03/2016.
+ * Created by Ruben on 18-03-2016.
  */
 public class Initializer {
 
-    private ArrayList<Landmark> landmarks = new ArrayList<Landmark>(); //field description goes here
-    private ArrayList<Quest> quests = new ArrayList<Quest>(); //field description goes here
+    private ArrayList<Landmark> landmarks = new ArrayList<(); //the list of standard landmarks
+    private ArrayList<Quest> quests = new ArrayList<>(); //the list of standard quests
 
-    private UUID uuid; //field description goes here
+    private UUID uuid; //a universally unique identifier, which is randomly generated for every created landmark, quest, and user
 
-    /* Creates all standard landmarks. */
+    /* Creates all standard landmarks and quests and returns the landmarks. */
     public ArrayList<Landmark> createStandardLandmarks(){
 
 
@@ -42,7 +44,7 @@ public class Initializer {
 
         //number 3
         Landmark korenbeurs = new Landmark("Korenbeurs", UUID.randomUUID().toString());
-        // SOMETHING GOES WRONG HERE: WHEN WE ADD THE QUIZ TO LANDMARK, THE QUESTS THAT CONTAIN IT ARE NOT DISPLAYED
+        // SOMETHING GOES WRONG HERE: WHEN WE ADD THE QUIZ TO THE LANDMARK, THE QUESTS THAT CONTAIN IT ARE NOT DISPLAYED
         // Quiz quiz = new Quiz("Question");
         // quiz.setAnswers(new String[]{"A", "B", "C"});
         // quiz.setRightAnswer("B");
@@ -93,68 +95,77 @@ public class Initializer {
         goudKantoor.setInformation("The architecture of this restored historic cafe is amazing. Dating from 1635, the 'Gold Office' features a gold-tinted exterior and graceful interior, complete with striking paintings.");
         landmarks.add(goudKantoor);
 
-//        Added after we got email from the client
+        //added after we got email from the client
         //TODO Add information
 
+        //number 11
         Landmark zernike = new Landmark("Zernike Campus", UUID.randomUUID().toString());
         zernike.setLocation(53.238919, 6.534970);
         zernike.setInformation("blank");
         landmarks.add(zernike);
 
+        //number 12
         Landmark vvv = new Landmark("VVV Stad Groningen", UUID.randomUUID().toString());
         vvv.setLocation(53.218954, 6.568045);
         vvv.setInformation("blank");
         landmarks.add(vvv);
 
-
+        //number 13
         Landmark euroborg = new Landmark("Euroborg Horeca", UUID.randomUUID().toString());
         euroborg.setLocation(53.206883, 6.591976);
         euroborg.setInformation("blank");
         landmarks.add(euroborg);
 
-
+        //number 14
         Landmark martiniKerk = new Landmark("Martini Kerk", UUID.randomUUID().toString());
         martiniKerk.setLocation(53.219691, 6.568775);
         martiniKerk.setInformation("blank");
         landmarks.add(martiniKerk);
 
+        //number 15
         Landmark noorderplantsoen = new Landmark("Noorderplantsoen", UUID.randomUUID().toString());
         noorderplantsoen.setLocation(53.223103, 6.555212);
         noorderplantsoen.setInformation("blank");
         landmarks.add(noorderplantsoen);
 
+        //number 16
         Landmark groteMarkt = new Landmark("Grote Markt", UUID.randomUUID().toString());
         groteMarkt.setLocation(53.218999, 6.567643);
         groteMarkt.setInformation("blank");
         landmarks.add(groteMarkt);
 
+        //number 17
         Landmark vismarkt = new Landmark("Vismarkt", UUID.randomUUID().toString());
         vismarkt.setLocation(53.217337, 6.565054);
         vismarkt.setInformation("blank");
         landmarks.add(vismarkt);
 
+        //number 18
         Landmark scheepvaartmuseum = new Landmark("Noordelijk Scheepvaartmuseum", UUID.randomUUID().toString());
         scheepvaartmuseum.setLocation(53.216598, 6.560135);
         scheepvaartmuseum.setInformation("blank");
         landmarks.add(scheepvaartmuseum);
 
+        //number 19
         Landmark prinsenhofGardens = new Landmark("Prinsenhof Gardens", UUID.randomUUID().toString());
         prinsenhofGardens.setLocation(53.221295, 6.569049);
         prinsenhofGardens.setInformation("blank");
         landmarks.add(prinsenhofGardens);
 
+        //number 20
         Landmark universityMuseum = new Landmark("Groningen University Museum", UUID.randomUUID().toString());
         universityMuseum.setLocation(53.218526, 6.562936);
         universityMuseum.setInformation("blank");
         landmarks.add(universityMuseum);
 
+        //number 21
         Landmark bovenkamer = new Landmark("De Bovenkamer van Groningen", UUID.randomUUID().toString());
         bovenkamer.setLocation(53.225684, 6.560090);
         bovenkamer.setInformation("blank");
         landmarks.add(bovenkamer);
 
 
-        //create all standard quests, TODO: we could also move this to createAllStandardQuests() and get from landmark list(however hardcoded number)
+        //create all standard quests, TODO: we could also move this to createAllStandardQuests() and get from landmark list (however hardcoded number)
 
         //number 1
         ExactQuest essentialQuest = new ExactQuest(UUID.randomUUID().toString(), "Groningen Highlights", false);
@@ -189,12 +200,12 @@ public class Initializer {
         return landmarks;
     }
 
-    /* Method description goes here. */
+    /* Returns all standard quests. */
     public ArrayList<Quest> createStandardQuests(){
         return quests;
     }
 
-    /* Method description goes here. */
+    /* Creates the standard user and returns it. */
     public User createStandardUser() { return new User(UUID.randomUUID().toString()); }
 }
 

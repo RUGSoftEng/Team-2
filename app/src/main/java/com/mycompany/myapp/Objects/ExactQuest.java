@@ -1,20 +1,21 @@
 package com.mycompany.myapp.Objects;
 
 /**
- * Class description goes here.
+ * This class represents an exact quest, which is a kind of quest in which its
+ * landmarks have to visited in order, resulting in a more or less fixed route.
  *
- * Created by Ruben on 28/02/2016.
+ * Created by Ruben on 28-02-2016.
  */
 public class ExactQuest extends Quest {
 
-    //private int currentLandmark = 0; Probably not needed
+    //private int currentLandmark = 0; //probably not needed
 
-    /* Method description goes here. */
+    /* Constructor which calls the superclass's constructor to initialise the quest. */
     public ExactQuest(String id, String name, boolean isUserGenerated) {
         super(id, name, isUserGenerated);
     }
 
-    /* Method description goes here. */
+    /* Returns that for this subclass of Quest, landmarks have to be visited in order. */
     public boolean isInOrder(){
         return true;
     }
