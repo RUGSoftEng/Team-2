@@ -66,7 +66,8 @@
     <string name="NameEditText">Name</string>
     <string name="finishButton_makeLandmark">Finish</string>
     <string name="createQuestButton">Create Quest</string>
-    <string name="enterANameTextToast">Enter a name</string>
+    <string name="forgotToast">Forgot name or location</string>
     <string name="customAddedTextToast">Landmark added to the system</string>
+    <string name="hintText">Mr Black</string>
 
 </resources>

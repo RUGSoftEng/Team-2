@@ -12,21 +12,28 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.mycompany.myapp.Constants;
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
 import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.R;
 
+import java.util.UUID;
 
 
 /**
  * Created by Ruben on 11/05/2016.
  */
-public class MakeLandmark extends FragmentActivity {
+public class MakeLandmarkActivity extends FragmentActivity {
 
 
     private GoogleMap mMap; //field description goes here
     private Landmark customLandmark;
+    private LatLng landmarkPosition;
+    private Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +41,9 @@ public class MakeLandmark extends FragmentActivity {
         setContentView(R.layout.activity_makelandmark);
 
         Button FINISH = (Button) findViewById(R.id.FinishButton);
-        Button CREATEQUEST = (Button) findViewById(R.id.CreateQuestButton);
 
         final EditText landmarkName = (EditText) findViewById(R.id.NameEditText);
-        EditText landmarkStory = (EditText) findViewById(R.id.StoryEditText);
+        final EditText landmarkStory = (EditText) findViewById(R.id.StoryEditText);
 
         /*
          * Finish button listener starts a Dialog, that asks for a questName, the returning result is caught by the
@@ -47,7 +53,13 @@ public class MakeLandmark extends FragmentActivity {
             @Override
             public void onClick(View v) {
 
-                if(landmarkName.getText().toString() != "") {
+                if(landmarkName.getText().toString().equals("") || landmarkPosition != null) {
+
+                    customLandmark = new Landmark(landmarkName.getText().toString(), UUID.randomUUID().toString() );
+                    customLandmark.setLocation(landmarkPosition);
+                    customLandmark.setInformation(landmarkStory.getText().toString());
+
+
                     DatabaseHelper helper = new DatabaseHelper(getBaseContext());
                     helper.putInDatabase(helper, customLandmark);
 
@@ -58,13 +70,25 @@ public class MakeLandmark extends FragmentActivity {
                     startActivity(i);
                 }else{
                     Toast.makeText(getApplicationContext(),
-                            R.string.enterANameTextToast, Toast.LENGTH_LONG).show();
+                            R.string.forgotToast, Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-
         setUpMapIfNeeded();
+
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                if(marker != null) {
+                    marker.remove();
+                }
+                landmarkPosition = latLng;
+                marker = mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            }
+        });
+
     }
 
 

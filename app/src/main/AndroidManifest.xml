@@ -55,6 +55,10 @@
             android:name=".Activities.UserPageActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".Activities.MakeLandmarkActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
