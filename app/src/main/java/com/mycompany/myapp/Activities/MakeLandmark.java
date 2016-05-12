@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -13,7 +14,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.mycompany.myapp.Constants;
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
-import com.mycompany.myapp.Dialog.AskQuestNameDialog;
 import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.R;
 
@@ -36,6 +36,9 @@ public class MakeLandmark extends FragmentActivity {
         Button FINISH = (Button) findViewById(R.id.FinishButton);
         Button CREATEQUEST = (Button) findViewById(R.id.CreateQuestButton);
 
+        final EditText landmarkName = (EditText) findViewById(R.id.NameEditText);
+        EditText landmarkStory = (EditText) findViewById(R.id.StoryEditText);
+
         /*
          * Finish button listener starts a Dialog, that asks for a questName, the returning result is caught by the
          * onDialogPositiveClick(Dialog dialog) and onDialogNegativeClick(Dialog dialog) methods.
@@ -43,16 +46,20 @@ public class MakeLandmark extends FragmentActivity {
         FINISH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(customLandmark == null) {
+
+                if(landmarkName.getText().toString() != "") {
                     DatabaseHelper helper = new DatabaseHelper(getBaseContext());
                     helper.putInDatabase(helper, customLandmark);
 
                     Toast.makeText(getApplicationContext(),
-                            "Landmark added to the system", Toast.LENGTH_LONG).show();
-                }
-                Intent i = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(i);
+                            R.string.customAddedTextToast, Toast.LENGTH_LONG).show();
 
+                    Intent i = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getApplicationContext(),
+                            R.string.enterANameTextToast, Toast.LENGTH_LONG).show();
+                }
             }
         });
 

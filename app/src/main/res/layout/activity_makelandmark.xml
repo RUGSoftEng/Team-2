@@ -24,7 +24,8 @@
         android:inputType="textPersonName"
         android:text="@string/NameEditText"
         android:ems="10"
-        android:id="@+id/NameEditText" />
+        android:id="@+id/NameEditText"
+        android:hint="Mr Black" />
 
 
     <TextView
@@ -38,7 +39,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="84dp"
-        android:id="@+id/StoryEditText" />
+        android:id="@+id/StoryEditText"
+        android:hint="Once upon a time" />
 
     <RelativeLayout
         android:layout_width="match_parent"
