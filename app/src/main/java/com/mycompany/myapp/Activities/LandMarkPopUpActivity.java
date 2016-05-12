@@ -69,14 +69,14 @@ public class LandMarkPopUpActivity extends Activity {
             @Override
             public void onClick(View v) {
                 quiz = passedLandmark.getQuiz();
-                // items = quiz.getPossibleAnswers();
+                //items = quiz.getPossibleAnswers();
                 items = new String[]{"answer A", "answer B", "answer C"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(LandMarkPopUpActivity.this);
                 //builder.setTitle(quiz.getQuestion());
                 builder.setTitle("Examplequestion?");
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
-                        // Do something with the selection
+                        //do something with the selection
                         quizButton.setText(items[item]);
                     }
                 });

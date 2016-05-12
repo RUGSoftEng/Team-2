@@ -47,7 +47,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             mMap = googleMap;
             mMap.moveCamera(CameraUpdateFactory.newLatLng(Constants.COORDINATE_GRONINGEN));
 
-            //take all landmark objects from the database and put them into a listView
+            //take all landmark objects from the database and put them into a ListView
             DatabaseHelper helper = new DatabaseHelper(this);
             SQLiteDatabase db = helper.getReadableDatabase();
 

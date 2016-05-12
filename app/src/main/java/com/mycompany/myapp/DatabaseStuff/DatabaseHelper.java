@@ -120,7 +120,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /* Gets all Quest objects from the database. */
     public ArrayList<Quest> getAllQuests(SQLiteDatabase db) {
-        ArrayList<Quest> list = new ArrayList<Quest>();
+        ArrayList<Quest> list = new ArrayList<>();
         //Select All query
         String selectQuery = "SELECT  * FROM " + DBConstants.TABLE_NAME_QUEST;
         Cursor cursor = db.rawQuery(selectQuery, null);

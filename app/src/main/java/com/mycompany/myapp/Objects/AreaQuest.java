@@ -2,7 +2,7 @@ package com.mycompany.myapp.Objects;
 
 /**
  * This class represents an area quest, which is a kind of quest in which its
- * landmarks do not have to visited in order, resulting in a somewhat free route.
+ * landmarks do not have to be visited in order, resulting in a somewhat free route.
  *
  * Created by Ruben on 09-03-2016.
  */

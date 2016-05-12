@@ -17,7 +17,7 @@ public abstract class Quest implements Serializable{
     protected boolean isUserGenerated; //an origin boolean indicating whether the quest is user-created (true) or standard (false)
     protected String questID; //the quest's unique ID
     protected int totallandmarks; //the total amount of landmarks within the quest
-    protected String category; //the category this quests fall under
+    protected String category; //the category this quest falls under
 
     /* Constructor which initialises the at this point still empty quest with its ID, name, and origin boolean. */
     public Quest(String id, String name, boolean isUserGenerated){
@@ -90,7 +90,7 @@ public abstract class Quest implements Serializable{
 
     /* Adds the landmark corresponding to the given ID to the list of already visited
      * landmarks and removes it from the list of not yet visited landmarks. */
-    public void isCompleted(String landmarkID){ //finish landmark based on id
+    public void isCompleted(String landmarkID){ //finish landmark based on ID
         for(Landmark l : visitedLandmarks){
             if(landmarkID == l.getID()){
                 this.visitedLandmarks.add(l);
@@ -103,7 +103,6 @@ public abstract class Quest implements Serializable{
 
 
     //TODO should check for string name and other possibly unwanted user input
-    /* Returns whether the quest is a valid quest.
-     * True is OK. False is an incorrect quest. */
+    /* Returns whether the quest is a valid quest (true) or not (false). */
     public boolean validate(){ return true; };
 }

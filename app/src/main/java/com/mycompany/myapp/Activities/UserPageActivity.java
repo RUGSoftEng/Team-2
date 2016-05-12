@@ -16,8 +16,8 @@ import com.mycompany.myapp.R;
 import java.util.ArrayList;
 
 /**
- * This class represents the activity (Android window) for a user page, which
- * includes the current user's earned points and a list of their completed quests.
+ * This class represents the activity (Android window) for a user's profile page.
+ * It displays the current user's earned points and a list of their completed quests.
  */
 public class UserPageActivity extends AppCompatActivity {
     private TextView tv; //the text lay-out to be filled with the amount of points
@@ -35,11 +35,11 @@ public class UserPageActivity extends AppCompatActivity {
 
         User user = helper.getUser(db);
         points = user.getPoints();
-        // display the amount of points
+        //display the amount of points
         tv = (TextView) findViewById(R.id.textView8);
         tv.setText(Integer.toString(points));
 
-        // display the list of solved quests
+        //display the list of solved quests
         listview = (ListView) findViewById(R.id.listView5);
         ArrayList<Quest> list = user.getSolvedQuests();
         Quest[] quests = list.toArray(new Quest[list.size()]);

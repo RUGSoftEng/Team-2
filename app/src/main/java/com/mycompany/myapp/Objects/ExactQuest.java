@@ -2,7 +2,7 @@ package com.mycompany.myapp.Objects;
 
 /**
  * This class represents an exact quest, which is a kind of quest in which its
- * landmarks have to visited in order, resulting in a more or less fixed route.
+ * landmarks have to be visited in order, resulting in a more or less fixed route.
  *
  * Created by Ruben on 28-02-2016.
  */

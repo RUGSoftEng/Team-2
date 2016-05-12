@@ -163,7 +163,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
-    /* Pauses the activity, disconnecting from Google Play services, until the activity is reopened (resumed). */
+    /* Pauses the activity, disconnecting from Google Play services until the activity is reopened (resumed). */
     @Override
     protected void onPause() {
         super.onPause();

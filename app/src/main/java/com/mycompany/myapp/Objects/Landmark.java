@@ -120,12 +120,12 @@ public class Landmark implements Serializable{
         return this.information;
     }
 
-    /* Setter method for the worth in amount of points. */
+    /* Setter method for amount of points worth. */
     public void setPoints(int points){
         this.points = points;
     }
 
-    /* Getter method for the worth in amount of points. */
+    /* Getter method for amount of points worth. */
     public int getPoints(){
         return this.points;
     }

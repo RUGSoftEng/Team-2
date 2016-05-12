@@ -33,9 +33,10 @@ import com.mycompany.myapp.Objects.User;
 import java.util.ArrayList;
 
 /**
- * This class represents the main activity (initial Android window). Next to showing different
- * pictures of Groningen, it offers buttons for starting a quest, continuing a quest, and showing
- * the location of all available landmarks. It also initialises all standard quests and landmarks.
+ * This class represents the main activity (initial Android window). Next to showing
+ * different pictures of Groningen in the background, it offers buttons for starting a quest,
+ * continuing a quest, showing the location of all available landmarks on a map, and viewing
+ * the current user's profile page. It also initialises all standard quests and landmarks.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private static int IMAGE_DELAY = 6000;
     private ImageSwitcher imageSwitcher; //the instance that switches the background image from time to time
     private ArrayList<Integer> imgs = new ArrayList<>(); //the list of images to be displayed consecutively
-    private Context ctx = this; //the context of the application
+    private Context ctx = this; //the context of the application, which holds global information about its execution environment
     private Button continueButton; //the button for resuming an already started quest
 
     /* Initialises the activity as described above, and binds clicking the 'new quest', 'map', 'user page', and 'continue'
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //for the first time of startup (initialise stuff) by looking for pref file (so could be affected by previous tries, wipe data to be sure)
+        //for the first time of startup initialise stuff by looking for pref file (so could be affected by previous tries, wipe data to be sure)
         final String PREFS_NAME = "MyPrefsFile";
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //make image switcher to switch background
-        //NOTE: For some reason martini.jpg doesn't work so there might be pictures not working
+        //NOTE: For some reason martini.jpg doesn't work so there might be more pictures not working
         imgs.add(R.drawable.martini4);
         imgs.add(R.drawable.splashscreen5);
         imgs.add(R.drawable.splashscreen7);
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 return myView;
             }
         });
-        //should always have a element otherwise null pointer exception TODO: catch any exceptions/errors
+        //should always have an element, otherwise null pointer exception TODO: catch any exceptions/errors
         imageSwitcher.postDelayed(new Runnable() {
             int i = 0;
 
@@ -205,9 +206,11 @@ public class MainActivity extends AppCompatActivity {
     /* Handles action bar clicks. */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        /*
+         * Handle action bar item clicks here. The action bar will
+         * automatically handle clicks on the Home/Up button, so long
+         * as you specify a parent activity in AndroidManifest.xml.
+         */
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

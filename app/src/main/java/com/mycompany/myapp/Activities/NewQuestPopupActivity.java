@@ -22,7 +22,7 @@ import com.mycompany.myapp.R;
 import java.util.ArrayList;
 
 /**
- * This class represents the pop-up activity for choosing a kind of new quest.
+ * This class represents the pop-up activity for choosing a specific kind of new quest.
  * It includes two buttons, one for picking an existing quest, and one for creating one's own.
  *
  * Created by Lutz on 21-3-2016.
