@@ -61,13 +61,14 @@
 
 
     <string name="questNameText">Naam</string>
-    <string name="StoryText">Story</string>
-    <string name="NameEditText">Name</string>
-    <string name="finishButton_makeLandmark">Finish</string>
-    <string name="createQuestButton">Create Quest</string>
-    <string name="forgotToast">Enter a name</string>
-    <string name="customAddedTextToast">Landmark added to the system</string>
+    <string name="StoryText">Verhaal</string>
+    <string name="NameEditText">Naam</string>
+    <string name="finishButton_makeLandmark">Klaar</string>
+    <string name="createQuestButton">Creëer zoektocht</string>
+    <string name="forgotToast">Geef een naam</string>
+    <string name="customAddedTextToast">Bezienswaardigheid toegevoegd</string>
     <string name="hintText">Mr Black</string>
+    <string name="MakeLandmarkButton">Maak bezienswaardigheid</string>
 
 
 </resources>

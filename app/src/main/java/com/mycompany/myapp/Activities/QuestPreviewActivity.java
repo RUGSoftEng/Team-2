@@ -156,7 +156,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         //check if quest is already in User's quests and change according to (don't) show pick quest button
         currentUser = dbhelper.getUser(dbhelper.getReadableDatabase());
         for(Quest q : currentUser.getCurrentQuests()) {
-            if (q.getID() == passedQuest.getID()) {
+            if (q.getID().equals(passedQuest.getID())) {
                 Log.d("TEST", "passedQuest is in currentUser, onResume()");
                 pickQuest.setVisibility(View.GONE); //remove the 'pick this quest' button
             }

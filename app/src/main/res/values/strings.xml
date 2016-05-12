@@ -69,5 +69,6 @@
     <string name="forgotToast">Forgot name or location</string>
     <string name="customAddedTextToast">Landmark added to the system</string>
     <string name="hintText">Mr Black</string>
+    <string name="MakeLandmarkButton">Make Landmark</string>
 
 </resources>

@@ -22,5 +22,15 @@
         android:layout_alignStart="@+id/ownQuestButton"
         android:layout_alignEnd="@+id/ownQuestButton" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MakeLandmarkButton"
+        android:id="@+id/makeLandmarkButton"
+        android:layout_below="@+id/ownQuestButton"
+        android:layout_alignStart="@+id/ownQuestButton"
+        android:layout_alignEnd="@+id/ownQuestButton" />
+
 
 </RelativeLayout>
