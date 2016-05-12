@@ -3,9 +3,9 @@ package com.mycompany.myapp.Objects;
 import java.util.ArrayList;
 
 /**
- * This class represents a quiz, which is a set of multiple choice questions.
- * A quiz belongs to a landmark and can be done when reaching it... for fun, to
- * learn even more about the landmark, and to possibly receive more points for it.
+ * This class represents a quiz, which is a single multiple choice question.
+ * A quiz belongs to a landmark and can be done when reaching it. For fun,
+ * to learn even more about the landmark, and to possibly receive more points.
  *
  * Created by Ruben on 23-02-2016.
  */
@@ -48,12 +48,12 @@ public class Quiz {
         return this.possibleAnswers;
     }
 
-    /* Setter method for the amount of points. */
+    /* Setter method for the amount of points worth. */
     public void setPoints(int points){
         this.points = points;
     }
 
-    /* Getter method for the amount of points. */
+    /* Getter method for the amount of points worth. */
     public int getPoints(){
         return this.points;
     }

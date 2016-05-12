@@ -10,7 +10,7 @@ import android.text.InputType;
 import android.widget.EditText;
 
 /**
- * This class represents the pop-up fragment for entering a name for one's self-created quest.
+ * This class represents the pop-up dialog for entering a name for one's self-created quest.
  * It includes a caption, an instruction, an input field, and a positive and a negative button.
  *
  * Created by Ruben on 01-05-2016.
@@ -21,7 +21,7 @@ public class AskQuestNameDialog extends DialogFragment {
     //use this instance of the interface to deliver action events
     private QuestNameDialogListener mListener; //the listener instance for reacting to button clicks
 
-    private String questName = "Custom Quest"; //a hardcoded initial quest name
+    private String questName = "Custom Quest"; //the entered quest name, initialised to a hardcoded example quest name
 
     /* Initialises the activity as described above, and binds the positive button
      * to processing the text inputted and the negative button to discarding it. */
@@ -57,8 +57,8 @@ public class AskQuestNameDialog extends DialogFragment {
 
 
     /* The activity that creates an instance of this dialog fragment must
-     * implement this interface in order to receive event callbacks.
-     * Each method passes the DialogFragment in case the host needs to query it. */
+     * implement this interface in order to receive event callbacks. Each
+     * method passes the DialogFragment in case the host needs to query it. */
     public interface QuestNameDialogListener {
         public void onDialogPositiveClick(AskQuestNameDialog dialog);
         public void onDialogNegativeClick(AskQuestNameDialog dialog);

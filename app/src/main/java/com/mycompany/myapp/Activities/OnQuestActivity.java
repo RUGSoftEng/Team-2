@@ -57,7 +57,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     private LocationListener locationListener; //the instance for following one's moving location
     private LocationManager locationManager; //the instance for managing the location listener
     private Landmark currentTarget; //the next landmark within the currently active quest
-    private int end; //an auxiliary variable to check whether the current quest will be completed after reaching the next landmark
+    private int end; //an auxiliary variable to check whether the current quest will be completed after reaching the next landmark (1 == yes, 0 == no)
 
     /* Initialises the activity as described above after loading the passed quest from the database.
      * Next, checks if GPS is enabled, and starts a location listener instance if possible. */
@@ -191,8 +191,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     /* Handles one's updated location by moving their location marker on the map,
      * but not before checking whether the next landmark has been reached already.
      * Binds reaching the landmark to starting a new LandMarkPopUpActivity, while
-     * awarding 10 points to the current user. If this turns out to be the last
-     * landmark within the current quest, a new QuestFinishedActivity is started
+     * awarding its worth in points to the current user. If this turns out to be the
+     * last landmark within the current quest, a new QuestFinishedActivity is started
      * afterwards as well. Finally, if necessary, the lists and the progress bar are
      * updated, and the map camera is moved to keep the user and its target in view. */
     private void handleNewLocation(Location location) {
@@ -217,8 +217,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
             user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
-                if (end == 1) {// end of quest
-                    // stop locationupdates
+                if (end == 1) { //end of quest
+                    //stop location updates
                     try {
                         locationManager.removeUpdates(locationListener);
                     }catch(SecurityException e){
