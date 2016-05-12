@@ -32,6 +32,7 @@ public class Constants {
     public static final int PADDING = 100; //padding of maps and markers
     public static final int MILLISEC = 1000; //second converted to millisecs
 
+    public static final int NORMAL_ZOOM = 10;
 
 
 }

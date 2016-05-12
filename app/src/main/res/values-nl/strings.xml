@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">MeetGroningen!</string>
+    <string name="app_name">Meet Groningen</string>
     <string name="action_settings">Instellingen</string>
     <string name="title_activity_next">Zoektocht</string>
 
     <!-- MainActivity -->
     <string name="JoinUsText_main">Ontdek de stad samen met ons!</string>
-    <string name="meetGroningenText_main">MeetGroningen!</string>
+    <string name="meetGroningenText_main">Meet Groningen</string>
     <string name="newQuestButton_main">Niewe zoektocht!</string>
     <string name="createQuestButton_main">Maak je eigen zoektocht!</string>
     <string name="continueQuestButton_main">Ga verder met een zoektocht</string>
@@ -58,6 +58,13 @@
     <!-- NewQuestPopupActivity-->
     <string name="ownQuestButton">Maak je eigen</string>
     <string name="existingQuestButton">Kies een bestaande</string>
+
+
+    <string name="questNameText">Naam</string>
+    <string name="StoryText">Story</string>
+    <string name="NameEditText">Name</string>
+    <string name="finishButton_makeLandmark">Finish</string>
+    <string name="createQuestButton">Create Quest</string>
 
 
 </resources>
