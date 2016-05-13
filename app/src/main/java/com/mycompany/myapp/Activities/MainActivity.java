@@ -133,16 +133,23 @@ public class MainActivity extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-                builder.setNeutralButton(getResources().getString(R.string.ownQuestButton), new DialogInterface.OnClickListener() {
+                builder.setNeutralButton("NEW", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
                         startActivity(i);
                     }
                 });
 
-                builder.setPositiveButton(getResources().getString(R.string.existingQuestButton), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("EXISTING", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+                builder.setNegativeButton("LANDMARK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent(getBaseContext(), MakeLandmarkActivity.class);
                         startActivity(i);
                     }
                 });
