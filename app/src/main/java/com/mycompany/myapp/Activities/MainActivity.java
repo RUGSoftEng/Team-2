@@ -1,7 +1,9 @@
 package com.mycompany.myapp.Activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -124,11 +126,31 @@ public class MainActivity extends AppCompatActivity {
 
         //buttons
         Button pickQuest = (Button) findViewById(R.id.newQuestButton);
+        assert pickQuest != null;
         pickQuest.setOnClickListener(new View.OnClickListener() {
-            @Override
+
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), NewQuestPopupActivity.class);
-                startActivity(i);
+
+                //AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                builder.setNeutralButton("MAKE YOUR OWN", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+                builder.setPositiveButton("EXISTING", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
