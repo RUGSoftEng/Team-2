@@ -43,7 +43,7 @@
     <string name="InQuestText_makeQuest">In Quest:</string>
 
     <!-- Landmark_Popup_Window-->
-    <string name="landmarkFound_PopupWindow">Congratulations! Landmark found!</string>
+    <string name="landmarkFound_PopupWindow">Congratulations!\nLandmark found!</string>
     <string name="nextLandmarkButton_PopupWindow">"Continue!"</string>
     <string name="quizButton_PopupWindow">"Quiz!"</string>
 

@@ -272,6 +272,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             });
 
             AlertDialog alert = builder.create();
+            alert.setTitle(getResources().getString(R.string.landmarkFound_PopupWindow));
             alert.setMessage(currentTarget.getInformation());
             alert.show();
 
