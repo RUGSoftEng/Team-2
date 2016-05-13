@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private Button continueButton; //the button for resuming an already started quest
 
     /* Initialises the activity as described above, and binds clicking the 'new quest', 'map', 'user page', and 'continue'
-     * buttons to starting a new NewQuestPopupActivity, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
+     * buttons to starting a new Alert Dialog, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
      * Furthermore it handles image switching by having a runnable change the background every IMAGE_DELAY milliseconds. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,14 +135,14 @@ public class MainActivity extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-                builder.setNeutralButton("MAKE YOUR OWN", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton(getResources().getString(R.string.ownQuestButton), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
                         startActivity(i);
                     }
                 });
 
-                builder.setPositiveButton("EXISTING", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.existingQuestButton), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
                         startActivity(i);
