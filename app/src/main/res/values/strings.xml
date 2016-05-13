@@ -53,6 +53,9 @@
     <string name="questFinishedText_Userpage">Quests finished</string>
     <string name="title_activity_new_quest_popup">NewQuestPopupActivity</string>
 
+    <!-- ContinueQuestActivity-->
+    <string name="startedQuest_continue">Started Quests</string>
+
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Quest Progress:</string>
     <string name="nextLandmarkText_OnQuest">Go find:</string>

@@ -53,6 +53,9 @@
     <string name="pEarnedText_Userpage">Punten verdiend</string>
     <string name="questFinishedText_Userpage">Zoektochten afgerond</string>
 
+    <!-- ContinueQuestActivity-->
+    <string name="startedQuest_continue">Mijn zoektochten</string>
+
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Zoektocht vooruitgang:</string>
     <string name="nextLandmarkText_OnQuest">Vind:</string>
