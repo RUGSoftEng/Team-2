@@ -131,8 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                //AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
                 builder.setNeutralButton(getResources().getString(R.string.ownQuestButton), new DialogInterface.OnClickListener() {
