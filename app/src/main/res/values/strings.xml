@@ -11,7 +11,9 @@
     <string name="mapButton_main">Overview of the city</string>
     <string name="continueQuestButton_main">Continue A quest</string>
     <string name="userpageButton_main">"Userpage"</string>
-
+        <!-- New quest AlertDialog-->
+        <string name="ownQuestButton">Create your own</string>
+        <string name="existingQuestButton">Pick existing</string>
 
     <!-- QuestActivity -->
     <string name="quest_text">Visit the following locations:</string>
@@ -41,7 +43,7 @@
     <string name="InQuestText_makeQuest">In Quest:</string>
 
     <!-- Landmark_Popup_Window-->
-    <string name="landmarkFound_PopupWindow">Congratulations! Landmark found!</string>
+    <string name="landmarkFound_PopupWindow">Congratulations!\nLandmark found!</string>
     <string name="nextLandmarkButton_PopupWindow">"Continue!"</string>
     <string name="quizButton_PopupWindow">"Quiz!"</string>
 
@@ -51,14 +53,19 @@
     <string name="questFinishedText_Userpage">Quests finished</string>
     <string name="title_activity_new_quest_popup">NewQuestPopupActivity</string>
 
+    <!-- ContinueQuestActivity-->
+    <string name="startedQuest_continue">Started Quests</string>
+
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Quest Progress:</string>
     <string name="nextLandmarkText_OnQuest">Go find:</string>
     <string name="nextLandmarksText_OnQuest">Remaining landmarks:</string>
 
-    <!-- NewQuestPopupActivity-->
-    <string name="ownQuestButton">Create your own</string>
-    <string name="existingQuestButton">Pick existing</string>
+    <!-- AskQuestNameDialog -->
+    <string name="questName_dialog">Quest Name</string>
+    <string name="messageText_dialog">Finish creating by giving your quest a name</string>
+    <string name="done_dialog">Done</string>
+    <string name="back_dialog">Back</string>
 
 
     <string name="questNameText">Name</string>

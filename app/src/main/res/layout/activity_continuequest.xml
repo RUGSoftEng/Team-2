@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Started Quests"
+            android:text="@string/startedQuest_continue"
             android:id="@+id/StartedQuestText"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true" />

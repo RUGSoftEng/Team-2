@@ -9,6 +9,8 @@ import android.support.v4.app.DialogFragment;
 import android.text.InputType;
 import android.widget.EditText;
 
+import com.mycompany.myapp.R;
+
 /**
  * This class represents the pop-up dialog for entering a name for one's self-created quest.
  * It includes a caption, an instruction, an input field, and a positive and a negative button.
@@ -28,8 +30,8 @@ public class AskQuestNameDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Quest Name");
-        builder.setMessage("Finish creating by giving your quest a name");
+        builder.setTitle(getResources().getString(R.string.questName_dialog));
+        builder.setMessage(getResources().getString(R.string.messageText_dialog));
 
         //set up the input
         final EditText input = new EditText(getActivity());
@@ -37,14 +39,14 @@ public class AskQuestNameDialog extends DialogFragment {
         builder.setView(input);
 
         //set up the buttons
-        builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getResources().getString(R.string.done_dialog), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 questName = input.getText().toString();
                 mListener.onDialogPositiveClick(AskQuestNameDialog.this);
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getResources().getString(R.string.back_dialog), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();

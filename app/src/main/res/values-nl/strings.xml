@@ -11,6 +11,9 @@
     <string name="continueQuestButton_main">Ga verder met een zoektocht</string>
     <string name="mapButton_main">Overzicht van de stad</string>
     <string name="userpageButton_main">"Gebruiker"</string>
+        <!-- New quest AlertDialog-->
+        <string name="ownQuestButton">Maak je eigen</string>
+        <string name="existingQuestButton">Kies een bestaande</string>
 
     <!-- QuestActivity -->
     <string name="quest_text">Bezoek de volgende locaties:</string>
@@ -50,14 +53,19 @@
     <string name="pEarnedText_Userpage">Punten verdiend</string>
     <string name="questFinishedText_Userpage">Zoektochten afgerond</string>
 
+    <!-- ContinueQuestActivity-->
+    <string name="startedQuest_continue">Mijn zoektochten</string>
+
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Zoektocht vooruitgang:</string>
     <string name="nextLandmarkText_OnQuest">Vind:</string>
     <string name="nextLandmarksText_OnQuest">Resterende bezienswaardigheden:</string>
 
-    <!-- NewQuestPopupActivity-->
-    <string name="ownQuestButton">Maak je eigen</string>
-    <string name="existingQuestButton">Kies een bestaande</string>
+    <!-- AskQuestNameDialog -->
+    <string name="questName_dialog">Naam zoektocht</string>
+    <string name="messageText_dialog">Geef je zoektocht een naam</string>
+    <string name="done_dialog">Klaar</string>
+    <string name="back_dialog">Terug</string>
 
 
     <string name="questNameText">Naam</string>
@@ -67,7 +75,7 @@
     <string name="createQuestButton">Creëer zoektocht</string>
     <string name="forgotToast">Geef een naam</string>
     <string name="customAddedTextToast">Bezienswaardigheid toegevoegd</string>
-    <string name="hintText">Mr Black</string>
+    <string name="hintText">Meneer Jansen</string>
     <string name="MakeLandmarkButton">Maak bezienswaardigheid</string>
 
 
