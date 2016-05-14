@@ -96,72 +96,71 @@ public class Initializer {
         landmarks.add(goudkantoor);
 
         //added after we got email from the client
-        //TODO Add information
 
         //number 11
         Landmark zernike = new Landmark("Zernike Campus", UUID.randomUUID().toString());
         zernike.setLocation(53.238919, 6.534970);
-        zernike.setInformation("blank");
+        zernike.setInformation("The Zernike Campus is an area in the north of the city that hosts the University of Groningen's Faculty of Mathematics and Natural Sciences, Faculty of Economics and Business, and Faculty of Spatial Sciences, as well as some buildings belonging to the Hanze University of Applied Sciences. It is named after the University of Groningen's own physicist and nobel laureate Fritz Zernike, who received the renowned prize in 1953 for his invention of the phase contrast microscope.");
         landmarks.add(zernike);
 
         //number 12
         Landmark vvv = new Landmark("VVV Stad Groningen", UUID.randomUUID().toString());
         vvv.setLocation(53.218954, 6.568045);
-        vvv.setInformation("blank");
+        vvv.setInformation("The Vereniging Voor Vreemdelingenverkeer Stad Groningen (literally 'Groningen City Association For Alien Traffic') provides free tourist information to visitors, and includes a gift shop. One can go here to learn more about what the city and the province have to offer to tourists. It is located right in the middle of Groningen's main square: the Grote Markt.");
         landmarks.add(vvv);
 
         //number 13
-        Landmark euroborg = new Landmark("Euroborg Horeca", UUID.randomUUID().toString());
+        Landmark euroborg = new Landmark("Euroborg", UUID.randomUUID().toString());
         euroborg.setLocation(53.206883, 6.591976);
-        euroborg.setInformation("blank");
+        euroborg.setInformation("The Euroborg is the stadium of local football club FC Groningen, and has a capacity of 22329 seats. Its interior is painted in the club's colours: white and green. Around the stadium, the Euroborg site houses a casino, a movie theater, a school, a supermarket, and a fitness centre, as well as some cafés and restaurants."); //is the 'é' displayed correctly here?
         landmarks.add(euroborg);
 
         //number 14
         Landmark martinikerk = new Landmark("Martinikerk", UUID.randomUUID().toString());
         martinikerk.setLocation(53.219691, 6.568775);
-        martinikerk.setInformation("blank");
+        martinikerk.setInformation("The Martinikerk (Martin's Church) is Groningen's oldest church. The church and its associated tower (the Martinitoren) are named after Saint Martin of Tours (316–397), the patron saint of the Bishopric of Utrecht to which Groningen belonged from 1024 to 1528.");
         landmarks.add(martinikerk);
 
         //number 15
         Landmark noorderplantsoen = new Landmark("Noorderplantsoen", UUID.randomUUID().toString());
         noorderplantsoen.setLocation(53.223103, 6.555212);
-        noorderplantsoen.setInformation("blank");
+        noorderplantsoen.setInformation("The Noorderplantsoen is the smaller of the two urban public parks in Groningen, yet the one located more centrally, situated slightly north of the city centre. Its name is Dutch for 'northern public garden'. Long but narrow, it has been a great place to hang out ever since it opened in 1880.");
         landmarks.add(noorderplantsoen);
 
         //number 16
         Landmark groteMarkt = new Landmark("Grote Markt", UUID.randomUUID().toString());
         groteMarkt.setLocation(53.218999, 6.567643);
-        groteMarkt.setInformation("blank");
+        groteMarkt.setInformation("The Grote Markt (Big Market) is Groningen's central square, and has been so for over a thousand years. It includes other prominent landmarks like the Martinitoren, City Hall, Goudkantoor, and temporarily also the VVV building for tourist information. It was largely destroyed during the Second World War, but has been rebuilt to partly restore its former glory.");
         landmarks.add(groteMarkt);
 
         //number 17
         Landmark vismarkt = new Landmark("Vismarkt", UUID.randomUUID().toString());
         vismarkt.setLocation(53.217337, 6.565054);
-        vismarkt.setInformation("blank");
+        vismarkt.setInformation("The Vismarkt (Fish Market) is an old square almost adjacent to Groningen's main square, the Grote Markt, and has about the same area size, but is longer and less wide. Here you can find the Korenbeurs and behind it the Der Aa-kerk. As the name implies, markets can still be found here on Tuesdays, Thursday, Fridays, and Saturdays, including the traditional fish stalls.");
         landmarks.add(vismarkt);
 
         //number 18
         Landmark scheepvaartmuseum = new Landmark("Noordelijk Scheepvaartmuseum", UUID.randomUUID().toString());
         scheepvaartmuseum.setLocation(53.216598, 6.560135);
-        scheepvaartmuseum.setInformation("blank");
+        scheepvaartmuseum.setInformation("The Noordelijk Scheepvaartmuseum (Northern Maritime Museum) was established in 1932, and has move location twice since. It has a large collection of museum exhibits, which provide information about the history of shipbuilding and ship transport within the province of Groningen.");
         landmarks.add(scheepvaartmuseum);
 
         //number 19
         Landmark prinsenhofGardens = new Landmark("Prinsenhof Gardens", UUID.randomUUID().toString());
         prinsenhofGardens.setLocation(53.221295, 6.569049);
-        prinsenhofGardens.setInformation("blank");
+        prinsenhofGardens.setInformation("The Prinsenhof Gardens (Princes' Court Gardens) are the gardens belonging to the Prinsenhof, a historic building that after many uses through the ages now hosts a grand café and hotel. Located in the north east of the city centre, the gardens, which were originally constructed in 1626 when the Prinsenhof was the local residence of the Dutch princes, provide a small, serene environment with roses, herbs, and hornbeam tunnels. Its sundial is said to be the most beautiful sundial of the Netherlands."); //is the 'é' displayed correctly here?
         landmarks.add(prinsenhofGardens);
 
         //number 20
         Landmark universityMuseum = new Landmark("Groningen University Museum", UUID.randomUUID().toString());
         universityMuseum.setLocation(53.218526, 6.562936);
-        universityMuseum.setInformation("blank");
+        universityMuseum.setInformation("The Groningen University Museum is the University of Groningen's very own museum, whose entry is free of charge for everyone. Since 1934, the University Museum has been a scientific museum in the academic heart of the city. Because of its multifaceted collection, in which nature, culture, and science go together, there is plenty to see. It is located near the Academiegebouw, the university's main building.");
         landmarks.add(universityMuseum);
 
         //number 21
         Landmark bovenkamer = new Landmark("De Bovenkamer van Groningen", UUID.randomUUID().toString());
         bovenkamer.setLocation(53.225684, 6.560090);
-        bovenkamer.setInformation("blank");
+        bovenkamer.setInformation("De Bovenkamer van Groningen (The Upstairs Room of Groningen) is a unique, elevated, atmospheric conference room for business related, celebratory, and creative gatherings. Established in 2014, it is located in the former water tank of Groningen's northern water tower, that was built in 1908 and used to hold one million litres of water. It is situated near the edge of the Noorderplantsoen, an urban public park.");
         landmarks.add(bovenkamer);
 
 
