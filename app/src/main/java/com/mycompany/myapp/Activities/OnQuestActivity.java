@@ -215,14 +215,12 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         final User user = helper.getUser(helper.getReadableDatabase());
 
         if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
+            // This gets called twice!!! Should only once
             int points = currentTarget.getPoints();
             user.addPoints(points);
             helper.updateInDatabase(helper, user);
             Toast.makeText(getApplicationContext(),
                     "Reached landmark! +10 points", Toast.LENGTH_LONG).show();
-//            Intent i = new Intent(getBaseContext(), LandMarkPopUpActivity.class);
-//            i.putExtra("passedLandmark", currentTarget);
-//            startActivity(i);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
 
@@ -278,17 +276,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
             user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
-                if (end == 1) { //end of quest
-                    //stop location updates
-                    try {
-                        locationManager.removeUpdates(locationListener);
-                    } catch (SecurityException e) {
-                        Log.e("Security Exception", "No permission to get location: " + e);
-                    }
-                }
-                else  {
-                    end = 1;
-                }
+                end = 1;
             } else {
                 user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
                 helper.updateInDatabase(helper, user);

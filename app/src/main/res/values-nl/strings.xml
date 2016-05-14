@@ -68,15 +68,16 @@
     <string name="done_dialog">Klaar</string>
     <string name="back_dialog">Terug</string>
 
-
+    <!-- MakeLandMarkActivity -->
+    <string name="landmarkInfo_makeLandmark">Dit is een hele mooie plek waar je veel kunt zien.</string>
+    <string name="infoText_makeLandmark">Informatie</string>
     <string name="questNameText">Naam</string>
-    <string name="StoryText">Verhaal</string>
-    <string name="NameEditText">Naam</string>
+    <string name="nameEditText">Mijn plek</string>
+
     <string name="finishButton_makeLandmark">Klaar</string>
     <string name="createQuestButton">Creëer zoektocht</string>
-    <string name="forgotToast">Geef een naam</string>
+    <string name="forgotToast">Kies een locatie en een naam</string>
     <string name="customAddedTextToast">Bezienswaardigheid toegevoegd</string>
-    <string name="hintText">Meneer Jansen</string>
     <string name="MakeLandmarkButton">Maak bezienswaardigheid</string>
 
 

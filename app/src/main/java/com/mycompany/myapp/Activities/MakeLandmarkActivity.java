@@ -32,7 +32,7 @@ public class MakeLandmarkActivity extends FragmentActivity {
 
     private GoogleMap mMap; //field description goes here
     private Landmark customLandmark;
-    private LatLng landmarkPosition;
+    private LatLng landmarkPosition = null;
     private Marker marker;
 
     @Override
@@ -53,13 +53,11 @@ public class MakeLandmarkActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
 
-                if(landmarkName.getText().toString().equals("") || landmarkPosition != null) {
-
+                if(!(landmarkName.getText().toString().equals("")) && (landmarkPosition != null)) {
                     customLandmark = new Landmark(landmarkName.getText().toString(), UUID.randomUUID().toString() );
                     customLandmark.setLocation(landmarkPosition);
                     customLandmark.setInformation(landmarkStory.getText().toString());
-
-
+                    
                     DatabaseHelper helper = new DatabaseHelper(getBaseContext());
                     helper.putInDatabase(helper, customLandmark);
 

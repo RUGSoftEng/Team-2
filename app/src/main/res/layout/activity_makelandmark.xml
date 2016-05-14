@@ -23,17 +23,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/NameEditText"
         android:ems="10"
         android:id="@+id/NameEditText"
-        android:hint="@string/hintText" />
+        android:hint="@string/nameEditText" />
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/StoryText"
+        android:text="@string/infoText_makeLandmark"
         android:id="@+id/StoryText" />
 
 
@@ -41,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="84dp"
         android:id="@+id/StoryEditText"
-        android:hint="Once upon a time" />
+        android:hint="@string/landmarkInfo_makeLandmark" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -53,6 +52,8 @@
             android:text="@string/finishButton_makeLandmark"
             android:id="@+id/FinishButton"
             android:layout_alignParentTop="true" />
+        <!--android:enabled="false"-->
+
 
     </RelativeLayout>
 
