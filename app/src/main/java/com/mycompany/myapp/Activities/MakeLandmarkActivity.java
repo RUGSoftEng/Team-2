@@ -64,7 +64,7 @@ public class MakeLandmarkActivity extends FragmentActivity {
                     Toast.makeText(getApplicationContext(),
                             R.string.customAddedTextToast, Toast.LENGTH_LONG).show();
 
-                    Intent i = new Intent(getBaseContext(), MainActivity.class);
+                    Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
                     startActivity(i);
                 }else{
                     Toast.makeText(getApplicationContext(),
@@ -74,7 +74,6 @@ public class MakeLandmarkActivity extends FragmentActivity {
         });
 
         setUpMapIfNeeded();
-
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override

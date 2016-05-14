@@ -45,6 +45,7 @@ import java.util.UUID;
 public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener {
 
     private Button FINISH;
+    private Button ownLandmarkButton;
 
     private GoogleMap mMap; //the (Google) map
 
@@ -63,6 +64,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_makequest);
         FINISH = (Button) findViewById(R.id.FinishButton);
+        ownLandmarkButton = (Button) findViewById(R.id.ownLandmarkButton);
         final ListView chooseLandmarkListView = (ListView) findViewById(R.id.chooseLandmarkList);
         final ListView inQuestListView = (ListView) findViewById(R.id.InQuestList);
 
@@ -135,6 +137,14 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
                 AskQuestNameDialog dialog = new AskQuestNameDialog();
                 dialog.show(getSupportFragmentManager(), "dialog");
 
+            }
+        });
+
+        ownLandmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), MakeLandmarkActivity.class);
+                startActivity(i);
             }
         });
 

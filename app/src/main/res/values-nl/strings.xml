@@ -6,7 +6,7 @@
     <!-- MainActivity -->
     <string name="JoinUsText_main">Ontdek de stad samen met ons!</string>
     <string name="meetGroningenText_main">Meet Groningen</string>
-    <string name="newQuestButton_main">Niewe zoektocht!</string>
+    <string name="newQuestButton_main">Nieuwe zoektocht!</string>
     <string name="createQuestButton_main">Maak je eigen zoektocht!</string>
     <string name="continueQuestButton_main">Ga verder met een zoektocht</string>
     <string name="mapButton_main">Overzicht van de stad</string>
@@ -41,7 +41,8 @@
     <string name="finishText_makeQuest">Voltooi</string>
     <string name="ChooseText_makeQuest">Kies:</string>
     <string name="InQuestText_makeQuest">Al in zoektocht:</string>
-
+    <string name="AddLandmark_makeQuest">Eigen plek</string>
+    <string name="AddLandmarkButton_makeQuest">Nieuw</string>
 
     <!-- Landmark_Popup_Window-->
     <string name="landmarkFound_PopupWindow">Gefeliciteerd! Bezienswaardigheid gevonden!</string>
@@ -55,7 +56,7 @@
 
     <!-- ContinueQuestActivity-->
     <string name="startedQuest_continue">Mijn zoektochten</string>
-    <string name="deleteButton">Delete</string>
+    <string name="deleteButton">Verwijder deze zoektocht</string>
 
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Zoektocht vooruitgang:</string>

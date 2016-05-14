@@ -41,6 +41,8 @@
     <string name="finishText_makeQuest">Finish</string>
     <string name="ChooseText_makeQuest">Choose:</string>
     <string name="InQuestText_makeQuest">In Quest:</string>
+    <string name="AddLandmark_makeQuest">Own landmark</string>
+    <string name="AddLandmarkButton_makeQuest">Create</string>
 
     <!-- Landmark_Popup_Window-->
     <string name="landmarkFound_PopupWindow">Congratulations!\nLandmark found!</string>
@@ -55,7 +57,7 @@
 
     <!-- ContinueQuestActivity-->
     <string name="startedQuest_continue">Started Quests</string>
-    <string name="deleteButton">Delete</string>
+    <string name="deleteButton">Delete this quest</string>
 
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Quest Progress:</string>

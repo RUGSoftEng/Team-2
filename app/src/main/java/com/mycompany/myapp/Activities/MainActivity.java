@@ -149,12 +149,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                builder.setNegativeButton("LANDMARK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent i = new Intent(getBaseContext(), MakeLandmarkActivity.class);
-                        startActivity(i);
-                    }
-                });
+//                builder.setNegativeButton("LANDMARK", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        Intent i = new Intent(getBaseContext(), MakeLandmarkActivity.class);
+//                        startActivity(i);
+//                    }
+//                });
 
                 AlertDialog alert = builder.create();
                 alert.show();
