@@ -52,7 +52,6 @@
             android:text="@string/finishButton_makeLandmark"
             android:id="@+id/FinishButton"
             android:layout_alignParentTop="true" />
-        <!--android:enabled="false"-->
 
 
     </RelativeLayout>

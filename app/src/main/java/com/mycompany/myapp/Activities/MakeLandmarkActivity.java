@@ -57,7 +57,7 @@ public class MakeLandmarkActivity extends FragmentActivity {
                     customLandmark = new Landmark(landmarkName.getText().toString(), UUID.randomUUID().toString() );
                     customLandmark.setLocation(landmarkPosition);
                     customLandmark.setInformation(landmarkStory.getText().toString());
-                    
+
                     DatabaseHelper helper = new DatabaseHelper(getBaseContext());
                     helper.putInDatabase(helper, customLandmark);
 
