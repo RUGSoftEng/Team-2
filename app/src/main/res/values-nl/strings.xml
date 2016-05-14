@@ -55,10 +55,11 @@
 
     <!-- ContinueQuestActivity-->
     <string name="startedQuest_continue">Mijn zoektochten</string>
+    <string name="deleteButton">Delete</string>
 
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Zoektocht vooruitgang:</string>
-    <string name="nextLandmarkText_OnQuest">Vind:</string>
+    <string name="nextLandmarkText_OnQuest">Zoek:</string>
     <string name="nextLandmarksText_OnQuest">Resterende bezienswaardigheden:</string>
 
     <!-- AskQuestNameDialog -->

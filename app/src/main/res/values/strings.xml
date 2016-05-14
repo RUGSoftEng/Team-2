@@ -55,6 +55,7 @@
 
     <!-- ContinueQuestActivity-->
     <string name="startedQuest_continue">Started Quests</string>
+    <string name="deleteButton">Delete</string>
 
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Quest Progress:</string>

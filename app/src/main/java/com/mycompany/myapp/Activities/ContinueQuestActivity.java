@@ -1,5 +1,7 @@
 package com.mycompany.myapp.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -74,14 +76,24 @@ public class ContinueQuestActivity extends AppCompatActivity {
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, long id) {
 
-                chosenQuest = (Quest) parent.getAdapter().getItem(position);
-                helper = new DatabaseHelper(getBaseContext());
-                user.getCurrentQuests().remove(chosenQuest);
-                helper.updateInDatabase(helper, user);
-                helper.close();
-                adapter2.notifyDataSetChanged();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ContinueQuestActivity.this);
+
+                builder.setNeutralButton(getResources().getString(R.string.deleteButton), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        chosenQuest = (Quest) parent.getAdapter().getItem(position);
+                        helper = new DatabaseHelper(getBaseContext());
+                        user.getCurrentQuests().remove(chosenQuest);
+                        helper.updateInDatabase(helper, user);
+                        helper.close();
+                        adapter2.notifyDataSetChanged();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
                 return true;
             }
         });

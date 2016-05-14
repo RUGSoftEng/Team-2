@@ -133,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
+                //TODO change the strings back to the ones in the strings file as soon as we move the Make Landmark button somewhere else
+
                 builder.setNeutralButton("NEW", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
