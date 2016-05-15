@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/infoText_makeLandmark"
+        android:text="@string/landmarkInfo_makeLandmark"
         android:id="@+id/StoryText" />
 
 
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="84dp"
         android:id="@+id/StoryEditText"
-        android:hint="@string/landmarkInfo_makeLandmark" />
+        android:hint="@string/infoEditText_makeLandmark" />
 
     <RelativeLayout
         android:layout_width="match_parent"

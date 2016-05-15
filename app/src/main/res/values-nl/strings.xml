@@ -71,7 +71,7 @@
 
     <!-- MakeLandMarkActivity -->
     <string name="landmarkInfo_makeLandmark">Dit is een hele mooie plek waar je veel kunt zien.</string>
-    <string name="infoText_makeLandmark">Informatie</string>
+    <string name="infoEditText_makeLandmark">Informatie</string>
     <string name="questNameText">Naam</string>
     <string name="nameEditText">Mijn plek</string>
 

@@ -44,9 +44,6 @@ import java.util.UUID;
  */
 public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener {
 
-    private Button FINISH;
-    private Button ownLandmarkButton;
-
     private GoogleMap mMap; //the (Google) map
 
     private ArrayList<Landmark> landmarks; //the data corresponding to the first list, i.e. all not yet selected landmarks
@@ -63,8 +60,8 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_makequest);
-        FINISH = (Button) findViewById(R.id.FinishButton);
-        ownLandmarkButton = (Button) findViewById(R.id.ownLandmarkButton);
+        Button FINISH = (Button) findViewById(R.id.FinishButton);
+        Button ownLandmarkButton = (Button) findViewById(R.id.ownLandmarkButton);
         final ListView chooseLandmarkListView = (ListView) findViewById(R.id.chooseLandmarkList);
         final ListView inQuestListView = (ListView) findViewById(R.id.InQuestList);
 
@@ -195,7 +192,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     @Override
     public void onDialogPositiveClick(AskQuestNameDialog dialog) {
         //user touched the dialog's positive button, a new quest is created and added to the User
-        ExactQuest quest = new ExactQuest(UUID.randomUUID().toString(), dialog.getQuestName(), true); //TODO: Still hardcoded name
+        ExactQuest quest = new ExactQuest(UUID.randomUUID().toString(), dialog.getQuestName(), true);
         quest.addLandmarkList(selectedLandmarks);
 
         DatabaseHelper helper = new DatabaseHelper(getBaseContext());

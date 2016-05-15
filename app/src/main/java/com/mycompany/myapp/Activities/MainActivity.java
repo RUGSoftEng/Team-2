@@ -22,7 +22,6 @@ import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
 
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageSwitcher imageSwitcher; //the instance that switches the background image from time to time
     private ArrayList<Integer> imgs = new ArrayList<>(); //the list of images to be displayed consecutively
     private Context ctx = this; //the context of the application, which holds global information about its execution environment
-    private Button continueButton; //the button for resuming an already started quest
 
     /* Initialises the activity as described above, and binds clicking the 'new quest', 'map', 'user page', and 'continue'
      * buttons to starting a new Alert Dialog, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
@@ -93,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             db.close(); //closing database connection
 
             //record the fact that the app has been started at least once
-            settings.edit().putBoolean("first_time", false).commit();
+            settings.edit().putBoolean("first_time", false).apply();
 
             //request location permission if necessary
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -162,32 +160,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button mapButton = (Button) findViewById(R.id.mapButton);
-        mapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), MapActivity.class);
-                startActivity(i);
-            }
-        });
+        if (mapButton != null) {
+            mapButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getBaseContext(), MapActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
 
         Button userpageButton = (Button) findViewById(R.id.userpageButton_main);
-        userpageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), UserPageActivity.class);
-                startActivity(i);
-            }
-        });
+        if (userpageButton != null) {
+            userpageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getBaseContext(), UserPageActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
 
-        continueButton = (Button) findViewById(R.id.continueButton);
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), ContinueQuestActivity.class));
-            }
-        });
-
-
+        Button continueButton = (Button) findViewById(R.id.continueButton);
+        if (continueButton != null) {
+            continueButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getBaseContext(), ContinueQuestActivity.class));
+                }
+            });
+        }
 
 
         //make image switcher to switch background
@@ -203,8 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             public View makeView() {
-                ImageView myView = new ImageView(getApplicationContext());
-                return myView;
+                return new ImageView(getApplicationContext());
             }
         });
         //should always have an element, otherwise null pointer exception TODO: catch any exceptions/errors
@@ -213,7 +214,9 @@ public class MainActivity extends AppCompatActivity {
 
             public void run() {
                 LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout);
-                rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
+                if (rLayout != null) {
+                    rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
+                }
                 i++;
                 if (i == imgs.size()) i = 0;
                 imageSwitcher.postDelayed(this, IMAGE_DELAY);
