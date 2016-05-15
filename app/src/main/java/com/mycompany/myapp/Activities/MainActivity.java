@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -208,14 +209,14 @@ public class MainActivity extends AppCompatActivity {
                 return new ImageView(getApplicationContext());
             }
         });
-        //should always have an element, otherwise null pointer exception TODO: catch any exceptions/errors
+        //should always have an element
         imageSwitcher.postDelayed(new Runnable() {
             int i = 0;
 
             public void run() {
                 LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout);
                 if (rLayout != null) {
-                    rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
+                    rLayout.setBackground(ResourcesCompat.getDrawable(getResources(), imgs.get(i), null));
                 }
                 i++;
                 if (i == imgs.size()) i = 0;

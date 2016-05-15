@@ -21,7 +21,6 @@ import java.util.ArrayList;
  * It gets all available quests from the database and displays them in a list.
  */
 public class ChooseQuestActivity extends AppCompatActivity {
-    private ListView listView; //the list lay-out to be filled with the names of all available quests
     private Quest chosenQuest; //the clicked quest, to be passed on to the next activity
 
     /* Initialises the activity as described above, and binds clicking a quest to starting a new QuestPreviewActivity. */
@@ -41,23 +40,25 @@ public class ChooseQuestActivity extends AppCompatActivity {
         db.close();
         helper.close();
 
-        listView = (ListView) findViewById(R.id.list_view);
+        ListView listView = (ListView) findViewById(R.id.list_view);
         ArrayAdapter<Quest> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, quests);
-        listView.setAdapter(adapter);
+        if (listView != null) {
+            listView.setAdapter(adapter);
 
 
-        //redirect to quest explanation page, passing the chosen quest
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            //redirect to quest explanation page, passing the chosen quest
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                chosenQuest = (Quest) parent.getAdapter().getItem(position) ;
+                    chosenQuest = (Quest) parent.getAdapter().getItem(position);
 
-                Intent i = new Intent(getBaseContext(), QuestPreviewActivity.class);
-                i.putExtra("PassedQuest", chosenQuest);
-                startActivity(i);
-            }
-        });
+                    Intent i = new Intent(getBaseContext(), QuestPreviewActivity.class);
+                    i.putExtra("PassedQuest", chosenQuest);
+                    startActivity(i);
+                }
+            });
+        }
 
     }
 

@@ -10,13 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -42,7 +41,7 @@ import java.util.UUID;
  *
  * Created by Ruben on 28-02-2016.
  */
-public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener {
+public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener, OnMapReadyCallback {
 
     private GoogleMap mMap; //the (Google) map
 
@@ -50,6 +49,10 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     private ArrayList<Landmark> selectedLandmarks; //the data corresponding to the second list, i.e. all landmarks selected thus far
 
     private List<Marker> markers; //the list of markers of landmark locations
+
+
+    public ArrayAdapter<Landmark> adapter, adapter2;
+
 
     /* Initialises the activity as described above, binds 'finish' to opening an AskQuestNameDialog pop-
      * up for entering the created quest's name and adding the new quest to the database when the pop-up
@@ -60,10 +63,16 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_makequest);
+
         Button FINISH = (Button) findViewById(R.id.FinishButton);
         Button ownLandmarkButton = (Button) findViewById(R.id.ownLandmarkButton);
+
         final ListView chooseLandmarkListView = (ListView) findViewById(R.id.chooseLandmarkList);
         final ListView inQuestListView = (ListView) findViewById(R.id.InQuestList);
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         //take all landmark objects from the database and put them into a ListView
         DatabaseHelper helper = new DatabaseHelper(this);
@@ -72,12 +81,12 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         landmarks = helper.getAllLandmarks(db);
         selectedLandmarks = new ArrayList<>();
 
-        final ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this,
+       adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, landmarks);
 
         chooseLandmarkListView.setAdapter(adapter);
 
-        final ArrayAdapter<Landmark> adapter2 = new ArrayAdapter<>(this,
+        adapter2 = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, selectedLandmarks);
 
         inQuestListView.setAdapter(adapter2);
@@ -146,40 +155,6 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         });
 
 
-        setUpMapIfNeeded();
-
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-
-
-            public boolean onMarkerClick(Marker marker) {
-                for (Landmark landmark : landmarks) {
-                    if (marker.getTitle().equals(landmark.getName())) {
-                        selectedLandmarks.add(landmark);
-                        landmarks.remove(landmark);
-                        adapter.notifyDataSetChanged();
-                        adapter2.notifyDataSetChanged();
-                        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                        break;
-                    }
-                }
-                return false;
-            }
-        });
-
-        mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
-            @Override
-            public void onMapLoaded() {
-                LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                for (Marker marker : markers) {
-                    builder.include(marker.getPosition());
-                }
-                LatLngBounds bounds = builder.build();
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
-                mMap.animateCamera(cu);
-            }
-        });
-
-
         db.close();
         helper.close();
     }
@@ -213,38 +188,9 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
 
     }
 
-
-    /** Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed {@link SupportMapFragment} (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called. */
-    private void setUpMapIfNeeded() {
-        //do a null check to confirm that we have not already instantiated the map
-        if (mMap == null) {
-            //try to obtain the map from the SupportMapFragment
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            //check if we were successful in obtaining the map
-            if (mMap != null) {
-                setUpMap();
-            }
-        }
-    }
-
-    /** This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null. */
-    private void setUpMap() {
+    @Override
+    public void onMapReady(GoogleMap map){
+        mMap = map;
         //get the locations of the landmarks in this quest
         Marker testmark;
         markers = new ArrayList<>();
@@ -255,6 +201,37 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
                     .title(landmark.getName()));
             markers.add(testmark);
         }
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
+            public boolean onMarkerClick(Marker marker) {
+                for (Landmark landmark : landmarks) {
+                    if (marker.getTitle().equals(landmark.getName())) {
+                        selectedLandmarks.add(landmark);
+                        landmarks.remove(landmark);
+                        adapter.notifyDataSetChanged();
+                        adapter2.notifyDataSetChanged();
+                        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
+
+        mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                for (Marker marker : markers) {
+                    builder.include(marker.getPosition());
+                }
+                LatLngBounds bounds = builder.build();
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
+                mMap.animateCamera(cu);
+            }
+        });
+
     }
 }
 

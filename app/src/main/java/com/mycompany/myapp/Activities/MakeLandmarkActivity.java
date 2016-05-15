@@ -11,7 +11,8 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -27,7 +28,7 @@ import java.util.UUID;
 /**
  * Created by Ruben on 11/05/2016.
  */
-public class MakeLandmarkActivity extends FragmentActivity {
+public class MakeLandmarkActivity extends FragmentActivity implements OnMapReadyCallback {
 
 
     private GoogleMap mMap; //field description goes here
@@ -45,6 +46,11 @@ public class MakeLandmarkActivity extends FragmentActivity {
         final EditText landmarkName = (EditText) findViewById(R.id.NameEditText);
         final EditText landmarkStory = (EditText) findViewById(R.id.StoryEditText);
 
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+
         /*
          * Finish button listener starts a Dialog, that asks for a questName, the returning result is caught by the
          * onDialogPositiveClick(Dialog dialog) and onDialogNegativeClick(Dialog dialog) methods.
@@ -53,8 +59,8 @@ public class MakeLandmarkActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
 
-                if(!(landmarkName.getText().toString().equals("")) && (landmarkPosition != null)) {
-                    customLandmark = new Landmark(landmarkName.getText().toString(), UUID.randomUUID().toString() );
+                if (!(landmarkName.getText().toString().equals("")) && (landmarkPosition != null)) {
+                    customLandmark = new Landmark(landmarkName.getText().toString(), UUID.randomUUID().toString());
                     customLandmark.setLocation(landmarkPosition);
                     customLandmark.setInformation(landmarkStory.getText().toString());
 
@@ -66,14 +72,12 @@ public class MakeLandmarkActivity extends FragmentActivity {
 
                     Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
                     startActivity(i);
-                }else{
+                } else {
                     Toast.makeText(getApplicationContext(),
                             R.string.forgotToast, Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-        setUpMapIfNeeded();
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
@@ -89,34 +93,10 @@ public class MakeLandmarkActivity extends FragmentActivity {
     }
 
 
-
-    /** Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed {@link SupportMapFragment} (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called. */
-    private void setUpMapIfNeeded() {
-        //do a null check to confirm that we have not already instantiated the map
-        if (mMap == null) {
-            //try to obtain the map from the SupportMapFragment
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            //check if we were successful in obtaining the map
-            if (mMap != null) {
-                setUpMap();
-            }
-        }
-    }
-
-    private void setUpMap(){
+    @Override
+    public void onMapReady(GoogleMap map) {
+        //get the locations of the landmarks in this quest
+        mMap = map;
         CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(Constants.COORDINATE_GRONINGEN, Constants.NORMAL_ZOOM);
         mMap.animateCamera(cu);
     }

@@ -14,7 +14,6 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -265,8 +264,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                     alert.show();
 
                 }
-
-                ;
             });
 
             AlertDialog alert = builder.create();
