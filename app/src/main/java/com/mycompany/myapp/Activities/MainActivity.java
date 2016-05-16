@@ -29,6 +29,8 @@ import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.Objects.Quest;
 import com.mycompany.myapp.R;
 import com.mycompany.myapp.Objects.User;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 import java.util.ArrayList;
 
@@ -89,6 +91,21 @@ public class MainActivity extends AppCompatActivity {
 
 
             db.close(); //closing database connection
+
+            //testserver
+            Parse.initialize(new Parse.Configuration.Builder(ctx)
+                            .applicationId("htcAppId")
+                            .clientKey(null)
+                            .server("http://harrie.lutztec.nl/parse/")
+
+                            .build()
+            );
+            ParseObject testObject = new ParseObject("UserObject");
+            testObject.put("user", "u");
+            testObject.saveInBackground();
+
+
+            //endtestserver
 
             //record the fact that the app has been started at least once
             settings.edit().putBoolean("first_time", false).commit();
