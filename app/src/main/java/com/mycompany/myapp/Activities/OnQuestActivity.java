@@ -2,6 +2,8 @@ package com.mycompany.myapp.Activities;
 
 import android.Manifest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -13,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -31,6 +34,7 @@ import com.mycompany.myapp.Constants;
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
 import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.Objects.Quest;
+import com.mycompany.myapp.Objects.Quiz;
 import com.mycompany.myapp.R;
 import com.mycompany.myapp.Objects.User;
 
@@ -58,6 +62,10 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     private LocationManager locationManager; //the instance for managing the location listener
     private Landmark currentTarget; //the next landmark within the currently active quest
     private int end; //an auxiliary variable to check whether the current quest will be completed after reaching the next landmark (1 == yes, 0 == no)
+
+    private Quiz quiz; //the quiz corresponding to the current landmark
+    private Button quizButton; //the button for starting a quiz about the current landmark
+    private String[] items; //the available answers for the multiple choice questions
 
     /* Initialises the activity as described above after loading the passed quest from the database.
      * Next, checks if GPS is enabled, and starts a location listener instance if possible. */
@@ -202,38 +210,70 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         double currentLongitude = location.getLongitude();
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
-        DatabaseHelper helper = new DatabaseHelper(getBaseContext()); //TODO: close database???
-        User user = helper.getUser(helper.getReadableDatabase());
+        final DatabaseHelper helper = new DatabaseHelper(getBaseContext()); //TODO: close database???
+        final User user = helper.getUser(helper.getReadableDatabase());
 
         if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
+            // This gets called twice!!! Should only once
             int points = currentTarget.getPoints();
             user.addPoints(points);
             helper.updateInDatabase(helper, user);
             Toast.makeText(getApplicationContext(),
                     "Reached landmark! +10 points", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(getBaseContext(), LandMarkPopUpActivity.class);
-            i.putExtra("passedLandmark", currentTarget);
-            startActivity(i);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
+
+            builder.setNegativeButton("CONTINUE", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    if (end == 1) { //end of quest
+                        //stop location updates
+                        try {
+                            locationManager.removeUpdates(locationListener);
+                        } catch (SecurityException e) {
+                            Log.e("Security Exception", "No permission to get location: " + e);
+                        }
+                        user.finishQuest(user.getActiveQuest());
+                        helper.updateInDatabase(helper, user);
+
+                        Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
+                        in.putExtra("finishedQuest", passedQuest);
+                        startActivity(in);
+                        finish();
+                    } else {
+                        dialog.cancel();
+                    }
+                }
+            });
+
+            builder.setPositiveButton("QUIZ", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    quiz = currentTarget.getQuiz();
+                    //items = quiz.getPossibleAnswers();
+                    items = new String[]{"answer A", "answer B", "answer C"};
+                    AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
+                    //builder.setTitle(quiz.getQuestion());
+                    builder.setTitle("Examplequestion?");
+                    builder.setItems(items, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int item) {
+                            //do something with the selection
+                            Toast.makeText(getApplicationContext(),
+                                    items[item], Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.setTitle(getResources().getString(R.string.landmarkFound_PopupWindow));
+            alert.setMessage(currentTarget.getInformation());
+            alert.show();
 
             user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
-                if (end == 1) { //end of quest
-                    //stop location updates
-                    try {
-                        locationManager.removeUpdates(locationListener);
-                    }catch(SecurityException e){
-                        Log.e("Security Exception", "No permission to get location: " + e);
-                    }
-                    user.finishQuest(user.getActiveQuest());
-                    helper.updateInDatabase(helper, user);
-
-                    Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
-                    in.putExtra("finishedQuest", passedQuest);
-                    startActivity(in);
-                    finish();
-                } else {
-                    end = 1;
-                }
+                end = 1;
             } else {
                 user.getActiveQuest().getVisitedLandmarks().add(currentTarget);
                 helper.updateInDatabase(helper, user);

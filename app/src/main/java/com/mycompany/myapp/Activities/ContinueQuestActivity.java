@@ -1,5 +1,7 @@
 package com.mycompany.myapp.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -42,10 +44,10 @@ public class ContinueQuestActivity extends AppCompatActivity {
         db.close();
         helper.close();
 
-        ListView listView = (ListView) findViewById(R.id.listView1);
+        final ListView listView = (ListView) findViewById(R.id.listView1);
 
         //redirect to quest explanation page, passing the chosen quest, also updating the active quest to be the selected quest
-        try {
+        if(listView != null) {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -62,17 +64,39 @@ public class ContinueQuestActivity extends AppCompatActivity {
                     startActivity(i);
                 }
             });
-        }catch(NullPointerException e){
-            Log.e("ListItem Error", "A list item is null: " + e);
         }
-
 
         //get all current quests and put them in a list view
         ArrayList<Quest> currentQuests = user.getCurrentQuests();
 
-        ArrayAdapter<Quest> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, currentQuests);
-        listView.setAdapter(adapter2);
+        final ArrayAdapter<Quest> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, currentQuests);
+        if (listView != null) {
+            listView.setAdapter(adapter2);
 
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+                public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, long id) {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ContinueQuestActivity.this);
+
+                    builder.setNeutralButton(getResources().getString(R.string.deleteButton), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            chosenQuest = (Quest) parent.getAdapter().getItem(position);
+                            helper = new DatabaseHelper(getBaseContext());
+                            user.getCurrentQuests().remove(chosenQuest);
+                            helper.updateInDatabase(helper, user);
+                            helper.close();
+                            adapter2.notifyDataSetChanged();
+                        }
+                    });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                    return true;
+                }
+            });
+        }
 
     }
 }

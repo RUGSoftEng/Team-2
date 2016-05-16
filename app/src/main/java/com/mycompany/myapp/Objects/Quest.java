@@ -105,4 +105,8 @@ public abstract class Quest implements Serializable{
     //TODO should check for string name and other possibly unwanted user input
     /* Returns whether the quest is a valid quest (true) or not (false). */
     public boolean validate(){ return true; };
+
+    public boolean isUserGenerated (){
+        return this.isUserGenerated;
+    }
 }

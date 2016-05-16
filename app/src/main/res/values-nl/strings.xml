@@ -6,11 +6,14 @@
     <!-- MainActivity -->
     <string name="JoinUsText_main">Ontdek de stad samen met ons!</string>
     <string name="meetGroningenText_main">Meet Groningen</string>
-    <string name="newQuestButton_main">Niewe zoektocht!</string>
+    <string name="newQuestButton_main">Nieuwe zoektocht!</string>
     <string name="createQuestButton_main">Maak je eigen zoektocht!</string>
     <string name="continueQuestButton_main">Ga verder met een zoektocht</string>
     <string name="mapButton_main">Overzicht van de stad</string>
     <string name="userpageButton_main">"Gebruiker"</string>
+        <!-- New quest AlertDialog-->
+        <string name="ownQuestButton">Maak je eigen</string>
+        <string name="existingQuestButton">Kies een bestaande</string>
 
     <!-- QuestActivity -->
     <string name="quest_text">Bezoek de volgende locaties:</string>
@@ -38,7 +41,8 @@
     <string name="finishText_makeQuest">Voltooi</string>
     <string name="ChooseText_makeQuest">Kies:</string>
     <string name="InQuestText_makeQuest">Al in zoektocht:</string>
-
+    <string name="AddLandmark_makeQuest">Eigen plek</string>
+    <string name="AddLandmarkButton_makeQuest">Nieuw</string>
 
     <!-- Landmark_Popup_Window-->
     <string name="landmarkFound_PopupWindow">Gefeliciteerd! Bezienswaardigheid gevonden!</string>
@@ -50,24 +54,32 @@
     <string name="pEarnedText_Userpage">Punten verdiend</string>
     <string name="questFinishedText_Userpage">Zoektochten afgerond</string>
 
+    <!-- ContinueQuestActivity-->
+    <string name="startedQuest_continue">Mijn zoektochten</string>
+    <string name="deleteButton">Verwijder deze zoektocht</string>
+
     <!-- OnQuestActivity-->
     <string name="progressText_OnQuest">Zoektocht vooruitgang:</string>
-    <string name="nextLandmarkText_OnQuest">Vind:</string>
+    <string name="nextLandmarkText_OnQuest">Zoek:</string>
     <string name="nextLandmarksText_OnQuest">Resterende bezienswaardigheden:</string>
 
-    <!-- NewQuestPopupActivity-->
-    <string name="ownQuestButton">Maak je eigen</string>
-    <string name="existingQuestButton">Kies een bestaande</string>
+    <!-- AskQuestNameDialog -->
+    <string name="questName_dialog">Naam zoektocht</string>
+    <string name="messageText_dialog">Geef je zoektocht een naam</string>
+    <string name="done_dialog">Klaar</string>
+    <string name="back_dialog">Terug</string>
 
-
+    <!-- MakeLandMarkActivity -->
+    <string name="landmarkInfo_makeLandmark">Dit is een hele mooie plek waar je veel kunt zien.</string>
+    <string name="infoEditText_makeLandmark">Informatie</string>
     <string name="questNameText">Naam</string>
-    <string name="StoryText">Story</string>
-    <string name="NameEditText">Name</string>
-    <string name="finishButton_makeLandmark">Finish</string>
-    <string name="createQuestButton">Create Quest</string>
-    <string name="forgotToast">Enter a name</string>
-    <string name="customAddedTextToast">Landmark added to the system</string>
-    <string name="hintText">Mr Black</string>
+    <string name="nameEditText">Mijn plek</string>
+
+    <string name="finishButton_makeLandmark">Klaar</string>
+    <string name="createQuestButton">Creëer zoektocht</string>
+    <string name="forgotToast">Kies een locatie en een naam</string>
+    <string name="customAddedTextToast">Bezienswaardigheid toegevoegd</string>
+    <string name="MakeLandmarkButton">Maak bezienswaardigheid</string>
 
 
 </resources>

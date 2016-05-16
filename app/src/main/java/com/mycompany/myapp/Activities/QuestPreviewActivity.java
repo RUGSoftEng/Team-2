@@ -25,7 +25,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -50,7 +51,8 @@ import java.util.List;
 public class QuestPreviewActivity extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener,
+        OnMapReadyCallback {
 
     public static final String TAG = QuestPreviewActivity.class.getSimpleName();
 
@@ -88,7 +90,10 @@ public class QuestPreviewActivity extends FragmentActivity implements
         currentUser = dbhelper.getUser(db);
 
         setContentView(R.layout.activity_questpreview);
-        setUpMapIfNeeded();
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -100,7 +105,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .setInterval(10 * Constants.MILLISEC)        //10 seconds, in milliseconds
-                .setFastestInterval(1 * Constants.MILLISEC); //1 second, in milliseconds
+                .setFastestInterval(Constants.MILLISEC); //1 second, in milliseconds
 
         ListView listView = (ListView) findViewById(R.id.listView2);
         ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, passedQuest.getLandmarks());
@@ -150,13 +155,12 @@ public class QuestPreviewActivity extends FragmentActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        setUpMapIfNeeded();
         mGoogleApiClient.connect();
 
         //check if quest is already in User's quests and change according to (don't) show pick quest button
         currentUser = dbhelper.getUser(dbhelper.getReadableDatabase());
         for(Quest q : currentUser.getCurrentQuests()) {
-            if (q.getID() == passedQuest.getID()) {
+            if (q.getID().equals(passedQuest.getID())) {
                 Log.d("TEST", "passedQuest is in currentUser, onResume()");
                 pickQuest.setVisibility(View.GONE); //remove the 'pick this quest' button
             }
@@ -174,38 +178,10 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
-    /** Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed {@link SupportMapFragment} (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called. */
-    private void setUpMapIfNeeded() {
-        //do a null check to confirm that we have not already instantiated the map
-        if (mMap == null) {
-            //try to obtain the map from the SupportMapFragment
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            //check if we were successful in obtaining the map
-            if (mMap != null) {
-                setUpMap();
-            }
-        }
-    }
-
-    /** This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null. */
-    private void setUpMap() {
-        //get the locations of the landmarks in this quest
+    @Override
+    public void onMapReady(GoogleMap map) {
+       //get the locations of the landmarks in this quest
+        mMap = map;
         Marker testmark;
         markers = new ArrayList<>();
         for (Landmark landmark : passedQuest.getLandmarks()) {
@@ -214,7 +190,8 @@ public class QuestPreviewActivity extends FragmentActivity implements
                     .title(landmark.getName()));
             markers.add(testmark);
         }
-    }
+     }
+
 
     /* Handles one's updated location by moving their location marker on the map, and by moving
      * the map camera to keep the user and all landmarks within the previewed quest in view. */

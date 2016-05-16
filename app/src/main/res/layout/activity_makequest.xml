@@ -10,15 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/AddLandmark_makeQuest"
+            android:id="@+id/addLandmarkText"
+            android:layout_below="@+id/map"
+            android:layout_alignParentStart="true" />
+
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:id="@+id/chooseLandmarkList"
             android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/ChosenQuestText"
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@+id/FinishButton"
-            android:layout_above="@+id/FinishButton" />
+            android:layout_alignParentBottom="true" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -34,7 +42,7 @@
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:name="com.google.android.gms.maps.MapFragment"
             tools:context=".Activities.MakeQuestActivity"
             android:layout_alignParentStart="false"
             android:layout_alignParentTop="true" />
@@ -45,7 +53,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/ChooseText_makeQuest"
             android:id="@+id/ChosenQuestText"
-            android:layout_below="@+id/map"
+            android:layout_above="@+id/chooseLandmarkList"
             android:layout_alignParentStart="true" />
 
         <TextView
@@ -63,7 +71,15 @@
             android:id="@+id/InQuestList"
             android:layout_below="@+id/InQuestText"
             android:layout_toEndOf="@+id/FinishButton"
-            android:layout_above="@+id/FinishButton" />
+            android:layout_alignParentBottom="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/AddLandmarkButton_makeQuest"
+            android:id="@+id/ownLandmarkButton"
+            android:layout_centerVertical="true"
+            android:layout_alignEnd="@+id/addLandmarkText" />
 
     </RelativeLayout>
 

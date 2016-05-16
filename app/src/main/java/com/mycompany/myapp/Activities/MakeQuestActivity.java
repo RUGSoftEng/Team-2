@@ -10,13 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -42,9 +41,7 @@ import java.util.UUID;
  *
  * Created by Ruben on 28-02-2016.
  */
-public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener {
-
-    private Button FINISH;
+public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener, OnMapReadyCallback {
 
     private GoogleMap mMap; //the (Google) map
 
@@ -52,6 +49,10 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     private ArrayList<Landmark> selectedLandmarks; //the data corresponding to the second list, i.e. all landmarks selected thus far
 
     private List<Marker> markers; //the list of markers of landmark locations
+
+
+    public ArrayAdapter<Landmark> adapter, adapter2;
+
 
     /* Initialises the activity as described above, binds 'finish' to opening an AskQuestNameDialog pop-
      * up for entering the created quest's name and adding the new quest to the database when the pop-up
@@ -62,9 +63,16 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_makequest);
-        FINISH = (Button) findViewById(R.id.FinishButton);
+
+        Button FINISH = (Button) findViewById(R.id.FinishButton);
+        Button ownLandmarkButton = (Button) findViewById(R.id.ownLandmarkButton);
+
         final ListView chooseLandmarkListView = (ListView) findViewById(R.id.chooseLandmarkList);
         final ListView inQuestListView = (ListView) findViewById(R.id.InQuestList);
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         //take all landmark objects from the database and put them into a ListView
         DatabaseHelper helper = new DatabaseHelper(this);
@@ -73,12 +81,12 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         landmarks = helper.getAllLandmarks(db);
         selectedLandmarks = new ArrayList<>();
 
-        final ArrayAdapter<Landmark> adapter = new ArrayAdapter<>(this,
+       adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, landmarks);
 
         chooseLandmarkListView.setAdapter(adapter);
 
-        final ArrayAdapter<Landmark> adapter2 = new ArrayAdapter<>(this,
+        adapter2 = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, selectedLandmarks);
 
         inQuestListView.setAdapter(adapter2);
@@ -138,11 +146,63 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
             }
         });
 
+        ownLandmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), MakeLandmarkActivity.class);
+                startActivity(i);
+            }
+        });
 
-        setUpMapIfNeeded();
+
+        db.close();
+        helper.close();
+    }
+
+
+
+    /* The dialog fragment receives a reference to this Activity through the
+     * Fragment.onAttach() callback, which it uses to call the following methods
+     * defined by the AskQuestNameDialog.QuestNameDialogListener interface. */
+    @Override
+    public void onDialogPositiveClick(AskQuestNameDialog dialog) {
+        //user touched the dialog's positive button, a new quest is created and added to the User
+        ExactQuest quest = new ExactQuest(UUID.randomUUID().toString(), dialog.getQuestName(), true);
+        quest.addLandmarkList(selectedLandmarks);
+
+        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+        User user = helper.getUser(helper.getReadableDatabase());
+        user.addQuest(quest);
+        helper.updateInDatabase(helper, user);
+
+        helper.close();
+
+        Intent i = new Intent(getBaseContext(), ContinueQuestActivity.class);
+        startActivity(i);
+    }
+
+    /* Empty method that makes sure that nothing is done when one clicks the dialog's negative button. */
+    @Override
+    public void onDialogNegativeClick(AskQuestNameDialog dialog) {
+        //user touched the dialog's negative button, nothing happens
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map){
+        mMap = map;
+        //get the locations of the landmarks in this quest
+        Marker testmark;
+        markers = new ArrayList<>();
+        DatabaseHelper helper = new DatabaseHelper(this);
+        for (Landmark landmark : helper.getAllLandmarks(helper.getReadableDatabase())) {
+            testmark = mMap.addMarker(new MarkerOptions()
+                    .position(landmark.getLocation())
+                    .title(landmark.getName()));
+            markers.add(testmark);
+        }
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-
 
             public boolean onMarkerClick(Marker marker) {
                 for (Landmark landmark : landmarks) {
@@ -172,82 +232,6 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
             }
         });
 
-
-        db.close();
-        helper.close();
-    }
-
-
-
-    /* The dialog fragment receives a reference to this Activity through the
-     * Fragment.onAttach() callback, which it uses to call the following methods
-     * defined by the AskQuestNameDialog.QuestNameDialogListener interface. */
-    @Override
-    public void onDialogPositiveClick(AskQuestNameDialog dialog) {
-        //user touched the dialog's positive button, a new quest is created and added to the User
-        ExactQuest quest = new ExactQuest(UUID.randomUUID().toString(), dialog.getQuestName(), true); //TODO: Still hardcoded name
-        quest.addLandmarkList(selectedLandmarks);
-
-        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-        User user = helper.getUser(helper.getReadableDatabase());
-        user.addQuest(quest);
-        helper.updateInDatabase(helper, user);
-
-        helper.close();
-
-        Intent i = new Intent(getBaseContext(), ContinueQuestActivity.class);
-        startActivity(i);
-    }
-
-    /* Empty method that makes sure that nothing is done when one clicks the dialog's negative button. */
-    @Override
-    public void onDialogNegativeClick(AskQuestNameDialog dialog) {
-        //user touched the dialog's negative button, nothing happens
-
-    }
-
-
-    /** Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed {@link SupportMapFragment} (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called. */
-    private void setUpMapIfNeeded() {
-        //do a null check to confirm that we have not already instantiated the map
-        if (mMap == null) {
-            //try to obtain the map from the SupportMapFragment
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            //check if we were successful in obtaining the map
-            if (mMap != null) {
-                setUpMap();
-            }
-        }
-    }
-
-    /** This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null. */
-    private void setUpMap() {
-        //get the locations of the landmarks in this quest
-        Marker testmark;
-        markers = new ArrayList<>();
-        DatabaseHelper helper = new DatabaseHelper(this);
-        for (Landmark landmark : helper.getAllLandmarks(helper.getReadableDatabase())) {
-            testmark = mMap.addMarker(new MarkerOptions()
-                    .position(landmark.getLocation())
-                    .title(landmark.getName()));
-            markers.add(testmark);
-        }
     }
 }
 

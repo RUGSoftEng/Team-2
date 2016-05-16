@@ -1,13 +1,16 @@
 package com.mycompany.myapp.Activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,7 +23,6 @@ import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
 
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
@@ -47,10 +49,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageSwitcher imageSwitcher; //the instance that switches the background image from time to time
     private ArrayList<Integer> imgs = new ArrayList<>(); //the list of images to be displayed consecutively
     private Context ctx = this; //the context of the application, which holds global information about its execution environment
-    private Button continueButton; //the button for resuming an already started quest
 
     /* Initialises the activity as described above, and binds clicking the 'new quest', 'map', 'user page', and 'continue'
-     * buttons to starting a new NewQuestPopupActivity, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
+     * buttons to starting a new Alert Dialog, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
      * Furthermore it handles image switching by having a runnable change the background every IMAGE_DELAY milliseconds. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             //endtestserver
 
             //record the fact that the app has been started at least once
-            settings.edit().putBoolean("first_time", false).commit();
+            settings.edit().putBoolean("first_time", false).apply();
 
             //request location permission if necessary
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -141,41 +142,72 @@ public class MainActivity extends AppCompatActivity {
 
         //buttons
         Button pickQuest = (Button) findViewById(R.id.newQuestButton);
+        assert pickQuest != null;
         pickQuest.setOnClickListener(new View.OnClickListener() {
-            @Override
+
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), NewQuestPopupActivity.class);
-                startActivity(i);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                //TODO change the strings back to the ones in the strings file as soon as we move the Make Landmark button somewhere else
+
+                builder.setNeutralButton("NEW", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+                builder.setPositiveButton("EXISTING", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+//                builder.setNegativeButton("LANDMARK", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        Intent i = new Intent(getBaseContext(), MakeLandmarkActivity.class);
+//                        startActivity(i);
+//                    }
+//                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
         Button mapButton = (Button) findViewById(R.id.mapButton);
-        mapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), MapActivity.class);
-                startActivity(i);
-            }
-        });
+        if (mapButton != null) {
+            mapButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getBaseContext(), MapActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
 
         Button userpageButton = (Button) findViewById(R.id.userpageButton_main);
-        userpageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), UserPageActivity.class);
-                startActivity(i);
-            }
-        });
+        if (userpageButton != null) {
+            userpageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getBaseContext(), UserPageActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
 
-        continueButton = (Button) findViewById(R.id.continueButton);
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), ContinueQuestActivity.class));
-            }
-        });
-
-
+        Button continueButton = (Button) findViewById(R.id.continueButton);
+        if (continueButton != null) {
+            continueButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getBaseContext(), ContinueQuestActivity.class));
+                }
+            });
+        }
 
 
         //make image switcher to switch background
@@ -191,17 +223,18 @@ public class MainActivity extends AppCompatActivity {
 
         imageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             public View makeView() {
-                ImageView myView = new ImageView(getApplicationContext());
-                return myView;
+                return new ImageView(getApplicationContext());
             }
         });
-        //should always have an element, otherwise null pointer exception TODO: catch any exceptions/errors
+        //should always have an element
         imageSwitcher.postDelayed(new Runnable() {
             int i = 0;
 
             public void run() {
                 LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout);
-                rLayout.setBackground(getResources().getDrawable(imgs.get(i)));
+                if (rLayout != null) {
+                    rLayout.setBackground(ResourcesCompat.getDrawable(getResources(), imgs.get(i), null));
+                }
                 i++;
                 if (i == imgs.size()) i = 0;
                 imageSwitcher.postDelayed(this, IMAGE_DELAY);
