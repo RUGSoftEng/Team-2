@@ -162,7 +162,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         for(Quest q : currentUser.getCurrentQuests()) {
             if (q.getID().equals(passedQuest.getID())) {
                 Log.d("TEST", "passedQuest is in currentUser, onResume()");
-                pickQuest.setVisibility(View.GONE); //remove the 'pick this quest' button
+                //pickQuest.setVisibility(View.GONE); //remove the 'pick this quest' button
             }
         }
     }

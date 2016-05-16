@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@drawable/martini4"
     android:alpha=".75"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main" tools:context=".Activities.MainActivity">
+    tools:showIn="@layout/activity_main" tools:context=".Activities.MainActivity"
+    android:background="@drawable/main_background2"
+    android:gravity="top|bottom">
 
     <ImageSwitcher
     android:id="@+id/imageSwitcher1"
@@ -21,71 +22,89 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp">
-
-        <ImageView
-            android:layout_marginTop="80dp"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:background="@color/wallet_holo_blue_light"
-            android:alpha=".75"
-            android:id="@+id/imageView" />
+        android:layout_height="500dp"
+        android:clickable="true"
+        android:backgroundTint="@color/accent_material_light">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/JoinUsText_main"
             android:id="@+id/textView"
-            android:textColor="#ffffff"
+            android:textColor="#0277bd"
+            android:gravity="center"
             android:layout_below="@+id/congratsText"
-            android:layout_alignStart="@+id/congratsText" />
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:background="@drawable/main_background_element1"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/newQuestButton"
+            android:layout_marginTop="-10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/meetGroningenText_main"
             android:id="@+id/congratsText"
-            android:textColor="#ffffff"
+            android:textColor="#0277bd"
             android:textSize="@dimen/abc_text_size_display_1_material"
-            android:layout_alignTop="@+id/imageView"
-            android:layout_toEndOf="@+id/userpageButton_main" />
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
 
         <Button
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
             android:text="@string/newQuestButton_main"
             android:id="@+id/newQuestButton"
+            android:layout_above="@+id/mapButton"
             android:enabled="true"
             android:nestedScrollingEnabled="false"
-            android:layout_below="@+id/textView"
-            android:layout_alignEnd="@+id/mapButton"
-            android:layout_alignStart="@+id/continueButton" />
+            android:background="#0277bd"
+            android:layout_margin="5dp"
+            android:layout_centerHorizontal="true" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
             android:text="@string/mapButton_main"
             android:id="@+id/mapButton"
-            android:layout_below="@+id/newQuestButton"
-            android:layout_alignStart="@+id/textView" />
+            android:layout_above="@+id/continueButton"
+            android:background="#0277bd"
+            android:layout_margin="5dp"
+            android:enabled="true"
+            android:layout_centerHorizontal="true"/>
 
         <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
             android:text="@string/continueQuestButton_main"
             android:id="@+id/continueButton"
-            android:layout_below="@+id/mapButton"
-            android:layout_alignStart="@+id/mapButton" />
+
+            android:layout_above="@+id/userpageButton_main"
+            android:layout_margin="5dp"
+
+            android:background="#0277bd"
+            android:layout_centerHorizontal="true"
+            android:layout_height="35dp"
+            android:layout_width="200dp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
             android:text="@string/userpageButton_main"
             android:id="@+id/userpageButton_main"
-            android:layout_below="@+id/continueButton"
-            android:layout_alignParentStart="true" />
+            android:layout_marginBottom="27dp"
+            android:layout_alignParentBottom="true"
+            android:background="#0277bd"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

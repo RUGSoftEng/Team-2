@@ -80,6 +80,8 @@
     <string name="forgotToast">Kies een locatie en een naam</string>
     <string name="customAddedTextToast">Bezienswaardigheid toegevoegd</string>
     <string name="MakeLandmarkButton">Maak bezienswaardigheid</string>
+    <string name="congratulations2">gefeliciteerd</string>
+    <string name="gg">Goed gedaan</string>
 
 
 </resources>

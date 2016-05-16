@@ -16,13 +16,12 @@ import java.util.ArrayList;
  */
 public class DatabaseTest extends AndroidTestCase{
         private DatabaseHelper helper;
-        private static final int UNUSED_ID = 9999; //not used id in database
-        private  Context mMockContext;
+        private static final String UNUSED_ID = "9999"; //not used id in database
 
-        @Override
+    @Override
         public void setUp() throws Exception {
             super.setUp();
-            mMockContext =  new RenamingDelegatingContext(getContext(), "test_");
+        Context mMockContext = new RenamingDelegatingContext(getContext(), "test_");
             helper = new DatabaseHelper(mMockContext);
         }
 
@@ -37,7 +36,7 @@ public class DatabaseTest extends AndroidTestCase{
             User u1 = new User(UNUSED_ID);
             helper.putInDatabase(helper, u1);
             User u = helper.getUser(helper.getReadableDatabase());
-            int answerID = u.getID();
+            String answerID = u.getID();
             helper.deleteUser(helper, UNUSED_ID);
             assertEquals(UNUSED_ID, answerID);
         }
@@ -49,7 +48,7 @@ public class DatabaseTest extends AndroidTestCase{
             ArrayList<Landmark> l = helper.getAllLandmarks(helper.getReadableDatabase());
             String answerName = null;
             for(int i = 0; i<l.size(); i++) {
-                if(l.get(i).getID() == UNUSED_ID) {
+                if(l.get(i).getID().equals(UNUSED_ID)) {
                     answerName = l.get(i).getName();
                 }
             }

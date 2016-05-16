@@ -14,9 +14,9 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -29,8 +29,8 @@ import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
 import com.mycompany.myapp.DatabaseStuff.Initializer;
 import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.Objects.Quest;
-import com.mycompany.myapp.R;
 import com.mycompany.myapp.Objects.User;
+import com.mycompany.myapp.R;
 
 import java.util.ArrayList;
 
@@ -194,13 +194,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         //make image switcher to switch background
-        //NOTE: For some reason martini.jpg doesn't work so there might be more pictures not working
-        imgs.add(R.drawable.martini4);
-        imgs.add(R.drawable.splashscreen5);
-        imgs.add(R.drawable.splashscreen7);
-        imgs.add(R.drawable.splashscreen6);
-        imgs.add(R.drawable.splashscreen3);
 
+        imgs.add(R.drawable.main_background2);
+        imgs.add(R.drawable.main_background2);
+        imgs.add(R.drawable.main_background2);
+        imgs.add(R.drawable.main_background2);
+        imgs.add(R.drawable.main_background2);
 
         imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher1);
 

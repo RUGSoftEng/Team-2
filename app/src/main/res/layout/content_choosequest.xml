@@ -12,10 +12,11 @@
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true">
+        android:layout_height="500dp"
+        android:clickable="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true">
     </ListView>
-
 
 
 </RelativeLayout>

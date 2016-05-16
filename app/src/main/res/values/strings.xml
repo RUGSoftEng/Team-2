@@ -81,5 +81,7 @@
     <string name="forgotToast">Please choose a location and name</string>
     <string name="customAddedTextToast">Landmark added to the system</string>
     <string name="MakeLandmarkButton">Make Landmark</string>
+    <string name="congratulations2">congratulations</string>
+    <string name="gg">Well done</string>
 
 </resources>

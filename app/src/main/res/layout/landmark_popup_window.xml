@@ -19,10 +19,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/landmarkFoundText"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:text="@string/landmarkFound_PopupWindow" />
+        android:text="@string/landmarkFound_PopupWindow"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:textColor="#140b41" />
 
     <Button
         android:layout_width="wrap_content"
@@ -40,6 +41,25 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:text="@string/quizButton_PopupWindow" />
+        android:text="@string/quizButton_PopupWindow"
+        android:background="#0277bd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/gg"
+        android:id="@+id/textView3"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/imageView4"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:id="@+id/imageView4"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/material_design1" />
 
 </RelativeLayout>
