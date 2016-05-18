@@ -73,7 +73,7 @@
             android:layout_marginRight="5dp"
             android:textColor="#0277bd"
             android:layout_above="@+id/InQuestList"
-            android:layout_alignEnd="@+id/InQuestList"
+            android:layout_alignStart="@+id/InQuestList"
             android:layout_below="@+id/ownLandmarkButton" />
 
         <ListView
@@ -86,7 +86,7 @@
 
         <Button
             android:layout_width="140dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:text="@string/AddLandmarkButton_makeQuest"
             android:background="#0277bd"
             android:id="@+id/ownLandmarkButton"
