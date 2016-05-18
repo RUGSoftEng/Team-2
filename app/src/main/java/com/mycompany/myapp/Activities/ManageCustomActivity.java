@@ -1,9 +1,6 @@
 package com.mycompany.myapp.Activities;
 
 import android.app.Activity;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,6 +44,9 @@ public class ManageCustomActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_managecustom);
 
+        customQuestList = new ArrayList<>();
+        customLandmarkList = new ArrayList<>();
+
         DatabaseHelper helper = new DatabaseHelper(this);
         User user = helper.getUser(helper.getReadableDatabase());
         for(Quest quest : user.getCurrentQuests()){
@@ -58,7 +58,11 @@ public class ManageCustomActivity extends Activity {
         selectedQuestText = (TextView) findViewById(R.id.customQuestText);
         selectedLandmarkText = (TextView) findViewById(R.id.customLandmarkText);
 
-        customLandmarkList = helper.getAllLandmarks(helper.getReadableDatabase());
+        for(Landmark l : helper.getAllLandmarks(helper.getReadableDatabase())){
+            if(l.isUserGenerated()) {
+                customLandmarkList.add(l);
+            }
+        }
 
         ListView customLandmarksView = (ListView) findViewById(R.id.customLandmarkListView);
         final ArrayAdapter adapterL = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, customLandmarkList);
@@ -74,25 +78,23 @@ public class ManageCustomActivity extends Activity {
         sendQuestButton = (Button) findViewById(R.id.sendQuestButton);
 
         //TODO: these have to be visible again when implemented
-        sendQuestButton.setVisibility(View.GONE);
-        sendLandmarkButton.setVisibility(View.GONE);
+        sendQuestButton.setVisibility(View.INVISIBLE);
+        sendLandmarkButton.setVisibility(View.INVISIBLE);
 
 
         customQuestView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedLandmark = (Landmark) parent.getAdapter().getItem(position);
-                selectedLandmarkText.setText(selectedLandmark.getName());
-                //setChanged??
+                selectedQuest = (Quest) parent.getAdapter().getItem(position);
+                selectedQuestText.setText(selectedQuest.getName());
             }
         });
 
         customLandmarksView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedQuest = (Quest) parent.getAdapter().getItem(position);
-                selectedQuestText.setText(selectedQuest.getName());
-                //setChanged??
+                selectedLandmark = (Landmark) parent.getAdapter().getItem(position);
+                selectedLandmarkText.setText(selectedLandmark.getName());
             }
         });
 
@@ -100,8 +102,13 @@ public class ManageCustomActivity extends Activity {
         deleteLandmarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                if (selectedLandmark != null) {
+                    DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+                    helper.deleteLandmark(helper, selectedLandmark.getID());
+                    customLandmarkList.remove(selectedLandmark);
+                    selectedLandmark = null;
+                    helper.close();
+                }
                 adapterL.notifyDataSetChanged();
             }
         });
@@ -109,8 +116,23 @@ public class ManageCustomActivity extends Activity {
         deleteQuestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectedQuest != null) {
+                    DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+                    User u = helper.getUser(helper.getReadableDatabase());
+                    //TODO: could go more efficient?, now quick fix
+                    int i = 0;
+                    for(Quest q : u.getCurrentQuests()){
+                        if(q.getID().equals(selectedQuest.getID())){
+                            u.getCurrentQuests().remove(i);
+                        }
+                        i++;
+                    }
 
-
+                    helper.updateInDatabase(helper, u);
+                    helper.close();
+                    customQuestList.remove(selectedQuest);
+                    selectedQuest = null;
+                }
                 adapterQ.notifyDataSetChanged();
             }
         });

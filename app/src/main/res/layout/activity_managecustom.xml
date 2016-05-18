@@ -21,16 +21,17 @@
             android:text="@string/sendQuestButton"
             android:id="@+id/sendQuestButton"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/deleteQuestButton"
             android:layout_toStartOf="@+id/deleteQuestButton"
-            android:layout_alignEnd="@+id/sendLandmarkButton" />
+            android:layout_alignEnd="@+id/sendLandmarkButton"
+            android:layout_below="@+id/customLandmarkListView" />
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="148dp"
             android:id="@+id/customLandmarkListView"
             android:layout_below="@+id/customLandmarkText"
-            android:layout_alignEnd="@+id/deleteQuestButton" />
+            android:layout_alignEnd="@+id/deleteQuestButton"
+            android:layout_above="@+id/deleteQuestButton" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,8 +50,8 @@
             android:text="@string/deleteLandmarkButton"
             android:id="@+id/deleteLandmarkButton"
             android:layout_gravity="end"
-            android:layout_above="@+id/customLandmarkText"
-            android:layout_alignStart="@+id/deleteQuestButton" />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
 
         <Button
             android:layout_width="wrap_content"

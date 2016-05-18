@@ -83,17 +83,18 @@
     <string name="MakeLandmarkButton">Maak bezienswaardigheid</string>
     <string name="congratulations2">gefeliciteerd</string>
     <string name="gg">Goed gedaan</string>
-    <string name="reachedLandmarkToast">Reached landmark! +10 points</string>
-    <string name="deleteQuestButton">Delete Quest</string>
-    <string name="sendQuestButton">Send Quest</string>
-    <string name="customLandmarkText">Custom Landmarks</string>
-    <string name="deleteLandmarkButton">Delete Landmark</string>
-    <string name="sendLandmarkButton">Send Landmark</string>
-    <string name="customQuestText">Custom Quests</string>
-    <string name="imageViewDiscription">BackGround</string>
-    <string name="manageToolbar">Manage</string>
-    <string name="choose_a_quest_from_the_list">Choose a quest from the list!</string>
+    <string name="reachedLandmarkToast">Bezienswaardigheid bereikt! +10 punten</string>
+    <string name="deleteQuestButton">Verwijder tocht</string>
+    <string name="sendQuestButton">Verzend tocht</string>
+    <string name="customLandmarkText">Zelfgemaakte Bezienswaardigheden</string>
+    <string name="deleteLandmarkButton">Verwijder Bezienswaardigheid</string>
+    <string name="sendLandmarkButton">Verzend Bezienswaardigheid</string>
+    <string name="customQuestText">Zelfgemaakte tochten</string>
+    <string name="imageViewDiscription">Achtergrond</string>
+    <string name="manageToolbar">Beheren</string>
+    <string name="choose_a_quest_from_the_list">Kies een toch van de lijst!</string>
     <string name="you_can_chose_to_continue_one_of_the_started_quests_or_long_tap_to_remove_it_from_the_list">You can chose to continue one of the started quests, or long tap to remove it from the list!</string>
+    <string name="helpMenu">help</string>
 
 
 </resources>

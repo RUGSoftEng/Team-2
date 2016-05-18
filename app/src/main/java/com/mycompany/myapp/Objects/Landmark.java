@@ -26,6 +26,7 @@ public class Landmark implements Serializable{
     //private ArrayList<Question> questions = new ArrayList<Question>(); TODO not yet used so not needed yet (could bring errors serialization errors)
     private double lat; //this landmark's latitude, i.e. its vertical coordinate on the globe
     private double lng; //this landmark's longitude, i.e. its horizontal coordinate on the globe
+    private boolean isUserGenerated = false; //default is false set to true if userGenerated
 
     /* Constructor which initialises the landmark with its ID and name. */
     public Landmark(String name, String id){
@@ -128,6 +129,14 @@ public class Landmark implements Serializable{
     /* Getter method for amount of points worth. */
     public int getPoints(){
         return this.points;
+    }
+
+    public void setUserGenerated(boolean b){
+        this.isUserGenerated = b;
+    }
+
+    public boolean isUserGenerated(){
+        return this.isUserGenerated;
     }
 
     /*

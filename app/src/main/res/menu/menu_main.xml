@@ -4,4 +4,5 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/manage_custom" android:title = "@string/manageToolbar" />
+    <item android:id="@+id/help" android:title="@string/helpMenu" />
 </menu>

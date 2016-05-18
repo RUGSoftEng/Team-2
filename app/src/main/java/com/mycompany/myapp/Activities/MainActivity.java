@@ -27,6 +27,7 @@ import android.widget.ViewSwitcher;
 
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
 import com.mycompany.myapp.DatabaseStuff.Initializer;
+import com.mycompany.myapp.Dialog.Tutorial;
 import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.Objects.Quest;
 import com.mycompany.myapp.Objects.User;
@@ -57,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
 
         //for the first time of startup initialise stuff by looking for pref file (so could be affected by previous tries, wipe data to be sure)
@@ -243,14 +242,22 @@ public class MainActivity extends AppCompatActivity {
          * automatically handle clicks on the Home/Up button, so long
          * as you specify a parent activity in AndroidManifest.xml.
          */
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.settings:
+
+                return true;
+            case R.id.help:
+                Tutorial t = new Tutorial();
+                t.showHelp();
+                return true;
+            case R.id.manage_custom:
+                Intent i = new Intent(getBaseContext(), ManageCustomActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
 
