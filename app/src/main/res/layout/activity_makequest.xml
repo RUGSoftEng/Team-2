@@ -72,15 +72,10 @@
             android:id="@+id/InQuestText"
             android:layout_marginRight="5dp"
             android:textColor="#0277bd"
-<<<<<<< HEAD
             android:layout_alignStart="@+id/InQuestList"
             android:layout_above="@+id/InQuestList"
             android:layout_alignEnd="@+id/InQuestList"
             android:layout_below="@+id/ownLandmarkButton" />
-=======
-
-            android:layout_alignEnd="@+id/InQuestList" />
->>>>>>> f8fe7879ed6aac631986a9e980e5a6bf3ba88c53
 
         <ListView
             android:layout_width="200dp"
@@ -98,14 +93,8 @@
             android:id="@+id/ownLandmarkButton"
             android:layout_below="@+id/addLandmarkText"
             android:layout_centerHorizontal="true"
-<<<<<<< HEAD
-            android:padding="10dp" />
-=======
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_below="@+id/addLandmarkText"
+            android:padding="10dp"
            />
->>>>>>> f8fe7879ed6aac631986a9e980e5a6bf3ba88c53
 
     </RelativeLayout>
 
