@@ -82,6 +82,7 @@
     <string name="MakeLandmarkButton">Maak bezienswaardigheid</string>
     <string name="congratulations2">gefeliciteerd</string>
     <string name="gg">Goed gedaan</string>
+    <string name="reachedLandmarkToast">Reached landmark! +10 points</string>
 
 
 </resources>

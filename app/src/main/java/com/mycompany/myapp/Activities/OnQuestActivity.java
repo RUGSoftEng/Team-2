@@ -207,7 +207,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             user.addPoints(points);
             helper.updateInDatabase(helper, user);
             Toast.makeText(getApplicationContext(),
-                    "Reached landmark! +10 points", Toast.LENGTH_LONG).show();
+                    R.string.reachedLandmarkToast, Toast.LENGTH_LONG).show();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
 

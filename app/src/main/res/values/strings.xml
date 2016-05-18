@@ -83,5 +83,6 @@
     <string name="MakeLandmarkButton">Create your own landmark</string>
     <string name="congratulations2">congratulations</string>
     <string name="gg">Well done</string>
+    <string name="reachedLandmarkToast">Reached landmark! +10 points</string>
 
 </resources>
