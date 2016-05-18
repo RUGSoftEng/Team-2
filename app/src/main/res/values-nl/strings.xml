@@ -83,6 +83,8 @@
     <string name="congratulations2">gefeliciteerd</string>
     <string name="gg">Goed gedaan</string>
     <string name="reachedLandmarkToast">Reached landmark! +10 points</string>
+    <string name="choose_a_quest_from_the_list">Choose a quest from the list!</string>
+    <string name="you_can_chose_to_continue_one_of_the_started_quests_or_long_tap_to_remove_it_from_the_list">You can chose to continue one of the started quests, or long tap to remove it from the list!</string>
 
 
 </resources>

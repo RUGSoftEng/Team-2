@@ -7,13 +7,13 @@
     <string name="JoinUsText_main">Join us and start exploring the city!</string>
     <string name="meetGroningenText_main">Meet Groningen</string>
     <string name="newQuestButton_main">New quest!</string>
-    <string name="createQuestButton_main">Create A Quest!</string>
+    <string name="createQuestButton_main">Create a Quest!</string>
     <string name="mapButton_main">Overview of the city</string>
-    <string name="continueQuestButton_main">Continue A quest</string>
+    <string name="continueQuestButton_main">Continue a quest</string>
     <string name="userpageButton_main">"Userpage"</string>
         <!-- New quest AlertDialog-->
-        <string name="ownQuestButton">Create your own</string>
-        <string name="existingQuestButton">Pick existing</string>
+        <string name="ownQuestButton">Create your own quest</string>
+        <string name="existingQuestButton">Pick existing quest</string>
 
     <!-- QuestActivity -->
     <string name="quest_text">Visit the following locations:</string>
@@ -33,7 +33,7 @@
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
 
     <!--QuestFinished-->
-    <string name="congratsText_questFinished">Congrats!\n You successfully finished the following quest: </string>
+    <string name="congratsText_questFinished">Congrats!\n You successfully finished\n the following quest: </string>
     <string name="goMainText_questFinished">Go back to the main screen</string>
     <string name="goMainButton_questFinished">main</string>
 
@@ -81,8 +81,10 @@
     <string name="forgotToast">Please choose a location and name</string>
     <string name="customAddedTextToast">Landmark added to the system</string>
     <string name="MakeLandmarkButton">Create your own landmark</string>
-    <string name="congratulations2">congratulations</string>
+    <string name="congratulations2">Quest finished!</string>
     <string name="gg">Well done</string>
     <string name="reachedLandmarkToast">Reached landmark! +10 points</string>
+    <string name="choose_a_quest_from_the_list">Choose a quest from the list!</string>
+    <string name="info_text">You can chose to continue one of the started quests, or long tap remove it from the list!</string>
 
 </resources>
