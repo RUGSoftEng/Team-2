@@ -195,11 +195,11 @@ public class MainActivity extends AppCompatActivity {
 
         //make image switcher to switch background
 
-        imgs.add(R.drawable.main_background2);
-        imgs.add(R.drawable.main_background2);
-        imgs.add(R.drawable.main_background2);
-        imgs.add(R.drawable.main_background2);
-        imgs.add(R.drawable.main_background2);
+        imgs.add(R.mipmap.main_background2);
+        imgs.add(R.mipmap.main_background2);
+        imgs.add(R.mipmap.main_background2);
+        imgs.add(R.mipmap.main_background2);
+        imgs.add(R.mipmap.main_background2);
 
         imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher1);
 

@@ -206,7 +206,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
                 .title("I am here!")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon2)) ;
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon2)) ;
         mMap.addMarker(options);
         //loop through the landmark locations to make sure they are all displayed in the map
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
