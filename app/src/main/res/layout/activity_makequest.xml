@@ -19,23 +19,24 @@
             android:id="@+id/addLandmarkText"
             android:layout_below="@+id/map"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
             android:textColor="#0277bd"/>
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="320dp"
             android:id="@+id/chooseLandmarkList"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@+id/FinishButton"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"/>
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:text="@string/finishText_makeQuest"
             android:id="@+id/FinishButton"
             android:layout_gravity="center_horizontal"
@@ -46,7 +47,7 @@
         <fragment
             android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:name="com.google.android.gms.maps.MapFragment"
             tools:context=".Activities.MakeQuestActivity"
             android:layout_alignParentStart="false"
@@ -60,7 +61,8 @@
             android:id="@+id/ChosenQuestText"
             android:textColor="#0277bd"
             android:layout_above="@+id/chooseLandmarkList"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,28 +70,29 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/InQuestText_makeQuest"
             android:id="@+id/InQuestText"
-            android:layout_below="@+id/map"
+            android:layout_above="@+id/InQuestList"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
             android:textColor="#0277bd"
             android:layout_alignStart="@+id/InQuestList" />
 
         <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="320dp"
             android:id="@+id/InQuestList"
-            android:layout_below="@+id/InQuestText"
-            android:layout_toEndOf="@+id/FinishButton"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentRight="true"/>
 
         <Button
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:text="@string/AddLandmarkButton_makeQuest"
             android:background="#0277bd"
             android:id="@+id/ownLandmarkButton"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_alignEnd="@+id/addLandmarkText" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/addLandmarkText" />
 
     </RelativeLayout>
 
