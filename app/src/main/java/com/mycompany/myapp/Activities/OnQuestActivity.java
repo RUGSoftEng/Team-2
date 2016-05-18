@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -75,7 +76,11 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         setContentView(R.layout.activity_onquest);
 
         passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
-        setUpMapIfNeeded();
+
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         // TODO list should not be empty
         currentTarget = passedQuest.getLandmarks().get(0);
@@ -171,23 +176,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-    }
-
-    /* Checks whether a map has been prepared already, and sets up one if not. */
-    private void setUpMapIfNeeded() {
-        //do a null check to confirm that we have not already instantiated the map
-        if (mMap == null) {
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.onquestmap))
-                    .getMap();
-            //check if we were successful in obtaining the map
-            if (mMap != null) {
-                setUpMap();
-            }
-        }
-    }
-
-    /* Prepares a new map by creating a marker for the next landmark's location and moving the map camera to view it. */
-    private void setUpMap() {
         //show the next landmark on the map
         if (passedQuest.getLandmarks() != null) {
             Landmark lm = passedQuest.getLandmarks().get(0);
