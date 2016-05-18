@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
     <string name="app_name">Meet Groningen</string>
     <string name="action_settings">Instellingen</string>
     <string name="title_activity_next">Zoektocht</string>
@@ -11,9 +11,10 @@
     <string name="continueQuestButton_main">Ga verder met een zoektocht</string>
     <string name="mapButton_main">Overzicht van de stad</string>
     <string name="userpageButton_main">"Gebruiker"</string>
-        <!-- New quest AlertDialog-->
-        <string name="ownQuestButton">Maak je eigen</string>
-        <string name="existingQuestButton">Kies een bestaande</string>
+    
+    <!-- New quest AlertDialog-->
+    <string name="ownQuestButton">Maak je eigen</string>
+    <string name="existingQuestButton">Kies een bestaande</string>
 
     <!-- QuestActivity -->
     <string name="quest_text">Bezoek de volgende locaties:</string>
@@ -83,7 +84,6 @@
     <string name="congratulations2">gefeliciteerd</string>
     <string name="gg">Goed gedaan</string>
     <string name="reachedLandmarkToast">Reached landmark! +10 points</string>
-<<<<<<< HEAD
     <string name="deleteQuestButton">Delete Quest</string>
     <string name="sendQuestButton">Send Quest</string>
     <string name="customLandmarkText">Custom Landmarks</string>
@@ -92,10 +92,8 @@
     <string name="customQuestText">Custom Quests</string>
     <string name="imageViewDiscription">BackGround</string>
     <string name="manageToolbar">Manage</string>
-=======
     <string name="choose_a_quest_from_the_list">Choose a quest from the list!</string>
     <string name="you_can_chose_to_continue_one_of_the_started_quests_or_long_tap_to_remove_it_from_the_list">You can chose to continue one of the started quests, or long tap to remove it from the list!</string>
->>>>>>> 679e95e1887d2e0fdd28eb556e767eb9494ef873
 
 
 </resources>
