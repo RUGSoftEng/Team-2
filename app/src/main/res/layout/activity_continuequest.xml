@@ -4,23 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@mipmap/profile_background">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp">
+        android:layout_height="match_parent">
 
         <ListView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="400dp"
             android:id="@+id/listView1"
-            android:visibility="visible"
-            android:transitionGroup="false"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="47dp"
-            android:layout_below="@+id/StartedQuestText"
-            android:layout_centerHorizontal="true" />
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/StartedQuestText" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,10 +27,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/startedQuest_continue"
             android:id="@+id/StartedQuestText"
-            android:textSize="35dp"
-            android:textColor="#000000"
-            android:layout_marginBottom="17dp"
-            android:layout_alignStart="@+id/listView1" />
+            android:textSize="35sp"
+            android:textColor="#0277bd"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
 
     </RelativeLayout>

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:id="@+id/relativelayout"
-    android:background="#adbbf9">
+    android:background="@mipmap/quest_finished_back">
 
     <TextView
         android:layout_width="220dp"
@@ -43,23 +43,5 @@
         android:layout_alignParentStart="true"
         android:text="@string/quizButton_PopupWindow"
         android:background="#0277bd" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/gg"
-        android:id="@+id/textView3"
-        android:layout_margin="20dp"
-        android:layout_below="@+id/imageView4"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"
-        android:id="@+id/imageView4"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:background="@mipmap/material_design1" />
 
 </RelativeLayout>

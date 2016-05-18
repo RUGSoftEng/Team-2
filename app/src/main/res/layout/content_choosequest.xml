@@ -15,8 +15,19 @@
         android:layout_height="500dp"
         android:clickable="true"
         android:layout_centerVertical="true"
+        android:layout_margin="30dp"
         android:layout_alignParentEnd="true">
     </ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/choose_a_quest_from_the_list"
+        android:id="@+id/textView5"
+        android:layout_alignParentTop="true"
+        android:textColor="#0277bd"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
