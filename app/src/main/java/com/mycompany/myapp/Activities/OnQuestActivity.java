@@ -47,12 +47,14 @@ import com.mycompany.myapp.Objects.User;
  *
  * Created by Ruben on 17-03-2016.
  */
+
+//TODO: Quiz is not implemented yet
 public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private ProgressBar mProgress; //the progress bar showing what percentage of the current quest has been completed thus far
 
     private Quest passedQuest; //the currently active quest, passed by the previous activity
-    private Landmark nextLandmark; //the next landmark within the currently active quest
+    private Landmark nextLandmark; //the next landmark within the currently active quest, Cant be put local like Android studio says.
     private ListView listView; //the list lay-out to be filled with the name of the next landmark
     private ListView listView2; //the list lay-out to be filled with the names of the landmarks remaining after the next one
     private GoogleMap mMap; //the (Google) map

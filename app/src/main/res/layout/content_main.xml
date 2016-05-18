@@ -20,8 +20,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:clickable="true"
-        android:backgroundTint="@color/accent_material_light">
+        android:clickable="true">
 
         <TextView
             android:layout_width="fill_parent"
@@ -42,7 +41,8 @@
             android:layout_alignTop="@+id/newQuestButton"
             android:layout_marginTop="-10dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/imageViewDiscription" />
 
         <TextView
             android:layout_width="fill_parent"

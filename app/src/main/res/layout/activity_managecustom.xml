@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteQuestButton"
+            android:id="@+id/deleteQuestButton"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sendQuestButton"
+            android:id="@+id/sendQuestButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/deleteQuestButton"
+            android:layout_toStartOf="@+id/deleteQuestButton"
+            android:layout_alignEnd="@+id/sendLandmarkButton" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
+            android:id="@+id/customLandmarkListView"
+            android:layout_below="@+id/customLandmarkText"
+            android:layout_alignEnd="@+id/deleteQuestButton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/customLandmarkText"
+            android:id="@+id/customLandmarkText"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/sendLandmarkButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteLandmarkButton"
+            android:id="@+id/deleteLandmarkButton"
+            android:layout_gravity="end"
+            android:layout_above="@+id/customLandmarkText"
+            android:layout_alignStart="@+id/deleteQuestButton" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sendLandmarkButton"
+            android:id="@+id/sendLandmarkButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/customQuestListView"
+            android:layout_alignEnd="@+id/deleteQuestButton"
+            android:layout_below="@+id/customQuestText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/customQuestText"
+            android:id="@+id/customQuestText"
+            android:layout_below="@+id/sendQuestButton"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -84,5 +84,13 @@
     <string name="congratulations2">congratulations</string>
     <string name="gg">Well done</string>
     <string name="reachedLandmarkToast">Reached landmark! +10 points</string>
+    <string name="deleteQuestButton">Delete Quest</string>
+    <string name="sendQuestButton">Send Quest</string>
+    <string name="customLandmarkText">Custom Landmarks</string>
+    <string name="deleteLandmarkButton">Delete Landmark</string>
+    <string name="sendLandmarkButton">Send Landmark</string>
+    <string name="customQuestText">Custom Quests</string>
+    <string name="imageViewDiscription">BackGround</string>
+    <string name="manageToolbar">Manage</string>
 
 </resources>
