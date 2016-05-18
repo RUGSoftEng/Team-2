@@ -79,17 +79,6 @@ public class MakeLandmarkActivity extends FragmentActivity implements OnMapReady
             }
         });
 
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(LatLng latLng) {
-                if(marker != null) {
-                    marker.remove();
-                }
-                landmarkPosition = latLng;
-                marker = mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-            }
-        });
-
     }
 
 
@@ -99,5 +88,16 @@ public class MakeLandmarkActivity extends FragmentActivity implements OnMapReady
         mMap = map;
         CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(Constants.COORDINATE_GRONINGEN, Constants.NORMAL_ZOOM);
         mMap.animateCamera(cu);
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                if (marker != null) {
+                    marker.remove();
+                }
+                landmarkPosition = latLng;
+                marker = mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            }
+        });
     }
 }
