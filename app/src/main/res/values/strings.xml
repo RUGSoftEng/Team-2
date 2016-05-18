@@ -39,9 +39,9 @@
 
     <!-- MakeQuestActivity-->
     <string name="finishText_makeQuest">Finish</string>
-    <string name="ChooseText_makeQuest">Choose:</string>
-    <string name="InQuestText_makeQuest">In Quest:</string>
-    <string name="AddLandmark_makeQuest">Own landmark</string>
+    <string name="ChooseText_makeQuest">Choose a landmark:</string>
+    <string name="InQuestText_makeQuest">Landmarks in Quest:</string>
+    <string name="AddLandmark_makeQuest">Create your own landmark</string>
     <string name="AddLandmarkButton_makeQuest">Create</string>
 
     <!-- Landmark_Popup_Window-->
@@ -80,7 +80,7 @@
     <string name="createQuestButton">Create Quest</string>
     <string name="forgotToast">Please choose a location and name</string>
     <string name="customAddedTextToast">Landmark added to the system</string>
-    <string name="MakeLandmarkButton">Make Landmark</string>
+    <string name="MakeLandmarkButton">Create your own landmark</string>
     <string name="congratulations2">congratulations</string>
     <string name="gg">Well done</string>
 
