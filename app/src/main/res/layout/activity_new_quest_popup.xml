@@ -2,35 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:id="@+id/relativelayout"
-    android:background="#adbbf9">
+    android:background="@drawable/profile_background">
 
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
         android:id="@+id/ownQuestButton"
         android:text="@string/ownQuestButton"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#0277bd"
+        android:textColor="#ffffff"/>
+
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
         android:id="@+id/existingQuestButton"
         android:text="@string/existingQuestButton"
         android:layout_above="@+id/ownQuestButton"
-        android:layout_alignStart="@+id/ownQuestButton"
-        android:layout_alignEnd="@+id/ownQuestButton" />
+        android:background="#0277bd"
+        android:textColor="#ffffff" />
 
     <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
         android:text="@string/MakeLandmarkButton"
         android:id="@+id/makeLandmarkButton"
         android:layout_below="@+id/ownQuestButton"
-        android:layout_alignStart="@+id/ownQuestButton"
-        android:layout_alignEnd="@+id/ownQuestButton" />
+        android:layout_margin="10dp"
+        android:background="#0277bd"
+        android:textColor="#ffffff"/>
 
 
 </RelativeLayout>

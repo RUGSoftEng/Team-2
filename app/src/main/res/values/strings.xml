@@ -73,7 +73,7 @@
     <!-- MakeLandMarkActivity -->
     <string name="landmarkInfo_makeLandmark">Information about this landmark</string>
     <string name="infoEditText_makeLandmark">This is a beautiful place</string>
-    <string name="questNameText">Name</string>
+    <string name="questNameText">Enter the name of your new landmark</string>
     <string name="nameEditText">My landmark</string>
 
     <string name="finishButton_makeLandmark">Finish</string>

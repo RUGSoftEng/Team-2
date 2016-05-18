@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/profile_background"
     tools:context="com.mycompany.myapp.Activities.UserPageActivity">
 
     <TextView
@@ -16,7 +17,10 @@
         android:text="@string/myProgressText_Userpage"
         android:id="@+id/myProgressText_UserPage"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#0277bd"
+        android:textSize="30dp"
+        android:layout_marginTop="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,8 +29,9 @@
         android:text="@string/pEarnedText_Userpage"
         android:id="@+id/pEarnedText_UserPage"
         android:layout_below="@+id/myProgressText_UserPage"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp" />
+        android:textColor="#37474f"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,6 +40,8 @@
         android:text="@string/questFinishedText_Userpage"
         android:id="@+id/questFinishedText_UserPage"
         android:layout_below="@+id/pEarnedText_UserPage"
+        android:textColor="#37474f"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp" />
 
     <TextView
@@ -43,14 +50,16 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/textView8"
+        android:textColor="#039be5"
         android:layout_below="@+id/pEarnedText_UserPage"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/listView5"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/questFinishedText_UserPage"
-        android:layout_alignParentStart="true" />
+        />
 
 </RelativeLayout>

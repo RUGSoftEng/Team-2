@@ -2,26 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/profile_background">
 
     <fragment
         android:layout_width="match_parent"
-        android:layout_height="279dp"
+        android:layout_height="290dp"
         android:name="com.google.android.gms.maps.MapFragment"
         android:id="@+id/map" />
 
 
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/questNameText"
+        android:textColor="#0277bd"
         android:id="@+id/QuestNameText" />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/NameEditText"
@@ -31,29 +35,27 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/landmarkInfo_makeLandmark"
+        android:textColor="#0277bd"
         android:id="@+id/StoryText" />
 
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="84dp"
+        android:layout_height="60dp"
         android:id="@+id/StoryEditText"
         android:hint="@string/infoEditText_makeLandmark" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="@string/finishButton_makeLandmark"
+        android:id="@+id/FinishButton"
+        android:background="#0277bd"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:text="@string/finishButton_makeLandmark"
-            android:id="@+id/FinishButton"
-            android:layout_alignParentTop="true" />
-
-
-    </RelativeLayout>
 
 </LinearLayout>
