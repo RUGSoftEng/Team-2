@@ -39,8 +39,8 @@
 
     <!-- MakeQuestActivity-->
     <string name="finishText_makeQuest">Finish</string>
-    <string name="ChooseText_makeQuest">Choose a landmark:</string>
-    <string name="InQuestText_makeQuest">Landmarks in Quest:</string>
+    <string name="ChooseText_makeQuest">Choose\n a landmark:</string>
+    <string name="InQuestText_makeQuest">Landmarks \n in Quest:</string>
     <string name="AddLandmark_makeQuest">Create your own landmark</string>
     <string name="AddLandmarkButton_makeQuest">Create</string>
 
