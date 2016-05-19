@@ -35,12 +35,9 @@ public class ContinueQuestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_continuequest);
 
-
         helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-
         user = helper.getUser(db);
-
         db.close();
         helper.close();
 

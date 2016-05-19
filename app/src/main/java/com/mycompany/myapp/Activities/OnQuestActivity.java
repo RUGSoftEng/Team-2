@@ -25,7 +25,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -84,9 +83,9 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        // TODO list should not be empty
-        currentTarget = passedQuest.getLandmarks().get(0);
-
+        if(!passedQuest.getLandmarks().isEmpty()) {
+            currentTarget = passedQuest.getLandmarks().get(0);
+        }
         Log.d("TEST", passedQuest.toString());
 
 
@@ -131,6 +130,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         };
 
 
+        //TODO: change below permission question, worst case ask permission for AP 23 else do shitty location permsisson request
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }

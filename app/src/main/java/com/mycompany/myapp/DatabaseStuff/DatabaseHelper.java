@@ -100,21 +100,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         /* Deletes the User object with the specified ID from the database. */
         public void deleteUser(DatabaseHelper helper, String userID){
              SQLiteDatabase sq = helper.getWritableDatabase();
-             sq.delete(DBConstants.TABLE_NAME_USER, DBConstants.USER_ID + "=" + userID, null);
+             sq.delete(DBConstants.TABLE_NAME_USER, DBConstants.USER_ID + "='" + userID + "'", null);
              sq.close();
         }
 
         /* Deletes the Landmark object with the specified ID from the database. */
         public void deleteLandmark(DatabaseHelper helper, String landmarkID){
             SQLiteDatabase sq = helper.getWritableDatabase();
-            sq.delete(DBConstants.TABLE_NAME_LANDMARK, DBConstants.LANDMARK_ID + "=" + landmarkID, null);
+            sq.delete(DBConstants.TABLE_NAME_LANDMARK, DBConstants.LANDMARK_ID + "='" + landmarkID + "'", null);
             sq.close();
          }
 
         /* Deletes the Quest object with the specified ID from the database. */
         public void deleteQuest(DatabaseHelper helper, String questID){
             SQLiteDatabase sq = helper.getWritableDatabase();
-            sq.delete(DBConstants.TABLE_NAME_QUEST, DBConstants.QUEST_ID + "=" + questID, null);
+            sq.delete(DBConstants.TABLE_NAME_QUEST, DBConstants.QUEST_ID + "='" + questID + "'", null);
             sq.close();
         }
 

@@ -16,7 +16,6 @@ import com.mycompany.myapp.Objects.User;
 import com.mycompany.myapp.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Ruben on 15/05/2016.
@@ -49,13 +48,9 @@ public class ManageCustomActivity extends Activity {
 
         DatabaseHelper helper = new DatabaseHelper(this);
         User user = helper.getUser(helper.getReadableDatabase());
-        for(Quest quest : user.getCurrentQuests()){
-            if(quest.isUserGenerated()){
-                customQuestList.add(quest);
-            }
-        }
+        customQuestList = user.getCurrentQuests();
 
-        selectedQuestText = (TextView) findViewById(R.id.customQuestText);
+        selectedQuestText = (TextView) findViewById(R.id.questText);
         selectedLandmarkText = (TextView) findViewById(R.id.customLandmarkText);
 
         for(Landmark l : helper.getAllLandmarks(helper.getReadableDatabase())){
@@ -107,6 +102,7 @@ public class ManageCustomActivity extends Activity {
                     helper.deleteLandmark(helper, selectedLandmark.getID());
                     customLandmarkList.remove(selectedLandmark);
                     selectedLandmark = null;
+                    selectedLandmarkText.setText(R.string.customLandmarkText);
                     helper.close();
                 }
                 adapterL.notifyDataSetChanged();
@@ -119,19 +115,14 @@ public class ManageCustomActivity extends Activity {
                 if (selectedQuest != null) {
                     DatabaseHelper helper = new DatabaseHelper(getBaseContext());
                     User u = helper.getUser(helper.getReadableDatabase());
-                    //TODO: could go more efficient?, now quick fix
-                    int i = 0;
-                    for(Quest q : u.getCurrentQuests()){
-                        if(q.getID().equals(selectedQuest.getID())){
-                            u.getCurrentQuests().remove(i);
-                        }
-                        i++;
-                    }
+
+                    u.getCurrentQuests().remove(selectedQuest);
 
                     helper.updateInDatabase(helper, u);
                     helper.close();
                     customQuestList.remove(selectedQuest);
                     selectedQuest = null;
+                    selectedQuestText.setText(R.string.questText);
                 }
                 adapterQ.notifyDataSetChanged();
             }

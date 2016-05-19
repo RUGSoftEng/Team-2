@@ -89,7 +89,7 @@
     <string name="customLandmarkText">Zelfgemaakte Bezienswaardigheden</string>
     <string name="deleteLandmarkButton">Verwijder Bezienswaardigheid</string>
     <string name="sendLandmarkButton">Verzend Bezienswaardigheid</string>
-    <string name="customQuestText">Zelfgemaakte tochten</string>
+    <string name="questText">Tochten</string>
     <string name="imageViewDiscription">Achtergrond</string>
     <string name="manageToolbar">Beheren</string>
     <string name="choose_a_quest_from_the_list">Kies een toch van de lijst!</string>
