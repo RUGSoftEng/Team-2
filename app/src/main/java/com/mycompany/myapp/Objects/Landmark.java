@@ -14,9 +14,14 @@ import java.io.Serializable;
  */
 public class Landmark implements Serializable{
 
+    //private Quiz quiz; //the quiz belonging to the landmark
+
+    //TODO make quiz an object again
+    private String question;
+    private String answer;
+    private String[] possibleAnswers;
 
 
-    private Quiz quiz; //the quiz belonging to the landmark
     //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not needed yet (could bring serialization errors)
     private String name; //the name of the landmark
     private String locationName; //the landmark's location's name, i.e. of the street or neighbourhood where the landmark is located
@@ -67,7 +72,31 @@ public class Landmark implements Serializable{
     }
 
     /* Getter method for the quiz. */
-    public Quiz getQuiz() { return this.quiz; }
+   // public Quiz getQuiz() { return this.quiz; }
+
+    public void setQuestion (String question) {
+        this.question = question;
+    }
+
+    public void setAnswer (String answer) {
+        this.answer = answer;
+    }
+
+    public void setPossibleAnswers (String[] possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
+    }
+
+    public String getQuestion() {
+        return this.question;
+    }
+
+    public String[] getPossibleAnswers() {
+        return this.possibleAnswers;
+    }
+
+    public String getAnswer() {
+        return this.answer;
+    }
 
     /* Setter method for the location, which accepts a LatLng object. */
     public void setLocation(LatLng location){
@@ -82,9 +111,9 @@ public class Landmark implements Serializable{
     }
 
     /* Setter method for the quiz. */
-    public void setQuiz(Quiz q) {
-        this.quiz = q;
-    }
+//    public void setQuiz(Quiz q) {
+//        this.quiz = q;
+//    }
 
     /* Getter method for the landmark's ID. */
     public String getID(){

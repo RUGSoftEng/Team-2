@@ -60,7 +60,7 @@ public class LandMarkPopUpActivity extends Activity {
         quizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                quiz = passedLandmark.getQuiz();
+                //quiz = passedLandmark.getQuiz();
                 //items = quiz.getPossibleAnswers();
                 items = new String[]{"answer A", "answer B", "answer C"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(LandMarkPopUpActivity.this);

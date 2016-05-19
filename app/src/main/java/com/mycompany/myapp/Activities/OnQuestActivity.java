@@ -68,6 +68,10 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
     private Quiz quiz; //the quiz corresponding to the current landmark
     private Button quizButton; //the button for starting a quiz about the current landmark
+
+
+   private String question;
+    private String answer;
     private String[] items; //the available answers for the multiple choice questions
 
     /* Initialises the activity as described above after loading the passed quest from the database.
@@ -86,6 +90,10 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
         // TODO list should not be empty
         currentTarget = passedQuest.getLandmarks().get(0);
+        question = currentTarget.getQuestion();
+        items = currentTarget.getPossibleAnswers();
+        answer = currentTarget.getAnswer();
+
 
         Log.d("TEST", passedQuest.toString());
 
@@ -240,12 +248,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
             builder.setPositiveButton("QUIZ", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    quiz = currentTarget.getQuiz();
-                    //items = quiz.getPossibleAnswers();
-                    items = new String[]{"answer A", "answer B", "answer C"};
                     AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
-                    //builder.setTitle(quiz.getQuestion());
-                    builder.setTitle("Examplequestion?");
+                    builder.setTitle(question);
                     builder.setItems(items, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int item) {
                             //do something with the selection
@@ -294,5 +298,13 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         LatLngBounds bounds = builder.build();
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
         mMap.animateCamera(cu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent i = new Intent(getBaseContext(), ContinueQuestActivity.class);
+        startActivity(i);
+        return;
     }
 }

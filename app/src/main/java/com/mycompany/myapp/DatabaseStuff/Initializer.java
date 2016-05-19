@@ -33,7 +33,11 @@ public class Initializer {
         //number ID 1
         Landmark martinitoren = new Landmark("Martinitoren", UUID.randomUUID().toString());
         martinitoren.setLocation(53.219383, 6.568125);
+        martinitoren.setQuestion("Martini Tower question");
         martinitoren.setInformation("The Martinitoren is the highest church steeple in the city of Groningen and the bell tower of the Martinikerk. It contains a brick spiral staircase consisting of 260 steps, and the carillon within the tower contains 62 bells. The tower is considered one of the main tourist attractions of Groningen and offers a view over the city and surrounding area. The front of the tower shows three pictures above the entrance: the blind poet Bernlef, Saint Martinus, and Rudolf Agricola. All three men are linked to the history of Groningen.");
+        String[] martinitorenAnswers = new String[] {"1", "2", "3", "4"};
+        martinitoren.setPossibleAnswers(martinitorenAnswers);
+        martinitoren.setAnswer("1");
         landmarks.add(martinitoren);
 
         //number 2
