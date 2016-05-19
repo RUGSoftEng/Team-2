@@ -295,4 +295,12 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
         mMap.animateCamera(cu);
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent i = new Intent(getBaseContext(), ContinueQuestActivity.class);
+        startActivity(i);
+        return;
+    }
 }

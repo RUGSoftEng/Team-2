@@ -99,4 +99,12 @@ public class ContinueQuestActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent i = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(i);
+        return;
+    }
 }
