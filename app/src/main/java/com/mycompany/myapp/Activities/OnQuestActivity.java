@@ -134,11 +134,13 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-            if (locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER))
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+//            if (locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)) TODO: should not be needed if we manage to set the target sdk to lower then 22
+//                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+//
+//            if (locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER))
+//                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
-            if (locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER))
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
         }
 
 
