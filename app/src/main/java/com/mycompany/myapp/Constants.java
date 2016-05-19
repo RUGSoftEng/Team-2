@@ -26,6 +26,8 @@ public class Constants {
 
     public static final int MAXIMAL_ACTIVATION_DISTANCE = 20; //required distance to a landmark before it is seen as reached
 
+    public static final int MINIMAL_GPS_DISTANCE = 5; //required distance in meters for gps to start checking
+    public static final int MINIMAL_GPS_TIME = 10; //required time in milliseconds for gps to start checking
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 10; //random number to give a permission code
 
