@@ -44,6 +44,9 @@
     <string name="InQuestText_makeQuest">Landmarks \n in Quest:</string>
     <string name="AddLandmark_makeQuest">Create your own landmark</string>
     <string name="AddLandmarkButton_makeQuest">Create</string>
+    <string name="ForgotToast_makeQuest">Your quest is empty</string>
+    <string name="ForgotNameToast_makeQuest">Please add a name</string>
+
 
     <!-- Landmark_Popup_Window-->
     <string name="landmarkFound_PopupWindow">Congratulations!\nLandmark found!</string>

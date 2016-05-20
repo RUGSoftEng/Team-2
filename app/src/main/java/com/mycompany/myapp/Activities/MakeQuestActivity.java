@@ -1,5 +1,6 @@
 package com.mycompany.myapp.Activities;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -139,10 +141,13 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         FINISH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                AskQuestNameDialog dialog = new AskQuestNameDialog();
-                dialog.show(getSupportFragmentManager(), "dialog");
-
+                if (selectedLandmarks.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),
+                            R.string.ForgotToast_makeQuest, Toast.LENGTH_LONG).show();
+                } else {
+                    AskQuestNameDialog dialog = new AskQuestNameDialog();
+                    dialog.show(getSupportFragmentManager(), "dialog");
+                }
             }
         });
 
