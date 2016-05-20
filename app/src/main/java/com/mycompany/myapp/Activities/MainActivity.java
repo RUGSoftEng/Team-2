@@ -14,25 +14,24 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
 
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
 import com.mycompany.myapp.DatabaseStuff.Initializer;
+import com.mycompany.myapp.Dialog.Tutorial;
 import com.mycompany.myapp.Objects.Landmark;
 import com.mycompany.myapp.Objects.Quest;
-import com.mycompany.myapp.R;
 import com.mycompany.myapp.Objects.User;
-import com.parse.Parse;
-import com.parse.ParseObject;
+import com.mycompany.myapp.R;
 
 import java.util.ArrayList;
 
@@ -59,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
 
         //for the first time of startup initialise stuff by looking for pref file (so could be affected by previous tries, wipe data to be sure)
@@ -92,21 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
 
             db.close(); //closing database connection
-
-            //testserver
-            Parse.initialize(new Parse.Configuration.Builder(ctx)
-                            .applicationId("htcAppId")
-                            .clientKey(null)
-                            .server("http://harrie.lutztec.nl/parse/")
-
-                            .build()
-            );
-            ParseObject testObject = new ParseObject("UserObject");
-            testObject.put("user", "u");
-            testObject.saveInBackground();
-
-
-            //endtestserver
 
             //record the fact that the app has been started at least once
             settings.edit().putBoolean("first_time", false).apply();
@@ -151,14 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
                 //TODO change the strings back to the ones in the strings file as soon as we move the Make Landmark button somewhere else
 
-                builder.setNeutralButton("NEW", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton(getResources().getString(R.string.ownQuestButton), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
                         startActivity(i);
                     }
                 });
 
-                builder.setPositiveButton("EXISTING", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.existingQuestButton), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
                         startActivity(i);
@@ -209,14 +191,21 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        Button tutorialButton = (Button) findViewById(R.id.tutorialButton);
+        if (tutorialButton != null){
+            tutorialButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    startActivity(new Intent(getBaseContext(), TutorialActivity.class));
+                }
+            });
+        }
+
 
         //make image switcher to switch background
-        //NOTE: For some reason martini.jpg doesn't work so there might be more pictures not working
-        imgs.add(R.drawable.martini4);
-        imgs.add(R.drawable.splashscreen5);
-        imgs.add(R.drawable.splashscreen7);
-        imgs.add(R.drawable.splashscreen6);
-        imgs.add(R.drawable.splashscreen3);
+
+        imgs.add(R.mipmap.main_background2);
+        imgs.add(R.mipmap.main_background2);
 
 
         imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher1);
@@ -231,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             int i = 0;
 
             public void run() {
-                LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout);
+                RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.layout);
                 if (rLayout != null) {
                     rLayout.setBackground(ResourcesCompat.getDrawable(getResources(), imgs.get(i), null));
                 }
@@ -261,15 +250,30 @@ public class MainActivity extends AppCompatActivity {
          * automatically handle clicks on the Home/Up button, so long
          * as you specify a parent activity in AndroidManifest.xml.
          */
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.settings:
+
+                return true;
+            case R.id.help:
+                Tutorial t = new Tutorial();
+                t.showHelp();
+                return true;
+            case R.id.manage_custom:
+                Intent i = new Intent(getBaseContext(), ManageCustomActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
 }
