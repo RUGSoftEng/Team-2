@@ -208,6 +208,14 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         final User user = helper.getUser(helper.getReadableDatabase());
 
         if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
+            //stop location updates
+//            try {
+//                locationManager.removeUpdates(locationListener);
+//                Log.d("loc stop", "test inside try");
+//            } catch (SecurityException e) {
+//                Log.e("Security Exception", "No permission to get location: " + e);
+//            }
+            Log.d("loc stop", "test");
             // This gets called twice!!! Should only once
             int points = currentTarget.getPoints();
             user.addPoints(points);

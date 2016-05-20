@@ -44,6 +44,8 @@
     <string name="InQuestText_makeQuest">Al in zoektocht:</string>
     <string name="AddLandmark_makeQuest">Eigen plek</string>
     <string name="AddLandmarkButton_makeQuest">Nieuw</string>
+    <string name="ForgotToast_makeQuest">Je zoektocht is leeg</string>
+    <string name="ForgotNameToast_makeQuest">Kies een naam</string>
 
     <!-- Landmark_Popup_Window-->
     <string name="landmarkFound_PopupWindow">Gefeliciteerd! Bezienswaardigheid gevonden!</string>
@@ -82,7 +84,7 @@
     <string name="forgotToast">Kies een locatie en een naam</string>
     <string name="customAddedTextToast">Bezienswaardigheid toegevoegd</string>
     <string name="MakeLandmarkButton">Maak bezienswaardigheid</string>
-    <string name="congratulations2">gefeliciteerd</string>
+    <string name="congratulations2">Gefeliciteerd</string>
     <string name="gg">Goed gedaan</string>
     <string name="reachedLandmarkToast">Bezienswaardigheid bereikt! +10 punten</string>
     <string name="deleteQuestButton">Verwijder tocht</string>
