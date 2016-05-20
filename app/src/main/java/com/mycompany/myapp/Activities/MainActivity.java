@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
             tutorialButton.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    startActivity(new Intent(getBaseContext(), Tutorial.class));
+                    startActivity(new Intent(getBaseContext(), TutorialActivity.class));
                 }
             });
         }
