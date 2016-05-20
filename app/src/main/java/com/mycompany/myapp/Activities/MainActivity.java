@@ -22,7 +22,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
 
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
@@ -196,9 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
         imgs.add(R.mipmap.main_background2);
         imgs.add(R.mipmap.main_background2);
-        imgs.add(R.mipmap.main_background2);
-        imgs.add(R.mipmap.main_background2);
-        imgs.add(R.mipmap.main_background2);
+
 
         imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher1);
 
@@ -212,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
             int i = 0;
 
             public void run() {
-                LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout);
+                RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.layout);
                 if (rLayout != null) {
                     rLayout.setBackground(ResourcesCompat.getDrawable(getResources(), imgs.get(i), null));
                 }
