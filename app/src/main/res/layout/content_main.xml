@@ -128,12 +128,12 @@
         android:layout_width="fill_parent"
         android:layout_height="30dp"
         android:text="First time around? Take a look at the tutorial"
-        android:id="@+id/button"
+        android:id="@+id/tutorialButton"
         android:background="#ffffff"
         android:textColor="#0277bd"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp" />
+         />
 
 
 </RelativeLayout>

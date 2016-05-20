@@ -191,6 +191,16 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        Button tutorialButton = (Button) findViewById(R.id.tutorialButton);
+        if (tutorialButton != null){
+            tutorialButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    startActivity(new Intent(getBaseContext(), Tutorial.class));
+                }
+            });
+        }
+
 
         //make image switcher to switch background
 
