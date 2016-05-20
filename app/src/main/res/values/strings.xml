@@ -11,10 +11,10 @@
     <string name="mapButton_main">Overview of the city</string>
     <string name="continueQuestButton_main">Continue a quest</string>
     <string name="userpageButton_main">"Userpage"</string>
-        
+
     <!-- New quest AlertDialog-->
-    <string name="ownQuestButton">Create your own quest</string>
-    <string name="existingQuestButton">Pick existing quest</string>
+    <string name="ownQuestButton">Create new</string>
+    <string name="existingQuestButton">Existing</string>
 
     <!-- QuestActivity -->
     <string name="quest_text">Visit the following locations:</string>
@@ -99,6 +99,10 @@
     <string name="manageToolbar">Manage</string>
     <string name="choose_a_quest_from_the_list">Choose a quest from the list!</string>
     <string name="info_text">You can chose to continue one of the started quests, or long tap remove it from the list!</string>
-    <string name="helpMenu">help</string>
+    <string name="helpMenu">Help</string>
+
+    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

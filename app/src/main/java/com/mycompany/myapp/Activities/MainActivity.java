@@ -22,7 +22,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
 
 import com.mycompany.myapp.DatabaseStuff.DatabaseHelper;
@@ -133,14 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
                 //TODO change the strings back to the ones in the strings file as soon as we move the Make Landmark button somewhere else
 
-                builder.setNeutralButton("NEW", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton(getResources().getString(R.string.ownQuestButton), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
                         startActivity(i);
                     }
                 });
 
-                builder.setPositiveButton("EXISTING", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.existingQuestButton), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
                         startActivity(i);
@@ -191,14 +191,22 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        Button tutorialButton = (Button) findViewById(R.id.tutorialButton);
+        if (tutorialButton != null){
+            tutorialButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    startActivity(new Intent(getBaseContext(), TutorialActivity.class));
+                }
+            });
+        }
+
 
         //make image switcher to switch background
 
         imgs.add(R.mipmap.main_background2);
         imgs.add(R.mipmap.main_background2);
-        imgs.add(R.mipmap.main_background2);
-        imgs.add(R.mipmap.main_background2);
-        imgs.add(R.mipmap.main_background2);
+
 
         imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher1);
 
@@ -212,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             int i = 0;
 
             public void run() {
-                LinearLayout rLayout = (LinearLayout) findViewById(R.id.layout);
+                RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.layout);
                 if (rLayout != null) {
                     rLayout.setBackground(ResourcesCompat.getDrawable(getResources(), imgs.get(i), null));
                 }
