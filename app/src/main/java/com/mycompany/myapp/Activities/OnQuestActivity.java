@@ -239,26 +239,28 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                 }
             });
 
-            builder.setPositiveButton("QUIZ", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    quiz = currentTarget.getQuiz();
-                    //items = quiz.getPossibleAnswers();
-                    items = new String[]{"answer A", "answer B", "answer C"};
-                    AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
-                    //builder.setTitle(quiz.getQuestion());
-                    builder.setTitle("Examplequestion?");
-                    builder.setItems(items, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int item) {
-                            //do something with the selection
-                            Toast.makeText(getApplicationContext(),
-                                    items[item], Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-
-                }
-            });
+            //TODO add the quiz functionality back for the beta version
+//
+//            builder.setPositiveButton("QUIZ", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int id) {
+//                    quiz = currentTarget.getQuiz();
+//                    //items = quiz.getPossibleAnswers();
+//                    items = new String[]{"answer A", "answer B", "answer C"};
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
+//                    //builder.setTitle(quiz.getQuestion());
+//                    builder.setTitle("Examplequestion?");
+//                    builder.setItems(items, new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int item) {
+//                            //do something with the selection
+//                            Toast.makeText(getApplicationContext(),
+//                                    items[item], Toast.LENGTH_LONG).show();
+//                        }
+//                    });
+//                    AlertDialog alert = builder.create();
+//                    alert.show();
+//
+//                }
+//            });
 
             AlertDialog alert = builder.create();
             alert.setTitle(getResources().getString(R.string.landmarkFound_PopupWindow));
