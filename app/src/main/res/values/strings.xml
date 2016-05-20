@@ -13,8 +13,8 @@
     <string name="userpageButton_main">"Userpage"</string>
         
     <!-- New quest AlertDialog-->
-    <string name="ownQuestButton">Create your own quest</string>
-    <string name="existingQuestButton">Pick existing quest</string>
+    <string name="ownQuestButton">Create new</string>
+    <string name="existingQuestButton">Existing</string>
 
     <!-- QuestActivity -->
     <string name="quest_text">Visit the following locations:</string>

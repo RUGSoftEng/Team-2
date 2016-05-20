@@ -133,14 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
                 //TODO change the strings back to the ones in the strings file as soon as we move the Make Landmark button somewhere else
 
-                builder.setNeutralButton(getResources().getString(R.string.newQuestButton_main), new DialogInterface.OnClickListener() {
+                builder.setNeutralButton(getResources().getString(R.string.ownQuestButton), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), MakeQuestActivity.class);
                         startActivity(i);
                     }
                 });
 
-                builder.setPositiveButton(getResources().getString(R.string.continueQuestButton_main), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.existingQuestButton), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent i = new Intent(getBaseContext(), ChooseQuestActivity.class);
                         startActivity(i);
