@@ -225,7 +225,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
             AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
 
-            builder.setNegativeButton("CONTINUE", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(getResources().getString(R.string.continueQuest_in_popup), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     if (end == 1) { //end of quest
                         //stop location updates

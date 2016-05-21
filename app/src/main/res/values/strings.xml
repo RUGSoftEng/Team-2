@@ -67,6 +67,7 @@
     <string name="progressText_OnQuest">Quest Progress:</string>
     <string name="nextLandmarkText_OnQuest">Go find:</string>
     <string name="nextLandmarksText_OnQuest">Remaining landmarks:</string>
+    <string name="continueQuest_in_popup">Continue</string>
 
     <!-- AskQuestNameDialog -->
     <string name="questName_dialog">Quest Name</string>
