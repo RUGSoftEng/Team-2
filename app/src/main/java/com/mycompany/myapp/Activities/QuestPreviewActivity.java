@@ -208,6 +208,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
                 .title("I am here!")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon2)) ;
         mMap.addMarker(options);
+        mMap.setMyLocationEnabled(true);
         //loop through the landmark locations to make sure they are all displayed in the map
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         for (Marker marker : markers) {

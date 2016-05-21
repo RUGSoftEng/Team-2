@@ -50,6 +50,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
             ArrayList<Landmark> a = helper.getAllLandmarks(db);
             Marker testmark;
+            mMap.setMyLocationEnabled(true);
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
             for (Landmark landmark : a) {
                 testmark = mMap.addMarker(new MarkerOptions()

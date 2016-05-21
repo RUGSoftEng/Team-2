@@ -298,6 +298,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         } else {
             mylocmarker.setPosition(latLng);
         }
+        mMap.setMyLocationEnabled(true);
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(landmarker.getPosition());

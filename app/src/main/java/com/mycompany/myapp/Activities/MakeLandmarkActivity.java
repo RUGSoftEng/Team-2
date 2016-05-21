@@ -89,6 +89,7 @@ public class MakeLandmarkActivity extends FragmentActivity implements OnMapReady
         mMap = map;
         CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(Constants.COORDINATE_GRONINGEN, Constants.NORMAL_ZOOM);
         mMap.animateCamera(cu);
+        mMap.setMyLocationEnabled(true);
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override

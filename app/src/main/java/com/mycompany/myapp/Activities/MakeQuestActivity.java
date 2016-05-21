@@ -224,6 +224,8 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
             }
         });
 
+        mMap.setMyLocationEnabled(true);
+
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
