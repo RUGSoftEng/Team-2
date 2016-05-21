@@ -101,7 +101,7 @@
     <string name="info_text">You can chose to continue one of the started quests, or long tap remove it from the list!</string>
     <string name="helpMenu">Help</string>
 
-    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="title_activity_tutorial">Tutorial</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
