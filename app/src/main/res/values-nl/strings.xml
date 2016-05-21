@@ -95,7 +95,7 @@
     <string name="questText">Tochten</string>
     <string name="imageViewDiscription">Achtergrond</string>
     <string name="manageToolbar">Beheren</string>
-    <string name="choose_a_quest_from_the_list">Kies een toch van de lijst!</string>
+    <string name="choose_a_quest_from_the_list">Kies een tocht van uit lijst!</string>
     <string name="you_can_chose_to_continue_one_of_the_started_quests_or_long_tap_to_remove_it_from_the_list">You can chose to continue one of the started quests, or long tap to remove it from the list!</string>
     <string name="helpMenu">Help</string>
 
