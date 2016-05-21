@@ -59,7 +59,7 @@
             android:text="@string/meetGroningenText_main"
             android:id="@+id/congratsText"
             android:textColor="#0277bd"
-            android:textSize="@dimen/abc_text_size_display_1_material"
+            android:textSize="20sp"
             android:gravity="center"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
