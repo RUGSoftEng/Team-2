@@ -9,6 +9,7 @@ package com.mycompany.myapp.Activities;
     import com.google.android.gms.maps.GoogleMap;
     import com.google.android.gms.maps.MapFragment;
     import com.google.android.gms.maps.OnMapReadyCallback;
+    import com.google.android.gms.maps.model.CameraPosition;
     import com.google.android.gms.maps.model.LatLngBounds;
     import com.google.android.gms.maps.model.Marker;
     import com.google.android.gms.maps.model.MarkerOptions;
@@ -41,7 +42,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         /* Queries the database for all available landmarks, converts their locations
          * into map markers, and moves the map camera to view them all simultaneously. */
         @Override
-        public void onMapReady(GoogleMap mMap) {
+        public void onMapReady(final GoogleMap mMap) {
             mMap.moveCamera(CameraUpdateFactory.newLatLng(Constants.COORDINATE_GRONINGEN));
 
             //take all landmark objects from the database and put them into a ListView
@@ -59,8 +60,20 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
                 builder.include(testmark.getPosition());
             }
-                LatLngBounds bounds = builder.build();
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
-                mMap.animateCamera(cu);
+            final LatLngBounds bounds = builder.build();
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING);
+            mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+
+                @Override
+                public void onCameraChange(CameraPosition arg0) {
+                    // Move camera.
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING));
+                    // Remove listener to prevent position reset on camera move.
+                    mMap.setOnCameraChangeListener(null);
+                }
+            });
         }
+
+
+
 }
