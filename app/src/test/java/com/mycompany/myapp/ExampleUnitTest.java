@@ -1,4 +1,4 @@
-package com.mycompany.myapp;
+package com.mycompany.MeetGroningen;
 
 import org.junit.Test;
 

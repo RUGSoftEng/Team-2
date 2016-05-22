@@ -87,8 +87,10 @@
     <string name="congratulations2">Gefeliciteerd</string>
     <string name="gg">Goed gedaan</string>
     <string name="reachedLandmarkToast">Bezienswaardigheid bereikt! +10 punten</string>
+
     <string name="deleteQuestButton">Verwijder tocht</string>
     <string name="sendQuestButton">Verzend tocht</string>
+
     <string name="customLandmarkText">Zelfgemaakte Bezienswaardigheden</string>
     <string name="deleteLandmarkButton">Verwijder Bezienswaardigheid</string>
     <string name="sendLandmarkButton">Verzend Bezienswaardigheid</string>
@@ -96,8 +98,15 @@
     <string name="imageViewDiscription">Achtergrond</string>
     <string name="manageToolbar">Beheren</string>
     <string name="choose_a_quest_from_the_list">Kies een tocht uit de lijst!</string>
-    <string name="you_can_chose_to_continue_one_of_the_started_quests_or_long_tap_to_remove_it_from_the_list">You can chose to continue one of the started quests, or long tap to remove it from the list!</string>
-    <string name="helpMenu">Help</string>
 
+
+    <string name="helpMenu">Help</string>
+    <string name="title_activity_new_quest_popup">NewQuestPopupActivity</string>
+    <string name="info_text">Je kan kiezen om door te gaan met een tocht, of klik lang om the verwijderen.</string>
+
+    <string name="title_activity_tutorial">Tutorial</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_tutorial2">Tutorial2</string>
 
 </resources>
