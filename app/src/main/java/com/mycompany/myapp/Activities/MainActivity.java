@@ -257,8 +257,8 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.help:
-                Tutorial t = new Tutorial();
-                t.showHelp();
+                Intent tutorial = new Intent(getBaseContext(), TutorialActivity.class);
+                startActivity(tutorial);
                 return true;
             case R.id.manage_custom:
                 Intent i = new Intent(getBaseContext(), ManageCustomActivity.class);
