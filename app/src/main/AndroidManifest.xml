@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mycompany.MeetGroningen" >
+    package="com.team2.MeetGroningen" >
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.MainActivity"
+            android:name="com.team2.MeetGroningen.Activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -23,36 +23,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.ChooseQuestActivity"
+            android:name="com.team2.MeetGroningen.Activities.ChooseQuestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.LandMarkPopUpActivity"
-            android:parentActivityName="com.mycompany.MeetGroningen.Activities.ContinueQuestActivity" >
-            android:theme="@style/AppTheme.NoActionBar"
+            android:name="com.team2.MeetGroningen.Activities.LandMarkPopUpActivity"
+            android:parentActivityName="com.team2.MeetGroningen.Activities.ContinueQuestActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.ContinueQuestActivity"
+            android:name="com.team2.MeetGroningen.Activities.ContinueQuestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.MakeQuestActivity"
+            android:name="com.team2.MeetGroningen.Activities.MakeQuestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.MapActivity"
+            android:name="com.team2.MeetGroningen.Activities.MapActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.OnQuestActivity"
+            android:name="com.team2.MeetGroningen.Activities.OnQuestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.QuestPreviewActivity"
+            android:name="com.team2.MeetGroningen.Activities.QuestPreviewActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.UserPageActivity"
+            android:name="com.team2.MeetGroningen.Activities.UserPageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.MakeLandmarkActivity"
+            android:name="com.team2.MeetGroningen.Activities.MakeLandmarkActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.ManageCustomActivity"
+            android:name="com.team2.MeetGroningen.Activities.ManageCustomActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!--
@@ -65,17 +65,17 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD-4j8KMnqWPxbQEsaXxGGO4W5ShzBbABs" />
+            android:value="@string/google_maps_key" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.QuestFinishedActivity"
+            android:name="com.team2.MeetGroningen.Activities.QuestFinishedActivity"
             android:label="@string/title_activity_quest_finished"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.mycompany.MeetGroningen.Activities.TutorialActivity"
+            android:name="com.team2.MeetGroningen.Activities.TutorialActivity"
             android:label="@string/title_activity_tutorial"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
