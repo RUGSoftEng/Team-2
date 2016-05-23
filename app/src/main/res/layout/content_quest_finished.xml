@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/quest_finished_back"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_quest_finished" tools:context=".Activities.QuestFinishedActivity">
+    tools:showIn="@layout/activity_quest_finished" tools:context="rugse.team2.MeetGroningen.Activities.QuestFinishedActivity">
 
     <TextView
         android:layout_width="wrap_content"

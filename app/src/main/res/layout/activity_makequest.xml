@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:name="com.google.android.gms.maps.MapFragment"
-            tools:context=".Activities.MakeQuestActivity"
+            tools:context="rugse.team2.MeetGroningen.Activities.MakeQuestActivity"
             android:layout_alignParentStart="false"
             android:layout_alignParentTop="true" />
 
