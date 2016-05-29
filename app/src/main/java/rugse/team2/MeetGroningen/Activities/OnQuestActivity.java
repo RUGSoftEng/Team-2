@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -78,7 +78,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         passedQuest = (Quest) getIntent().getSerializableExtra("PassedQuest");
 
 
-        MapFragment mapFragment = (MapFragment) getFragmentManager()
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(rugse.team2.MeetGroningen.R.id.map);
         mapFragment.getMapAsync(this);
 

@@ -7,7 +7,7 @@ package rugse.team2.MeetGroningen.Activities;
     import com.google.android.gms.maps.CameraUpdate;
     import com.google.android.gms.maps.CameraUpdateFactory;
     import com.google.android.gms.maps.GoogleMap;
-    import com.google.android.gms.maps.MapFragment;
+    import com.google.android.gms.maps.SupportMapFragment;
     import com.google.android.gms.maps.OnMapReadyCallback;
     import com.google.android.gms.maps.model.CameraPosition;
     import com.google.android.gms.maps.model.LatLngBounds;
@@ -33,7 +33,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             super.onCreate(savedInstanceState);
             setContentView(rugse.team2.MeetGroningen.R.layout.activity_maps);
 
-            MapFragment mapFragment = (MapFragment) getFragmentManager()
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(rugse.team2.MeetGroningen.R.id.map);
             mapFragment.getMapAsync(this);
         }
