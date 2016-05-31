@@ -1,5 +1,10 @@
 package rugse.team2.MeetGroningen.Objects;
 
+import com.parse.ParseObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,4 +114,40 @@ public abstract class Quest implements Serializable{
     public boolean isUserGenerated (){
         return this.isUserGenerated;
     }
+
+    //test toJSON method to try and serialize landmarklist
+    public String toJSON(ArrayList<Landmark> lijst) {
+
+        JSONObject landmarkList = new JSONObject();
+        try {
+            for(Landmark l : lijst){
+                landmarkList.put("landmark", l);
+            }
+
+
+
+            return landmarkList.toString();
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "";
+        }
+    }
+    //end test toJSON
+
+    /* method that puts thequest on the parse server
+    *  Values may be numerical, String, JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects. value may not be null
+    *  TODO: find way to store the arrays of landmarks. JSON?
+    */
+    public void putOnServer(){
+        ParseObject qst = new ParseObject("Quests");
+        qst.put("UserGenerated", this.isUserGenerated);
+        qst.put("Name", this.name);
+        qst.put("ID", this.questID);
+        qst.put("LandMarks", toJSON(landmarks));
+        qst.saveInBackground();
+    }
+
+
+
 }
