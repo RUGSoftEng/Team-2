@@ -120,12 +120,11 @@ public abstract class Quest implements Serializable{
 
         JSONObject landmarkList = new JSONObject();
         try {
+            int i =0;
             for(Landmark l : lijst){
-                landmarkList.put("landmark", l);
+                landmarkList.put("landmark "+ i, l);
+                i++;
             }
-
-
-
             return landmarkList.toString();
         } catch (JSONException e) {
             // TODO Auto-generated catch block
