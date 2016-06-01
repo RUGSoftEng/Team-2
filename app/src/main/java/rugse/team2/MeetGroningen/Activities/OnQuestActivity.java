@@ -236,6 +236,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                         user.finishQuest(user.getActiveQuest());
                         helper.updateInDatabase(helper, user);
 
+                        dialog.cancel();
                         Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
                         in.putExtra("finishedQuest", passedQuest);
                         startActivity(in);
@@ -268,6 +269,11 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 //
 //                }
 //            });
+
+            AlertDialog alert = builder.create();
+            alert.setTitle(getResources().getString(rugse.team2.MeetGroningen.R.string.landmarkFound_PopupWindow));
+            alert.setMessage(currentTarget.getInformation());
+            alert.show();
 
             user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
