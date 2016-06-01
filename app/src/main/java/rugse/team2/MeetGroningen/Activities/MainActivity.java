@@ -28,6 +28,7 @@ import android.widget.ViewSwitcher;
 import com.parse.Parse;
 
 import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
+import rugse.team2.MeetGroningen.DatabaseStuff.GlobalVariables;
 import rugse.team2.MeetGroningen.DatabaseStuff.Initializer;
 import rugse.team2.MeetGroningen.Objects.Landmark;
 import rugse.team2.MeetGroningen.Objects.Quest;
@@ -59,22 +60,23 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(rugse.team2.MeetGroningen.R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Initializing the Parse server
-        Parse.initialize(new Parse.Configuration.Builder(ctx)
-                .applicationId("htcAppId")
-                .clientKey(null)
-                .server("http://harrie.lutztec.nl/parse/")
-                .build()
-        );
-        //end server initialization
-
         //for the first time of startup initialise stuff by looking for pref file (so could be affected by previous tries, wipe data to be sure)
         final String PREFS_NAME = "MyPrefsFile";
-
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
+        //Initializing the Parse server
+        if (!(((GlobalVariables) this.getApplication()).getParseInitialized())){
+            Parse.initialize(new Parse.Configuration.Builder(ctx)
+                    .applicationId("htcAppId")
+                    .clientKey(null)
+                    .server("http://harrie.lutztec.nl/parse/")
+                    .build()
+            );
+            ((GlobalVariables) this.getApplication()).setParseInitialized(true);
+        }
+        //end server initialization
+
         if (settings.getBoolean("first_time", true)) {
-            Log.d("Comments", "First time starting up");
 
             DatabaseHelper db = new DatabaseHelper(ctx);
 
