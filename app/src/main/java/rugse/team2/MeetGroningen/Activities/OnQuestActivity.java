@@ -220,7 +220,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             user.addPoints(points);
             helper.updateInDatabase(helper, user);
             Toast.makeText(getApplicationContext(),
-                    rugse.team2.MeetGroningen.R.string.reachedLandmarkToast, Toast.LENGTH_LONG).show();
+                    rugse.team2.MeetGroningen.R.string.reachedLandmarkToast, Toast.LENGTH_SHORT).show();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
 
@@ -268,11 +268,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 //
 //                }
 //            });
-
-            AlertDialog alert = builder.create();
-            alert.setTitle(getResources().getString(rugse.team2.MeetGroningen.R.string.landmarkFound_PopupWindow));
-            alert.setMessage(currentTarget.getInformation());
-            alert.show();
 
             user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
