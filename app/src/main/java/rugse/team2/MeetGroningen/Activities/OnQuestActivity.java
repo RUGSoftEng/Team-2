@@ -206,8 +206,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         final DatabaseHelper helper = new DatabaseHelper(getBaseContext()); //TODO: close database???
         final User user = helper.getUser(helper.getReadableDatabase());
 
-        if (location.distanceTo(currentTarget.getLocationObject()) < 20) {
-            //stop location updates
+        if (location.distanceTo(currentTarget.getLocationObject()) < Constants.MAXIMAL_ACTIVATION_DISTANCE) {
+            //stop location update
 //            try {
 //                locationManager.removeUpdates(locationListener);
 //                Log.d("loc stop", "test inside try");
