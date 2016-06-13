@@ -68,6 +68,8 @@
     <string name="nextLandmarkText_OnQuest">Go find:</string>
     <string name="nextLandmarksText_OnQuest">Remaining landmarks:</string>
     <string name="continueQuest_in_popup">Continue</string>
+    <string name="rightAnswer">Correct! +5 points</string>
+    <string name="wrongAnswer">Too bad! Correct answer: </string>
 
     <!-- AskQuestNameDialog -->
     <string name="questName_dialog">Quest Name</string>

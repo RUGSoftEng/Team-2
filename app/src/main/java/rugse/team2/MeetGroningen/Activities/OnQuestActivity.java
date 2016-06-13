@@ -36,6 +36,7 @@ import rugse.team2.MeetGroningen.Objects.Landmark;
 import rugse.team2.MeetGroningen.Objects.Quest;
 import rugse.team2.MeetGroningen.Objects.Quiz;
 import rugse.team2.MeetGroningen.Objects.User;
+import rugse.team2.MeetGroningen.R;
 
 /**
  * This class represents the activity (Android window) for actively being on a quest.
@@ -64,9 +65,11 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     private Landmark currentTarget; //the next landmark within the currently active quest
     private int end; //an auxiliary variable to check whether the current quest will be completed after reaching the next landmark (1 == yes, 0 == no)
 
-    private Quiz quiz; //the quiz corresponding to the current landmark
     private Button quizButton; //the button for starting a quiz about the current landmark
-    private String[] items; //the available answers for the multiple choice questions
+    private String[] possibleAnswers; //the available answers for the multiple choice questions
+
+    private String question;
+    private String answer;
 
     /* Initialises the activity as described above after loading the passed quest from the database.
      * Next, checks if GPS is enabled, and starts a location listener instance if possible. */
@@ -248,27 +251,35 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             });
 
             //TODO add the quiz functionality back for the beta version
-//
-//            builder.setPositiveButton("QUIZ", new DialogInterface.OnClickListener() {
-//                public void onClick(DialogInterface dialog, int id) {
-//                    quiz = currentTarget.getQuiz();
-//                    //items = quiz.getPossibleAnswers();
-//                    items = new String[]{"answer A", "answer B", "answer C"};
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
-//                    //builder.setTitle(quiz.getQuestion());
-//                    builder.setTitle("Examplequestion?");
-//                    builder.setItems(items, new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int item) {
-//                            //do something with the selection
-//                            Toast.makeText(getApplicationContext(),
-//                                    items[item], Toast.LENGTH_LONG).show();
-//                        }
-//                    });
-//                    AlertDialog alert = builder.create();
-//                    alert.show();
-//
-//                }
-//            });
+
+            if (currentTarget.getQuestion() != null) {
+                question = currentTarget.getQuestion();
+                possibleAnswers = currentTarget.getPossibleAnswers();
+                answer = currentTarget.getAnswer();
+                builder.setPositiveButton("QUIZ", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(OnQuestActivity.this);
+                        builder.setTitle(question);
+                        builder.setItems(possibleAnswers, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int item) {
+                                //do something with the selection
+                                if (possibleAnswers[item] == answer) {
+                                    user.addPoints(5);
+                                    helper.updateInDatabase(helper, user);
+                                    Toast.makeText(getApplicationContext(),
+                                            getResources().getString(R.string.rightAnswer), Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(),
+                                            getResources().getString(R.string.wrongAnswer) + answer, Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+
+                    }
+                });
+            }
 
             AlertDialog alert = builder.create();
             alert.setTitle(getResources().getString(rugse.team2.MeetGroningen.R.string.landmarkFound_PopupWindow));

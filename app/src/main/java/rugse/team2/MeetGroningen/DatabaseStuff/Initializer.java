@@ -43,11 +43,8 @@ public class Initializer {
 
         //number 3
         Landmark korenbeurs = new Landmark("Korenbeurs", UUID.randomUUID().toString());
-        // SOMETHING GOES WRONG HERE: WHEN WE ADD THE QUIZ TO THE LANDMARK, THE QUESTS THAT CONTAIN IT ARE NOT DISPLAYED
-        // Quiz quiz = new Quiz("Question");
-        // quiz.setAnswers(new String[]{"A", "B", "C"});
-        // quiz.setRightAnswer("B");
-        // korenbeurs.setQuiz(quiz);
+        String[] possibleAnswers = new String[]{"answer A", "B", "C"};
+        korenbeurs.setQuiz("General question", "answer A", possibleAnswers);
         korenbeurs.setLocation(53.216863, 6.563781);
         korenbeurs.setInformation("The Korenbeurs (Grain Exchange) is a neoclassical building in Groningen in the Netherlands. It was originally used as an exchange for food grain trade, but now hosts a supermarket.");
         landmarks.add(korenbeurs);

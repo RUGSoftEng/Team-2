@@ -15,8 +15,6 @@ import java.io.Serializable;
 public class Landmark implements Serializable{
 
 
-
-    private Quiz quiz; //the quiz belonging to the landmark
     //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not needed yet (could bring serialization errors)
     private String name; //the name of the landmark
     private String locationName; //the landmark's location's name, i.e. of the street or neighbourhood where the landmark is located
@@ -27,6 +25,12 @@ public class Landmark implements Serializable{
     private double lat; //this landmark's latitude, i.e. its vertical coordinate on the globe
     private double lng; //this landmark's longitude, i.e. its horizontal coordinate on the globe
     private boolean isUserGenerated = false; //default is false set to true if userGenerated
+
+    //Quiz functionality
+    private String question;
+    private String answer;
+    private String[] possibleAnswers;
+
 
     /* Constructor which initialises the landmark with its ID and name. */
     public Landmark(String name, String id){
@@ -66,8 +70,6 @@ public class Landmark implements Serializable{
         return loc;
     }
 
-    /* Getter method for the quiz. */
-    public Quiz getQuiz() { return this.quiz; }
 
     /* Setter method for the location, which accepts a LatLng object. */
     public void setLocation(LatLng location){
@@ -81,10 +83,6 @@ public class Landmark implements Serializable{
         this.lng = lng;
     }
 
-    /* Setter method for the quiz. */
-    public void setQuiz(Quiz q) {
-        this.quiz = q;
-    }
 
     /* Getter method for the landmark's ID. */
     public String getID(){
@@ -139,17 +137,35 @@ public class Landmark implements Serializable{
         return this.isUserGenerated;
     }
 
-    /*
-    public void addQuestion(Quiz q){
-        this.questions.add(q);
+    //Quiz methods
+
+    public void setQuestion (String question) {
+        this.question = question;
     }
 
-    public Quiz getQuestion(int i){
-        return this.questions.get(i);
+    public void setAnswer (String answer) {
+        this.answer = answer;
     }
 
-    public void removeQuestion(Quiz q){
-        this.questions.remove(q);
+    public void setPossibleAnswers (String[] possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
     }
-    */
+
+    public String getQuestion() {
+        return this.question;
+    }
+
+    public String[] getPossibleAnswers() {
+        return this.possibleAnswers;
+    }
+
+    public String getAnswer() {
+        return this.answer;
+    }
+
+    public void setQuiz (String question, String answer, String[] possibleAnswers) {
+        this.question = question;
+        this.answer = answer;
+        this.possibleAnswers = possibleAnswers;
+    }
 }

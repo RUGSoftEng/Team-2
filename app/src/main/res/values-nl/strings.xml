@@ -66,6 +66,8 @@
     <string name="nextLandmarkText_OnQuest">Zoek:</string>
     <string name="nextLandmarksText_OnQuest">Resterende bezienswaardigheden:</string>
     <string name="continueQuest_in_popup">Doorgaan</string>
+    <string name="rightAnswer">Correct! +5 punten</string>
+    <string name="wrongAnswer">Helaas! Juiste antwoord: </string>
 
     <!-- AskQuestNameDialog -->
     <string name="questName_dialog">Naam zoektocht</string>
