@@ -159,6 +159,34 @@ public class Initializer {
         bovenkamer.setInformation("De Bovenkamer van Groningen (The Upstairs Room of Groningen) is a unique, elevated, atmospheric conference room for business related, celebratory, and creative gatherings. Established in 2014, it is located in the former water tank of Groningen's northern water tower, that was built in 1908 and used to hold one million litres of water. It is situated near the edge of the Noorderplantsoen, an urban public park.");
         landmarks.add(bovenkamer);
 
+        //Landmarks for Zernike Quest with Quizzes
+
+        //number 22
+        Landmark bernoulliborg = new Landmark("Bernoulliborg", UUID.randomUUID().toString());
+        bernoulliborg.setLocation(53.240455, 6.536686);
+        bernoulliborg.setInformation("The Bernoulliborg (10500 meter square gross floor area), located Zernike is a building of the University of Groningen. It hosts up to 350 employees and 500 students. With dimensions of 33 by 83 meters and a height of 27 meters, the building offers space for the central departments of the Faculty of Mathematics and Natural Sciences and the departments of mathematics, computer science and artificial intelligence.");
+        String[] bernoulliborgPossibleAnswers = new String[]{"Computing Science", "Biology", "Mathematics"};
+        bernoulliborg.setQuiz("What department is not found in Bernoulliborg?", "Biology", bernoulliborgPossibleAnswers);
+        landmarks.add(bernoulliborg);
+
+        //number 23
+        Landmark linnaeusborg = new Landmark("Linnaeusborg", UUID.randomUUID().toString());
+        linnaeusborg.setLocation(53.241201, 6.538647);
+        linnaeusborg.setInformation("‘Linnaeusborg’ is the new building for the Centre for Life Sciences of the Faculty of Mathematics and Natural Sciences of the University of Groningen. The design forms a component of the WEST8 urban development plan, in which Zernike College will be transformed from a technocratic outpost of the university into an Arcadian campus in a leafy setting. The building is situated on the eastern periphery of the Zernike complex, directly adjacent to the moat and the nature area beyond. Housing for animals is situated on the north side, with greenhouses and test beds to the south.");
+        String[] linnaeusborgPossibleAnswers = new String[]{"North", "East", "West"};
+        linnaeusborg.setQuiz("Which side of the campus is the Linnaeusborg located at?", "East", linnaeusborgPossibleAnswers);
+        landmarks.add(linnaeusborg);
+
+        //number 24
+        Landmark albertHeijnZernike = new Landmark("Albert Heijn Zernike", UUID.randomUUID().toString());
+        albertHeijnZernike.setLocation(53.240411, 6.536090);
+        albertHeijnZernike.setInformation("Albert Heijn B.V. is the largest Dutch supermarket chain, founded in 1887 in Oostzaan, Netherlands. It is named after Albert Heijn, Sr., the founder of the first store in Oostzaan.\n" +
+                "Albert Heijn is the oldest organization owned and operated by the Dutch supermarket operator Ahold. The founder of the company (Albert Heijn) was born in 1865. In fact, the name \"Ahold\" is short for Albert Heijn Holding. The stores are full service markets (as opposed to discounters) known for their focus on quality stores and products. This focus on superior products is part of the reason that Albert Heijn is regarded as one of the more expensive supermarkets in the Netherlands, Belgium and Curaçao. However, after a recent price war - initiated by Albert Heijn itself and involving nearly all Dutch supermarket chains from late 2003 all the way into 2006 - the prices are now at a more normal level.[1]\n" +
+                "At the moment, Albert Heijn's market share is around 30%. The company's logo consists of a stylized \"ah\" beside a white swoosh.");
+        String[] AHPossibleAnswers = new String[]{"Belgium", "France", "Austria"};
+        albertHeijnZernike.setQuiz("In which one of the following countries is Albert Heijn found?", "Belgium", AHPossibleAnswers);
+        landmarks.add(albertHeijnZernike);
+
 
         //create all standard quests, TODO: we could also move this to createAllStandardQuests() and get from landmark list (however hardcoded number)
 
@@ -183,6 +211,13 @@ public class Initializer {
         reversedEssential.addLandmark(cityHall);
         reversedEssential.addLandmark(martinitoren);
         quests.add(reversedEssential);
+
+        //number 3
+        ExactQuest zernikeWithQuiz = new ExactQuest(UUID.randomUUID().toString(), "Zernike Tour (with Quiz examples)", false);
+        zernikeWithQuiz.addLandmark(linnaeusborg);
+        zernikeWithQuiz.addLandmark(bernoulliborg);
+        zernikeWithQuiz.addLandmark(albertHeijnZernike);
+        quests.add(zernikeWithQuiz);
 
         //some extra empty quests to look cool in the list
         ExactQuest pubs = new ExactQuest(UUID.randomUUID().toString(), "Pub Quest", false);

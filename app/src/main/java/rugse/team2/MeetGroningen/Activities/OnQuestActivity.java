@@ -272,6 +272,22 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                                     Toast.makeText(getApplicationContext(),
                                             getResources().getString(R.string.wrongAnswer) + answer, Toast.LENGTH_LONG).show();
                                 }
+                                if (end == 1) { //end of quest
+                                    //stop location updates
+                                    try {
+                                        locationManager.removeUpdates(locationListener);
+                                    } catch (SecurityException e) {
+                                        Log.e("Security Exception", "No permission to get location: " + e);
+                                    }
+                                    user.finishQuest(user.getActiveQuest());
+                                    helper.updateInDatabase(helper, user);
+
+                                    dialog.cancel();
+                                    Intent in = new Intent(getBaseContext(), QuestFinishedActivity.class);
+                                    in.putExtra("finishedQuest", passedQuest);
+                                    startActivity(in);
+                                    finish();
+                                }
                             }
                         });
                         AlertDialog alert = builder.create();
