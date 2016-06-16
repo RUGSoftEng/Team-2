@@ -1,8 +1,11 @@
 package rugse.team2.MeetGroningen.Objects;
 
+import android.content.Context;
 import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 import java.io.Serializable;
 
@@ -13,8 +16,6 @@ import java.io.Serializable;
  * Created by Ruben on 23-02-2016.
  */
 public class Landmark implements Serializable{
-
-
 
     private Quiz quiz; //the quiz belonging to the landmark
     //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not needed yet (could bring serialization errors)
@@ -152,4 +153,18 @@ public class Landmark implements Serializable{
         this.questions.remove(q);
     }
     */
+
+    /* method that puts the landmark on the parse server
+    *  Values may be numerical, String, JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects. value may not be null */
+    public void putOnServer(){
+        ParseObject lm = new ParseObject("Landmarks");
+        lm.put("UserGenerated", this.isUserGenerated);
+        lm.put("Information", this.information);
+        lm.put("Points", this.points);
+        lm.put("Longitude", this.lng);
+        lm.put("Latitude", this.lat);
+        lm.put("Name", this.name);
+        lm.put("ID", this.landmarkID);
+        lm.saveInBackground();
+    }
 }
