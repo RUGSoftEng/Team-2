@@ -16,12 +16,7 @@ import java.io.Serializable;
  * Created by Ruben on 23-02-2016.
  */
 public class Landmark implements Serializable{
-
-<<<<<<< HEAD
-    private Quiz quiz; //the quiz belonging to the landmark
-=======
-
->>>>>>> 56266a23d313b3ef90fd4e72695bbcfdd08fae4e
+    
     //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not needed yet (could bring serialization errors)
     private String name; //the name of the landmark
     private String locationName; //the landmark's location's name, i.e. of the street or neighbourhood where the landmark is located
@@ -175,8 +170,6 @@ public class Landmark implements Serializable{
         this.answer = answer;
         this.possibleAnswers = possibleAnswers;
     }
-<<<<<<< HEAD
-    */
 
     /* method that puts the landmark on the parse server
     *  Values may be numerical, String, JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects. value may not be null */
@@ -191,6 +184,4 @@ public class Landmark implements Serializable{
         lm.put("ID", this.landmarkID);
         lm.saveInBackground();
     }
-=======
->>>>>>> 56266a23d313b3ef90fd4e72695bbcfdd08fae4e
 }
