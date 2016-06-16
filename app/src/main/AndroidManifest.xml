@@ -29,11 +29,6 @@
             android:name="rugse.team2.MeetGroningen.Activities.ChooseQuestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="rugse.team2.MeetGroningen.Activities.LandMarkPopUpActivity"
-            android:parentActivityName="rugse.team2.MeetGroningen.Activities.ContinueQuestActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
             android:name="rugse.team2.MeetGroningen.Activities.ContinueQuestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
