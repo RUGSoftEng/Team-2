@@ -19,7 +19,7 @@ public abstract class Quest implements Serializable{
     protected String name; //the name of the quest
     protected ArrayList<Landmark> landmarks = new ArrayList<>(); //the list of landmarks within the quest not yet visited
     protected ArrayList<Landmark> visitedLandmarks = new ArrayList<>(); //the list of landmarks within the quest already visited
-    protected boolean isUserGenerated; //an origin boolean indicating whether the quest is user-created (true) or standard (false)
+    protected boolean isUserGenerated, isSend = false; //an origin boolean indicating whether the quest is user-created (true) or standard (false)
     protected String questID; //the quest's unique ID
     protected int totallandmarks; //the total amount of landmarks within the quest
     protected String category; //the category this quest falls under
@@ -114,6 +114,10 @@ public abstract class Quest implements Serializable{
     public boolean isUserGenerated (){
         return this.isUserGenerated;
     }
+
+    public boolean isSend () {return this.isSend;}
+
+    public void setIsSend(boolean b) {this.isSend = b;}
 
     //test toJSON method to try and serialize landmarklist
     public String toJSON(ArrayList<Landmark> lijst) {
