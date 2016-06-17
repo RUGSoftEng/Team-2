@@ -30,6 +30,15 @@
         android:layout_weight="0.45" />
 
     <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/startButton_questPreview"
+        android:background="#0277bd"
+        android:id="@+id/startButton_questPreview"
+        android:visibility="invisible"
+        android:textColor="#ffffff" />
+
+    <Button
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -37,17 +46,7 @@
         android:id="@+id/addButton_questPreview"
         android:background="#0277bd"
         android:textColor="#ffffff"
-        android:layout_gravity="center_horizontal"
 
-        />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/startButton_questPreview"
-        android:background="#0277bd"
-        android:id="@+id/startButton_questPreview"
-        android:visibility="invisible"
         />
 
 
