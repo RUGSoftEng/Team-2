@@ -32,6 +32,7 @@
     <string name="startButton_questPreview">Start deze tocht!</string>
     <string name="title_activity_current_quest">Kaart</string>
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
+    <string name="questAdded">Zoektocht is toegevoegd aan je lijst!</string>
 
     <!--QuestFinished-->
     <string name="congratsText_questFinished">Gefeliciteerd!\n Je hebt succesvol deze zoektocht afgerond: </string>

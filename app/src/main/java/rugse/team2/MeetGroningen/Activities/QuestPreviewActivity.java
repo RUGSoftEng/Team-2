@@ -131,7 +131,7 @@ public class QuestPreviewActivity extends FragmentActivity implements
                 dbhelper.updateInDatabase(dbhelper, currentUser);
                 pickQuest.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(),
-                        "Quest added to your list!", Toast.LENGTH_LONG).show();
+                        rugse.team2.MeetGroningen.R.string.questAdded, Toast.LENGTH_LONG).show();
                 startQuest.setVisibility(View.VISIBLE);
             }
         });

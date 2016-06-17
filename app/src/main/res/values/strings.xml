@@ -32,6 +32,7 @@
     <string name="startButton_questPreview">Start this quest!</string>
     <string name="title_activity_current_quest">Map</string>
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
+    <string name="questAdded">Quest added to your list!</string>
 
     <!--QuestFinished-->
     <string name="congratsText_questFinished">Congrats!\n You successfully finished\n the following quest: </string>

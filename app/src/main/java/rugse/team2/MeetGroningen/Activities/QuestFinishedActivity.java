@@ -29,14 +29,6 @@ public class QuestFinishedActivity extends AppCompatActivity {
             questname.setVisibility(View.VISIBLE);
         }
 
-//        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-//        SQLiteDatabase db = helper.getReadableDatabase();
-//        User user = helper.getUser(db);
-//
-//        user.finishQuest(finishedQuest);
-//        helper.updateInDatabase(helper, user);
-
-        // TODO: button that redirects user to main page
         Button pickQuest = (Button) findViewById(rugse.team2.MeetGroningen.R.id.goMainButton_questFinished);
         pickQuest.setOnClickListener(new View.OnClickListener() {
             @Override
