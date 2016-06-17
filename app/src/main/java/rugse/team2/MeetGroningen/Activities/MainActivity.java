@@ -25,7 +25,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ViewSwitcher;
 
+import com.parse.Parse;
+
 import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
+import rugse.team2.MeetGroningen.DatabaseStuff.GlobalVariables;
 import rugse.team2.MeetGroningen.DatabaseStuff.Initializer;
 import rugse.team2.MeetGroningen.Objects.Landmark;
 import rugse.team2.MeetGroningen.Objects.Quest;
@@ -57,14 +60,23 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(rugse.team2.MeetGroningen.R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         //for the first time of startup initialise stuff by looking for pref file (so could be affected by previous tries, wipe data to be sure)
         final String PREFS_NAME = "MyPrefsFile";
-
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
+        //Initializing the Parse server
+        if (!(((GlobalVariables) this.getApplication()).getParseInitialized())){
+            Parse.initialize(new Parse.Configuration.Builder(ctx)
+                    .applicationId("htcAppId")
+                    .clientKey(null)
+                    .server("http://harrie.lutztec.nl/parse/")
+                    .build()
+            );
+            ((GlobalVariables) this.getApplication()).setParseInitialized(true);
+        }
+        //end server initialization
+
         if (settings.getBoolean("first_time", true)) {
-            Log.d("Comments", "First time starting up");
 
             DatabaseHelper db = new DatabaseHelper(ctx);
 
@@ -74,11 +86,15 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Landmark> standardLandMarks = i.createStandardLandmarks();
             for(Landmark l : standardLandMarks){
                 db.putInDatabase(db, l);
+                //puts all initialized landmarks on the server(which isn't really needed) TODO: create sensible way to organize this
+                l.putOnServer();
             }
 
             ArrayList<Quest> standardQuests = i.createStandardQuests();
             for(Quest q : standardQuests){
                 db.putInDatabase(db, q);
+                //puts all initialized quests on the server(which isn't really needed) TODO: create sensible way to organize this
+                q.putOnServer();
             }
 
             //initial user is put into the database

@@ -1,6 +1,8 @@
 package rugse.team2.MeetGroningen.Activities;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
 import rugse.team2.MeetGroningen.Objects.Landmark;
@@ -53,8 +56,8 @@ public class ManageCustomActivity extends Activity {
         selectedQuestText = (TextView) findViewById(R.id.questText);
         selectedLandmarkText = (TextView) findViewById(R.id.customLandmarkText);
 
-        for(Landmark l : helper.getAllLandmarks(helper.getReadableDatabase())){
-            if(l.isUserGenerated()) {
+        for (Landmark l : helper.getAllLandmarks(helper.getReadableDatabase())) {
+            if (l.isUserGenerated()) {
                 customLandmarkList.add(l);
             }
         }
@@ -71,11 +74,6 @@ public class ManageCustomActivity extends Activity {
         deleteLandmarkButton = (Button) findViewById(R.id.deleteLandmarkButton);
         sendLandmarkButton = (Button) findViewById(R.id.sendLandmarkButton);
         sendQuestButton = (Button) findViewById(R.id.sendQuestButton);
-
-        //TODO: these have to be visible again when implemented
-        sendQuestButton.setVisibility(View.INVISIBLE);
-        sendLandmarkButton.setVisibility(View.INVISIBLE);
-
 
         customQuestView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -125,6 +123,37 @@ public class ManageCustomActivity extends Activity {
                     selectedQuestText.setText(R.string.questText);
                 }
                 adapterQ.notifyDataSetChanged();
+            }
+        });
+
+        sendQuestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectedQuest != null) {
+                    if (selectedQuest.isSend()) {
+                        Toast.makeText(getApplicationContext(), R.string.AlreadyOnServerText, Toast.LENGTH_SHORT).show();
+                    } else {
+                        selectedQuest.setIsSend(true);
+                        selectedQuest.putOnServer(); //TODO: change the putOnServer for custom objects too something that puts them in special seperate database
+                        selectedQuestText.setText(R.string.questText);
+                    }
+                }
+                adapterQ.notifyDataSetChanged();
+            }
+        });
+        sendLandmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectedLandmark != null) {
+                    if (selectedLandmark.isSend()) {
+                        Toast.makeText(getApplicationContext(), R.string.AlreadyOnServerText, Toast.LENGTH_SHORT).show();
+                    } else {
+                        selectedLandmark.setIsSend(true);
+                        selectedLandmark.putOnServer(); //TODO: change the putOnServer for custom objects too something that puts them in special seperate database
+                        selectedLandmarkText.setText(R.string.questText);
+                    }
+                }
+                adapterL.notifyDataSetChanged();
             }
         });
     }

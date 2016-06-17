@@ -1,8 +1,11 @@
 package rugse.team2.MeetGroningen.Objects;
 
+import android.content.Context;
 import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 import java.io.Serializable;
 
@@ -14,7 +17,6 @@ import java.io.Serializable;
  */
 public class Landmark implements Serializable{
 
-
     //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not needed yet (could bring serialization errors)
     private String name; //the name of the landmark
     private String locationName; //the landmark's location's name, i.e. of the street or neighbourhood where the landmark is located
@@ -24,7 +26,7 @@ public class Landmark implements Serializable{
     //private ArrayList<Question> questions = new ArrayList<Question>(); TODO not yet used so not needed yet (could bring errors serialization errors)
     private double lat; //this landmark's latitude, i.e. its vertical coordinate on the globe
     private double lng; //this landmark's longitude, i.e. its horizontal coordinate on the globe
-    private boolean isUserGenerated = false; //default is false set to true if userGenerated
+    private boolean isUserGenerated = false, isSend = false; //default is false set to true if userGenerated
 
     //Quiz functionality
     private String question;
@@ -167,5 +169,23 @@ public class Landmark implements Serializable{
         this.question = question;
         this.answer = answer;
         this.possibleAnswers = possibleAnswers;
+    }
+
+    public boolean isSend () {return this.isSend;}
+
+    public void setIsSend(boolean b) {this.isSend = b;}
+
+    /* method that puts the landmark on the parse server
+    *  Values may be numerical, String, JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects. value may not be null */
+    public void putOnServer(){
+        ParseObject lm = new ParseObject("Landmarks");
+        lm.put("UserGenerated", this.isUserGenerated);
+        lm.put("Information", this.information);
+        lm.put("Points", this.points);
+        lm.put("Longitude", this.lng);
+        lm.put("Latitude", this.lat);
+        lm.put("Name", this.name);
+        lm.put("ID", this.landmarkID);
+        lm.saveInBackground();
     }
 }
