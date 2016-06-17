@@ -1,5 +1,6 @@
 package rugse.team2.MeetGroningen.Objects;
 
+import com.google.gson.Gson;
 import com.parse.ParseObject;
 
 import org.json.JSONException;
@@ -122,12 +123,16 @@ public abstract class Quest implements Serializable{
     //test toJSON method to try and serialize landmarklist
     public String toJSON(ArrayList<Landmark> lijst) {
 
+        Gson gson = new Gson();
+        String json = gson.toJson(lijst);
+        return json;
+
+        /*
         JSONObject landmarkList = new JSONObject();
         try {
-            int i =0;
             for(Landmark l : lijst){
-                landmarkList.put("landmark "+ i, l);
-                i++;
+                landmarkList.put("landmarkID", l.getID());
+                landmarkList.put("landmark", l);
             }
             return landmarkList.toString();
         } catch (JSONException e) {
@@ -135,8 +140,10 @@ public abstract class Quest implements Serializable{
             e.printStackTrace();
             return "";
         }
+        */
     }
     //end test toJSON
+
 
     /* method that puts thequest on the parse server
     *  Values may be numerical, String, JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects. value may not be null
@@ -144,6 +151,15 @@ public abstract class Quest implements Serializable{
     */
     public void putOnServer(){
         ParseObject qst = new ParseObject("Quests");
+        qst.put("UserGenerated", this.isUserGenerated);
+        qst.put("Name", this.name);
+        qst.put("ID", this.questID);
+        qst.put("LandMarks", toJSON(landmarks));
+        qst.saveInBackground();
+    }
+
+    public void putCustomOnServer(){
+        ParseObject qst = new ParseObject("SendQuests");
         qst.put("UserGenerated", this.isUserGenerated);
         qst.put("Name", this.name);
         qst.put("ID", this.questID);

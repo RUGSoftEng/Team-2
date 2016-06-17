@@ -87,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
             for(Landmark l : standardLandMarks){
                 db.putInDatabase(db, l);
                 //puts all initialized landmarks on the server(which isn't really needed) TODO: create sensible way to organize this
-                l.putOnServer();
+                //l.putOnServer();
             }
 
             ArrayList<Quest> standardQuests = i.createStandardQuests();
             for(Quest q : standardQuests){
                 db.putInDatabase(db, q);
                 //puts all initialized quests on the server(which isn't really needed) TODO: create sensible way to organize this
-                q.putOnServer();
+                //q.putOnServer();
             }
 
             //initial user is put into the database

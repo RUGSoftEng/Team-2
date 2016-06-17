@@ -109,5 +109,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_tutorial2">Tutorial2</string>
     <string name="AlreadyOnServerText">Already added to Server</string>
+    <string name="PutOnServerText">Thanks, it is sent</string>
 
 </resources>

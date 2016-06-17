@@ -188,4 +188,16 @@ public class Landmark implements Serializable{
         lm.put("ID", this.landmarkID);
         lm.saveInBackground();
     }
+
+    public void putCustomOnServer(){
+        ParseObject lm = new ParseObject("SendLandmarks");
+        lm.put("UserGenerated", this.isUserGenerated);
+        lm.put("Information", this.information);
+        lm.put("Points", this.points);
+        lm.put("Longitude", this.lng);
+        lm.put("Latitude", this.lat);
+        lm.put("Name", this.name);
+        lm.put("ID", this.landmarkID);
+        lm.saveInBackground();
+    }
 }

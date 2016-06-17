@@ -134,13 +134,15 @@ public class ManageCustomActivity extends Activity {
                         Toast.makeText(getApplicationContext(), R.string.AlreadyOnServerText, Toast.LENGTH_SHORT).show();
                     } else {
                         selectedQuest.setIsSend(true);
-                        selectedQuest.putOnServer(); //TODO: change the putOnServer for custom objects too something that puts them in special seperate database
+                        selectedQuest.putCustomOnServer();
                         selectedQuestText.setText(R.string.questText);
+                        Toast.makeText(getApplicationContext(), R.string.PutOnServerText, Toast.LENGTH_SHORT).show();
                     }
                 }
                 adapterQ.notifyDataSetChanged();
             }
         });
+
         sendLandmarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,8 +151,9 @@ public class ManageCustomActivity extends Activity {
                         Toast.makeText(getApplicationContext(), R.string.AlreadyOnServerText, Toast.LENGTH_SHORT).show();
                     } else {
                         selectedLandmark.setIsSend(true);
-                        selectedLandmark.putOnServer(); //TODO: change the putOnServer for custom objects too something that puts them in special seperate database
-                        selectedLandmarkText.setText(R.string.questText);
+                        selectedLandmark.putCustomOnServer(); //TODO: change the putOnServer for custom objects too something that puts them in special seperate database
+                        selectedLandmarkText.setText(R.string.customLandmarkText);
+                        Toast.makeText(getApplicationContext(), R.string.PutOnServerText, Toast.LENGTH_SHORT).show();
                     }
                 }
                 adapterL.notifyDataSetChanged();
