@@ -57,7 +57,6 @@
     <string name="myProgressText_Userpage">My progress</string>
     <string name="pEarnedText_Userpage">Points earned</string>
     <string name="questFinishedText_Userpage">Quests finished</string>
-    <string name="title_activity_new_quest_popup">NewQuestPopupActivity</string>
 
     <!-- ContinueQuestActivity-->
     <string name="startedQuest_continue">Started Quests</string>
@@ -70,6 +69,7 @@
     <string name="continueQuest_in_popup">Continue</string>
     <string name="rightAnswer">Correct! +5 points</string>
     <string name="wrongAnswer">Too bad! Correct answer: </string>
+    <string name="imhere">I\'m here!</string>
 
     <!-- AskQuestNameDialog -->
     <string name="questName_dialog">Quest Name</string>
@@ -101,7 +101,7 @@
     <string name="imageViewDiscription">BackGround</string>
     <string name="manageToolbar">Manage</string>
     <string name="choose_a_quest_from_the_list">Choose a quest from the list!</string>
-    <string name="info_text">You can chose to continue one of the started quests, or long tap remove it from the list!</string>
+    <string name="info_text">You can choose to continue one of the started quests, or long tap remove it from the list!</string>
     <string name="helpMenu">Help</string>
 
     <string name="title_activity_tutorial">Tutorial</string>
