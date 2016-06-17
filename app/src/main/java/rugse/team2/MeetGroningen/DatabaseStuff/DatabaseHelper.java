@@ -63,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.LANDMARK_ID, landmarkID);
             cv.put(DBConstants.LANDMARK, object);
-            sq.insert(DBConstants.TABLE_NAME_LANDMARK, null, cv);
+            sq.insertWithOnConflict(DBConstants.TABLE_NAME_LANDMARK, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
             Log.d("COMMENT", "Tried putting landmark in database");
         }
 
@@ -73,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.QUEST_ID, questID);
             cv.put(DBConstants.QUEST, object);
-            sq.insert(DBConstants.TABLE_NAME_QUEST, null, cv);
+            sq.insertWithOnConflict(DBConstants.TABLE_NAME_QUEST, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
             Log.d("COMMENT", "Tried putting quest in database");
         }
 
@@ -83,17 +83,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.USER_ID, userID);
             cv.put(DBConstants.USER, object);
-            sq.insert(DBConstants.TABLE_NAME_USER, null, cv);
+            sq.insertWithOnConflict(DBConstants.TABLE_NAME_USER, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
             Log.d("COMMENT", "Tried putting User in database");
         }
 
+
+        //TODO: Might not mandotory to use anymore so could be refactored away by replacing with putUserInformation
         /* Updates the User object with the specified ID within the database. */
         private void updateUser(DatabaseHelper helper, String userID, byte[] object){
             SQLiteDatabase sq = helper.getReadableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBConstants.USER_ID, userID);
             cv.put(DBConstants.USER, object);
-            sq.update(DBConstants.TABLE_NAME_USER, cv, null, null); //TODO: where clause ok here?? null is ok?
+            sq.update(DBConstants.TABLE_NAME_USER, cv, null, null);
             Log.d("COMMENT", "Tried putting User in database");
         }
 

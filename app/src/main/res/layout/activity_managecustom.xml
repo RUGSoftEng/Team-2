@@ -72,7 +72,8 @@
             android:background="#0277bd"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_alignBottom="@+id/deleteLandmarkButton" />
+            android:layout_alignBottom="@+id/deleteLandmarkButton"
+            android:layout_toStartOf="@+id/syncButton" />
 
         <ListView
             android:layout_width="wrap_content"
@@ -91,6 +92,17 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:textColor="#0e0d0d" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="200px"
+            android:layout_height="match_parent"
+            android:text="Sync"
+            android:id="@+id/syncButton"
+            android:layout_toStartOf="@+id/deleteLandmarkButton"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_above="@+id/customLandmarkText" />
 
     </RelativeLayout>
 </LinearLayout>

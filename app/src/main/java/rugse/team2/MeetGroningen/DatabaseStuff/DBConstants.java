@@ -51,7 +51,7 @@ public class DBConstants {
             "DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_LANDMARK;
 
     public static final String SQL_DELETE_QUEST_ENTRIES =
-            "DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_LANDMARK;
+            "DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_QUEST;
 
     public static final String SQL_DELETE_USER_ENTRIES =
             "DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_USER;

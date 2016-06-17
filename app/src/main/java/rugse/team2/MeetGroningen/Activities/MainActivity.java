@@ -192,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-
         //make image switcher to switch background
 
         imgs.add(rugse.team2.MeetGroningen.R.mipmap.main_background1);

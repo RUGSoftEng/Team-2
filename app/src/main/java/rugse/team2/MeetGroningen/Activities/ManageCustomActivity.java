@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseRelation;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
 import rugse.team2.MeetGroningen.Objects.Landmark;
 import rugse.team2.MeetGroningen.Objects.Quest;
@@ -19,6 +30,8 @@ import rugse.team2.MeetGroningen.Objects.User;
 import rugse.team2.MeetGroningen.R;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Ruben on 15/05/2016.
@@ -159,5 +172,72 @@ public class ManageCustomActivity extends Activity {
                 adapterL.notifyDataSetChanged();
             }
         });
+
+        //maximum of 100 Rows so the database should not have more. TODO: if enough time before deadline, change
+        Button syncButton = (Button) findViewById(rugse.team2.MeetGroningen.R.id.syncButton);
+        if(syncButton != null) {
+            syncButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ParseQuery<ParseObject> landmarkQuery = ParseQuery.getQuery("Landmarks");
+
+                    try{
+                        Log.d("Syncing", "Start asking for landmarkQuery");
+                        List<ParseObject> landmarks = landmarkQuery.find();
+                        DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+                        for(ParseObject object : landmarks) {
+                            Gson g = new Gson();
+                            Landmark l = g.fromJson(object.getString("Object"), Landmark.class);
+                            Log.d("Syncing", "Synced Landmark: " + l.getName());
+                            helper.putInDatabase(helper, l);
+                        }
+                        Log.d("Syncing", "Done Syncing for landmarkQuery");
+                        helper.close();
+                    } catch(ParseException e){
+                        Log.e("Server Error", "Something went wrong when syncing Landmark Data");
+                    }
+
+                    /* Below is non blocking put query is only accesible when not used anymore so has to be blocking (find())
+                    landmarkQuery.findInBackground(new FindCallback<ParseObject>() {
+                        public void done(List<ParseObject> landmarks, ParseException e) {
+                            if (e == null) {
+                                DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+                                for(ParseObject object : landmarks) {
+                                    Gson g = new Gson();
+                                    Landmark l = g.fromJson(object.getString("Object"), Landmark.class);
+                                    helper.putInDatabase(helper, l);
+                                }
+                                helper.close();
+                            } else {
+                                Log.e("Server Error", "Something went wrong when syncing Landmark Data");
+                            }
+                        }
+                    });
+                    */
+
+                    /* TODO: uncomment this code when fixed, Quest is null when retrieved from server
+                    ParseQuery<ParseObject> questQuery = ParseQuery.getQuery("Quests");
+                    questQuery.findInBackground(new FindCallback<ParseObject>() {
+                        public void done(List<ParseObject> landmarks, ParseException e) {
+                            if (e == null) {
+                                Log.d("Syncing", "Start asking for questQuery");
+                                DatabaseHelper helper = new DatabaseHelper(getBaseContext());
+                                for (ParseObject object : landmarks) {
+                                    Gson g = new Gson();
+                                    Quest quest = g.fromJson(object.getString("Object"), Quest.class);
+                                    Log.d("Syncing", "Synced Quest: " + quest.getName());
+                                    helper.putInDatabase(helper, quest);
+                                }
+                                Log.d("Syncing", "Done Syncing for questQuery");
+                                helper.close();
+                            } else {
+                                Log.e("Server Error", "Something went wrong when syncing Quest Data");
+                            }
+                        }
+                    });
+                    */
+                }
+            });
+        }
     }
 }

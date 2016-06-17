@@ -4,6 +4,7 @@ import android.content.Context;
 import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -179,6 +180,10 @@ public class Landmark implements Serializable{
     *  Values may be numerical, String, JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects. value may not be null */
     public void putOnServer(){
         ParseObject lm = new ParseObject("Landmarks");
+
+        Gson gson = new Gson();
+        lm.put("Object", gson.toJson(this));
+
         lm.put("UserGenerated", this.isUserGenerated);
         lm.put("Information", this.information);
         lm.put("Points", this.points);
@@ -191,6 +196,10 @@ public class Landmark implements Serializable{
 
     public void putCustomOnServer(){
         ParseObject lm = new ParseObject("SendLandmarks");
+
+        Gson gson = new Gson();
+        lm.put("Object", gson.toJson(this));
+
         lm.put("UserGenerated", this.isUserGenerated);
         lm.put("Information", this.information);
         lm.put("Points", this.points);
