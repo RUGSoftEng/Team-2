@@ -71,6 +71,7 @@
             android:id="@+id/newQuestButton"
             android:layout_above="@+id/mapButton"
             android:enabled="true"
+            android:textColor="#ffffff"
             android:nestedScrollingEnabled="false"
             android:background="#0277bd"
             android:layout_margin="5dp"
@@ -85,16 +86,16 @@
             android:background="#0277bd"
             android:layout_margin="5dp"
             android:enabled="true"
+            android:textColor="#ffffff"
             android:layout_centerHorizontal="true"/>
 
         <Button
 
             android:text="@string/continueQuestButton_main"
             android:id="@+id/continueButton"
-
             android:layout_above="@+id/userpageButton_main"
             android:layout_margin="5dp"
-
+            android:textColor="#ffffff"
             android:background="#0277bd"
             android:layout_centerHorizontal="true"
             android:layout_height="35dp"
@@ -103,6 +104,7 @@
         <Button
             android:layout_width="200dp"
             android:layout_height="35dp"
+            android:textColor="#ffffff"
             android:text="@string/userpageButton_main"
             android:id="@+id/userpageButton_main"
             android:layout_marginBottom="27dp"

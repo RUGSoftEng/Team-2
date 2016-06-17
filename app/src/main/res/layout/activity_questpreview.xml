@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@mipmap/profile_background">
+    android:background="@mipmap/map_background">
 
 <fragment
     android:id="@+id/map"
@@ -36,6 +36,7 @@
         android:text="@string/pickButton_questPreview"
         android:id="@+id/addButton_questPreview"
         android:background="#0277bd"
+        android:textColor="#ffffff"
         android:layout_gravity="center_horizontal"
 
         />

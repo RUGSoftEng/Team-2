@@ -15,9 +15,9 @@ import rugse.team2.MeetGroningen.R;
  */
 public class CustomSwipeAdapter extends PagerAdapter{
 
-    private int[] images = {R.drawable.tutorial_page1,
-                            R.drawable.tutorial_page2,
-                            R.drawable.tutorial_page3};
+    private int[] images = {R.mipmap.tutorial_page1,
+                            R.mipmap.tutorial_page2,
+                            R.mipmap.tutorial_page3};
 
     private Context context;
     private LayoutInflater layoutInflater;

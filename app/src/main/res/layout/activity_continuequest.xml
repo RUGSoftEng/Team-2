@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:orientation="vertical"
-    android:background="@mipmap/profile_background">
+    android:background="@mipmap/map_background">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,6 +31,16 @@
             android:textColor="#0277bd"
             android:layout_marginTop="20dp"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/info_text"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/StartedQuestText"
+            android:gravity="center"
             android:layout_centerHorizontal="true" />
 
 

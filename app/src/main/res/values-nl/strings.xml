@@ -32,6 +32,7 @@
     <string name="startButton_questPreview">Start deze tocht!</string>
     <string name="title_activity_current_quest">Kaart</string>
     <string name="title_activity_quest_finished">QuestFinishedActivity</string>
+    <string name="questAdded">Zoektocht is toegevoegd aan je lijst!</string>
 
     <!--QuestFinished-->
     <string name="congratsText_questFinished">Gefeliciteerd!\n Je hebt succesvol deze zoektocht afgerond: </string>
@@ -68,6 +69,7 @@
     <string name="continueQuest_in_popup">Doorgaan</string>
     <string name="rightAnswer">Correct! +5 punten</string>
     <string name="wrongAnswer">Helaas! Juiste antwoord: </string>
+    <string name="imhere">Hier ben ik!</string>
 
     <!-- AskQuestNameDialog -->
     <string name="questName_dialog">Naam zoektocht</string>
@@ -103,7 +105,6 @@
 
 
     <string name="helpMenu">Help</string>
-    <string name="title_activity_new_quest_popup">NewQuestPopupActivity</string>
     <string name="info_text">Je kan kiezen om door te gaan met een tocht, of klik lang om the verwijderen.</string>
 
     <string name="title_activity_tutorial">Tutorial</string>

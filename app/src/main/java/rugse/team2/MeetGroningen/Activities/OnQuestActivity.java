@@ -34,7 +34,6 @@ import rugse.team2.MeetGroningen.Constants;
 import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
 import rugse.team2.MeetGroningen.Objects.Landmark;
 import rugse.team2.MeetGroningen.Objects.Quest;
-import rugse.team2.MeetGroningen.Objects.Quiz;
 import rugse.team2.MeetGroningen.Objects.User;
 import rugse.team2.MeetGroningen.R;
 
@@ -47,7 +46,6 @@ import rugse.team2.MeetGroningen.R;
  * Created by Ruben on 17-03-2016.
  */
 
-//TODO: Quiz is not implemented yet
 public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private ProgressBar mProgress; //the progress bar showing what percentage of the current quest has been completed thus far
@@ -211,14 +209,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
 
         if (location.distanceTo(currentTarget.getLocationObject()) < Constants.MAXIMAL_ACTIVATION_DISTANCE) {
             //stop location update
-//            try {
-//                locationManager.removeUpdates(locationListener);
-//                Log.d("loc stop", "test inside try");
-//            } catch (SecurityException e) {
-//                Log.e("Security Exception", "No permission to get location: " + e);
-//            }
-            Log.d("loc stop", "test");
-            // This gets called twice!!! Should only once
             int points = currentTarget.getPoints();
             user.addPoints(points);
             helper.updateInDatabase(helper, user);
@@ -250,8 +240,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                 }
             });
 
-            //TODO add the quiz functionality back for the beta version
-
             if (currentTarget.getQuestion() != null) {
                 question = currentTarget.getQuestion();
                 possibleAnswers = currentTarget.getPossibleAnswers();
@@ -262,7 +250,6 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
                         builder.setTitle(question);
                         builder.setItems(possibleAnswers, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int item) {
-                                //do something with the selection
                                 if (possibleAnswers[item] == answer) {
                                     user.addPoints(5);
                                     helper.updateInDatabase(helper, user);
@@ -302,7 +289,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
             alert.setMessage(currentTarget.getInformation());
             alert.show();
 
-            user.getActiveQuest().getLandmarks().remove(0); //TODO this should be changed to iscompleted
+            user.getActiveQuest().getLandmarks().remove(0);
             if (user.getActiveQuest().getLandmarks().isEmpty()) {
                 end = 1;
             } else {
@@ -319,7 +306,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         if (mylocmarker ==  null) {
             MarkerOptions options = new MarkerOptions()
                     .position(latLng)
-                    .title("I am here!")
+                    .title(getResources().getString(R.string.imhere))
                     .icon(BitmapDescriptorFactory.fromResource(rugse.team2.MeetGroningen.R.mipmap.icon2));
             mylocmarker = mMap.addMarker(options);
         } else {
