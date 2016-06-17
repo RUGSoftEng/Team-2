@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="@mipmap/profile_background">
+    android:background="@mipmap/map_background">
 
     <fragment
         android:layout_width="match_parent"
@@ -54,6 +54,7 @@
         android:text="@string/finishButton_makeLandmark"
         android:id="@+id/FinishButton"
         android:background="#0277bd"
+        android:textColor="#ffffff"
         android:layout_margin="20dp"
         android:layout_alignParentBottom="true" />
 

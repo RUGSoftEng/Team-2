@@ -116,21 +116,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-//            // Here, thisActivity is the current activity
-//            if (ContextCompat.checkSelfPermission(thisActivity,
-//                    Manifest.permission.READ_CONTACTS)
-//                    != PackageManager.PERMISSION_GRANTED) {
-//
-//
-//
-//                    // No explanation needed, we can request the permission.
-//
-//                    ActivityCompat.requestPermissions(thisActivity,
-//                            new String[]{Manifest.permission.READ_CONTACTS},
-//                            MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-//            }
-
-
         } else {
             Log.d("Comments", "not first time starting up");
         }
@@ -160,14 +145,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                     }
                 });
-
-//                builder.setNegativeButton("LANDMARK", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        Intent i = new Intent(getBaseContext(), MakeLandmarkActivity.class);
-//                        startActivity(i);
-//                    }
-//                });
-
                 AlertDialog alert = builder.create();
                 alert.show();
             }
