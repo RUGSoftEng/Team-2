@@ -17,14 +17,14 @@ import android.widget.EditText;
  */
 //TODO: still has hardcoded strings and stuff + maybe bit messy
 public class AskQuestNameDialog extends DialogFragment {
+    /** the listener instance for reacting to button clicks */
+    private QuestNameDialogListener mListener; //use this instance of the interface to deliver action events
 
-    //use this instance of the interface to deliver action events
-    private QuestNameDialogListener mListener; //the listener instance for reacting to button clicks
+    /** the entered quest name, initialised to a hardcoded example quest name */
+    private String questName = "Custom Quest";
 
-    private String questName = "Custom Quest"; //the entered quest name, initialised to a hardcoded example quest name
-
-    /* Initialises the activity as described above, and binds the positive button
-     * to processing the text inputted and the negative button to discarding it. */
+    /** Initialises the activity as described above, and binds the positive button
+      * to processing the text inputted and the negative button to discarding it. */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -56,15 +56,15 @@ public class AskQuestNameDialog extends DialogFragment {
     }
 
 
-    /* The activity that creates an instance of this dialog fragment must
-     * implement this interface in order to receive event callbacks. Each
-     * method passes the DialogFragment in case the host needs to query it. */
+    /** The activity that creates an instance of this dialog fragment must
+      * implement this interface in order to receive event callbacks. Each
+      * method passes the DialogFragment in case the host needs to query it. */
     public interface QuestNameDialogListener {
         public void onDialogPositiveClick(AskQuestNameDialog dialog);
         public void onDialogNegativeClick(AskQuestNameDialog dialog);
     }
 
-    /* Overrides the Fragment.onAttach() method to instantiate the QuestNameDialogListener. */
+    /** Overrides the Fragment.onAttach() method to instantiate the QuestNameDialogListener. */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -73,13 +73,13 @@ public class AskQuestNameDialog extends DialogFragment {
             //instantiate the QuestNameDialogListener so we can send events to the host
             mListener = (QuestNameDialogListener) activity;
         } catch (ClassCastException e) {
-            //the activity doesn't implement the interface, throw an exception
+            //the activity doesn't implement the interface; throw an exception
             throw new ClassCastException(activity.toString()
                     + " must implement QuestNameDialogListener");
         }
     }
 
-    /* Getter method for the entered quest name. */
+    /** Getter method for the entered quest name. */
     public String getQuestName(){
         return this.questName;
     }

@@ -19,7 +19,7 @@ public class Constants {
 
     //geofencing related stuff
     public static final String TAG = "GeofenceTransitionsIS"; //TAG for geofence
-    public static final String FINISHED_QUEST_TEXT = "Congratulations! You finished this quest! Good job!"; //text shown when finishing a quest
+    public static final String FINISHED_QUEST_TEXT = "Congratulations! You finished this quest! Good job!"; //text shown upon finishing a quest
 
     public static final String COMPLETED_LANDMARK_TEXT = "Landmark visited";
     public static final int FINISHED_LANDMARK_DURATION = Toast.LENGTH_SHORT;
@@ -32,7 +32,7 @@ public class Constants {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 10; //random number to give a permission code
 
     public static final int PADDING = 100; //padding of maps and markers
-    public static final int MILLISEC = 1000; //second converted to millisecs
+    public static final int MILLISEC = 1000; //second converted to milliseconds
 
     public static final int NORMAL_ZOOM = 10;
 

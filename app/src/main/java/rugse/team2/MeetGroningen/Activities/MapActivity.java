@@ -27,7 +27,7 @@ package rugse.team2.MeetGroningen.Activities;
  */
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    /* Initialises the activity as described above by preparing the map and calling onMapReady when it is finished. */
+        /** Initialises the activity as described above by preparing the map and calling onMapReady when it is finished. */
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -38,13 +38,12 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             mapFragment.getMapAsync(this);
         }
 
-        /* Queries the database for all available landmarks, converts their locations
-         * into map markers, and moves the map camera to view them all simultaneously. */
+        /** Queries the database for all available landmarks, converts their locations
+          * into map markers, and moves the map camera to view them all simultaneously. */
         @Override
         public void onMapReady(final GoogleMap mMap) {
             mMap.moveCamera(CameraUpdateFactory.newLatLng(Constants.COORDINATE_GRONINGEN));
 
-            //take all landmark objects from the database and put them into a ListView
             DatabaseHelper helper = new DatabaseHelper(this);
             SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -65,9 +64,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
                 @Override
                 public void onCameraChange(CameraPosition arg0) {
-                    // Move camera.
+                    //move camera.
                     mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING));
-                    // Remove listener to prevent position reset on camera move.
+                    //remove listener to prevent position reset on camera move
                     mMap.setOnCameraChangeListener(null);
                 }
             });

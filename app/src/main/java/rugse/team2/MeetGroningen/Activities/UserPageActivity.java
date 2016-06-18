@@ -18,11 +18,14 @@ import java.util.ArrayList;
  * It displays the current user's earned points and a list of their completed quests.
  */
 public class UserPageActivity extends AppCompatActivity {
-    private TextView tv; //the text lay-out to be filled with the amount of points
-    private int points; //the amount of points earned so far by the current user
-    private ListView listview; //the list lay-out to be filled with the names of all quests completed so far by the current user
+    /** the text lay-out to be filled with the amount of points */
+    private TextView tv;
+    /** the amount of points earned so far by the current user */
+    private int points;
+    /** the list lay-out to be filled with the names of all quests completed so far by the current user */
+    private ListView listview;
 
-    /* Initialises the activity as described above. */
+    /** Initialises the activity as described above. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

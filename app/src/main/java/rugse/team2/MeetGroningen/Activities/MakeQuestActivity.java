@@ -43,23 +43,24 @@ import java.util.UUID;
  * Created by Ruben on 28-02-2016.
  */
 public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener, OnMapReadyCallback {
+    /** the (Google) map */
+    private GoogleMap mMap;
+    /** the data corresponding to the first list, i.e. all not yet selected landmarks */
+    private ArrayList<Landmark> landmarks;
+    /** the data corresponding to the second list, i.e. all landmarks selected thus far */
+    private ArrayList<Landmark> selectedLandmarks;
+    /** the list of markers of landmark locations */
+    private List<Marker> markers;
+    /** the adapter for binding the data corresponding to the first list to that list view element in the user interface */
+    public ArrayAdapter<Landmark> adapter;
+    /** the adapter for binding the data corresponding to the second list to that list view element in the user interface */
+    public ArrayAdapter<Landmark> adapter2;
 
-    private GoogleMap mMap; //the (Google) map
-
-    private ArrayList<Landmark> landmarks; //the data corresponding to the first list, i.e. all not yet selected landmarks
-    private ArrayList<Landmark> selectedLandmarks; //the data corresponding to the second list, i.e. all landmarks selected thus far
-
-    private List<Marker> markers; //the list of markers of landmark locations
-
-
-    public ArrayAdapter<Landmark> adapter, adapter2;
-
-
-    /* Initialises the activity as described above, binds 'finish' to opening an AskQuestNameDialog pop-
-     * up for entering the created quest's name and adding the new quest to the database when the pop-up
-     * is accepted, binds clicking the first list or the map to removing the selected landmark from the
-     * first list and turning its marker green while adding that landmark to the second list, and binds
-     * clicking the second list to removing the selected landmark from the quest in the making again. */
+    /** Initialises the activity as described above, binds 'finish' to opening an AskQuestNameDialog pop-
+      * up for entering the created quest's name and adding the new quest to the database when the pop-up
+      * is accepted, binds clicking the first list or the map to removing the selected landmark from the
+      * first list and turning its marker green while adding that landmark to the second list, and binds
+      * clicking the second list to removing the selected landmark from the quest in the making again. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,12 +166,12 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
 
 
 
-    /* The dialog fragment receives a reference to this Activity through the
-     * Fragment.onAttach() callback, which it uses to call the following methods
-     * defined by the AskQuestNameDialog.QuestNameDialogListener interface. */
+    /** The dialog fragment receives a reference to this Activity through the
+      * Fragment.onAttach() callback, which it uses to call the following methods
+      * defined by the AskQuestNameDialog.QuestNameDialogListener interface. */
     @Override
     public void onDialogPositiveClick(AskQuestNameDialog dialog) {
-        //user touched the dialog's positive button, a new quest is created and added to the User
+        //user touched the dialog's positive button; a new quest is created and added to the User
         ExactQuest quest = new ExactQuest(UUID.randomUUID().toString(), dialog.getQuestName(), true);
         quest.addLandmarkList(selectedLandmarks);
 
@@ -185,7 +186,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         startActivity(i);
     }
 
-    /* Empty method that makes sure that nothing is done when one clicks the dialog's negative button. */
+    /** Empty method that makes sure that nothing is done when one clicks the dialog's negative button. */
     @Override
     public void onDialogNegativeClick(AskQuestNameDialog dialog) {
         //user touched the dialog's negative button, nothing happens
