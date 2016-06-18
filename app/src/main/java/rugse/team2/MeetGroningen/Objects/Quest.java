@@ -137,7 +137,7 @@ public abstract class Quest implements Serializable {
         return this.isSend;
     }
 
-    //test toJSON method to try and serialize landmarklist
+    /** Test toJSON method to try and serialize a landmark list. */
     public String toJSON(ArrayList<Landmark> lijst) {
 
         Gson gson = new Gson();
@@ -162,11 +162,9 @@ public abstract class Quest implements Serializable {
     //end test toJSON
 
 
-    /** Method that puts the landmark on the parse server.
-      * Values may be numerical, String, JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null.
-      * TODO: find way to store the arrays of landmarks. JSON?
-      */
-    public void putOnServer(){
+    /** Method that puts the quest on the parse server. Values may be numerical, String,
+     * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
+    public void putOnServer(){ //TODO: find way to store the arrays of landmarks. JSON?
         ParseObject qst = new ParseObject("Quests");
         qst.put("UserGenerated", this.isUserGenerated);
         qst.put("Name", this.name);
@@ -175,6 +173,8 @@ public abstract class Quest implements Serializable {
         qst.saveInBackground();
     }
 
+    /** Method that puts the quest on the parse server. Values may be numerical, String,
+     * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putCustomOnServer(){
         ParseObject qst = new ParseObject("SendQuests");
         qst.put("UserGenerated", this.isUserGenerated);

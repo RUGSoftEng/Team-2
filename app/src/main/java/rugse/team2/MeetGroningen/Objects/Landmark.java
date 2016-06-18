@@ -205,8 +205,8 @@ public class Landmark implements Serializable{
         this.possibleAnswers = possibleAnswers;
     }
 
-    /** Method that puts the landmark on the parse server.
-      * Values may be numerical, String, JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
+    /** Method that puts the landmark on the parse server. Values may be numerical, String,
+      * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putOnServer(){
         ParseObject lm = new ParseObject("Landmarks");
 
@@ -223,6 +223,8 @@ public class Landmark implements Serializable{
         lm.saveInBackground();
     }
 
+    /** Method that puts the landmark on the parse server. Values may be numerical, String,
+     * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putCustomOnServer(){
         ParseObject lm = new ParseObject("SendLandmarks");
 

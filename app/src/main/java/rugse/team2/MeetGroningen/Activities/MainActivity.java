@@ -261,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /** Restarts this activity when the 'back' button is pressed. */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(Intent.ACTION_MAIN);

@@ -99,6 +99,7 @@ public class ContinueQuestActivity extends AppCompatActivity {
 
     }
 
+    /** Finishes this activity and returns to the main screen when the 'back' button is pressed. */
     @Override
     public void onBackPressed() {
         finish();

@@ -183,6 +183,8 @@ public class QuestPreviewActivity extends FragmentActivity implements
         }
     }
 
+    /** Saves the map for further use. This is called automatically after the map has been prepared
+      * and is ready for use. Also adds all landmarks within the passed quest to the map as markers. */
     @Override
     public void onMapReady(GoogleMap map) {
        //get the locations of the landmarks in this quest

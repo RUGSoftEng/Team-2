@@ -5,7 +5,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 
 /**
- * Non database related constants.
+ * Non-database-related constants.
  *
  * Created by Ruben on 29-03-2016.
  */

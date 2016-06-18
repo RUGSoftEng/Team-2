@@ -193,7 +193,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
      * Below is map stuff + asking permission, map ready etc.
      */
 
-    /** Saves the map for further use. This is called automatically after the map has been prepared and is ready for use. */
+    /** Saves the map for further use. This is called automatically after the map has been prepared and is
+      * ready for use. Also adds the first landmark of the passed quest to the map as a marker already. */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -337,6 +338,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         mMap.animateCamera(cu);
     }
 
+    /** Finishes this activity and returns to the continue quest screen when the 'back' button is pressed. */
     @Override
     public void onBackPressed() {
         finish();

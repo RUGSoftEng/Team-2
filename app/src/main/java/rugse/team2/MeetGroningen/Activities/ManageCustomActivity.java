@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Ruben on 15/05/2016.
+ * Created by Ruben on 15-05-2016.
  */
 public class ManageCustomActivity extends Activity {
 

@@ -190,9 +190,11 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     @Override
     public void onDialogNegativeClick(AskQuestNameDialog dialog) {
         //user touched the dialog's negative button, nothing happens
-
     }
 
+    /** Saves the map for further use. This is called automatically after the map has been prepared and is ready for use.
+      * Also adds all available landmarks from the database to the map as markers, moves the camera to initially view
+      * them all simultaneously, and handles marker presses by adding corresponding landmarks to the quest in making. */
     @Override
     public void onMapReady(GoogleMap map){
         mMap = map;
