@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
+import rugse.team2.MeetGroningen.Objects.ExactQuest;
 import rugse.team2.MeetGroningen.Objects.Landmark;
 import rugse.team2.MeetGroningen.Objects.Quest;
 import rugse.team2.MeetGroningen.Objects.User;
@@ -189,53 +190,41 @@ public class ManageCustomActivity extends Activity {
                             Gson g = new Gson();
                             Landmark l = g.fromJson(object.getString("Object"), Landmark.class);
                             Log.d("Syncing", "Synced Landmark: " + l.getName());
+                            customLandmarkList.add(l);
                             helper.putInDatabase(helper, l);
                         }
                         Log.d("Syncing", "Done Syncing for landmarkQuery");
+
+                        adapterL.notifyDataSetChanged();
                         helper.close();
                     } catch(ParseException e){
                         Log.e("Server Error", "Something went wrong when syncing Landmark Data");
                     }
 
-                    /* Below is non blocking put query is only accesible when not used anymore so has to be blocking (find())
-                    landmarkQuery.findInBackground(new FindCallback<ParseObject>() {
-                        public void done(List<ParseObject> landmarks, ParseException e) {
-                            if (e == null) {
-                                DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-                                for(ParseObject object : landmarks) {
-                                    Gson g = new Gson();
-                                    Landmark l = g.fromJson(object.getString("Object"), Landmark.class);
-                                    helper.putInDatabase(helper, l);
-                                }
-                                helper.close();
-                            } else {
-                                Log.e("Server Error", "Something went wrong when syncing Landmark Data");
-                            }
-                        }
-                    });
-                    */
 
-                    /* TODO: uncomment this code when fixed, Quest is null when retrieved from server
+                    /* TODO: uncomment this code when fixed, Quest is null when retrieved from server */
                     ParseQuery<ParseObject> questQuery = ParseQuery.getQuery("Quests");
                     questQuery.findInBackground(new FindCallback<ParseObject>() {
-                        public void done(List<ParseObject> landmarks, ParseException e) {
+                        public void done(List<ParseObject> quests, ParseException e) {
                             if (e == null) {
                                 Log.d("Syncing", "Start asking for questQuery");
                                 DatabaseHelper helper = new DatabaseHelper(getBaseContext());
-                                for (ParseObject object : landmarks) {
+                                for (ParseObject object : quests) {
                                     Gson g = new Gson();
-                                    Quest quest = g.fromJson(object.getString("Object"), Quest.class);
+                                    ExactQuest quest = g.fromJson(object.getString("Object"), ExactQuest.class);
+                                    customQuestList.add(quest);
                                     Log.d("Syncing", "Synced Quest: " + quest.getName());
                                     helper.putInDatabase(helper, quest);
                                 }
                                 Log.d("Syncing", "Done Syncing for questQuery");
+                                adapterQ.notifyDataSetChanged();
                                 helper.close();
                             } else {
                                 Log.e("Server Error", "Something went wrong when syncing Quest Data");
                             }
                         }
                     });
-                    */
+
                 }
             });
         }

@@ -151,6 +151,10 @@ public abstract class Quest implements Serializable{
     */
     public void putOnServer(){
         ParseObject qst = new ParseObject("Quests");
+
+        Gson gson = new Gson();
+        qst.put("Object", gson.toJson(this));
+
         qst.put("UserGenerated", this.isUserGenerated);
         qst.put("Name", this.name);
         qst.put("ID", this.questID);
@@ -160,6 +164,10 @@ public abstract class Quest implements Serializable{
 
     public void putCustomOnServer(){
         ParseObject qst = new ParseObject("SendQuests");
+
+        Gson gson = new Gson();
+        qst.put("Object", gson.toJson(this));
+
         qst.put("UserGenerated", this.isUserGenerated);
         qst.put("Name", this.name);
         qst.put("ID", this.questID);
