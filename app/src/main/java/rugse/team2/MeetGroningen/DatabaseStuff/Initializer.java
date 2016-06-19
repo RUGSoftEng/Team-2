@@ -226,13 +226,14 @@ public class Initializer {
         quests.add(zernikeWithQuiz);
 
         //some extra empty quests to look cool in the list
+        /*
         ExactQuest pubs = new ExactQuest(UUID.randomUUID().toString(), "Pub Quest", false);
         quests.add(pubs);
         ExactQuest restaurants = new ExactQuest(UUID.randomUUID().toString(), "Restaurant Quest", false);
         quests.add(restaurants);
         ExactQuest nature = new ExactQuest(UUID.randomUUID().toString(), "Nature Quest", false);
         quests.add(nature);
-
+        */
         return landmarks;
     }
 
