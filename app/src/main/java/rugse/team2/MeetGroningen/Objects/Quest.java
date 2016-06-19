@@ -143,21 +143,6 @@ public abstract class Quest implements Serializable {
         Gson gson = new Gson();
         String json = gson.toJson(lijst);
         return json;
-
-        /*
-        JSONObject landmarkList = new JSONObject();
-        try {
-            for(Landmark l : lijst){
-                landmarkList.put("landmarkID", l.getID());
-                landmarkList.put("landmark", l);
-            }
-            return landmarkList.toString();
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return "";
-        }
-        */
     }
     //end test toJSON
 

@@ -1,8 +1,11 @@
 package rugse.team2.MeetGroningen.Activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +24,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import rugse.team2.MeetGroningen.Constants;
 import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
 import rugse.team2.MeetGroningen.Dialog.AskQuestNameDialog;
@@ -57,10 +61,10 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     public ArrayAdapter<Landmark> adapter2;
 
     /** Initialises the activity as described above, binds 'finish' to opening an AskQuestNameDialog pop-
-      * up for entering the created quest's name and adding the new quest to the database when the pop-up
-      * is accepted, binds clicking the first list or the map to removing the selected landmark from the
-      * first list and turning its marker green while adding that landmark to the second list, and binds
-      * clicking the second list to removing the selected landmark from the quest in the making again. */
+     * up for entering the created quest's name and adding the new quest to the database when the pop-up
+     * is accepted, binds clicking the first list or the map to removing the selected landmark from the
+     * first list and turning its marker green while adding that landmark to the second list, and binds
+     * clicking the second list to removing the selected landmark from the quest in the making again. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +87,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         landmarks = helper.getAllLandmarks(db);
         selectedLandmarks = new ArrayList<>();
 
-       adapter = new ArrayAdapter<>(this,
+        adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, landmarks);
 
         chooseLandmarkListView.setAdapter(adapter);
@@ -109,7 +113,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
                     }
                 }
             });
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             Log.e("ListItem Error", "A list item is null: " + e);
         }
 
@@ -129,7 +133,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
                     }
                 }
             });
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             Log.e("ListItem Error", "A list item is null: " + e);
         }
 
@@ -165,10 +169,9 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     }
 
 
-
     /** The dialog fragment receives a reference to this Activity through the
-      * Fragment.onAttach() callback, which it uses to call the following methods
-      * defined by the AskQuestNameDialog.QuestNameDialogListener interface. */
+     * Fragment.onAttach() callback, which it uses to call the following methods
+     * defined by the AskQuestNameDialog.QuestNameDialogListener interface. */
     @Override
     public void onDialogPositiveClick(AskQuestNameDialog dialog) {
         //user touched the dialog's positive button; a new quest is created and added to the User
@@ -193,10 +196,10 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
     }
 
     /** Saves the map for further use. This is called automatically after the map has been prepared and is ready for use.
-      * Also adds all available landmarks from the database to the map as markers, moves the camera to initially view
-      * them all simultaneously, and handles marker presses by adding corresponding landmarks to the quest in making. */
+     * Also adds all available landmarks from the database to the map as markers, moves the camera to initially view
+     * them all simultaneously, and handles marker presses by adding corresponding landmarks to the quest in making. */
     @Override
-    public void onMapReady(GoogleMap map){
+    public void onMapReady(GoogleMap map) {
         mMap = map;
         //get the locations of the landmarks in this quest
         Marker testmark;
@@ -226,6 +229,16 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
             }
         });
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mMap.setMyLocationEnabled(true);
 
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
