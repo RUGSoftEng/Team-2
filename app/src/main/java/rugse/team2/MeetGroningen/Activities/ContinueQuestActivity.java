@@ -25,11 +25,14 @@ import java.util.ArrayList;
  * Created by Ruben on 19-03-2016.
  */
 public class ContinueQuestActivity extends AppCompatActivity {
-    private Quest chosenQuest; //the clicked quest, to be passed on to the next activity
-    private User user; //the particular user the displayed set of started quests belongs to
-    private DatabaseHelper helper; //the helper instance for exchanging information with the database
+    /** the clicked quest, to be passed on to the next activity */
+    private Quest chosenQuest;
+    /** the particular user the displayed set of started quests belongs to */
+    private User user;
+    /** the helper instance for exchanging information with the database */
+    private DatabaseHelper helper;
 
-    /* Initialises the activity as described above, and binds clicking a quest to starting a new OnQuestActivity. */
+    /** Initialises the activity as described above, and binds clicking a quest to starting a new OnQuestActivity. */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(rugse.team2.MeetGroningen.R.layout.activity_continuequest);
@@ -96,6 +99,7 @@ public class ContinueQuestActivity extends AppCompatActivity {
 
     }
 
+    /** Finishes this activity and returns to the main screen when the 'back' button is pressed. */
     @Override
     public void onBackPressed() {
         finish();

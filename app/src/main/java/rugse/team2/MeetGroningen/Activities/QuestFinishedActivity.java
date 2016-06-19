@@ -14,10 +14,10 @@ import rugse.team2.MeetGroningen.Objects.Quest;
  * a congratulatory message regarding having finished a certain quest.
  */
 public class QuestFinishedActivity extends AppCompatActivity {
+    /** the finished quest, passed by the previous activity */
+    private Quest finishedQuest;
 
-    private Quest finishedQuest; //the finished quest, passed by the previous activity
-
-    /* Initialises the activity as described above, and binds clicking a 'go back to main' button to starting a new MainActivity. */
+    /** Initialises the activity as described above, and binds clicking a 'go back to main' button to starting a new MainActivity. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +41,7 @@ public class QuestFinishedActivity extends AppCompatActivity {
 
     }
 
+    /** Finishes this activity and returns to the main screen when the 'back' button is pressed. */
     @Override
     public void onBackPressed() {
         finish();

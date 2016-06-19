@@ -47,30 +47,45 @@ import rugse.team2.MeetGroningen.R;
  */
 
 public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallback {
+    /** the progress bar showing what percentage of the current quest has been completed thus far */
+    private ProgressBar mProgress;
 
-    private ProgressBar mProgress; //the progress bar showing what percentage of the current quest has been completed thus far
+    /** the currently active quest, passed by the previous activity */
+    private Quest passedQuest;
+    /** the next landmark within the currently active quest */
+    private Landmark nextLandmark; //cannot be put local like Android Studio says
+    /** the list lay-out to be filled with the name of the next landmark */
+    private ListView listView;
+    /** the list lay-out to be filled with the names of the landmarks remaining after the next one */
+    private ListView listView2;
+    /** the (Google) map */
+    private GoogleMap mMap;
+    /** the marker of the next landmark's location */
+    private Marker landmarker;
+    /** the marker of one's current location */
+    private Marker mylocmarker;
 
-    private Quest passedQuest; //the currently active quest, passed by the previous activity
-    private Landmark nextLandmark; //the next landmark within the currently active quest, Cant be put local like Android studio says.
-    private ListView listView; //the list lay-out to be filled with the name of the next landmark
-    private ListView listView2; //the list lay-out to be filled with the names of the landmarks remaining after the next one
-    private GoogleMap mMap; //the (Google) map
-    private Marker landmarker; //the marker of the next landmark's location
-    private Marker mylocmarker; //the marker of one's current location
+    /** the instance for following one's moving location */
+    private LocationListener locationListener;
+    /** the instance for managing the location listener */
+    private LocationManager locationManager;
+    /** the next landmark within the currently active quest */
+    private Landmark currentTarget;
+    /** an auxiliary variable to check whether the current quest will be completed after reaching the next landmark (1 == yes, 0 == no) */
+    private int end;
 
-    private LocationListener locationListener; //the instance for following one's moving location
-    private LocationManager locationManager; //the instance for managing the location listener
-    private Landmark currentTarget; //the next landmark within the currently active quest
-    private int end; //an auxiliary variable to check whether the current quest will be completed after reaching the next landmark (1 == yes, 0 == no)
+    /** the button for starting a quiz about the current landmark */
+    private Button quizButton;
+    /** the available answers for a multiple choice question */
+    private String[] possibleAnswers;
 
-    private Button quizButton; //the button for starting a quiz about the current landmark
-    private String[] possibleAnswers; //the available answers for the multiple choice questions
-
+    /** the question for a multiple choice question */
     private String question;
+    /** the correct answer for a multiple choice question */
     private String answer;
 
-    /* Initialises the activity as described above after loading the passed quest from the database.
-     * Next, checks if GPS is enabled, and starts a location listener instance if possible. */
+    /** Initialises the activity as described above after loading the passed quest from the database.
+      * Next, checks if GPS is enabled, and starts a location listener instance if possible. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,7 +145,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         };
 
 
-        //TODO: change below permission question, worst case ask permission for AP 23 else do shitty location permsisson request
+        //TODO: change below permission question, worst case ask permission for AP 23 else do shitty location permission request
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -143,8 +158,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         }
 
 
-    /* Gets the landmarks remaining within the current quest from the database and updates
-     * the two list views with the first of those landmarks and with all others, respectively. */
+    /** Gets the landmarks remaining within the current quest from the database and updates
+      * the two list views with the first of those landmarks and with all others, respectively. */
     void updateListViews(ListView listView, ListView listView2) {
         DatabaseHelper helper = new DatabaseHelper(getBaseContext());
         User user = helper.getUser(helper.getReadableDatabase());
@@ -159,13 +174,13 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
 
-    /* Resumes the activity after having been paused. */
+    /** Resumes the activity after having been paused. */
     @Override
     protected void onResume() {
         super.onResume();
     }
 
-    /* Returns the first landmark of the landmarks still remaining within the given quest. */
+    /** Returns the first landmark of the landmarks still remaining within the given quest. */
     private Landmark[] getFirstLandmark(Quest q) { //set current Landmark and return an array with that 1 element
         Landmark[] nextLandmarks = new Landmark[1];
         this.nextLandmark = q.getLandmarks().get(0);
@@ -178,7 +193,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
      * Below is map stuff + asking permission, map ready etc.
      */
 
-    /* Saves the map for further use. This is called automatically after the map has been prepared and is ready for use. */
+    /** Saves the map for further use. This is called automatically after the map has been prepared and is
+      * ready for use. Also adds the first landmark of the passed quest to the map as a marker already. */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -190,13 +206,13 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
-    /* Handles one's updated location by moving their location marker on the map,
-     * but not before checking whether the next landmark has been reached already.
-     * Binds reaching the landmark to starting a new LandMarkPopUpActivity, while
-     * awarding its worth in points to the current user. If this turns out to be the
-     * last landmark within the current quest, a new QuestFinishedActivity is started
-     * afterwards as well. Finally, if necessary, the lists and the progress bar are
-     * updated, and the map camera is moved to keep the user and its target in view. */
+    /** Handles one's updated location by moving their location marker on the map,
+      * but not before checking whether the next landmark has been reached already.
+      * Binds reaching the landmark to starting a new LandMarkPopUpActivity, while
+      * awarding its worth in points to the current user. If this turns out to be the
+      * last landmark within the current quest, a new QuestFinishedActivity is started
+      * afterwards as well. Finally, if necessary, the lists and the progress bar are
+      * updated, and the map camera is moved to keep the user and its target in view. */
     private void handleNewLocation(Location location) {
         Log.d(Constants.TAG, location.toString());
 
@@ -322,6 +338,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         mMap.animateCamera(cu);
     }
 
+    /** Finishes this activity and returns to the continue quest screen when the 'back' button is pressed. */
     @Override
     public void onBackPressed() {
         finish();

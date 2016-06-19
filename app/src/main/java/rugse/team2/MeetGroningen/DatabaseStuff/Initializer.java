@@ -18,13 +18,15 @@ import java.util.UUID;
  * Created by Ruben on 18-03-2016.
  */
 public class Initializer {
+    /** the list of standard landmarks */
+    private ArrayList<Landmark> landmarks = new ArrayList<>();
+    /** the list of standard quests */
+    private ArrayList<Quest> quests = new ArrayList<>();
 
-    private ArrayList<Landmark> landmarks = new ArrayList<>(); //the list of standard landmarks
-    private ArrayList<Quest> quests = new ArrayList<>(); //the list of standard quests
+    /** a universally unique identifier, which is randomly generated for every created landmark, quest, and user */
+    private UUID uuid;
 
-    private UUID uuid; //a universally unique identifier, which is randomly generated for every created landmark, quest, and user
-
-    /* Creates all standard landmarks and quests and returns the landmarks. */
+    /** Creates all standard landmarks and quests and returns the landmarks. */
     public ArrayList<Landmark> createStandardLandmarks(){
 
 
@@ -188,7 +190,7 @@ public class Initializer {
         landmarks.add(albertHeijnZernike);
 
 
-        //create all standard quests, TODO: we could also move this to createAllStandardQuests() and get from landmark list (however hardcoded number)
+        //create all standard quests, TODO: we could also move this to createAllStandardQuests() and get from landmark list (would have to use hardcoded numbers however)
 
         //number 1
         ExactQuest essentialQuest = new ExactQuest(UUID.randomUUID().toString(), "Groningen Highlights", false);
@@ -230,12 +232,12 @@ public class Initializer {
         return landmarks;
     }
 
-    /* Returns all standard quests. */
+    /** Returns all standard quests. */
     public ArrayList<Quest> createStandardQuests(){
         return quests;
     }
 
-    /* Creates the standard user and returns it. */
+    /** Creates the standard user and returns it. */
     public User createStandardUser() { return new User(UUID.randomUUID().toString()); }
 }
 

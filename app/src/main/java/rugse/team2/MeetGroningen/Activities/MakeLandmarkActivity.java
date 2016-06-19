@@ -25,16 +25,27 @@ import java.util.UUID;
 
 
 /**
- * Created by Ruben on 11/05/2016.
+ * This class represents the activity (Android window) for creating one's own landmark.
+ * It presents a form where one can fill in the custom landmark's name and description,
+ * and above it a map which can be long pressed to change its position. A marker is
+ * shown to indicate the chosen position, and clicking a button for finishing the
+ * landmark creation process stores the new landmark in the database if it is valid.
+ *
+ * Created by Ruben on 11-05-2016.
  */
 public class MakeLandmarkActivity extends FragmentActivity implements OnMapReadyCallback {
-
-
-    private GoogleMap mMap; //field description goes here
+    /** the (Google) map */
+    private GoogleMap mMap;
+    /** the new custom landmark */
     private Landmark customLandmark;
+    /** the new landmark's tentative position */
     private LatLng landmarkPosition = null;
+    /** the marker on the map showing the new landmark's tentative position */
     private Marker marker;
 
+    /** Initialises the activity as described above, and binds clicking the 'finish' button
+      * to checking whether a landmark name and position have been specified, and either storing
+      * the custom landmark in the database if this is the case or showing an error message otherwise. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +62,8 @@ public class MakeLandmarkActivity extends FragmentActivity implements OnMapReady
 
 
         /*
-         * Finish button listener starts a Dialog, that asks for a questName, the returning result is caught by the
-         * onDialogPositiveClick(Dialog dialog) and onDialogNegativeClick(Dialog dialog) methods.
+         * Finish button listener starts a Dialog, that asks for a landmark name. The returning result is then
+         * caught by the onDialogPositiveClick(Dialog dialog) and onDialogNegativeClick(Dialog dialog) methods.
          */
         FINISH.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,10 +92,10 @@ public class MakeLandmarkActivity extends FragmentActivity implements OnMapReady
 
     }
 
-
+    /** Saves the map for further use. This is called automatically after the map has been prepared and is ready for use.
+      * Also handles long map presses by updating the new landmark's tentative position to the latest map position pressed. */
     @Override
     public void onMapReady(GoogleMap map) {
-        //get the locations of the landmarks in this quest
         mMap = map;
         CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(Constants.COORDINATE_GRONINGEN, Constants.NORMAL_ZOOM);
         mMap.animateCamera(cu);

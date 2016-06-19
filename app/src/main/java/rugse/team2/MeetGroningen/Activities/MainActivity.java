@@ -43,16 +43,18 @@ import java.util.ArrayList;
  * the current user's profile page. It also initialises all standard quests and landmarks.
  */
 public class MainActivity extends AppCompatActivity {
-
-
+    /** the image switching delay, to be specific the amount of milliseconds one background image is shown before it is switched out for another */
     private static int IMAGE_DELAY = 6000;
-    private ImageSwitcher imageSwitcher; //the instance that switches the background image from time to time
-    private ArrayList<Integer> imgs = new ArrayList<>(); //the list of images to be displayed consecutively
-    private Context ctx = this; //the context of the application, which holds global information about its execution environment
+    /** the instance that switches the background image from time to time */
+    private ImageSwitcher imageSwitcher;
+    /** the list of images to be displayed consecutively */
+    private ArrayList<Integer> imgs = new ArrayList<>();
+    /** the context of the application, which holds global information about its execution environment */
+    private Context ctx = this;
 
-    /* Initialises the activity as described above, and binds clicking the 'new quest', 'map', 'user page', and 'continue'
-     * buttons to starting a new Alert Dialog, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
-     * Furthermore it handles image switching by having a runnable change the background every IMAGE_DELAY milliseconds. */
+    /** Initialises the activity as described above, and binds clicking the 'new quest', 'map', 'user page', and 'continue'
+      * buttons to starting a new Alert Dialog, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
+      * Furthermore it handles image switching by having a runnable change the background every IMAGE_DELAY milliseconds. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(rugse.team2.MeetGroningen.R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //for the first time of startup initialise stuff by looking for pref file (so could be affected by previous tries, wipe data to be sure)
+        //for the first time of startup initialise stuff by looking for preferences file (so could be affected by previous tries; wipe data to be sure)
         final String PREFS_NAME = "MyPrefsFile";
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
@@ -86,14 +88,14 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Landmark> standardLandMarks = i.createStandardLandmarks();
             for(Landmark l : standardLandMarks){
                 db.putInDatabase(db, l);
-                //puts all initialized landmarks on the server(which isn't really needed) TODO: create sensible way to organize this
+                //puts all initialized landmarks on the server (which isn't really needed) TODO: create sensible way to organize this
                 //l.putOnServer();
             }
 
             ArrayList<Quest> standardQuests = i.createStandardQuests();
             for(Quest q : standardQuests){
                 db.putInDatabase(db, q);
-                //puts all initialized quests on the server(which isn't really needed) TODO: create sensible way to organize this
+                //puts all initialized quests on the server (which isn't really needed) TODO: create sensible way to organize this
                 //q.putOnServer();
             }
 
@@ -225,15 +227,15 @@ public class MainActivity extends AppCompatActivity {
         imageSwitcher.setInAnimation(in);
     }
 
-    /* Initialises the action bar. */
+    /** Initialises the action bar. */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(rugse.team2.MeetGroningen.R.menu.menu_main, menu);
         return true;
     }
 
-    /* Handles action bar clicks. */
+    /** Handles action bar clicks. */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         /*
@@ -259,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /** Restarts this activity when the 'back' button is pressed. */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(Intent.ACTION_MAIN);

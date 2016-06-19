@@ -20,9 +20,10 @@ import java.util.ArrayList;
  * It gets all available quests from the database and displays them in a list.
  */
 public class ChooseQuestActivity extends AppCompatActivity {
-    private Quest chosenQuest; //the clicked quest, to be passed on to the next activity
+    /** the clicked quest, to be passed on to the next activity */
+    private Quest chosenQuest;
 
-    /* Initialises the activity as described above, and binds clicking a quest to starting a new QuestPreviewActivity. */
+    /** Initialises the activity as described above, and binds clicking a quest to starting a new QuestPreviewActivity. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

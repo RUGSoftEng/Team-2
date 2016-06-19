@@ -10,12 +10,12 @@ public class ExactQuest extends Quest {
 
     //private int currentLandmark = 0; //probably not needed
 
-    /* Constructor which calls the superclass's constructor to initialise the quest. */
+    /** Constructor which calls the superclass's constructor to initialise the quest. */
     public ExactQuest(String id, String name, boolean isUserGenerated) {
         super(id, name, isUserGenerated);
     }
 
-    /* Returns that for this subclass of Quest, landmarks have to be visited in order. */
+    /** Returns that for this subclass of Quest, landmarks have to be visited in order. */
     public boolean isInOrder(){
         return true;
     }
