@@ -34,18 +34,23 @@ import java.util.UUID;
  * Created by Ruben on 11-05-2016.
  */
 public class MakeLandmarkActivity extends FragmentActivity implements OnMapReadyCallback {
-    /** the (Google) map */
+    /** The (Google) map. */
     private GoogleMap mMap;
-    /** the new custom landmark */
+    /** The new custom landmark. */
     private Landmark customLandmark;
-    /** the new landmark's tentative position */
+    /** The new landmark's tentative position. */
     private LatLng landmarkPosition = null;
-    /** the marker on the map showing the new landmark's tentative position */
+    /** The marker on the map showing the new landmark's tentative position. */
     private Marker marker;
 
-    /** Initialises the activity as described above, and binds clicking the 'finish' button
-      * to checking whether a landmark name and position have been specified, and either storing
-      * the custom landmark in the database if this is the case or showing an error message otherwise. */
+    /**
+     * Initialises the activity as described above, and binds clicking the 'finish' button
+     * to checking whether a landmark name and position have been specified, and either storing
+     * the custom landmark in the database if this is the case or showing an error message otherwise.
+     *
+     * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
+     *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +97,12 @@ public class MakeLandmarkActivity extends FragmentActivity implements OnMapReady
 
     }
 
-    /** Saves the map for further use. This is called automatically after the map has been prepared and is ready for use.
-      * Also handles long map presses by updating the new landmark's tentative position to the latest map position pressed. */
+    /**
+     * Saves the map for further use. This is called automatically after the map has been prepared and is ready for use.
+     * Also handles long map presses by updating the new landmark's tentative position to the latest map position pressed.
+     *
+     * @param map The (Google) map which has been prepared asynchronously and is now ready for use.
+     */
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;

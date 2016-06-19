@@ -12,34 +12,46 @@ import java.util.ArrayList;
  * Created by Ruben on 23-02-2016.
  */
 public class User implements Serializable {
-    /** the amount of points the user has obtained up to now */
+    /** The amount of points the user has obtained up to now. */
     private int points = 0;
-    /** the user's unique ID */
+    /** The user's unique ID. */
     private String userID;
-    /** the user's name */
+    /** The user's name. */
     private String name;
 
-    /** the list of quests started but not yet completed by this user */
+    /** The list of quests started but not yet completed by this user. */
     private ArrayList<Quest> currentQuests = new ArrayList<>();
-    /** the list of quests already completed by this user */
+    /** The list of quests already completed by this user. */
     private ArrayList<Quest> solvedQuests = new ArrayList<>();
-    /** the currently active quest, which is the quest the user is on currently */
+    /** The currently active quest, which is the quest the user is on currently. */
     private Quest activeQuest;
 
     //private ArrayList<Achievement> achievements; TODO: not yet implemented
 
-    /** Constructor which stores a given user ID. */
+    /**
+     * Constructor which stores a given user ID.
+     *
+     * @param userID The user ID.
+     */
     public User(String userID) {
         this.userID = userID;
     }
 
-    /** Adds the given quest to the user's list of started quests. */
+    /**
+     * Adds the given quest to the user's list of started quests.
+     *
+     * @param q The quest.
+     */
     public void addQuest(Quest q) {
         this.currentQuests.add(q);
         Log.d("TEST", "Added a quest to currentQuest: " + q.toString());
     }
 
-    /** Adds the given quest to the user's list of completed quests after removing it from their list of started quests. */
+    /**
+     * Adds the given quest to the user's list of completed quests after removing it from their list of started quests.
+     *
+     * @param q The quest.
+     */
     public void finishQuest(Quest q){
         this.currentQuests.remove(q);
         this.solvedQuests.add(q);
@@ -48,7 +60,11 @@ public class User implements Serializable {
         }
     }
 
-    /** Adds the given amount of points to the user's amount of points. */
+    /**
+     * Adds the given points value to the user's amount of points.
+     *
+     * @param i The points value.
+     */
     public void addPoints(int i){
         this.points = this.points + i;
     }

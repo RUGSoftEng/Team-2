@@ -11,22 +11,26 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * This class is used to initialise the application's database on first startup.
+ * This class is used to initialise the application's database on first start-up.
  * All standard landmarks and quests that are hardcoded here get created and then
  * added in there, together with the standard (initial) user that they belong to.
  *
  * Created by Ruben on 18-03-2016.
  */
 public class Initializer {
-    /** the list of standard landmarks */
+    /** The list of standard landmarks. */
     private ArrayList<Landmark> landmarks = new ArrayList<>();
-    /** the list of standard quests */
+    /** The list of standard quests. */
     private ArrayList<Quest> quests = new ArrayList<>();
 
-    /** a universally unique identifier, which is randomly generated for every created landmark, quest, and user */
+    /** A universally unique identifier, which is randomly generated for every created landmark, quest, and user. */
     private UUID uuid;
 
-    /** Creates all standard landmarks and quests and returns the landmarks. */
+    /**
+     * Creates all standard landmarks and quests and gets the landmarks.
+     *
+     * @return An ArrayList object containing all hardcoded landmarks.
+     */
     public ArrayList<Landmark> createStandardLandmarks(){
 
 
@@ -232,13 +236,23 @@ public class Initializer {
         return landmarks;
     }
 
-    /** Returns all standard quests. */
+    /**
+     * Gets all standard quests.
+     *
+     * @return An ArrayList object containing all hardcoded quests.
+     */
     public ArrayList<Quest> createStandardQuests(){
         return quests;
     }
 
-    /** Creates the standard user and returns it. */
-    public User createStandardUser() { return new User(UUID.randomUUID().toString()); }
+    /**
+     * Creates the standard user and gets it.
+     *
+     * @return The User object corresponding to the hardcoded user.
+     */
+    public User createStandardUser() {
+        return new User(UUID.randomUUID().toString());
+    }
 }
 
 

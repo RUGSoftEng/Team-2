@@ -17,26 +17,32 @@ import java.util.List;
  * Created by Ruben on 23-02-2016.
  */
 public abstract class Quest implements Serializable {
-    /** the name of the quest */
+    /** The name of the quest. */
     protected String name;
-    /** the list of landmarks within the quest not yet visited */
+    /** The list of landmarks within the quest not yet visited. */
     protected ArrayList<Landmark> landmarks = new ArrayList<>();
-    /** the list of landmarks within the quest already visited */
+    /** The list of landmarks within the quest already visited. */
     protected ArrayList<Landmark> visitedLandmarks = new ArrayList<>();
-    /** the quest's unique ID */
+    /** The quest's unique ID */
     protected String questID;
-    /** the total amount of landmarks within the quest */
+    /** The total amount of landmarks within the quest. */
     protected int totallandmarks;
-    /** the category the quest falls under */
+    /** The category the quest falls under. */
     protected String category;
 
-    /** boolean which indicates whether the quest is user-generated (true) or not (false, default) */
+    /** A boolean which indicates whether the quest is user-generated (true) or not (false). */
     protected boolean isUserGenerated;
-    /** boolean which indicates whether the quest has been sent already (true) or not (false, default) */
+    /** A boolean which indicates whether the quest has been sent already (true) or not (false, default). */
     protected boolean isSend = false;
 
-    /** Constructor which initialises the at this point still empty quest with its ID, name, and origin boolean. */
-    public Quest(String id, String name, boolean isUserGenerated){
+    /**
+     * Constructor which initialises the at this point still empty quest with its ID, name, and user-generated flag.
+     *
+     * @param id The quest's ID.
+     * @param name The quest's name.
+     * @param isUserGenerated The quest's user-generated flag, which is True for custom quests and False for standard quests.
+     */
+    public Quest(String id, String name, boolean isUserGenerated) {
         this.questID = id;
         this.name = name;
         this.isUserGenerated = isUserGenerated;
@@ -46,7 +52,11 @@ public abstract class Quest implements Serializable {
     /** An abstract method, which should return whether or not the subclass's landmarks have to be visited in order. */
     public abstract boolean isInOrder();
 
-    /** Makes sure that the textual representation of a quest is simply its name. */
+    /**
+     * Makes sure that the textual representation of a quest is simply its name.
+     *
+     * @return The name of this quest as a String object.
+     */
     @Override
     public String toString() {
         return this.getName();
@@ -63,9 +73,15 @@ public abstract class Quest implements Serializable {
     }
 
     /** Getter method for the quest's name. */
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    /** Returns the percentage of the quest completed so far, measured in percentage of its landmarks visited already. */
+    /**
+     * Gets the percentage of the quest completed so far, measured in percentage of its landmarks visited already.
+     *
+     * @return The percentage of the quest completed so far.
+     */
     public int getProgress(){ //for getting progress we don't need the variable (yet)
         if(landmarks.isEmpty()){
             return 100;
@@ -84,29 +100,45 @@ public abstract class Quest implements Serializable {
         return this.visitedLandmarks;
     }
 
-    /** Adds the given landmark to the quest's landmarks and increments the amount of landmarks within it. */
+    /**
+     * Adds the given landmark to the quest's landmarks and increments the amount of landmarks within it.
+     *
+     * @param landmark The landmark.
+     */
     public void addLandmark(Landmark landmark){
         this.landmarks.add(landmark);
         this.totallandmarks = totallandmarks + 1;
     }
 
-    /** Adds all landmarks in the given list to the quest's landmarks and
-      * increases the amount of landmarks within it with the list's size. */
+    /**
+     * Adds all landmarks in the given list to the quest's landmarks and
+     * increases the amount of landmarks within it with the list's size.
+     *
+     * @param list The List object containing the landmarks.
+     */
     public void addLandmarkList(List<Landmark> list) {
         for (Landmark landmark : list) this.landmarks.add(landmark);
         this.totallandmarks = totallandmarks + list.size();
     }
 
-    /** Adds the given landmark to the list of already visited landmarks
-      * and removes it from the list of not yet visited landmarks. */
+    /**
+     * Adds the given landmark to the list of already visited landmarks
+     * and removes it from the list of not yet visited landmarks.
+     *
+     * @param landmark The landmark.
+     */
     public void isCompleted(Landmark landmark){ //finish landmark based on object
         this.visitedLandmarks.add(landmark);
-        this.landmarks.remove(landmark); //TODO: now slow might be faster
+        this.landmarks.remove(landmark); //TODO: now slow, could possibly be faster
     }
 
-    /** Adds the landmark corresponding to the given ID to the list of already visited
-      * landmarks and removes it from the list of not yet visited landmarks. */
-    public void isCompleted(String landmarkID){ //finish landmark based on ID
+    /**
+     * Adds the landmark corresponding to the given ID to the list of already visited
+     * landmarks and removes it from the list of not yet visited landmarks.
+     *
+     * @param landmarkID The ID corresponding to the landmark.
+     */
+    public void isCompleted(String landmarkID) { //finish landmark based on ID
         for(Landmark l : visitedLandmarks){
             if(landmarkID == l.getID()){
                 this.visitedLandmarks.add(l);
@@ -117,10 +149,11 @@ public abstract class Quest implements Serializable {
 
     }
 
-
     //TODO should check for string name and other possibly unwanted user input
-    /** Returns whether the quest is a valid quest (true) or not (false). */
-    public boolean validate(){ return true; };
+    /** Returns whether the quest is a valid quest (True) or not (False). */
+    public boolean validate() {
+        return true;
+    };
 
     /** Getter method for the user-generated flag. */
     public boolean isUserGenerated () {
@@ -137,9 +170,13 @@ public abstract class Quest implements Serializable {
         return this.isSend;
     }
 
-    /** Test toJSON method to try and serialize a landmark list. */
+    /**
+     * Test toJSON method to try and serialise a landmark list.
+     *
+     * @param lijst The landmark list.
+     * @return The serialised JSON representation of the landmark list.
+     */
     public String toJSON(ArrayList<Landmark> lijst) {
-
         Gson gson = new Gson();
         String json = gson.toJson(lijst);
         return json;
@@ -161,9 +198,8 @@ public abstract class Quest implements Serializable {
     }
     //end test toJSON
 
-
     /** Method that puts the quest on the parse server. Values may be numerical, String,
-     * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
+      * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putOnServer(){ //TODO: find way to store the arrays of landmarks. JSON?
         ParseObject qst = new ParseObject("Quests");
         qst.put("UserGenerated", this.isUserGenerated);
@@ -174,7 +210,7 @@ public abstract class Quest implements Serializable {
     }
 
     /** Method that puts the quest on the parse server. Values may be numerical, String,
-     * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
+      * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putCustomOnServer(){
         ParseObject qst = new ParseObject("SendQuests");
         qst.put("UserGenerated", this.isUserGenerated);

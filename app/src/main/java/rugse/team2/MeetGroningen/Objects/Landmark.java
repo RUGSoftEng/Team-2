@@ -17,46 +17,58 @@ import java.io.Serializable;
  * Created by Ruben on 23-02-2016.
  */
 public class Landmark implements Serializable{
-    //private ArrayList<Quiz> questions = new ArrayList<Quiz>(); TODO not yet used so not needed yet (could bring serialization errors)
-
-    /** the name of the landmark */
+    /** The name of the landmark. */
     private String name;
-    /** the landmark's location's name, i.e. of the street or neighbourhood where the landmark is located */
+    /** The landmark's location's name, i.e. of the street or neighbourhood where the landmark is located. */
     private String locationName;
-    /** the landmark's description, i.e. general information about the landmark, usually including its use and history */
+    /** The landmark's description, i.e. general information about the landmark, usually including its use and history. */
     private String information;
-    /** the landmark's unique ID */
+    /** The landmark's unique ID. */
     private String landmarkID;
-    /** the amount of points this landmark is worth to a user reaching it */
+    /** The amount of points this landmark is worth to a user reaching it. */
     private int points = 10;
-    /** this landmark's latitude, i.e. its vertical coordinate on the globe */
+    /** The landmark's latitude, i.e. its vertical coordinate on the globe. */
     private double lat;
-    /** this landmark's longitude, i.e. its horizontal coordinate on the globe */
+    /** The landmark's longitude, i.e. its horizontal coordinate on the globe. */
     private double lng;
 
-    /** boolean which indicates whether the landmark is user-generated (true) or not (false, default) */
+    /** A boolean which indicates whether the landmark is user-generated (true) or not (false, default). */
     private boolean isUserGenerated = false;
-    /** boolean which indicates whether the landmark has been sent already (true) or not (false, default) */
+    /** A boolean which indicates whether the landmark has been sent already (true) or not (false, default). */
     private boolean isSend = false;
 
     //Quiz functionality
 
-    /** the question for a multiple choice quiz */
+    /** The question for a multiple choice quiz. */
     private String question;
-    /** the correct answer for a multiple choice quiz */
+    /** The correct answer for a multiple choice quiz. */
     private String answer;
-    /** the available answers for a multiple choice quiz */
+    /** The available answers for a multiple choice quiz. */
     private String[] possibleAnswers;
 
-
-    /** Constructor which initialises the landmark with its ID and name. */
-    public Landmark(String name, String id){
+    /**
+     * Constructor which initialises the landmark with its ID and name.
+     *
+     * @param name The landmark's name.
+     * @param id The landmark's ID.
+     */
+    public Landmark(String name, String id) {
         this.landmarkID = id;
         this.name = name;
     }
 
-    /** Constructor which initialises the landmark with its ID, name, location name, worth, description, and location. */
-    public Landmark(String name, String id, String locationName, int points, String information, double lat, double lng){
+    /**
+     * Constructor which initialises the landmark with its ID, name, location name, worth, description, and location.
+     *
+     * @param name The landmark's name.
+     * @param id The landmark's ID.
+     * @param locationName The landmark's location's name.
+     * @param points The landmark's worth in points.
+     * @param information The landmark's description.
+     * @param lat The landmark's latitude.
+     * @param lng The landmark's longitude.
+     */
+    public Landmark(String name, String id, String locationName, int points, String information, double lat, double lng) {
         this.landmarkID = id;
         this.name = name;
         this.locationName = locationName;
@@ -66,7 +78,11 @@ public class Landmark implements Serializable{
         this.lng = lng;
     }
 
-    /** Makes sure that the textual representation of a landmark is simply its name. */
+    /**
+     * Makes sure that the textual representation of a landmark is simply its name.
+     *
+     * @return The name of this landmark as a String object.
+     */
     @Override
     public String toString() {
         return this.name;
@@ -224,7 +240,7 @@ public class Landmark implements Serializable{
     }
 
     /** Method that puts the landmark on the parse server. Values may be numerical, String,
-     * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
+      * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putCustomOnServer(){
         ParseObject lm = new ParseObject("SendLandmarks");
 

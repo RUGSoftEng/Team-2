@@ -1,23 +1,23 @@
 package rugse.team2.MeetGroningen.Activities;
 
-    import android.database.sqlite.SQLiteDatabase;
-    import android.os.Bundle;
-    import android.support.v4.app.FragmentActivity;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
-    import com.google.android.gms.maps.CameraUpdate;
-    import com.google.android.gms.maps.CameraUpdateFactory;
-    import com.google.android.gms.maps.GoogleMap;
-    import com.google.android.gms.maps.SupportMapFragment;
-    import com.google.android.gms.maps.OnMapReadyCallback;
-    import com.google.android.gms.maps.model.CameraPosition;
-    import com.google.android.gms.maps.model.LatLngBounds;
-    import com.google.android.gms.maps.model.Marker;
-    import com.google.android.gms.maps.model.MarkerOptions;
-    import rugse.team2.MeetGroningen.Constants;
-    import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
-    import rugse.team2.MeetGroningen.Objects.Landmark;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import rugse.team2.MeetGroningen.Constants;
+import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
+import rugse.team2.MeetGroningen.Objects.Landmark;
 
-    import java.util.ArrayList;
+import java.util.ArrayList;
 
 /**
  * This class represents the activity (Android window) for showing all landmarks.
@@ -26,8 +26,12 @@ package rugse.team2.MeetGroningen.Activities;
  * Created by Ruben on 23-03-2016.
  */
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
-
-        /** Initialises the activity as described above by preparing the map and calling onMapReady when it is finished. */
+        /**
+         * Initialises the activity as described above by preparing the map and calling onMapReady when it is finished.
+         *
+         * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
+         *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+         */
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -38,8 +42,12 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             mapFragment.getMapAsync(this);
         }
 
-        /** Queries the database for all available landmarks, converts their locations
-          * into map markers, and moves the map camera to view them all simultaneously. */
+        /**
+         * Queries the database for all available landmarks, converts their locations
+         * into map markers, and moves the map camera to view them all simultaneously.
+         *
+         * @param mMap The (Google) map which has been prepared asynchronously and is now ready for use.
+         */
         @Override
         public void onMapReady(final GoogleMap mMap) {
             mMap.moveCamera(CameraUpdateFactory.newLatLng(Constants.COORDINATE_GRONINGEN));
@@ -64,7 +72,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
                 @Override
                 public void onCameraChange(CameraPosition arg0) {
-                    //move camera.
+                    //move camera
                     mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, Constants.PADDING));
                     //remove listener to prevent position reset on camera move
                     mMap.setOnCameraChangeListener(null);

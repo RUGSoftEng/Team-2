@@ -43,24 +43,29 @@ import java.util.UUID;
  * Created by Ruben on 28-02-2016.
  */
 public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener, OnMapReadyCallback {
-    /** the (Google) map */
+    /** The (Google) map. */
     private GoogleMap mMap;
-    /** the data corresponding to the first list, i.e. all not yet selected landmarks */
+    /** The data corresponding to the first list, i.e. all not yet selected landmarks. */
     private ArrayList<Landmark> landmarks;
-    /** the data corresponding to the second list, i.e. all landmarks selected thus far */
+    /** The data corresponding to the second list, i.e. all landmarks selected thus far. */
     private ArrayList<Landmark> selectedLandmarks;
-    /** the list of markers of landmark locations */
+    /** The list of markers of landmark locations. */
     private List<Marker> markers;
-    /** the adapter for binding the data corresponding to the first list to that list view element in the user interface */
+    /** The adapter for binding the data corresponding to the first list to that list view element in the user interface. */
     public ArrayAdapter<Landmark> adapter;
-    /** the adapter for binding the data corresponding to the second list to that list view element in the user interface */
+    /** The adapter for binding the data corresponding to the second list to that list view element in the user interface. */
     public ArrayAdapter<Landmark> adapter2;
 
-    /** Initialises the activity as described above, binds 'finish' to opening an AskQuestNameDialog pop-
-      * up for entering the created quest's name and adding the new quest to the database when the pop-up
-      * is accepted, binds clicking the first list or the map to removing the selected landmark from the
-      * first list and turning its marker green while adding that landmark to the second list, and binds
-      * clicking the second list to removing the selected landmark from the quest in the making again. */
+    /**
+     * Initialises the activity as described above, binds 'finish' to opening an AskQuestNameDialog pop-
+     * up for entering the created quest's name and adding the new quest to the database when the pop-up
+     * is accepted, binds clicking the first list or the map to removing the selected landmark from the
+     * first list and turning its marker green while adding that landmark to the second list, and binds
+     *clicking the second list to removing the selected landmark from the quest in the making again.
+     *
+     * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
+     *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +88,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         landmarks = helper.getAllLandmarks(db);
         selectedLandmarks = new ArrayList<>();
 
-       adapter = new ArrayAdapter<>(this,
+        adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, landmarks);
 
         chooseLandmarkListView.setAdapter(adapter);
@@ -166,9 +171,13 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
 
 
 
-    /** The dialog fragment receives a reference to this Activity through the
-      * Fragment.onAttach() callback, which it uses to call the following methods
-      * defined by the AskQuestNameDialog.QuestNameDialogListener interface. */
+    /**
+     * The dialog fragment receives a reference to this Activity through the
+     * Fragment.onAttach() callback, which it uses to call the following methods
+     * defined by the AskQuestNameDialog.QuestNameDialogListener interface.
+     *
+     * @param dialog The dialog fragment which received a positive click.
+     */
     @Override
     public void onDialogPositiveClick(AskQuestNameDialog dialog) {
         //user touched the dialog's positive button; a new quest is created and added to the User
@@ -186,15 +195,23 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         startActivity(i);
     }
 
-    /** Empty method that makes sure that nothing is done when one clicks the dialog's negative button. */
+    /**
+     * Empty method that makes sure that nothing is done when one clicks the dialog's negative button.
+     *
+     * @param dialog The dialog fragment which received a negative click.
+     */
     @Override
     public void onDialogNegativeClick(AskQuestNameDialog dialog) {
         //user touched the dialog's negative button, nothing happens
     }
 
-    /** Saves the map for further use. This is called automatically after the map has been prepared and is ready for use.
-      * Also adds all available landmarks from the database to the map as markers, moves the camera to initially view
-      * them all simultaneously, and handles marker presses by adding corresponding landmarks to the quest in making. */
+    /**
+     * Saves the map for further use. This is called automatically after the map has been prepared and is ready for use.
+     * Also adds all available landmarks from the database to the map as markers, moves the camera to initially view
+     * them all simultaneously, and handles marker presses by adding corresponding landmarks to the quest in making.
+     *
+     * @param map The (Google) map which has been prepared asynchronously and is now ready for use.
+     */
     @Override
     public void onMapReady(GoogleMap map){
         mMap = map;

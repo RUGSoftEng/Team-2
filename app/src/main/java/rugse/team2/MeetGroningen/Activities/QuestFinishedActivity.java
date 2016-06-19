@@ -14,10 +14,15 @@ import rugse.team2.MeetGroningen.Objects.Quest;
  * a congratulatory message regarding having finished a certain quest.
  */
 public class QuestFinishedActivity extends AppCompatActivity {
-    /** the finished quest, passed by the previous activity */
+    /** The finished quest, passed by the previous activity. */
     private Quest finishedQuest;
 
-    /** Initialises the activity as described above, and binds clicking a 'go back to main' button to starting a new MainActivity. */
+    /**
+     * Initialises the activity as described above, and binds clicking a 'go back to main' button to starting a new MainActivity.
+     *
+     * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
+     *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

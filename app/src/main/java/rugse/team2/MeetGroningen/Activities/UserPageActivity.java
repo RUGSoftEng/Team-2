@@ -18,14 +18,19 @@ import java.util.ArrayList;
  * It displays the current user's earned points and a list of their completed quests.
  */
 public class UserPageActivity extends AppCompatActivity {
-    /** the text lay-out to be filled with the amount of points */
+    /** The text lay-out element to be filled with the amount of points. */
     private TextView tv;
-    /** the amount of points earned so far by the current user */
+    /** The amount of points earned so far by the current user. */
     private int points;
-    /** the list lay-out to be filled with the names of all quests completed so far by the current user */
+    /** The list lay-out element to be filled with the names of all quests completed so far by the current user. */
     private ListView listview;
 
-    /** Initialises the activity as described above. */
+    /**
+     * Initialises the activity as described above, creating all required views.
+     *
+     * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
+     *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

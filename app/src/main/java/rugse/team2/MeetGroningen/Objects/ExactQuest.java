@@ -7,10 +7,15 @@ package rugse.team2.MeetGroningen.Objects;
  * Created by Ruben on 28-02-2016.
  */
 public class ExactQuest extends Quest {
-
     //private int currentLandmark = 0; //probably not needed
 
-    /** Constructor which calls the superclass's constructor to initialise the quest. */
+    /**
+     * Constructor which calls the superclass's constructor to initialise the quest.
+     *
+     * @param id The quest's ID.
+     * @param name The quest's name.
+     * @param isUserGenerated The quest's user-generated flag, which is True for custom quests and False for standard quests.
+     */
     public ExactQuest(String id, String name, boolean isUserGenerated) {
         super(id, name, isUserGenerated);
     }
@@ -24,7 +29,6 @@ public class ExactQuest extends Quest {
     public void solvedLandmark(){
         this.currentLandmark++;
     }
-
 
     public Landmark getLandmark(int i){
         return this.landmarks.get(i);

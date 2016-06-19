@@ -12,12 +12,17 @@ import rugse.team2.MeetGroningen.R;
  * which utilises a swipe adapter instance, and can be accessed from the main screen.
  */
 public class TutorialActivity extends AppCompatActivity {
-    /** the view object used to move back and forth between pages of data  */
+    /** The view object used to move back and forth between pages of data. */
     ViewPager viewPager;
-    /** the adapter object used by the view object to generate the pages as images to be swiped back and forth */
+    /** The adapter object used by the view object to generate the pages as images to be swiped back and forth. */
     CustomSwipeAdapter adapter;
 
-    /** Initialises the activity as described above, creating the adapter and assigning it to the view. */
+    /**
+     * Initialises the activity as described above, creating the adapter and assigning it to the view.
+     *
+     * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
+     *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

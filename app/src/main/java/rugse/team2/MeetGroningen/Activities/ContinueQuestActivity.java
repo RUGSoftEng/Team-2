@@ -25,14 +25,19 @@ import java.util.ArrayList;
  * Created by Ruben on 19-03-2016.
  */
 public class ContinueQuestActivity extends AppCompatActivity {
-    /** the clicked quest, to be passed on to the next activity */
+    /** The clicked quest, to be passed on to the next activity. */
     private Quest chosenQuest;
-    /** the particular user the displayed set of started quests belongs to */
+    /** The particular user the displayed set of started quests belongs to. */
     private User user;
-    /** the helper instance for exchanging information with the database */
+    /** The helper instance for exchanging information with the database. */
     private DatabaseHelper helper;
 
-    /** Initialises the activity as described above, and binds clicking a quest to starting a new OnQuestActivity. */
+    /**
+     * Initialises the activity as described above, and binds clicking a quest to starting a new OnQuestActivity.
+     *
+     * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
+     *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(rugse.team2.MeetGroningen.R.layout.activity_continuequest);

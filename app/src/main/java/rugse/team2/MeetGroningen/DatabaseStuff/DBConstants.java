@@ -2,7 +2,7 @@ package rugse.team2.MeetGroningen.DatabaseStuff;
 
 /**
  * All names of tables and columns used in the application's SQLite database,
- * plus other database related constants and table creation/deletion queries.
+ * plus other database-related constants and table creation/deletion queries.
  *
  * Created by Ruben on 24-02-2016.
  */

@@ -43,18 +43,23 @@ import java.util.ArrayList;
  * the current user's profile page. It also initialises all standard quests and landmarks.
  */
 public class MainActivity extends AppCompatActivity {
-    /** the image switching delay, to be specific the amount of milliseconds one background image is shown before it is switched out for another */
+    /** The image switching delay, to be specific the amount of milliseconds one background image is shown before it is switched out for another. */
     private static int IMAGE_DELAY = 6000;
-    /** the instance that switches the background image from time to time */
+    /** The instance that switches the background image from time to time. */
     private ImageSwitcher imageSwitcher;
-    /** the list of images to be displayed consecutively */
+    /** The list of images to be displayed consecutively. */
     private ArrayList<Integer> imgs = new ArrayList<>();
-    /** the context of the application, which holds global information about its execution environment */
+    /** The context of the application, which holds global information about its execution environment. */
     private Context ctx = this;
 
-    /** Initialises the activity as described above, and binds clicking the 'new quest', 'map', 'user page', and 'continue'
-      * buttons to starting a new Alert Dialog, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
-      * Furthermore it handles image switching by having a runnable change the background every IMAGE_DELAY milliseconds. */
+    /**
+     * Initialises the activity as described above, and binds clicking the 'new quest', 'map', 'user page', and 'continue'
+     * buttons to starting a new Alert Dialog, MapActivity, UserPageActivity, and ContinueQuestActivity, respectively.
+     * Furthermore it handles image switching by having a runnable change the background every IMAGE_DELAY milliseconds.
+     *
+     * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
+     *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -227,7 +232,12 @@ public class MainActivity extends AppCompatActivity {
         imageSwitcher.setInAnimation(in);
     }
 
-    /** Initialises the action bar. */
+    /**
+     * Initialises the action bar.
+     *
+     * @param menu The menu containing the action bar.
+     * @return True if this was successful and False if not.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //inflate the menu; this adds items to the action bar if it is present.
@@ -235,7 +245,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    /** Handles action bar clicks. */
+    /**
+     * Handles action bar clicks.
+     *
+     * @param item The item of the action bar that was clicked.
+     * @return True if the click was handled successfully and False if not.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         /*

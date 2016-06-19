@@ -11,7 +11,7 @@ import android.support.multidex.MultiDex;
  * Created by Lutz on 01-06-2016.
  */
 public class GlobalVariables extends Application {
-    /** a boolean indicating whether or not parsing has been initialised */
+    /** A boolean indicating whether or not parsing has been initialised. */
     private boolean parseInitialized;
 
     /** A setter method for the parse-initialised flag. */
@@ -24,9 +24,13 @@ public class GlobalVariables extends Application {
         return parseInitialized;
     }
 
-    /** Attaches the given context to this class, and installs MultiDex to support
-      * secondary dex files for platforms with API level 4 through 20, which is
-      * required to make a large application behave properly on those platforms. */
+    /**
+     * Attaches the given context to this class, and installs MultiDex to support
+     * secondary dex files for platforms with API level 4 through 20, which is
+     * required to make a large application behave properly on those platforms.
+     *
+     * @param base The application context.
+     */
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);

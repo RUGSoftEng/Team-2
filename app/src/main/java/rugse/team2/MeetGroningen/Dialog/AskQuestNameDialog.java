@@ -15,16 +15,21 @@ import android.widget.EditText;
  *
  * Created by Ruben on 01-05-2016.
  */
-//TODO: still has hardcoded strings and stuff + maybe bit messy
+//TODO: still has hardcoded strings and stuff, and maybe a bit messy
 public class AskQuestNameDialog extends DialogFragment {
-    /** the listener instance for reacting to button clicks */
+    /** The listener instance for reacting to button clicks. */
     private QuestNameDialogListener mListener; //use this instance of the interface to deliver action events
 
-    /** the entered quest name, initialised to a hardcoded example quest name */
+    /** The entered quest name, initialised to a hardcoded example quest name. */
     private String questName = "Custom Quest";
 
-    /** Initialises the activity as described above, and binds the positive button
-      * to processing the text inputted and the negative button to discarding it. */
+    /**
+     * Initialises the activity as described above, building the dialog fragment and binding the
+     * positive button to processing the text inputted and the negative button to discarding it.
+     *
+     * @param savedInstanceState The last saved instance state of the dialog fragment, or null if it is freshly created.
+     * @return The built dialog, to be displayed by the fragment.
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -64,7 +69,10 @@ public class AskQuestNameDialog extends DialogFragment {
         public void onDialogNegativeClick(AskQuestNameDialog dialog);
     }
 
-    /** Overrides the Fragment.onAttach() method to instantiate the QuestNameDialogListener. */
+    /**
+     * Overrides the Fragment.onAttach() method to instantiate the QuestNameDialogListener.
+     *
+     * @param activity The activity this dialog fragment is attached to. */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
