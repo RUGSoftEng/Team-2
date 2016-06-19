@@ -180,21 +180,6 @@ public abstract class Quest implements Serializable {
         Gson gson = new Gson();
         String json = gson.toJson(lijst);
         return json;
-
-        /*
-        JSONObject landmarkList = new JSONObject();
-        try {
-            for(Landmark l : lijst){
-                landmarkList.put("landmarkID", l.getID());
-                landmarkList.put("landmark", l);
-            }
-            return landmarkList.toString();
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return "";
-        }
-        */
     }
     //end test toJSON
 
@@ -202,6 +187,10 @@ public abstract class Quest implements Serializable {
       * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putOnServer(){ //TODO: find way to store the arrays of landmarks. JSON?
         ParseObject qst = new ParseObject("Quests");
+
+        Gson gson = new Gson();
+        qst.put("Object", gson.toJson(this));
+
         qst.put("UserGenerated", this.isUserGenerated);
         qst.put("Name", this.name);
         qst.put("ID", this.questID);
@@ -213,6 +202,10 @@ public abstract class Quest implements Serializable {
       * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putCustomOnServer(){
         ParseObject qst = new ParseObject("SendQuests");
+
+        Gson gson = new Gson();
+        qst.put("Object", gson.toJson(this));
+
         qst.put("UserGenerated", this.isUserGenerated);
         qst.put("Name", this.name);
         qst.put("ID", this.questID);

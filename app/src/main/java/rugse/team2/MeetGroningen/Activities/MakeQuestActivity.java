@@ -1,8 +1,11 @@
 package rugse.team2.MeetGroningen.Activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +24,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import rugse.team2.MeetGroningen.Constants;
 import rugse.team2.MeetGroningen.DatabaseStuff.DatabaseHelper;
 import rugse.team2.MeetGroningen.Dialog.AskQuestNameDialog;
@@ -61,7 +65,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
      * up for entering the created quest's name and adding the new quest to the database when the pop-up
      * is accepted, binds clicking the first list or the map to removing the selected landmark from the
      * first list and turning its marker green while adding that landmark to the second list, and binds
-     *clicking the second list to removing the selected landmark from the quest in the making again.
+     * clicking the second list to removing the selected landmark from the quest in the making again.
      *
      * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
      *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
@@ -114,7 +118,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
                     }
                 }
             });
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             Log.e("ListItem Error", "A list item is null: " + e);
         }
 
@@ -134,7 +138,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
                     }
                 }
             });
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             Log.e("ListItem Error", "A list item is null: " + e);
         }
 
@@ -168,7 +172,6 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
         db.close();
         helper.close();
     }
-
 
 
     /**
@@ -213,7 +216,7 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
      * @param map The (Google) map which has been prepared asynchronously and is now ready for use.
      */
     @Override
-    public void onMapReady(GoogleMap map){
+    public void onMapReady(GoogleMap map) {
         mMap = map;
         //get the locations of the landmarks in this quest
         Marker testmark;
@@ -243,6 +246,16 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
             }
         });
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mMap.setMyLocationEnabled(true);
 
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
@@ -260,4 +273,3 @@ public class MakeQuestActivity extends FragmentActivity implements AskQuestNameD
 
     }
 }
-
