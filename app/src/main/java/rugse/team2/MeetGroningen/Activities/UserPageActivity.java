@@ -18,11 +18,11 @@ import java.util.ArrayList;
  * It displays the current user's earned points and a list of their completed quests.
  */
 public class UserPageActivity extends AppCompatActivity {
-    /** The text lay-out element to be filled with the amount of points. */
+    /** The text view lay-out element to be filled with the amount of points. */
     private TextView tv;
     /** The amount of points earned so far by the current user. */
     private int points;
-    /** The list lay-out element to be filled with the names of all quests completed so far by the current user. */
+    /** The list view lay-out element to be filled with the names of all quests completed so far by the current user. */
     private ListView listview;
 
     /**

@@ -35,26 +35,50 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * This class represents the activity (Android window) for managing custom landmarks and
+ * quests, allowing one to delete them or send them to the server's database for central storage.
+ * It also includes a 'sync' button for receiving available new custom objects from the server,
+ * in other words those custom landmarks and quests made by other people and already sent there.
+ *
  * Created by Ruben on 15-05-2016.
  */
 public class ManageCustomActivity extends Activity {
-
-
+    /** The button for sending the selected quest to the central server. */
     private Button sendQuestButton;
+    /** The button for sending the selected landmark to the central server. */
     private Button sendLandmarkButton;
 
-    private Button deleteQuestButton;  //Could also be long click
-    private Button deleteLandmarkButton; //Could also be long click
+    /** The button for deleting the selected quest from the local database. */
+    private Button deleteQuestButton; //could also require a long press instead
+    /** The button for deleting the selected landmark from the local database. */
+    private Button deleteLandmarkButton; //could also require a long press instead
 
+    /** The landmark currently selected. */
     private Landmark selectedLandmark;
+    /** The quest currently selected. */
     private Quest selectedQuest;
 
+    /** A text view lay-out element to show the selected quest's name or "Quests:" if none is selected. */
     private TextView selectedQuestText;
+    /** A text view lay-out element to show the selected landmark's name or "Custom Landmarks" if none is selected. */
     private TextView selectedLandmarkText;
 
+    /** A list of the quests currently started but not yet completed by the current user. */
     private ArrayList<Quest> customQuestList;
+    /** A list of all landmarks in the local database that were user-generated. */
     private ArrayList<Landmark> customLandmarkList;
 
+    /**
+     * Initialises the activity as described above, creating list views for the custom landmarks and quests
+     * and binding clicking a list view to selecting the clicked landmark or quest and displaying its name
+     * in the corresponding text view, as well as binding clicking the 'delete landmark', 'delete quest',
+     * 'send landmark', 'send quest', and 'sync' buttons to deleting the selected landmark from the local
+     * database, deleting the selected quest from the local database, sending the selected landmark to the
+     * server, sending the selected quest to the server, and syncing with the central database, respectively.
+     *
+     * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
+     *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,6 +164,23 @@ public class ManageCustomActivity extends Activity {
             }
         });
 
+        sendLandmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectedLandmark != null) {
+                    if (selectedLandmark.isSend()) {
+                        Toast.makeText(getApplicationContext(), R.string.AlreadyOnServerText, Toast.LENGTH_SHORT).show();
+                    } else {
+                        selectedLandmark.setIsSend(true);
+                        selectedLandmark.putCustomOnServer(); //TODO: change the putOnServer for custom objects to something that puts them in special separate database
+                        selectedLandmarkText.setText(R.string.customLandmarkText);
+                        Toast.makeText(getApplicationContext(), R.string.PutOnServerText, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                adapterL.notifyDataSetChanged();
+            }
+        });
+
         sendQuestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,24 +198,7 @@ public class ManageCustomActivity extends Activity {
             }
         });
 
-        sendLandmarkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectedLandmark != null) {
-                    if (selectedLandmark.isSend()) {
-                        Toast.makeText(getApplicationContext(), R.string.AlreadyOnServerText, Toast.LENGTH_SHORT).show();
-                    } else {
-                        selectedLandmark.setIsSend(true);
-                        selectedLandmark.putCustomOnServer(); //TODO: change the putOnServer for custom objects too something that puts them in special seperate database
-                        selectedLandmarkText.setText(R.string.customLandmarkText);
-                        Toast.makeText(getApplicationContext(), R.string.PutOnServerText, Toast.LENGTH_SHORT).show();
-                    }
-                }
-                adapterL.notifyDataSetChanged();
-            }
-        });
-
-        //maximum of 100 Rows so the database should not have more. TODO: if enough time before deadline, change
+        //maximum of 100 rows, so the database should not have more TODO: if enough time before deadline, change
         Button syncButton = (Button) findViewById(rugse.team2.MeetGroningen.R.id.syncButton);
         if(syncButton != null) {
             syncButton.setOnClickListener(new View.OnClickListener() {
@@ -202,7 +226,6 @@ public class ManageCustomActivity extends Activity {
                     }
 
 
-                    /* TODO: uncomment this code when fixed, Quest is null when retrieved from server */
                     ParseQuery<ParseObject> questQuery = ParseQuery.getQuery("Quests");
                     questQuery.findInBackground(new FindCallback<ParseObject>() {
                         public void done(List<ParseObject> quests, ParseException e) {

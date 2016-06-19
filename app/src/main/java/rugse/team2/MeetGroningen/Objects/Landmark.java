@@ -19,22 +19,22 @@ import java.io.Serializable;
 public class Landmark implements Serializable{
     /** The name of the landmark. */
     private String name;
-    /** The landmark's location's name, i.e. of the street or neighbourhood where the landmark is located. */
+    /** The landmark's location's name, to be specific of the street or neighbourhood where the landmark is located. */
     private String locationName;
-    /** The landmark's description, i.e. general information about the landmark, usually including its use and history. */
+    /** The landmark's description, to be specific general information about the landmark, usually including its use and history. */
     private String information;
     /** The landmark's unique ID. */
     private String landmarkID;
     /** The amount of points this landmark is worth to a user reaching it. */
     private int points = 10;
-    /** The landmark's latitude, i.e. its vertical coordinate on the globe. */
+    /** The landmark's latitude, to be specific its vertical coordinate on the globe. */
     private double lat;
-    /** The landmark's longitude, i.e. its horizontal coordinate on the globe. */
+    /** The landmark's longitude, to be specific its horizontal coordinate on the globe. */
     private double lng;
 
-    /** A boolean which indicates whether the landmark is user-generated (true) or not (false, default). */
+    /** A boolean which indicates whether the landmark is user-generated (True) or not (False, default). */
     private boolean isUserGenerated = false;
-    /** A boolean which indicates whether the landmark has been sent already (true) or not (false, default). */
+    /** A boolean which indicates whether the landmark has been sent to the server already (True) or not (False, default). */
     private boolean isSend = false;
 
     //Quiz functionality
@@ -214,14 +214,14 @@ public class Landmark implements Serializable{
         return this.possibleAnswers;
     }
 
-    /** Setter method for a Quiz, which is multiple choice question with a few available answers, from which one is correct. */
+    /** Setter method for a Quiz, which is multiple choice question with a few available answers, from which only one is correct. */
     public void setQuiz(String question, String answer, String[] possibleAnswers) {
         this.question = question;
         this.answer = answer;
         this.possibleAnswers = possibleAnswers;
     }
 
-    /** Method that puts the landmark on the parse server. Values may be numerical, String,
+    /** Method that puts the landmark on the server. Values may be numerical, String,
       * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putOnServer(){
         ParseObject lm = new ParseObject("Landmarks");
@@ -239,7 +239,7 @@ public class Landmark implements Serializable{
         lm.saveInBackground();
     }
 
-    /** Method that puts the landmark on the parse server. Values may be numerical, String,
+    /** Method that puts the landmark on the server. Values may be numerical, String,
       * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
     public void putCustomOnServer(){
         ParseObject lm = new ParseObject("SendLandmarks");

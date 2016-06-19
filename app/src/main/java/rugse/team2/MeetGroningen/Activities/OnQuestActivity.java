@@ -54,9 +54,9 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
     private Quest passedQuest;
     /** The next landmark within the currently active quest. */
     private Landmark nextLandmark; //cannot be put local like Android Studio says
-    /** The list lay-out to be filled with the name of the next landmark. */
+    /** The list lay-out element to be filled with the name of the next landmark. */
     private ListView listView;
-    /** The list lay-out to be filled with the names of the landmarks remaining after the next one. */
+    /** The list lay-out element to be filled with the names of the landmarks remaining after the next one. */
     private ListView listView2;
     /** The (Google) map. */
     private GoogleMap mMap;
@@ -149,7 +149,7 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
         };
 
 
-        //TODO: change below permission question, worst case ask permission for AP 23 else do shitty location permission request
+        //TODO: change permission question below, worst case ask permission for AP 23, else do shitty location permission request
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -166,8 +166,8 @@ public class OnQuestActivity extends FragmentActivity implements OnMapReadyCallb
      * Gets the landmarks remaining within the current quest from the database and updates
      * the two list views with the first of those landmarks and with all others, respectively.
      *
-     * @param listView The first list view lay-out element, containing the first of the remaining landmarks within the current quest.
-     * @param listView2 The second list view lay-out element, containing the other remaining landmarks within the current quest.
+     * @param listView The first list view, to contain the first of the remaining landmarks within the current quest.
+     * @param listView2 The second list view, to contain the other remaining landmarks within the current quest.
      */
     void updateListViews(ListView listView, ListView listView2) {
         DatabaseHelper helper = new DatabaseHelper(getBaseContext());

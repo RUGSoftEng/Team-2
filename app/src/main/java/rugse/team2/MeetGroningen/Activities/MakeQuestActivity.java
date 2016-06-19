@@ -49,15 +49,15 @@ import java.util.UUID;
 public class MakeQuestActivity extends FragmentActivity implements AskQuestNameDialog.QuestNameDialogListener, OnMapReadyCallback {
     /** The (Google) map. */
     private GoogleMap mMap;
-    /** The data corresponding to the first list, i.e. all not yet selected landmarks. */
+    /** The data corresponding to the first list, to be specific all not yet selected landmarks. */
     private ArrayList<Landmark> landmarks;
-    /** The data corresponding to the second list, i.e. all landmarks selected thus far. */
+    /** The data corresponding to the second list, to be specific all landmarks selected thus far. */
     private ArrayList<Landmark> selectedLandmarks;
     /** The list of markers of landmark locations. */
     private List<Marker> markers;
-    /** The adapter for binding the data corresponding to the first list to that list view element in the user interface. */
+    /** The adapter for binding the data corresponding to the first list to its list view element in the user interface. */
     public ArrayAdapter<Landmark> adapter;
-    /** The adapter for binding the data corresponding to the second list to that list view element in the user interface. */
+    /** The adapter for binding the data corresponding to the second list to its list view element in the user interface. */
     public ArrayAdapter<Landmark> adapter2;
 
     /**

@@ -84,13 +84,13 @@ public class User implements Serializable {
         return this.name;
     }
 
-    /** Getter method for the list of already completed quests. */
-    public ArrayList<Quest> getSolvedQuests() { return solvedQuests; }
-
     /** Getter method for the list of started but not yet completed quests. */
     public ArrayList<Quest> getCurrentQuests() {
         return currentQuests;
     }
+
+    /** Getter method for the list of already completed quests. */
+    public ArrayList<Quest> getSolvedQuests() { return solvedQuests; }
 
     /** Setter method for the currently active quest. */
     public void setActiveQuest(Quest q) {

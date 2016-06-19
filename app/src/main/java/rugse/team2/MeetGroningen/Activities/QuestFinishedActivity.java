@@ -18,7 +18,7 @@ public class QuestFinishedActivity extends AppCompatActivity {
     private Quest finishedQuest;
 
     /**
-     * Initialises the activity as described above, and binds clicking a 'go back to main' button to starting a new MainActivity.
+     * Initialises the activity as described above, and binds clicking a 'main' button to starting a new MainActivity.
      *
      * @param savedInstanceState If the activity is being re-initialised after previously being shut down, then this Bundle
      *                           contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.

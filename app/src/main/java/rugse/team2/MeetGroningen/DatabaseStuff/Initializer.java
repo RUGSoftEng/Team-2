@@ -165,7 +165,7 @@ public class Initializer {
         bovenkamer.setInformation("De Bovenkamer van Groningen (The Upstairs Room of Groningen) is a unique, elevated, atmospheric conference room for business related, celebratory, and creative gatherings. Established in 2014, it is located in the former water tank of Groningen's northern water tower, that was built in 1908 and used to hold one million litres of water. It is situated near the edge of the Noorderplantsoen, an urban public park.");
         landmarks.add(bovenkamer);
 
-        //Landmarks for Zernike Quest with Quizzes
+        //landmarks for the Zernike Quest, with Quizzes
 
         //number 22
         Landmark bernoulliborg = new Landmark("Bernoulliborg", UUID.randomUUID().toString());
@@ -194,7 +194,7 @@ public class Initializer {
         landmarks.add(albertHeijnZernike);
 
 
-        //create all standard quests, TODO: we could also move this to createAllStandardQuests() and get from landmark list (would have to use hardcoded numbers however)
+        //create all standard quests TODO: we could also move this to createAllStandardQuests() and get from the landmark list there (would have to use hardcoded numbers however)
 
         //number 1
         ExactQuest essentialQuest = new ExactQuest(UUID.randomUUID().toString(), "Groningen Highlights", false);

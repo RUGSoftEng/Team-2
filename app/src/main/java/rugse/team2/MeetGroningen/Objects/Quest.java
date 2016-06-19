@@ -23,16 +23,16 @@ public abstract class Quest implements Serializable {
     protected ArrayList<Landmark> landmarks = new ArrayList<>();
     /** The list of landmarks within the quest already visited. */
     protected ArrayList<Landmark> visitedLandmarks = new ArrayList<>();
-    /** The quest's unique ID */
+    /** The quest's unique ID. */
     protected String questID;
     /** The total amount of landmarks within the quest. */
     protected int totallandmarks;
     /** The category the quest falls under. */
     protected String category;
 
-    /** A boolean which indicates whether the quest is user-generated (true) or not (false). */
+    /** A boolean which indicates whether the quest is user-generated (True) or not (False). */
     protected boolean isUserGenerated;
-    /** A boolean which indicates whether the quest has been sent already (true) or not (false, default). */
+    /** A boolean which indicates whether the quest has been sent to the server already (True) or not (False, default). */
     protected boolean isSend = false;
 
     /**
@@ -82,7 +82,7 @@ public abstract class Quest implements Serializable {
      *
      * @return The percentage of the quest completed so far.
      */
-    public int getProgress(){ //for getting progress we don't need the variable (yet)
+    public int getProgress(){
         if(landmarks.isEmpty()){
             return 100;
         }
@@ -142,7 +142,7 @@ public abstract class Quest implements Serializable {
         for(Landmark l : visitedLandmarks){
             if(landmarkID == l.getID()){
                 this.visitedLandmarks.add(l);
-                this.landmarks.remove(l); //TODO: now slow might be faster
+                this.landmarks.remove(l); //TODO: now slow, could maybe be faster
                 break;
             }
         }
@@ -183,9 +183,9 @@ public abstract class Quest implements Serializable {
     }
     //end test toJSON
 
-    /** Method that puts the quest on the parse server. Values may be numerical, String,
+    /** Method that puts the quest on the server. Values may be numerical, String,
       * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
-    public void putOnServer(){ //TODO: find way to store the arrays of landmarks. JSON?
+    public void putOnServer() {
         ParseObject qst = new ParseObject("Quests");
 
         Gson gson = new Gson();
@@ -198,9 +198,9 @@ public abstract class Quest implements Serializable {
         qst.saveInBackground();
     }
 
-    /** Method that puts the quest on the parse server. Values may be numerical, String,
+    /** Method that puts the quest on the server. Values may be numerical, String,
       * JSONObject, JSONArray, JSONObject.NULL, or other ParseObjects, but not null. */
-    public void putCustomOnServer(){
+    public void putCustomOnServer() {
         ParseObject qst = new ParseObject("SendQuests");
 
         Gson gson = new Gson();

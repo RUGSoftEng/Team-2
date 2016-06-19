@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(rugse.team2.MeetGroningen.R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //for the first time of startup initialise stuff by looking for preferences file (so could be affected by previous tries; wipe data to be sure)
+        //for the first time of start-up initialise stuff by looking for the preferences file (could be affected by previous tries; wipe data to be sure)
         final String PREFS_NAME = "MyPrefsFile";
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
-        //Initializing the Parse server
+        //initialising the parse server
         if (!(((GlobalVariables) this.getApplication()).getParseInitialized())){
             Parse.initialize(new Parse.Configuration.Builder(ctx)
                     .applicationId("htcAppId")
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             );
             ((GlobalVariables) this.getApplication()).setParseInitialized(true);
         }
-        //end server initialization
+        //end server initialisation
 
         if (settings.getBoolean("first_time", true)) {
 
@@ -93,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Landmark> standardLandMarks = i.createStandardLandmarks();
             for(Landmark l : standardLandMarks){
                 db.putInDatabase(db, l);
-                //puts all initialized landmarks on the server (which isn't really needed) TODO: create sensible way to organize this
+                //puts all initialized landmarks on the server (which isn't really needed) TODO: create sensible way to organise this
                 //l.putOnServer();
             }
 
             ArrayList<Quest> standardQuests = i.createStandardQuests();
             for(Quest q : standardQuests){
                 db.putInDatabase(db, q);
-                //puts all initialized quests on the server (which isn't really needed) TODO: create sensible way to organize this
+                //puts all initialized quests on the server (which isn't really needed) TODO: create sensible way to organise this
                 //q.putOnServer();
             }
 

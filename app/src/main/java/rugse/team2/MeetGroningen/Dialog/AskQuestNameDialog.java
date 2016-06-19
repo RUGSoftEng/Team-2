@@ -72,7 +72,8 @@ public class AskQuestNameDialog extends DialogFragment {
     /**
      * Overrides the Fragment.onAttach() method to instantiate the QuestNameDialogListener.
      *
-     * @param activity The activity this dialog fragment is attached to. */
+     * @param activity The activity this dialog fragment is attached to.
+     */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -88,7 +89,7 @@ public class AskQuestNameDialog extends DialogFragment {
     }
 
     /** Getter method for the entered quest name. */
-    public String getQuestName(){
+    public String getQuestName() {
         return this.questName;
     }
 
